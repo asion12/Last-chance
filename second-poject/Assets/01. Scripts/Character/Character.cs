@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [System.Serializable]
     public struct Stats
     {
         public int HP;
@@ -16,7 +17,10 @@ public class Character : MonoBehaviour
         public float DEX;
         public float CHA;
 
-        public Stats(int Hp, int Mp, float Str, float Fir, float Int, float Wis, float Foc, float Dex, float Cha)
+        public Elements resistElement;
+        public List<int> weakElement;
+
+        public Stats(int Hp, int Mp, float Str, float Fir, float Int, float Wis, float Foc, float Dex, float Cha, List<int> _resistlement, List<int> _weakElement)
         {
             HP = Hp;
             MP = Mp;
@@ -27,10 +31,12 @@ public class Character : MonoBehaviour
             FOC = Foc;
             DEX = Dex;
             CHA = Cha;
+            resistElement = _resistlement;
+            weakElement = _weakElement;
         }
     }
 
-    public Stats characterStats = new Stats(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    public Stats characterStats = new Stats(0, 0, 0, 0, 0, 0, 0, 0, 0, new List<int>(), new List<int>());
 
     private BattleManager battleManager;
     void Start()

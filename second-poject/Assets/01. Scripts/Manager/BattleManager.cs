@@ -75,7 +75,6 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-
         }
 
         // SkillVicTim DEX Check
@@ -84,6 +83,12 @@ public class BattleManager : MonoBehaviour
         {
             castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
             castSkill.accuarityPer = 0;
+        }
+
+        float accuarityRoll = Random.RandomRange(0, 100);
+        if (accuarityRoll < castSkill.accuarityPer)
+        {
+            skillVictim.GetComponent<Character>().characterStats.HP -= castSkill.skillDamage;
         }
     }
 }

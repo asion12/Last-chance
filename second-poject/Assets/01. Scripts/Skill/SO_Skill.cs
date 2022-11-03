@@ -6,7 +6,7 @@ using UnityEngine;
 public class SO_Skill : ScriptableObject
 {
     public string skillName;
-    public float skillDamage;
+    public int skillDamage;
     public float needFOC;
     public float needMp;
     public float needHp;

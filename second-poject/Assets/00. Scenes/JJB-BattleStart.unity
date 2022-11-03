@@ -736,6 +736,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a305cdd53910944b0b8c3c4bc483d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+    resistElement: 00000000
+    weakElement: 
   playerCamera: {fileID: 2047056543}
   battleStartRange: 0.5
   battleStartRangePoint: {fileID: 1237334324}
