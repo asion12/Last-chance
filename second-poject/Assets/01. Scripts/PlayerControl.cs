@@ -3,17 +3,20 @@ using cakeslice;
 
 public class PlayerControl : MonoBehaviour
 {
-    public GameObject battleStartRangePoint = null;
-    public GameObject hitObject = null;
+    [SerializeField]
+    private GameObject battleStartRangePoint = null;
+    private GameObject hitObject = null;
 
     [SerializeField]
     private Camera playerCamera = null;
+
     [SerializeField]
     private float rotateSpeed = 500.0f;
+
     [SerializeField]
     private float moveSpeed = 3f;
     [SerializeField]
-    private float battleStartRange = 10f;
+    private float battleStartRange = 0f;
     private GameObject lastHitData = null;
     //ī�޶� ȸ�� ��ġ
     private float xRotate, yRotate, xRotateMove, yRotateMove;
@@ -58,8 +61,15 @@ public class PlayerControl : MonoBehaviour
             if (hitData.transform.tag == "Enemy")
             {
                 Debug.Log("RayIn!!");
-                lastHitData = hitData.transform.gameObject;
-                hitData.transform.GetComponent<Outline>().eraseRenderer = false;
+                if (hitData.distance <= battleStartRange)
+                {
+                    lastHitData = hitData.transform.gameObject;
+                    hitData.transform.GetComponent<Outline>().eraseRenderer = false;
+                }
+                else
+                {
+                    RayOutCheck();
+                }
             }
             else
             {
