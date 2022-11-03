@@ -7,14 +7,14 @@ public class SO_Skill : ScriptableObject
 {
     public string skillName;
     public float skillDamage;
-    public float needFocus;
+    public float needFOC;
     public float needMp;
     public float needHp;
     public int ElementID;
 
-    public float accuarityPer;
-    public float criticalPer;
-    public float deceptionPer;
+    public float accuarityPer = 100;
+    public float casterCriticalPer;
+    public float victimDeceptionPer;
     // 0: NULL - Just Damag 
     // 1: SUN - Attack to Light
     // 2: MOON - Attack to Hack

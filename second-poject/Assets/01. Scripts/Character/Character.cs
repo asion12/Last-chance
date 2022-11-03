@@ -29,4 +29,22 @@ public class Character : MonoBehaviour
             CHA = Cha;
         }
     }
+
+    public Stats characterStats = new Stats(0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+    private BattleManager battleManager;
+    void Start()
+    {
+        battleManager = GetComponent<BattleManager>();
+    }
+    public void GetStat(int statID)
+    {
+        switch (statID)
+        {
+            case 0:
+                break;
+            default:
+                break;
+        }
+    }
 }

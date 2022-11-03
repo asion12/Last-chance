@@ -92,11 +92,6 @@ public class PlayerControl : Character
         // Debug.Log("now hit is" + hitData.transform.gameObject);
     }
 
-    public void BattleStart(bool isPlayerStart, GameObject nowEnemy)
-    {
-        battleDamageTo = nowEnemy;
-    }
-
     private void RayOutCheck()
     {
         Debug.Log("Ray Checking");
@@ -119,5 +114,10 @@ public class PlayerControl : Character
         pos += transform.right * moveY * moveSpeed * Time.deltaTime;
 
         transform.position = pos;
+    }
+
+    public void PlayerBattleStart(bool isPlayerStart, GameObject nowEnemy)
+    {
+        battleDamageTo = nowEnemy;
     }
 }
