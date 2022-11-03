@@ -48,6 +48,8 @@ public class PlayerControl : MonoBehaviour
 
     private void CanBattleStartByRayCast()
     {
+        Debug.Log("Now Raying");
+
         RaycastHit hitData;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
@@ -77,6 +79,7 @@ public class PlayerControl : MonoBehaviour
 
     private void RayOutCheck()
     {
+        Debug.Log("Ray Checking");
         if (lastHitData != null)
         {
             Debug.Log("RayOut!!");
