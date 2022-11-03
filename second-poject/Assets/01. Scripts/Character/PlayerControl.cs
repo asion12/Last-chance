@@ -1,26 +1,31 @@
 using UnityEngine;
 using cakeslice;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : Character
 {
-    [SerializeField]
-    private GameObject battleStartRangePoint = null;
-    private GameObject hitObject = null;
 
+    // about Battle Start Check
     [SerializeField]
     private Camera playerCamera = null;
-
     [SerializeField]
-    private float rotateSpeed = 500.0f;
+    private float battleStartRange = 0f;
+    [SerializeField]
+    private GameObject battleStartRangePoint = null;
 
+    private GameObject hitObject = null;
+    private GameObject lastHitData = null;
+
+    // about move
     [SerializeField]
     private float moveSpeed = 3f;
     [SerializeField]
-    private float battleStartRange = 0f;
-    private GameObject lastHitData = null;
-    //ī�޶� ȸ�� ��ġ
+    private float rotateSpeed = 500.0f;
+
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 
+    // about battle
+    [System.NonSerialized]
+    public GameObject battleDamageTo;
 
     private void Start()
     {
@@ -85,6 +90,11 @@ public class PlayerControl : MonoBehaviour
         }
         // Debug.Log("last hit is " + lastHitData);
         // Debug.Log("now hit is" + hitData.transform.gameObject);
+    }
+
+    public void BattleStart(bool isPlayerStart, GameObject nowEnemy)
+    {
+        battleDamageTo = nowEnemy;
     }
 
     private void RayOutCheck()
