@@ -15,14 +15,10 @@ public class Character : MonoBehaviour
     {
         battleManager = GetComponent<BattleManager>();
     }
-    public void GetStat(int statID)
-    {
-        switch (statID)
-        {
-            case 0:
-                break;
-            default:
-                break;
-        }
-    }
+    // public void GetStat(int statID)
+    // {
+    //     switch (statID)
+    //     {
+    //     }
+    // }
 }
