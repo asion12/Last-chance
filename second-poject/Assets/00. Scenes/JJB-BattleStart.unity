@@ -746,8 +746,22 @@ MonoBehaviour:
     FOC: 0
     DEX: 0
     CHA: 0
-    resistElement: 00000000
-    weakElement: 
+  resistElements:
+    BRIGHTNESS: 0
+    LUMINOUS: 0
+    THERMAL: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    IRON: 0
+    CLAY: 0
+  weakElements:
+    BRIGHTNESS: 0
+    LUMINOUS: 0
+    THERMAL: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    IRON: 0
+    CLAY: 0
   playerCamera: {fileID: 2047056543}
   battleStartRange: 0.5
   battleStartRangePoint: {fileID: 1237334324}
@@ -866,6 +880,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1744023170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744023172}
+  - component: {fileID: 1744023171}
+  m_Layer: 0
+  m_Name: BattleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1744023171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744023170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923a8d12ee2d85c4e8683f542bd30abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nowTurnID: 0
+  targetEnemy: {fileID: 0}
+  player: {fileID: 0}
+--- !u!4 &1744023172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744023170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0896478, y: 1.2458738, z: 1.2049894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1944479722
 GameObject:

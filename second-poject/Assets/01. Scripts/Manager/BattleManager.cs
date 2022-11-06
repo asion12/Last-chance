@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    int nowTurnID = 0;
+    public int nowTurnID = 0;
     // 0: Battle Mode off
     // 1: PlayerTurn
     // 2: EnemyTurn
     // Start is called before the first frame update
+
+    public Character targetEnemy;
+    public Character player;
     void Start()
     {
     }
@@ -53,6 +56,12 @@ public class BattleManager : MonoBehaviour
             EnemyWin();
         }
     }
+
+    public void SetEnemy(Character setEnemy)
+    {
+        targetEnemy = setEnemy;
+    }
+
     public void PlayerWin()
     {
         Debug.Log("Player Win!!");
@@ -62,33 +71,139 @@ public class BattleManager : MonoBehaviour
         Debug.Log("Enemy Win!!");
     }
 
-    public void UseSkill(GameObject skillCaster, GameObject skillVictim, SO_Skill castSkill)
+    public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
-        // SkillCaster FOC Check
-        if (skillCaster.GetComponent<Character>().characterStats.FOC > castSkill.needFOC)
+        void AddCarelessCounter(Character character)
         {
-            castSkill.casterCriticalPer = skillCaster.GetComponent<Character>().characterStats.FOC - castSkill.needFOC;
+            character.carelessCounter++;
         }
-        else if (skillCaster.GetComponent<Character>().characterStats.FOC < castSkill.needFOC)
+
+        bool PercentageCheck(float percnetage)
         {
-            castSkill.accuarityPer -= castSkill.needFOC - skillCaster.GetComponent<Character>().characterStats.FOC;
+            float accuarityRoll = Random.Range(0f, 100f);
+            if (accuarityRoll < percnetage)
+                return true;
+            else
+                return false;
+        }
+
+        // SkillCaster FOC Check
+        if (skillCaster.characterStats.FOC > castSkill.needFOC)
+        {
+            castSkill.casterCriticalPer = skillCaster.characterStats.FOC - castSkill.needFOC;
+        }
+        else if (skillCaster.characterStats.FOC < castSkill.needFOC)
+        {
+            castSkill.accuarityPer -= castSkill.needFOC - skillCaster.characterStats.FOC;
         }
         else
         {
         }
 
         // SkillVicTim DEX Check
-        castSkill.accuarityPer -= skillCaster.GetComponent<Character>().characterStats.DEX;
+        castSkill.accuarityPer -= skillCaster.characterStats.DEX;
         if (castSkill.accuarityPer < 0)
         {
             castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
             castSkill.accuarityPer = 0;
         }
 
-        float accuarityRoll = Random.RandomRange(0, 100);
-        if (accuarityRoll < castSkill.accuarityPer)
+        // Skill Hit Check
+        if (PercentageCheck(castSkill.accuarityPer))
         {
-            skillVictim.GetComponent<Character>().characterStats.HP -= castSkill.skillDamage;
+            if (CheckElement(skillVictim.resistElements, castSkill.skillElements))
+            {
+                Debug.Log("Guard!");
+                if (PercentageCheck(castSkill.victimDeceptionPer))
+                {
+                    Debug.Log("Deception!");
+                }
+            }
+            else
+            {
+                if (PercentageCheck(castSkill.casterCriticalPer))
+                {
+                    Debug.Log("Critical!");
+                }
+
+                if (CheckElement(skillVictim.weakElements, castSkill.skillElements))
+                {
+                    Debug.Log("Additive!");
+                }
+
+                Debug.Log("Hit!");
+            }
         }
+        else
+        {
+            Debug.Log("Miss!");
+
+            if (PercentageCheck(castSkill.victimDeceptionPer))
+            {
+                Debug.Log("Deception!");
+            }
+        }
+    }
+
+    private bool CheckElement(Elements characterElements, Elements skillElements)
+    {
+        bool CheckElementDetail(bool victimElement, bool skillElement)
+        {
+            if (victimElement == true && skillElement == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        int count = 0;
+        for (int i = 0; i < 7; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    if (CheckElementDetail(characterElements.SOLAR, skillElements.SOLAR))
+                        count++;
+                    break;
+                case 1:
+                    if (CheckElementDetail(characterElements.LUMINOUS, skillElements.LUMINOUS))
+                        count++;
+                    break;
+                case 2:
+                    if (CheckElementDetail(characterElements.THERMAL, skillElements.THERMAL))
+                        count++;
+                    break;
+                case 3:
+                    if (CheckElementDetail(characterElements.HYDRO, skillElements.HYDRO))
+                        count++;
+                    break;
+                case 4:
+                    if (CheckElementDetail(characterElements.BIOLOGY, skillElements.BIOLOGY))
+                        count++;
+                    break;
+                case 5:
+                    if (CheckElementDetail(characterElements.BIOLOGY, skillElements.BIOLOGY))
+                        count++;
+                    break;
+                case 6:
+                    if (CheckElementDetail(characterElements.IRON, skillElements.IRON))
+                        count++;
+                    break;
+                case 7:
+                    if (CheckElementDetail(characterElements.CLAY, skillElements.CLAY))
+                        count++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (count > 0)
+            return true;
+        else
+            return false;
     }
 }

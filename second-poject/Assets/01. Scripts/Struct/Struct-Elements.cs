@@ -1,11 +1,11 @@
 [System.Serializable]
 public struct Elements
 {
-    public bool SUN;
-    public bool MOON;
-    public bool FIRE;
-    public bool WATER;
-    public bool WOOD;
-    public bool STEEL;
-    public bool TERRA;
+    public bool SOLAR; // sun
+    public bool LUMINOUS; // moon
+    public bool THERMAL; // fire
+    public bool HYDRO; // water
+    public bool BIOLOGY; // tree
+    public bool IRON; // steel
+    public bool CLAY; // solid
 }

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField]
     public Stats characterStats = new Stats();
-    [SerializeField]
     public Elements resistElements = new Elements();
-    [SerializeField]
     public Elements weakElements = new Elements();
-    private BattleManager battleManager;
+    public int carelessCounter = 0;
+    protected BattleManager battleManager;
     void Start()
     {
         battleManager = GetComponent<BattleManager>();

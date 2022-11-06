@@ -6,15 +6,16 @@ using UnityEngine;
 public class SO_Skill : ScriptableObject
 {
     public string skillName;
+    public Elements skillElements;
     public int skillDamage;
     public float needFOC;
     public float needMp;
     public float needHp;
-    public int ElementID;
 
     public float accuarityPer = 100;
     public float casterCriticalPer;
     public float victimDeceptionPer;
+    public SideEffect sideEffect;
     // 0: NULL - Just Damag 
     // 1: SUN - Attack to Light
     // 2: MOON - Attack to Hack

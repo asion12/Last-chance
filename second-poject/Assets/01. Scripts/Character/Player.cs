@@ -1,7 +1,7 @@
 using UnityEngine;
 using cakeslice;
 
-public class PlayerControl : Character
+public class Player : Character
 {
 
     // about Battle Start Check
@@ -70,6 +70,10 @@ public class PlayerControl : Character
                 {
                     lastHitData = hitData.transform.gameObject;
                     hitData.transform.GetComponent<Outline>().eraseRenderer = false;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        battleManager.BattleStart(true);
+                    }
                 }
                 else
                 {
