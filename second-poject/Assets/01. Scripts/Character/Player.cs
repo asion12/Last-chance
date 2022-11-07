@@ -3,7 +3,6 @@ using cakeslice;
 
 public class Player : Character
 {
-
     // about Battle Start Check
     [SerializeField]
     private Camera playerCamera = null;
@@ -22,10 +21,6 @@ public class Player : Character
     private float rotateSpeed = 500.0f;
 
     private float xRotate, yRotate, xRotateMove, yRotateMove;
-
-    // about battle
-    [System.NonSerialized]
-    public GameObject battleDamageTo;
 
     private void Start()
     {
@@ -54,6 +49,7 @@ public class Player : Character
         playerCamera.transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
     }
 
+    public GameObject nowHitObject;
     private void CanBattleStartByRayCast()
     {
         Debug.Log("Now Raying");
@@ -72,7 +68,9 @@ public class Player : Character
                     hitData.transform.GetComponent<Outline>().eraseRenderer = false;
                     if (Input.GetMouseButtonDown(0))
                     {
-                        battleManager.BattleStart(true);
+                        Debug.Log("Battle Ready");
+                        battleMode = true;
+                        battleManager.BattleStart(true, hitData.transform.gameObject);
                     }
                 }
                 else
@@ -118,10 +116,5 @@ public class Player : Character
         pos += transform.right * moveY * moveSpeed * Time.deltaTime;
 
         transform.position = pos;
-    }
-
-    public void PlayerBattleStart(bool isPlayerStart, GameObject nowEnemy)
-    {
-        battleDamageTo = nowEnemy;
     }
 }

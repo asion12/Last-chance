@@ -32,8 +32,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void BattleStart(bool isPlayerStart)
+    public void BattleStart(bool isPlayerStart, GameObject detactedEnemy)
     {
+        Debug.Log("BattleStart!");
+        SetEnemy(detactedEnemy.GetComponent<Character>());
+        targetEnemy.battleMode = true;
         if (isPlayerStart)
         {
             nowTurnID = 1;
@@ -46,14 +49,15 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd(bool isPlayerWin)
     {
-        nowTurnID = 0;
+        nowTurnID = 0; // reset turn
+        targetEnemy = null; // reset targetEnemy
         if (isPlayerWin)
         {
-            PlayerWin();
+            Debug.Log("Player Win!");
         }
         else
         {
-            EnemyWin();
+            Debug.Log("Enemu Win!");
         }
     }
 
@@ -62,14 +66,6 @@ public class BattleManager : MonoBehaviour
         targetEnemy = setEnemy;
     }
 
-    public void PlayerWin()
-    {
-        Debug.Log("Player Win!!");
-    }
-    public void EnemyWin()
-    {
-        Debug.Log("Enemy Win!!");
-    }
 
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {

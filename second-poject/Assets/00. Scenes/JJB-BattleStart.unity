@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 730138079}
   - component: {fileID: 730138083}
   - component: {fileID: 730138084}
+  - component: {fileID: 730138085}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Enemy
@@ -422,6 +423,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &730138085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730138078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9621dbb96af14498532c97b9ede800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+  resistElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    THERMAL: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    IRON: 0
+    CLAY: 0
+  weakElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    THERMAL: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    IRON: 0
+    CLAY: 0
+  carelessCounter: 0
+  battleMode: 0
 --- !u!1 &763501352
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +788,7 @@ MonoBehaviour:
     DEX: 0
     CHA: 0
   resistElements:
-    BRIGHTNESS: 0
+    SOLAR: 0
     LUMINOUS: 0
     THERMAL: 0
     HYDRO: 0
@@ -755,18 +796,21 @@ MonoBehaviour:
     IRON: 0
     CLAY: 0
   weakElements:
-    BRIGHTNESS: 0
+    SOLAR: 0
     LUMINOUS: 0
     THERMAL: 0
     HYDRO: 0
     BIOLOGY: 0
     IRON: 0
     CLAY: 0
+  carelessCounter: 0
+  battleMode: 0
   playerCamera: {fileID: 2047056543}
   battleStartRange: 0.5
   battleStartRangePoint: {fileID: 1237334324}
   moveSpeed: 3
   rotateSpeed: 500
+  nowHitObject: {fileID: 0}
 --- !u!54 &1272380699
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -912,7 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowTurnID: 0
   targetEnemy: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 1272380698}
 --- !u!4 &1744023172
 Transform:
   m_ObjectHideFlags: 0

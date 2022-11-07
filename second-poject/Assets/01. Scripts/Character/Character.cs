@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public Elements weakElements = new Elements();
     public int carelessCounter = 0;
     protected BattleManager battleManager;
+    public bool battleMode = false;
     void Start()
     {
         battleManager = GetComponent<BattleManager>();
