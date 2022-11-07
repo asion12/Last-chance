@@ -30,10 +30,9 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-
     }
 
-    public void TurnChange()
+    public void TurnChange(int i, int m, int n)
     {
         if (nowTurnID == 1)
         {
@@ -85,9 +84,9 @@ public class BattleManager : MonoBehaviour
         targetEnemy = setEnemy;
     }
 
-
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        Debug.Log("Casted!");
         void AddCarelessCounter(Character character)
         {
             character.carelessCounter++;
@@ -188,7 +187,7 @@ public class BattleManager : MonoBehaviour
                         count++;
                     break;
                 case 2:
-                    if (CheckElementDetail(characterElements.THERMAL, skillElements.THERMAL))
+                    if (CheckElementDetail(characterElements.IGNITION, skillElements.IGNITION))
                         count++;
                     break;
                 case 3:

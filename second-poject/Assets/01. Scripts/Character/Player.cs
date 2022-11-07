@@ -16,11 +16,10 @@ public class Player : Character
 
     // about move
     [SerializeField]
-    private float moveSpeed = 3f;
+    private float moveSpeed;
     [SerializeField]
-    private float rotateSpeed = 500.0f;
+    private float rotateSpeed;
     private bool freeze = false;
-
 
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 

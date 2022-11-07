@@ -3,7 +3,7 @@ public struct Elements
 {
     public bool SOLAR; // sun
     public bool LUMINOUS; // moon
-    public bool THERMAL; // fire
+    public bool IGNITION; // fire
     public bool HYDRO; // water
     public bool BIOLOGY; // tree
     public bool IRON; // steel
