@@ -7,7 +7,6 @@ public class PlayerControlNav : MonoBehaviour
     CharacterController characterController;
     NavMeshAgent agent;
 
-    // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -16,7 +15,7 @@ public class PlayerControlNav : MonoBehaviour
         agent.updatePosition = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetMouseButton(0))
