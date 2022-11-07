@@ -19,23 +19,32 @@ public class Player : Character
     private float moveSpeed = 3f;
     [SerializeField]
     private float rotateSpeed = 500.0f;
+    private bool freeze = false;
+
 
     private float xRotate, yRotate, xRotateMove, yRotateMove;
-
-    private void Start()
-    {
-
-    }
 
     void Update()
     {
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
-        CameraRotate();
-        CharacterMove();
-        CanBattleStartByRayCast();
+        if (!battleMode)
+        {
+            CameraRotateToMousePointer();
+            CharacterMove();
+            CanBattleStartByRayCast();
+        }
     }
 
-    private void CameraRotate()
+    public void CameraRotateToTarget(GameObject target)
+    {
+        Vector3 rotateDistance = target.transform.position - playerCamera.transform.position;
+        Quaternion toRotate = Quaternion.LookRotation(rotateDistance, Vector3.up);
+        //toRotate = Quaternion.Euler(toRotate.x, toRotate.y, 0);
+        playerCamera.transform.rotation = toRotate;
+        //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.x, playerCamera.transform.rotation.y, 0);
+    }
+
+    private void CameraRotateToMousePointer()
     {
         xRotateMove = -Input.GetAxis("Mouse Y") * Time.deltaTime * rotateSpeed;
         yRotateMove = Input.GetAxis("Mouse X") * Time.deltaTime * rotateSpeed;
@@ -43,9 +52,9 @@ public class Player : Character
         yRotate = playerCamera.transform.eulerAngles.y + yRotateMove;
         xRotate = xRotate + xRotateMove;
 
-        xRotate = Mathf.Clamp(xRotate, -90, 90); // ��, �Ʒ� ����
+        xRotate = Mathf.Clamp(xRotate, -90, 90);
 
-        transform.eulerAngles = new Vector3(0, yRotate, 0); //ĳ���� Y�� ȸ��
+        transform.eulerAngles = new Vector3(0, yRotate, 0);
         playerCamera.transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
     }
 
@@ -69,8 +78,7 @@ public class Player : Character
                     if (Input.GetMouseButtonDown(0))
                     {
                         Debug.Log("Battle Ready");
-                        battleMode = true;
-                        battleManager.BattleStart(true, hitData.transform.gameObject);
+                        BattleManager.instance.BattleStart(true, lastHitData);
                     }
                 }
                 else

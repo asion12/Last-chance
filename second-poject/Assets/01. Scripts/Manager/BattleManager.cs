@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
+    public static BattleManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     public int nowTurnID = 0;
     // 0: Battle Mode off
     // 1: PlayerTurn
@@ -12,8 +22,15 @@ public class BattleManager : MonoBehaviour
 
     public Character targetEnemy;
     public Character player;
+
+
     void Start()
     {
+    }
+
+    private void Update()
+    {
+
     }
 
     public void TurnChange()
@@ -37,6 +54,8 @@ public class BattleManager : MonoBehaviour
         Debug.Log("BattleStart!");
         SetEnemy(detactedEnemy.GetComponent<Character>());
         targetEnemy.battleMode = true;
+        player.battleMode = true;
+        player.GetComponent<Player>().CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
             nowTurnID = 1;
