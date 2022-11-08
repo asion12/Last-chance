@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // about Base UI
+    public Canvas playerBattleUI;
 
-    // about UI
-    public Canvas PlayerBattleUI;
+    // about Battle
+    [SerializeField] private Text battle_TurnText;
+    [SerializeField] private GameObject battle_SkillScrollView;
+    [SerializeField] private Text battle_PlayerElementsInfo;
+    [SerializeField] private Text battle_PlayerStatsInfo;
     void Start()
     {
 
@@ -17,11 +23,11 @@ public class UIManager : MonoBehaviour
     {
         if (BattleManager.instance.nowTurnID == 1)
         {
-            PlayerBattleUI.transform.gameObject.SetActive(true);
+            playerBattleUI.transform.gameObject.SetActive(true);
         }
         else
         {
-            PlayerBattleUI.transform.gameObject.SetActive(false);
+            playerBattleUI.transform.gameObject.SetActive(false);
         }
     }
 }

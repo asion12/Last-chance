@@ -4,12 +4,9 @@ using cakeslice;
 public class Player : Character
 {
     // about Battle Start Check
-    [SerializeField]
-    private Camera playerCamera = null;
-    [SerializeField]
-    private float battleStartRange = 0f;
-    [SerializeField]
-    private GameObject battleStartRangePoint = null;
+    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private float battleStartRange = 0f;
+    [SerializeField] private GameObject battleStartRangePoint = null;
 
     private GameObject hitObject = null;
     private GameObject lastHitData = null;
@@ -23,8 +20,9 @@ public class Player : Character
 
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
         if (!battleMode)
         {

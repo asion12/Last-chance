@@ -6,6 +6,6 @@ public struct Elements
     public bool IGNITION; // fire
     public bool HYDRO; // water
     public bool BIOLOGY; // tree
-    public bool IRON; // steel
+    public bool METAL; // steel
     public bool CLAY; // solid
 }

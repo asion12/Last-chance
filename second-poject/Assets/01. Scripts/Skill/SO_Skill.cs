@@ -16,12 +16,4 @@ public class SO_Skill : ScriptableObject
     public float casterCriticalPer;
     public float victimDeceptionPer;
     public SideEffect sideEffect;
-    // 0: NULL - Just Damag 
-    // 1: SUN - Attack to Light
-    // 2: MOON - Attack to Hack
-    // 3: FIRE - Attack to Fire
-    // 4: WATER - Attack to Water
-    // 5: WOOD - Attack And Drain
-    // 6: GOLD - Attack to Knife & Gun
-    // 7: SAND - Attack to Durt & Sand
 }
