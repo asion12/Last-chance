@@ -10,7 +10,7 @@ public class Player : Character
 
     private GameObject hitObject = null;
     private GameObject lastHitData = null;
-
+    
     // about move
     [SerializeField]
     private float moveSpeed;

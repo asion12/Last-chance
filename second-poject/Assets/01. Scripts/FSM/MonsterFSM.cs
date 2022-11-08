@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterFSM : Character
+public class MonsterFSM : MonoBehaviour
 {
-   
+  
+    private Character character;
     protected CharacterController characterController;
     protected StateMachine<MonsterFSM> fsmManager;
     public StateMachine<MonsterFSM> FsmManager => fsmManager;
@@ -23,9 +24,10 @@ public class MonsterFSM : Character
     private FOV fov;
     public Transform target => fov.FirstTarget;
     public LayerMask targetLayerMask => fov.targetLayerMask;
-      
+ 
     protected virtual void Start()
     {
+        character = GetComponent<Character>();
         characterController = GetComponent<CharacterController>();
         fsmManager = new StateMachine<MonsterFSM>(this, new stateRoaming());
         stateIdle stateIdle = new stateIdle();
@@ -47,6 +49,7 @@ public class MonsterFSM : Character
         if(!(fsmManager.getNowState is stateMove) && !(fsmManager.getNowState is stateDie))
         {
             lookAtTarget();
+            
         }
     }
 
