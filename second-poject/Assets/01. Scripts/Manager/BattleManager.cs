@@ -122,6 +122,9 @@ public class BattleManager : MonoBehaviour
             castSkill.accuarityPer = 0;
         }
 
+        // Skill Deception Percentage Add to CHA
+        castSkill.victimDeceptionPer += skillVictim.characterStats.CHA;
+
         // Skill Hit Check
         if (PercentageCheck(castSkill.accuarityPer))
         {
@@ -157,6 +160,14 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Deception!");
             }
         }
+        ResetSkillNurmical(castSkill);
+    }
+
+    private void ResetSkillNurmical(SO_Skill resetSkill)
+    {
+        resetSkill.accuarityPer = 100;
+        resetSkill.casterCriticalPer = 0;
+        resetSkill.victimDeceptionPer = 0;
     }
 
     private bool CheckElement(Elements characterElements, Elements skillElements)
@@ -199,14 +210,10 @@ public class BattleManager : MonoBehaviour
                         count++;
                     break;
                 case 5:
-                    if (CheckElementDetail(characterElements.BIOLOGY, skillElements.BIOLOGY))
+                    if (CheckElementDetail(characterElements.METAL, skillElements.METAL))
                         count++;
                     break;
                 case 6:
-                    if (CheckElementDetail(characterElements.IRON, skillElements.IRON))
-                        count++;
-                    break;
-                case 7:
                     if (CheckElementDetail(characterElements.CLAY, skillElements.CLAY))
                         count++;
                     break;
