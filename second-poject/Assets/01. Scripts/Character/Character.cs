@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     public List<SO_Skill> skillList;
 
     public int Level = 1;
-    public float Exp = 0;
+    public int Exp = 0;
 
     protected virtual void Update()
     {

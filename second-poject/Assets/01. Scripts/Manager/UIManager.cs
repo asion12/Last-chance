@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text battle_TurnText;
     [SerializeField] private GameObject battle_SkillScrollView;
     [SerializeField] private Text battle_PlayerElementsInfo;
-
+    [SerializeField] private Text battle_PlayerStatsInfo;
     void Start()
     {
 

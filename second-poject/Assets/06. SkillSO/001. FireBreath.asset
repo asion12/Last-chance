@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD654\uC5FC\uBC29\uC0AC"
   skillElements:
-    SOLAR: 0
+    SOLAR: 1
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0

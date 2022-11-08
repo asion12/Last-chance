@@ -698,7 +698,7 @@ MonoBehaviour:
     DEX: 10
     CHA: 10
   resistElements:
-    SOLAR: 1
+    SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
@@ -706,9 +706,9 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   weakElements:
-    SOLAR: 0
-    LUMINOUS: 1
-    IGNITION: 1
+    SOLAR: 1
+    LUMINOUS: 0
+    IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
     m_MaxSize: 300
     m_Alignment: 2
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -1037,7 +1037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 676, y: 282}
+  m_AnchoredPosition: {x: 676, y: 280}
   m_SizeDelta: {x: 460.2, y: 287.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805900148
@@ -1843,7 +1843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 676, y: 280}
+  m_AnchoredPosition: {x: 865, y: 280}
   m_SizeDelta: {x: 460.2, y: 287.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569300470
@@ -1953,6 +1953,7 @@ MonoBehaviour:
   battle_TurnText: {fileID: 496038011}
   battle_SkillScrollView: {fileID: 1135387866}
   battle_PlayerElementsInfo: {fileID: 731522608}
+  battle_PlayerStatsInfo: {fileID: 0}
 --- !u!1 &1730536255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,7 +2289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 676, y: -10}
+  m_AnchoredPosition: {x: 865, y: -10}
   m_SizeDelta: {x: 460.2, y: 287.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986032478
@@ -2320,7 +2321,7 @@ MonoBehaviour:
     m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1

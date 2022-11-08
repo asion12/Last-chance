@@ -145,7 +145,7 @@ public class BattleManager : MonoBehaviour
 
                 if (CheckElement(skillVictim.weakElements, castSkill.skillElements))
                 {
-                    Debug.Log("Additive!");
+                    Debug.Log("Advantage!");
                 }
 
                 Debug.Log("Hit!");
