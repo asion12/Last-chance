@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterFSM : MonoBehaviour
+public class MonsterFSM : Character
 {
-
+   
     protected CharacterController characterController;
     protected StateMachine<MonsterFSM> fsmManager;
     public StateMachine<MonsterFSM> FsmManager => fsmManager;
