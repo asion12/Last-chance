@@ -73,10 +73,10 @@ public class Character : MonoBehaviour
                     }
                     break;
                 case 5:
-                    if (setElementsDetail(resistElements.IRON, weakElements.IRON))
+                    if (setElementsDetail(resistElements.METAL, weakElements.METAL))
                     {
-                        resistElements.IRON = false;
-                        weakElements.IRON = false;
+                        resistElements.METAL = false;
+                        weakElements.METAL = false;
                     }
                     break;
                 case 6:

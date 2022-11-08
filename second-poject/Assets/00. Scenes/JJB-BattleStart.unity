@@ -703,7 +703,7 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   weakElements:
     SOLAR: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
     IGNITION: 1
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   battleMode: 0
   carelessCounter: 0
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 731522609}
   - component: {fileID: 731522608}
   m_Layer: 5
-  m_Name: Plater Elements Info
+  m_Name: Player Elements Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,14 +783,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 5
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Weak
-
+  m_Text: '
 
     Resist
 
@@ -1015,7 +1014,7 @@ GameObject:
   - component: {fileID: 805900149}
   - component: {fileID: 805900148}
   m_Layer: 5
-  m_Name: Player Stat
+  m_Name: Player Stats Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,11 +1033,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1091825428}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 676, y: -10}
+  m_AnchoredPosition: {x: 676, y: 282}
   m_SizeDelta: {x: 460.2, y: 287.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805900148
@@ -1074,17 +1073,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Weak
+  m_Text: '0
 
+    0
 
-    Resist
+    0
 
+    0
 
-    Weak
+    0
 
+    0
 
-
-    Resist'
+    0'
 --- !u!222 &805900149
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1327,6 +1328,7 @@ RectTransform:
   - {fileID: 496038010}
   - {fileID: 1986032477}
   - {fileID: 731522607}
+  - {fileID: 1569300469}
   - {fileID: 805900147}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1593,20 +1595,20 @@ MonoBehaviour:
   characterStats:
     HP: 0
     MP: 0
-    STR: 0
-    FIR: 0
-    INT: 0
-    WIS: 0
-    FOC: 0
-    DEX: 0
-    CHA: 0
+    STR: 10
+    FIR: 10
+    INT: 10
+    WIS: 10
+    FOC: 150
+    DEX: 10
+    CHA: 10
   resistElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   weakElements:
     SOLAR: 0
@@ -1614,7 +1616,7 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   battleMode: 0
   carelessCounter: 0
@@ -1795,7 +1797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512326696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 347.5, y: 195.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1806,6 +1808,98 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1569300468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1569300469}
+  - component: {fileID: 1569300471}
+  - component: {fileID: 1569300470}
+  m_Layer: 5
+  m_Name: Player Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1569300469
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569300468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1091825428}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 676, y: 280}
+  m_SizeDelta: {x: 460.2, y: 287.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1569300470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569300468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'STR
+
+    FIR
+
+    INT
+
+    WIS
+
+    FOC
+
+    DEX
+
+    CHA'
+--- !u!222 &1569300471
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569300468}
+  m_CullTransparentMesh: 1
 --- !u!224 &1639345172 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6326892243068563707, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
@@ -1855,10 +1949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaa3814e8048d542a14f331bc9a89c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBattleUI: {fileID: 0}
-  battle_TurnText: {fileID: 0}
-  battle_SkillScrollView: {fileID: 0}
-  battle_PlayerElementsInfo: {fileID: 0}
+  playerBattleUI: {fileID: 1091825427}
+  battle_TurnText: {fileID: 496038011}
+  battle_SkillScrollView: {fileID: 1135387866}
+  battle_PlayerElementsInfo: {fileID: 731522608}
 --- !u!1 &1730536255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,7 +2167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744023170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -347.41034, y: -194.15411, z: 1.2049894}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2171,7 +2265,7 @@ GameObject:
   - component: {fileID: 1986032479}
   - component: {fileID: 1986032478}
   m_Layer: 5
-  m_Name: PlayerElements
+  m_Name: Player Elements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,15 +2318,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'NULL
-
-    SOLAR
+  m_Text: 'SOLAR
 
     LUMINOUS
 
@@ -2591,7 +2683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6326892243068563705, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6326892243068563705, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2610,8 +2702,12 @@ PrefabInstance:
       value: EventManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6326892243068563705, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+    - target: {fileID: 6326892243068563705, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: SO_Skill, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6326892243068563707, guid: dd1bd1681eaf3d147a20f94e12474fde, type: 3}
       propertyPath: m_Pivot.x
