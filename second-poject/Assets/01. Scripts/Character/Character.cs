@@ -5,6 +5,8 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public Stats characterStats = new Stats();
+    public Stats buff_debuffStats = new Stats();
+    public Stats totalStats = new Stats();
     public Elements resistElements = new Elements();
     public Elements weakElements = new Elements();
     public bool battleMode = false;
@@ -16,10 +18,22 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        setElements();
+        SetElements();
+        SetTotalStats();
     }
 
-    public virtual void setElements()
+    public virtual void SetTotalStats()
+    {
+        totalStats.STR = characterStats.STR + buff_debuffStats.STR;
+        totalStats.FIR = characterStats.FIR + buff_debuffStats.FIR;
+        totalStats.INT = characterStats.INT + buff_debuffStats.INT;
+        totalStats.WIS = characterStats.WIS + buff_debuffStats.WIS;
+        totalStats.FOC = characterStats.FOC + buff_debuffStats.FOC;
+        totalStats.DEX = characterStats.DEX + buff_debuffStats.DEX;
+        totalStats.CHA = characterStats.CHA + buff_debuffStats.CHA;
+    }
+
+    public virtual void SetElements()
     {
         bool setElementsDetail(bool element1, bool element2)
         {

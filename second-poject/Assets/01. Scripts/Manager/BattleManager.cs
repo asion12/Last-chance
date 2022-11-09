@@ -109,20 +109,20 @@ public class BattleManager : MonoBehaviour
         }
 
         // SkillCaster FOC Check
-        if (skillCaster.characterStats.FOC > castSkill.needFOC)
+        if (skillCaster.totalStats.FOC > castSkill.needFOC)
         {
-            castSkill.casterCriticalPer = skillCaster.characterStats.FOC - castSkill.needFOC;
+            castSkill.casterCriticalPer = skillCaster.totalStats.FOC - castSkill.needFOC;
         }
-        else if (skillCaster.characterStats.FOC < castSkill.needFOC)
+        else if (skillCaster.totalStats.FOC < castSkill.needFOC)
         {
-            castSkill.accuarityPer -= castSkill.needFOC - skillCaster.characterStats.FOC;
+            castSkill.accuarityPer -= castSkill.needFOC - skillCaster.totalStats.FOC;
         }
         else
         {
         }
 
         // SkillVicTim DEX Check
-        castSkill.accuarityPer -= skillCaster.characterStats.DEX;
+        castSkill.accuarityPer -= skillCaster.totalStats.DEX;
         if (castSkill.accuarityPer < 0)
         {
             castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
@@ -130,7 +130,7 @@ public class BattleManager : MonoBehaviour
         }
 
         // Skill Deception Percentage Add to CHA
-        castSkill.victimDeceptionPer += skillVictim.characterStats.CHA;
+        castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
 
         // Skill Hit Check
         if (PercentageCheck(castSkill.accuarityPer))
@@ -183,23 +183,23 @@ public class BattleManager : MonoBehaviour
 
         if (castSkill.categorPyhysics)
         {
-            increaseDamage = skillCaster.characterStats.STR;
-            decreaseDamage = skillVictim.characterStats.FIR;
+            increaseDamage = skillCaster.totalStats.STR;
+            decreaseDamage = skillVictim.totalStats.FIR;
         }
         else if (castSkill.categoryChemical)
         {
             Debug.Log("Chemical");
-            increaseDamage = skillCaster.characterStats.INT;
-            decreaseDamage = skillVictim.characterStats.WIS;
+            increaseDamage = skillCaster.totalStats.INT;
+            decreaseDamage = skillVictim.totalStats.WIS;
         }
 
         float DamageCheck = castSkill.skillDamage * (1 + (increaseDamage / 100));
         float finalSkillDamage = (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage)) * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
         Debug.Log("Damage Check is " + DamageCheck.ToString());
         Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
-        skillVictim.characterStats.HP
+        skillVictim.totalStats.HP
         -= Convert.ToInt32(finalSkillDamage);
-        Debug.Log("Now Victim Hp : " + skillVictim.characterStats.HP.ToString());
+        Debug.Log("Now Victim Hp : " + skillVictim.totalStats.HP.ToString());
 
         ResetSkillNurmical(castSkill);
     }
