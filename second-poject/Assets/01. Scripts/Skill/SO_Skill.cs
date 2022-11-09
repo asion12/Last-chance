@@ -7,10 +7,13 @@ public class SO_Skill : ScriptableObject
 {
     public string skillName;
     public Elements skillElements;
-    public int skillDamage;
+    public float skillDamage;
     public float needFOC;
     public float needMp;
     public float needHp;
+
+    public bool categorPyhysics;
+    public bool categoryChemical;
 
     public float accuarityPer = 100;
     public float casterCriticalPer;

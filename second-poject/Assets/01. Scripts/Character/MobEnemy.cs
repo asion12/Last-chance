@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class MobEnemy : Character
 {
+    public void CastS()
+    {
+        BattleManager.instance.TurnChange();
+    }
 }

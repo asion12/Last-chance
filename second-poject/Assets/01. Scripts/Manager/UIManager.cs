@@ -48,7 +48,22 @@ public class UIManager : MonoBehaviour
             List<SO_Skill> skills = player.skillList;
             int idx = i;
             skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnPlayerCastSkillSet(skills[idx]));
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[idx].skillName;
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED FOC : " + SetIntHundred((int)skills[idx].needFOC);
             Debug.Log(i);
         }
+    }
+
+    private string SetIntHundred(int num)
+    {
+        string numString = num.ToString();
+        string changeToString = "";
+        for (int i = 0; i < 3 - numString.Length; i++)
+        {
+            changeToString += '0';
+        }
+        changeToString += numString;
+
+        return changeToString;
     }
 }

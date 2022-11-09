@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 001. FireBreath
   m_EditorClassIdentifier: 
-  skillName: "\uD654\uC5FC\uBC29\uC0AC"
+  skillName: FIREO
   skillElements:
     SOLAR: 1
     LUMINOUS: 0
@@ -22,9 +22,11 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   skillDamage: 100
-  needFOC: 100
-  needMp: 50
+  needFOC: 50
+  needMp: 0
   needHp: 0
+  categorPyhysics: 0
+  categoryChemical: 1
   accuarityPer: 100
   casterCriticalPer: 0
   victimDeceptionPer: 0

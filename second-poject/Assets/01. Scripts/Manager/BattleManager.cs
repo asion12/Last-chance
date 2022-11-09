@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class BattleManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class BattleManager : MonoBehaviour
     {
     }
 
-    public void TurnChange(int i, int m, int n)
+    public void TurnChange()
     {
         if (nowTurnID == 1)
         {
@@ -86,6 +87,12 @@ public class BattleManager : MonoBehaviour
 
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        bool isCritical = false;
+        bool isAdvantage = false;
+        bool isRejct = false;
+        bool isGuard = false;
+        bool isMiss = false;
+        bool isDeception = false;
         Debug.Log("Casted!");
         void AddCarelessCounter(Character character)
         {
@@ -94,7 +101,7 @@ public class BattleManager : MonoBehaviour
 
         bool PercentageCheck(float percnetage)
         {
-            float accuarityRoll = Random.Range(0f, 100f);
+            float accuarityRoll = UnityEngine.Random.Range(0f, 100f);
             if (accuarityRoll < percnetage)
                 return true;
             else
@@ -131,9 +138,14 @@ public class BattleManager : MonoBehaviour
             if (CheckElement(skillVictim.resistElements, castSkill.skillElements))
             {
                 Debug.Log("Guard!");
+                skillCaster.carelessCounter++;
+                isRejct = true;
+                isGuard = true;
                 if (PercentageCheck(castSkill.victimDeceptionPer))
                 {
                     Debug.Log("Deception!");
+                    isDeception = true;
+                    skillCaster.carelessCounter++;
                 }
             }
             else
@@ -141,11 +153,15 @@ public class BattleManager : MonoBehaviour
                 if (PercentageCheck(castSkill.casterCriticalPer))
                 {
                     Debug.Log("Critical!");
+                    isCritical = true;
+                    skillVictim.carelessCounter++;
                 }
 
                 if (CheckElement(skillVictim.weakElements, castSkill.skillElements))
                 {
                     Debug.Log("Advantage!");
+                    isAdvantage = true;
+                    skillVictim.carelessCounter++;
                 }
 
                 Debug.Log("Hit!");
@@ -154,12 +170,37 @@ public class BattleManager : MonoBehaviour
         else
         {
             Debug.Log("Miss!");
-
+            skillCaster.carelessCounter++;
             if (PercentageCheck(castSkill.victimDeceptionPer))
             {
                 Debug.Log("Deception!");
+                skillCaster.carelessCounter++;
             }
         }
+
+        float increaseDamage = 0f;
+        float decreaseDamage = 0f;
+
+        if (castSkill.categorPyhysics)
+        {
+            increaseDamage = skillCaster.characterStats.STR;
+            decreaseDamage = skillVictim.characterStats.FIR;
+        }
+        else if (castSkill.categoryChemical)
+        {
+            Debug.Log("Chemical");
+            increaseDamage = skillCaster.characterStats.INT;
+            decreaseDamage = skillVictim.characterStats.WIS;
+        }
+
+        float DamageCheck = castSkill.skillDamage * (1 + (increaseDamage / 100));
+        float finalSkillDamage = (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage)) * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
+        Debug.Log("Damage Check is " + DamageCheck.ToString());
+        Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
+        skillVictim.characterStats.HP
+        -= Convert.ToInt32(finalSkillDamage);
+        Debug.Log("Now Victim Hp : " + skillVictim.characterStats.HP.ToString());
+
         ResetSkillNurmical(castSkill);
     }
 
