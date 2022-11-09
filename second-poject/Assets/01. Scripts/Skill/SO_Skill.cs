@@ -13,7 +13,7 @@ public class SO_Skill : ScriptableObject
     public float needHp;
 
     public bool categorPyhysics;
-    public bool categoryChemical;
+    public bool categoryChemistry;
 
     public float accuarityPer = 100;
     public float casterCriticalPer;

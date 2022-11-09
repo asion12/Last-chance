@@ -29,17 +29,40 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BattleManager.instance.nowTurnID == 1)
-        {
-            playerBattleUI.transform.gameObject.SetActive(true);
-        }
-        else
+        if (BattleManager.instance.nowTurnID == 0)
         {
             playerBattleUI.transform.gameObject.SetActive(false);
+        }
+        else if (BattleManager.instance.nowTurnID == 1)
+        {
+            playerBattleUI.transform.gameObject.SetActive(true);
+            battle_SkillScrollView.SetActive(true);
+        }
+        else if (BattleManager.instance.nowTurnID == 2)
+        {
+            playerBattleUI.transform.gameObject.SetActive(true);
+            battle_SkillScrollView.SetActive(false);
         }
 
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
+        UIUpdate_NowTurn();
+    }
+
+    private void UIUpdate_NowTurn()
+    {
+        if (BattleManager.instance.nowTurnID == 0)
+        {
+            battle_TurnText.text = "PEACE";
+        }
+        else if (BattleManager.instance.nowTurnID == 1)
+        {
+            battle_TurnText.text = "PLAYER TURN";
+        }
+        else if (BattleManager.instance.nowTurnID == 2)
+        {
+            battle_TurnText.text = "ENEMY TURN";
+        }
     }
 
     private void UIUpdate_PlayerStatsInfo()

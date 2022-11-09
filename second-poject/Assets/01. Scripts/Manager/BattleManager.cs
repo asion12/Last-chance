@@ -190,9 +190,9 @@ public class BattleManager : MonoBehaviour
             increaseDamage = skillCaster.totalStats.STR;
             decreaseDamage = skillVictim.totalStats.FIR;
         }
-        else if (castSkill.categoryChemical)
+        else if (castSkill.categoryChemistry)
         {
-            Debug.Log("Chemical");
+            Debug.Log("Chemistry");
             increaseDamage = skillCaster.totalStats.INT;
             decreaseDamage = skillVictim.totalStats.WIS;
         }
