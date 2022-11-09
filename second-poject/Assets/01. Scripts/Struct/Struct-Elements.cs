@@ -1,3 +1,6 @@
+using UnityEngine;
+using System.Collections.Generic;
+
 [System.Serializable]
 public struct Elements
 {
@@ -9,3 +12,16 @@ public struct Elements
     public bool METAL; // steel
     public bool CLAY; // solid
 }
+
+// public enum eElement
+// {
+//     SOLAR,
+//     LUMINOUS ,
+//     IGNITION = 10,
+//     HYDRO, 
+// }
+
+// public class Num
+// {
+//     List<Elements> elList = new List<Elements>();
+// }

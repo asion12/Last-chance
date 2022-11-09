@@ -197,6 +197,9 @@ public class BattleManager : MonoBehaviour
             decreaseDamage = skillVictim.totalStats.WIS;
         }
 
+        float checkDamage = castSkill.skillDamage * (1 + (increaseDamage / 100));
+        Debug.Log("Check Damage is " + checkDamage);
+
         float finalSkillDamage =
         (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage))
         * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
@@ -216,57 +219,70 @@ public class BattleManager : MonoBehaviour
         resetSkill.victimDeceptionPer = 0;
     }
 
+    private bool[] ElementArrReturn(Elements el)
+    {
+        bool[] elementArr = new bool[7];
+        elementArr[0] = el.SOLAR;
+        elementArr[1] = el.LUMINOUS;
+        elementArr[2] = el.IGNITION;
+        elementArr[3] = el.HYDRO;
+        elementArr[4] = el.BIOLOGY;
+        elementArr[5] = el.METAL;
+        elementArr[6] = el.CLAY;
+
+        return elementArr;
+    }
+
     private bool CheckElement(Elements characterElements, Elements skillElements)
     {
-        bool CheckElementDetail(bool victimElement, bool skillElement)
-        {
-            if (victimElement == true && skillElement == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         int count = 0;
+
+        bool[] characterEl = ElementArrReturn(characterElements);
+        bool[] skillEl = ElementArrReturn(skillElements);
+
         for (int i = 0; i < 7; i++)
         {
-            switch (i)
-            {
-                case 0:
-                    if (CheckElementDetail(characterElements.SOLAR, skillElements.SOLAR))
-                        count++;
-                    break;
-                case 1:
-                    if (CheckElementDetail(characterElements.LUMINOUS, skillElements.LUMINOUS))
-                        count++;
-                    break;
-                case 2:
-                    if (CheckElementDetail(characterElements.IGNITION, skillElements.IGNITION))
-                        count++;
-                    break;
-                case 3:
-                    if (CheckElementDetail(characterElements.HYDRO, skillElements.HYDRO))
-                        count++;
-                    break;
-                case 4:
-                    if (CheckElementDetail(characterElements.BIOLOGY, skillElements.BIOLOGY))
-                        count++;
-                    break;
-                case 5:
-                    if (CheckElementDetail(characterElements.METAL, skillElements.METAL))
-                        count++;
-                    break;
-                case 6:
-                    if (CheckElementDetail(characterElements.CLAY, skillElements.CLAY))
-                        count++;
-                    break;
-                default:
-                    break;
-            }
+            if (characterEl[i] && skillEl[i])
+                count++;
         }
+
+        // for (int i = 0; i < 7; i++)
+        // {
+        //     switch (i)
+        //     {
+        //         case 0:
+        //             if (characterElements.SOLAR && skillElements.SOLAR)
+        //                 count++;
+        //             break;
+        //         case 1:
+        //             if (characterElements.LUMINOUS && skillElements.LUMINOUS)
+        //                 count++;
+        //             break;
+        //         case 2:
+        //             if (characterElements.IGNITION && skillElements.IGNITION)
+        //                 count++;
+        //             break;
+        //         case 3:
+        //             if (characterElements.HYDRO && skillElements.HYDRO)
+        //                 count++;
+        //             break;
+        //         case 4:
+        //             if (characterElements.BIOLOGY && skillElements.BIOLOGY)
+        //                 count++;
+        //             break;
+        //         case 5:
+        //             if (characterElements.METAL && skillElements.METAL)
+        //                 count++;
+        //             break;
+        //         case 6:
+        //             if (characterElements.CLAY && skillElements.CLAY)
+        //                 count++;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
 
         if (count > 0)
             return true;
