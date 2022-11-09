@@ -697,6 +697,26 @@ MonoBehaviour:
     FOC: 10
     DEX: 10
     CHA: 10
+  buff_debuffStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+  totalStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
   resistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -1602,22 +1622,42 @@ MonoBehaviour:
     FOC: 100
     DEX: 10
     CHA: 10
+  buff_debuffStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+  totalStats:
+    HP: 0
+    MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
   resistElements:
-    SOLAR: 0
+    SOLAR: 1
     LUMINOUS: 0
-    IGNITION: 0
-    HYDRO: 0
+    IGNITION: 1
+    HYDRO: 1
     BIOLOGY: 0
     METAL: 0
     CLAY: 0
   weakElements:
     SOLAR: 0
-    LUMINOUS: 0
+    LUMINOUS: 1
     IGNITION: 0
     HYDRO: 0
-    BIOLOGY: 0
+    BIOLOGY: 1
     METAL: 0
-    CLAY: 0
+    CLAY: 1
   battleMode: 0
   carelessCounter: 0
   skillList:

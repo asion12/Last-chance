@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool isChanging = false;
+    protected override void Update()
     {
-
+        base.Update();
+        if (BattleManager.instance.nowTurnID == 2 && !isChanging)
+        {
+            StartCoroutine(CastSkill());
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public IEnumerator CastSkill()
     {
-
+        isChanging = true;
+        yield return new WaitForSeconds(1);
+        BattleManager.instance.TurnChange();
+        Debug.Log("Enemy Casted!");
+        Debug.Log("Turn Changed");
+        isChanging = false;
     }
 }

@@ -31,22 +31,26 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Now Turn is " + nowTurnID.ToString());
     }
 
     public void TurnChange()
     {
         if (nowTurnID == 1)
         {
+            Debug.Log("Turn Change To Enemy");
             nowTurnID = 2;
         }
-        if (nowTurnID == 2)
+        else if (nowTurnID == 2)
         {
             nowTurnID = 1;
+            Debug.Log("Turn Change To Player");
         }
         else
         {
             Debug.Log("NoOnesTurn!");
         }
+        //Debug.Log("Turn Change!");
     }
 
     public void BattleStart(bool isPlayerStart, GameObject detactedEnemy)
@@ -193,15 +197,16 @@ public class BattleManager : MonoBehaviour
             decreaseDamage = skillVictim.totalStats.WIS;
         }
 
-        float DamageCheck = castSkill.skillDamage * (1 + (increaseDamage / 100));
-        float finalSkillDamage = (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage)) * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
-        Debug.Log("Damage Check is " + DamageCheck.ToString());
+        float finalSkillDamage =
+        (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage))
+        * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
+
         Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
-        skillVictim.totalStats.HP
-        -= Convert.ToInt32(finalSkillDamage);
+        skillVictim.totalStats.HP -= Convert.ToInt32(finalSkillDamage);
         Debug.Log("Now Victim Hp : " + skillVictim.totalStats.HP.ToString());
 
         ResetSkillNurmical(castSkill);
+        TurnChange();
     }
 
     private void ResetSkillNurmical(SO_Skill resetSkill)

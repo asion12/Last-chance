@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobEnemy : Character
+public class MobEnemy : Enemy
 {
-    public void CastS()
-    {
-        BattleManager.instance.TurnChange();
-    }
+
 }
