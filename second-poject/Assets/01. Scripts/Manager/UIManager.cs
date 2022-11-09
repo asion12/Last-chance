@@ -15,8 +15,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text battle_PlayerStatsInfo;
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
+
     private Player player;
     private EventManager eventManager;
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -37,9 +39,50 @@ public class UIManager : MonoBehaviour
         }
 
         UIUpdate_PlayerElementsInfo();
+        UIUpdate_PlayerStatsInfo();
     }
 
-    public void UIUpdate_PlayerElementsInfo()
+    private void UIUpdate_PlayerStatsInfo()
+    {
+        battle_PlayerStatsInfo.text = "";
+        battle_PlayerStatsInfo.text += player.characterStats.HP + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.HP;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.MP + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.MP;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.STR + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.STR;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.FIR + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.FIR;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.INT + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.INT;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.WIS + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.WIS;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.FOC + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.FOC;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.DEX + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.DEX;
+        battle_PlayerStatsInfo.text += "\n";
+
+        battle_PlayerStatsInfo.text += player.characterStats.CHA + " ";
+        battle_PlayerStatsInfo.text += player.buff_debuffStats.CHA;
+        battle_PlayerStatsInfo.text += "\n";
+    }
+
+    private void UIUpdate_PlayerElementsInfo()
     {
         CheckElementAndAddInfo(player.resistElements, player.weakElements, "Resist", "Weak");
     }
@@ -101,7 +144,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UIUpdate_PlayerSkillList()
+    private void UIUpdate_PlayerSkillList()
     {
         for (int i = 0; i < player.skillList.Count; i++)
         {

@@ -1923,7 +1923,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'STR
+  m_Text: 'HP
+
+    MP
+
+    STR
 
     FIR
 
@@ -1992,7 +1996,7 @@ MonoBehaviour:
   battle_TurnText: {fileID: 496038011}
   battle_SkillScrollView: {fileID: 1135387866}
   battle_PlayerElementsInfo: {fileID: 731522608}
-  battle_PlayerStatsInfo: {fileID: 0}
+  battle_PlayerStatsInfo: {fileID: 805900148}
   PlayerSkillListContent: {fileID: 1908826720}
   PlayerSkillButtonPrefab: {fileID: 4642891057880143183, guid: 40bc8b67ce68d544887c3bd1deef644d, type: 3}
 --- !u!1 &1730536255
