@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-[CreateAssetMenu(fileName = "SO_Item", menuName = "ScriptableObjects/Item", order = 0)]
-public class SO_Item : ScriptableObject
+using System.Threading.Tasks;
+using System.Text;
+using System;
+using System.Linq;
+[CreateAssetMenu(fileName ="New Item Database",menuName = "Inventory/DB")]
+public class ItemDBObj : ScriptableObject
 {
     public ItemObj[] itemObjs;
 

@@ -6,7 +6,7 @@ public class TestItems : MonoBehaviour
 {
     public InventoryObj equipObj;
     public InventoryObj inventoryObj;
-    public SO_Item so_Item;
+    public ItemDBObj itemDBObj;
 
     public void ClearInventory()
     {
@@ -14,9 +14,9 @@ public class TestItems : MonoBehaviour
     }
     public void AddnewItem()
     {
-        if (so_Item.itemObjs.Length > 0)
+        if (itemDBObj.itemObjs.Length > 0)
         {
-            ItemObj newItemObject = so_Item.itemObjs[Random.Range(0, so_Item.itemObjs.Length - 1)];
+            ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length - 1)];
             Item newItem = new Item(newItemObject);
             inventoryObj.AddItem(newItem, 1);
             Debug.Log("a?");

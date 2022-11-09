@@ -16,7 +16,7 @@ public enum InterfaceType
 [CreateAssetMenu(fileName = "New InvnetoryObject", menuName = "Inventory/InvnetoryObject")]
 public class InventoryObj : ScriptableObject
 { 
-    public SO_Item so_Item;
+    public  ItemDBObj itemDBObj;
      
     public InterfaceType type;
      
@@ -47,7 +47,7 @@ public class InventoryObj : ScriptableObject
     public bool AddItem(Item item, int amount)
     { 
         InvenSlot invenSlot = seachItemInInven(item); 
-        if (!so_Item.itemObjs[item.item_id].getFlagStackable || invenSlot == null)
+        if (!itemDBObj.itemObjs[item.item_id].getFlagStackable || invenSlot == null)
         { 
             if (getEmptySlotCnt <= 0)
             {

@@ -29,7 +29,7 @@ public class InvenSlot
     {
         get
         { 
-            return item.item_id >= 0 ? inventoryObj.so_Item.itemObjs[item.item_id] : null;
+            return item.item_id >= 0 ? inventoryObj.itemDBObj.itemObjs[item.item_id] : null;
         }
     }
      
