@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa2795d77afaac43accb9cf104bd3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
 --- !u!114 &1074519655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,8 +432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 5
-  eyeAngle: 90
+  eyeRadius: 8.77
+  eyeAngle: 332
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -487,7 +488,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1074519652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.9983491, z: -0, w: 0.057437975}
   m_LocalPosition: {x: 0, y: 0, z: 6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -495,7 +496,7 @@ Transform:
   - {fileID: 1646429974}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 173.414, z: 0}
 --- !u!95 &1074519659
 Animator:
   serializedVersion: 4
@@ -744,6 +745,8 @@ MonoBehaviour:
   characterStats:
     HP: 0
     MP: 0
+    Lev: 0
+    EXP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -757,7 +760,7 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   weakElements:
     SOLAR: 0
@@ -765,11 +768,13 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    IRON: 0
+    METAL: 0
     CLAY: 0
   battleMode: 0
   carelessCounter: 0
   skillList: []
+  Level: 1
+  Exp: 0
   playerCamera: {fileID: 642158073}
   battleStartRange: 0
   battleStartRangePoint: {fileID: 0}
