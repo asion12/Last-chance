@@ -11,7 +11,7 @@ public class stateAtkController : MonoBehaviour
 
     public delegate void OnEndStateAtkController(); 
     public OnEndStateAtkController stateAtkControllerEndHandler;
- 
+    public Character character;
     public bool getFlagStateAtkController
     {
         get; 
@@ -19,7 +19,8 @@ public class stateAtkController : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {
+        character = GetComponent<Character>();
         stateAtkControllerStartHandler
             = new OnStartStateAtkController(stateAtkControllerStart); 
         stateAtkControllerEndHandler
@@ -47,7 +48,8 @@ public class stateAtkController : MonoBehaviour
     }
  
     public void OnCheckAttackCollider(int attackIndex)
-    { 
+    {
+        character.characterStats.HP -= 100;
         Debug.Log("---------------------attackIndex : " + attackIndex);
         GetComponent<IAtkAble>()?.OnExecuteAttack(attackIndex);
     }
