@@ -15,6 +15,16 @@ public class SO_Skill : ScriptableObject
     public bool categorPyhysics;
     public bool categoryChemistry;
 
+    public enum SkillDivision
+    {
+        ATTACK,
+        BUFF_DEBUFF,
+        HEAL
+    }
+
+    [SerializeField]
+    public SkillDivision skillDivision = SkillDivision.ATTACK;
+
     public float accuarityPer = 100;
     public float casterCriticalPer;
     public float victimDeceptionPer;

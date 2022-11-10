@@ -68,12 +68,12 @@ public class UIManager : MonoBehaviour
     private void UIUpdate_PlayerStatsInfo()
     {
         battle_PlayerStatsInfo.text = "";
-        battle_PlayerStatsInfo.text += player.characterStats.HP + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.HP;
+        battle_PlayerStatsInfo.text += player.nowHP + " ";
+        battle_PlayerStatsInfo.text += player.characterStats.MAX_HP;
         battle_PlayerStatsInfo.text += "\n";
 
-        battle_PlayerStatsInfo.text += player.characterStats.MP + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.MP;
+        battle_PlayerStatsInfo.text += player.nowMP + " ";
+        battle_PlayerStatsInfo.text += player.characterStats.MAX_MP;
         battle_PlayerStatsInfo.text += "\n";
 
         battle_PlayerStatsInfo.text += player.characterStats.STR + " ";

@@ -205,8 +205,8 @@ public class BattleManager : MonoBehaviour
         * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
 
         Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
-        skillVictim.totalStats.HP -= Convert.ToInt32(finalSkillDamage);
-        Debug.Log("Now Victim Hp : " + skillVictim.totalStats.HP.ToString());
+        skillVictim.nowHP -= Convert.ToInt32(finalSkillDamage);
+        Debug.Log("Now Victim Hp : " + skillVictim.nowHP.ToString());
 
         ResetSkillNurmical(castSkill);
         TurnChange();

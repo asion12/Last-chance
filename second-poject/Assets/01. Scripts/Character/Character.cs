@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+
+    public int nowHP;
+    public int nowMP;
     public Stats characterStats = new Stats();
     public Stats buff_debuffStats = new Stats();
     public Stats totalStats = new Stats();
@@ -12,9 +15,17 @@ public class Character : MonoBehaviour
     public bool battleMode = false;
     public int carelessCounter = 0;
     public List<SO_Skill> skillList;
+    public bool nowBuffing = false;
+    public bool nowDebuffing = false;
 
     public int Level = 1;
     public int Exp = 0;
+
+    protected virtual void Start()
+    {
+        nowHP = characterStats.MAX_HP;
+        nowMP = characterStats.MAX_MP;
+    }
 
     protected virtual void Update()
     {

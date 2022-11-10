@@ -1,8 +1,8 @@
 [System.Serializable]
 public struct Stats
 {
-    public int HP;
-    public int MP;
+    public int MAX_HP;
+    public int MAX_MP;
     public int Lev;
     public int EXP;
     public float STR;
@@ -12,13 +12,13 @@ public struct Stats
     public float FOC;
     public float DEX;
     public float CHA;
-    
-    
 
-    public Stats(int _HP, int _MP,int _Lev,int _EXP ,float _STR, float _FIR, float _INT, float _WIS, float _FOC, float _DEX, float _CHA)
+
+
+    public Stats(int _HP, int _MP, int _Lev, int _EXP, float _STR, float _FIR, float _INT, float _WIS, float _FOC, float _DEX, float _CHA)
     {
-        HP = _HP;
-        MP = _MP;
+        MAX_HP = _HP;
+        MAX_MP = _MP;
         EXP = _EXP;
         Lev = _Lev;
         STR = _STR;
