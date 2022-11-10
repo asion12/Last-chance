@@ -18,145 +18,25 @@ MonoBehaviour:
     InvenSlots:
     - itemTypes: 
       item:
-        item_id: -1
-        item_name: 
+        item_id: 3
+        item_name: New Item 1
         ability: []
-      itemCnt: 0
+      itemCnt: 1
     - itemTypes: 
       item:
-        item_id: -1
-        item_name: 
+        item_id: 3
+        item_name: New Item 1
         ability: []
-      itemCnt: 0
+      itemCnt: 1
     - itemTypes: 
       item:
-        item_id: -1
-        item_name: 
+        item_id: 3
+        item_name: New Item 1
         ability: []
-      itemCnt: 0
+      itemCnt: 1
     - itemTypes: 
       item:
-        item_id: -1
-        item_name: 
+        item_id: 3
+        item_name: New Item 1
         ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
-    - itemTypes: 
-      item:
-        item_id: -1
-        item_name: 
-        ability: []
-      itemCnt: 0
+      itemCnt: 1
