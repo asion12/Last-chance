@@ -15,7 +15,9 @@ public static class MouseTransformData
  
 [RequireComponent(typeof(EventTrigger))]
 public abstract class UIInventory : MonoBehaviour
-{ 
+{
+    public ItemType itemType;
+    public ItemObj itemObj;
     public InventoryObj inventoryObj; 
     private InventoryObj beforeInventoryObj;
      
@@ -153,6 +155,17 @@ public abstract class UIInventory : MonoBehaviour
         else if (pointerEventdata.button == PointerEventData.InputButton.Right)
         {
             OnRightClick(slot);
+        }
+    }
+    public void OnUse(GameObject gameObj)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (ItemType.use.ToString()=="use")
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 

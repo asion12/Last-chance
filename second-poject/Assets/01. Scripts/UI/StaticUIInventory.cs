@@ -22,7 +22,7 @@ public class StaticUIInventory : UIInventory
             AddEventAction(gameObj, EventTriggerType.BeginDrag, delegate { OnStartDrag(gameObj); });
             AddEventAction(gameObj, EventTriggerType.EndDrag, delegate { OnEndDrag(gameObj); });
             AddEventAction(gameObj, EventTriggerType.Drag, delegate { OnMovingDrag(gameObj); });
-
+            AddEventAction(gameObj, EventTriggerType.PointerClick, delegate { OnUse(gameObj); });
             inventoryObj.invenSlots[i].slotUI = gameObj;
             uiSlotLists.Add(gameObj, inventoryObj.invenSlots[i]);
         }

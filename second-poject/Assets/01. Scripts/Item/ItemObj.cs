@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum ItemType : int
 {
+    //장비
     Head,
     Body,
     LeftHand,
     RightHand,
-    Pants,
+    //소비
+    use,
+    //스킬
+    useSkill,
 }
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/new Item")]
 public class ItemObj : ScriptableObject

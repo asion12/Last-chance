@@ -16,10 +16,9 @@ public class Enemy : Character
     public IEnumerator CastSkill()
     {
         isChanging = true;
-        yield return new WaitForSeconds(1);
-        BattleManager.instance.TurnChange();
         Debug.Log("Enemy Casted!");
         Debug.Log("Turn Changed");
         isChanging = false;
+        yield return new WaitForSeconds(1);
     }
 }
