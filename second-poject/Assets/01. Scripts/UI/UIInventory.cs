@@ -125,7 +125,18 @@ public abstract class UIInventory : MonoBehaviour
         } 
         MouseTransformData.mouseDragging.GetComponent<RectTransform>().position = Input.mousePosition;
     }
-    
+    public void OnUse(GameObject gameObj, PointerEventData eventData)
+    {
+        if (eventData == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("hh");
+            if (ItemType.use.ToString() == "use")
+            {
+                Destroy(gameObject);
+            }
+
+        }
+    }
     public void OnEndDrag(GameObject gameObj)
     { 
         Destroy(MouseTransformData.mouseDragging); 
@@ -157,17 +168,7 @@ public abstract class UIInventory : MonoBehaviour
             OnRightClick(slot);
         }
     }
-    public void OnUse(GameObject gameObj)
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (ItemType.use.ToString()=="use")
-            {
-                Destroy(gameObject);
-            }
 
-        }
-    }
 
     protected virtual void OnRightClick(InvenSlot invenSlot)
     {
