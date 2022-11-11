@@ -127,9 +127,9 @@ public abstract class UIInventory : MonoBehaviour
     }
     public void OnUse(GameObject gameObj, PointerEventData eventData)
     {
-        if (eventData == PointerEventData.InputButton.Left)
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("hh");
+            Debug.Log("use");
             if (ItemType.use.ToString() == "use")
             {
                 Destroy(gameObject);

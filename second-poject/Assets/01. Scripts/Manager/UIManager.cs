@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text battle_PlayerStatsInfo;
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
-
+    [SerializeField] private Text Gold;
     private Player player;
     private EventManager eventManager;
 
@@ -65,44 +65,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void SetText <T>(Text text, T state, T state2)
+    {
+        text.text += $"{state} {state2}\n";
+    }
+
     private void UIUpdate_PlayerStatsInfo()
     {
         battle_PlayerStatsInfo.text = "";
-        battle_PlayerStatsInfo.text += player.characterStats.HP + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.HP;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.MP + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.MP;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.STR + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.STR;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.FIR + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.FIR;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.INT + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.INT;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.WIS + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.WIS;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.FOC + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.FOC;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.DEX + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.DEX;
-        battle_PlayerStatsInfo.text += "\n";
-
-        battle_PlayerStatsInfo.text += player.characterStats.CHA + " ";
-        battle_PlayerStatsInfo.text += player.buff_debuffStats.CHA;
-        battle_PlayerStatsInfo.text += "\n";
+        SetText(battle_PlayerStatsInfo, player.characterStats.HP, player.buff_debuffStats.HP);
+        SetText(battle_PlayerStatsInfo, player.characterStats.MP, player.buff_debuffStats.MP);
+        SetText(battle_PlayerStatsInfo, player.characterStats.STR, player.buff_debuffStats.STR);
+        SetText(battle_PlayerStatsInfo, player.characterStats.FIR, player.buff_debuffStats.FIR);
+        SetText(battle_PlayerStatsInfo, player.characterStats.INT, player.buff_debuffStats.INT);
+        SetText(battle_PlayerStatsInfo, player.characterStats.WIS, player.buff_debuffStats.WIS);
+        SetText(battle_PlayerStatsInfo, player.characterStats.FOC, player.buff_debuffStats.FOC);
+        SetText(battle_PlayerStatsInfo, player.characterStats.DEX, player.buff_debuffStats.DEX);
+        SetText(battle_PlayerStatsInfo, player.characterStats.CHA, player.buff_debuffStats.CHA);
     }
 
     private void UIUpdate_PlayerElementsInfo()
