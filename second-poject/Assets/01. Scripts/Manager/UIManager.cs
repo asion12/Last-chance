@@ -24,29 +24,33 @@ public class UIManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         eventManager = FindObjectOfType<EventManager>();
         UIUpdate_PlayerSkillList();
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (BattleManager.instance.nowTurnID == 0)
-        {
-            playerBattleUI.transform.gameObject.SetActive(false);
-        }
-        else if (BattleManager.instance.nowTurnID == 1)
-        {
-            playerBattleUI.transform.gameObject.SetActive(true);
-            battle_SkillScrollView.SetActive(true);
-        }
-        else if (BattleManager.instance.nowTurnID == 2)
-        {
-            playerBattleUI.transform.gameObject.SetActive(true);
-            battle_SkillScrollView.SetActive(false);
-        }
+        Gold.text = GameManager.instance.Gold.ToString();
+       //시발 정배야 여기 고쳐라  ㅠㅠ준서 미워 ㅠㅠ.
+        //if (BattleManager.instance.nowTurnID == 0)
+        //{
+        //    playerBattleUI.transform.gameObject.SetActive(false);
+        //}
+        //else if (BattleManager.instance.nowTurnID == 1)
+        //{
+        //    playerBattleUI.transform.gameObject.SetActive(true);
+        //    battle_SkillScrollView.SetActive(true);
+        //}
+        //else if (BattleManager.instance.nowTurnID == 2)
+        //{
+        //    playerBattleUI.transform.gameObject.SetActive(true);
+        //    battle_SkillScrollView.SetActive(false);
+        //}
 
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
         UIUpdate_NowTurn();
+
     }
 
     private void UIUpdate_NowTurn()
