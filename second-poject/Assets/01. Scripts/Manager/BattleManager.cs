@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour
     // 0: Battle Mode off
     // 1: PlayerTurn
     // 2: EnemyTurn
+    // 3: 
     // Start is called before the first frame update
 
     public Character targetEnemy;
@@ -31,7 +32,7 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Now Turn is " + nowTurnID.ToString());
+        //Debug.Log("Now Turn is " + nowTurnID.ToString());
     }
 
     public void TurnChange()
@@ -139,7 +140,7 @@ public class BattleManager : MonoBehaviour
         // Skill Hit Check
         if (PercentageCheck(castSkill.accuarityPer))
         {
-            if (CheckElement(skillVictim.resistElements, castSkill.skillElements))
+            if (CheckElement(skillVictim.totalResistElements, castSkill.skillElements))
             {
                 Debug.Log("Guard!");
                 skillCaster.carelessCounter++;
@@ -161,7 +162,7 @@ public class BattleManager : MonoBehaviour
                     skillVictim.carelessCounter++;
                 }
 
-                if (CheckElement(skillVictim.weakElements, castSkill.skillElements))
+                if (CheckElement(skillVictim.totalWeakElements, castSkill.skillElements))
                 {
                     Debug.Log("Advantage!");
                     isAdvantage = true;

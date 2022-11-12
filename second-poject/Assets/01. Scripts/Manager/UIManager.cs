@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_PlayerElementsInfo()
     {
-        CheckElementAndAddInfo(player.resistElements, player.weakElements, "Resist", "Weak");
+        CheckElementAndAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
     }
 
     private void CheckElementAndAddInfo(Elements resistElements, Elements weakElements, string resistText, string weakText)

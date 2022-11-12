@@ -10,7 +10,7 @@ public class Player : Character
 
     private GameObject hitObject = null;
     private GameObject lastHitData = null;
-    
+
     // about move
     [SerializeField]
     private float moveSpeed;
@@ -58,7 +58,7 @@ public class Player : Character
     public GameObject nowHitObject;
     private void CanBattleStartByRayCast()
     {
-        Debug.Log("Now Raying");
+        //Debug.Log("Now Raying");
 
         RaycastHit hitData;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -67,14 +67,14 @@ public class Player : Character
         {
             if (hitData.transform.tag == "Enemy")
             {
-                Debug.Log("RayIn!!");
+                //Debug.Log("RayIn!!");
                 if (hitData.distance <= battleStartRange)
                 {
                     lastHitData = hitData.transform.gameObject;
                     hitData.transform.GetComponent<Outline>().eraseRenderer = false;
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("Battle Ready");
+                        //sDebug.Log("Battle Ready");
                         BattleManager.instance.BattleStart(true, lastHitData);
                     }
                 }
@@ -101,7 +101,7 @@ public class Player : Character
 
     private void RayOutCheck()
     {
-        Debug.Log("Ray Checking");
+        //Debug.Log("Ray Checking");
         if (lastHitData != null)
         {
             Debug.Log("RayOut!!");
