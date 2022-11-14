@@ -54,6 +54,20 @@ public class Character : MonoBehaviour
         totalStats.CHA = characterStats.CHA + buff_debuffStats.CHA;
     }
 
+    private bool[] ElementArrReturn(Elements el)
+    {
+        bool[] elementArr = new bool[7];
+        elementArr[0] = el.SOLAR;
+        elementArr[1] = el.LUMINOUS;
+        elementArr[2] = el.IGNITION;
+        elementArr[3] = el.HYDRO;
+        elementArr[4] = el.BIOLOGY;
+        elementArr[5] = el.METAL;
+        elementArr[6] = el.CLAY;
+
+        return elementArr;
+    }
+
     public virtual void SetElements()
     {
         bool setElementsDetail(bool element1, bool element2)
@@ -70,10 +84,15 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < 7; i++)
         {
+            bool[] chResEl = ElementArrReturn(characterResistElements);
+            bool[] chWckEl = ElementArrReturn(characterWeakElements);
+            bool[] adResEl = ElementArrReturn(additionResistElements);
+            bool[] adEckEl = ElementArrReturn(additionWeakElements);
+
             switch (i)
             {
                 case 0:
-                    if (setElementsDetail(characterResistElements.SOLAR, characterWeakElements.SOLAR))
+                    if (setElementsDetail(characterResistElements.SOLAR, additionWeakElements.SOLAR))
                     {
                         characterResistElements.SOLAR = false;
                         characterWeakElements.SOLAR = false;
