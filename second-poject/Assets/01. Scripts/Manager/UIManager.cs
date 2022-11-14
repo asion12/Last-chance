@@ -24,14 +24,14 @@ public class UIManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         eventManager = FindObjectOfType<EventManager>();
         UIUpdate_PlayerSkillList();
-     
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Gold.text = GameManager.instance.Gold.ToString();
-       //½Ã¹ß Á¤¹è¾ß ¿©±â °íÃÄ¶ó  ¤Ð¤ÐÁØ¼­ ¹Ì¿ö ¤Ð¤Ð.
+        //Gold.text = GameManager.instance.Gold.ToString();
+        //ï¿½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¶ï¿½  ï¿½Ð¤ï¿½ï¿½Ø¼ï¿½ ï¿½Ì¿ï¿½ ï¿½Ð¤ï¿½.
         //if (BattleManager.instance.nowTurnID == 0)
         //{
         //    playerBattleUI.transform.gameObject.SetActive(false);
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void SetText <T>(Text text, T state, T state2)
+    private void SetText<T>(Text text, T state, T state2)
     {
         text.text += $"{state} {state2}\n";
     }
@@ -77,8 +77,8 @@ public class UIManager : MonoBehaviour
     private void UIUpdate_PlayerStatsInfo()
     {
         battle_PlayerStatsInfo.text = "";
-        SetText(battle_PlayerStatsInfo, player.characterStats.HP, player.buff_debuffStats.HP);
-        SetText(battle_PlayerStatsInfo, player.characterStats.MP, player.buff_debuffStats.MP);
+        SetText(battle_PlayerStatsInfo, player.characterStats.MAX_HP, player.buff_debuffStats.MAX_HP);
+        SetText(battle_PlayerStatsInfo, player.characterStats.MAX_MP, player.buff_debuffStats.MAX_MP);
         SetText(battle_PlayerStatsInfo, player.characterStats.STR, player.buff_debuffStats.STR);
         SetText(battle_PlayerStatsInfo, player.characterStats.FIR, player.buff_debuffStats.FIR);
         SetText(battle_PlayerStatsInfo, player.characterStats.INT, player.buff_debuffStats.INT);
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_PlayerElementsInfo()
     {
-        CheckElementAndAddInfo(player.resistElements, player.weakElements, "Resist", "Weak");
+        CheckElementAndAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
     }
 
     private void CheckElementAndAddInfo(Elements resistElements, Elements weakElements, string resistText, string weakText)

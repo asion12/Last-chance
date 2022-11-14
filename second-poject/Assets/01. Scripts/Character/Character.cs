@@ -12,14 +12,17 @@ public class Character : MonoBehaviour
     public Stats buff_debuffStats = new Stats();
     public Stats totalStats = new Stats();
 
-    public Elements characterResistElements = new Elements();
-    public Elements characterWeakElements = new Elements();
+    private Elements_int characterResistElements = new Elements_int();
+    private Elements_int characterWeakElements = new Elements_int();
 
-    public Elements additionResistElements = new Elements();
-    public Elements additionWeakElements = new Elements();
+    private Elements_int additionResistElements = new Elements_int();
+    private Elements_int additionWeakElements = new Elements_int();
 
     public Elements totalResistElements = new Elements();
     public Elements totalWeakElements = new Elements();
+
+    public bool isOverResist = false;
+    public bool isOverWeak = false;
 
     public bool battleMode = false;
     public int max_carelessCounter = 0;
@@ -54,7 +57,21 @@ public class Character : MonoBehaviour
         totalStats.CHA = characterStats.CHA + buff_debuffStats.CHA;
     }
 
-    private bool[] ElementArrReturn(Elements el)
+    private int[] Elements_IntArrReturn(Elements_int el)
+    {
+        int[] elementArr = new int[7];
+        elementArr[0] = el.SOLAR;
+        elementArr[1] = el.LUMINOUS;
+        elementArr[2] = el.IGNITION;
+        elementArr[3] = el.HYDRO;
+        elementArr[4] = el.BIOLOGY;
+        elementArr[5] = el.METAL;
+        elementArr[6] = el.CLAY;
+
+        return elementArr;
+    }
+
+    private bool[] ElementsArrReturn(Elements el)
     {
         bool[] elementArr = new bool[7];
         elementArr[0] = el.SOLAR;
@@ -70,78 +87,39 @@ public class Character : MonoBehaviour
 
     public virtual void SetElements()
     {
-        bool setElementsDetail(bool element1, bool element2)
-        {
-            if (element1 == true && element2 == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        int[] chResEl = Elements_IntArrReturn(characterResistElements);
+        int[] chWckEl = Elements_IntArrReturn(characterWeakElements);
+        int[] adResEl = Elements_IntArrReturn(additionResistElements);
+        int[] adWckEl = Elements_IntArrReturn(additionWeakElements);
 
+        bool[] toResEl = ElementsArrReturn(totalResistElements);
+        bool[] toWckEl = ElementsArrReturn(totalWeakElements);
         for (int i = 0; i < 7; i++)
         {
-            bool[] chResEl = ElementArrReturn(characterResistElements);
-            bool[] chWckEl = ElementArrReturn(characterWeakElements);
-            bool[] adResEl = ElementArrReturn(additionResistElements);
-            bool[] adEckEl = ElementArrReturn(additionWeakElements);
-
-            switch (i)
+            if ((chResEl[i] + adResEl[i]) - (chWckEl[i] + adWckEl[i]) == 0)
             {
-                case 0:
-                    if (setElementsDetail(characterResistElements.SOLAR, additionWeakElements.SOLAR))
-                    {
-                        characterResistElements.SOLAR = false;
-                        characterWeakElements.SOLAR = false;
-                    }
-                    break;
-                case 1:
-                    if (setElementsDetail(characterResistElements.LUMINOUS, characterWeakElements.LUMINOUS))
-                    {
-                        characterResistElements.LUMINOUS = false;
-                        characterWeakElements.LUMINOUS = false;
-                    }
-                    break;
-                case 2:
-                    if (setElementsDetail(characterResistElements.IGNITION, characterWeakElements.IGNITION))
-                    {
-                        characterResistElements.IGNITION = false;
-                        characterWeakElements.IGNITION = false;
-                    }
-                    break;
-                case 3:
-                    if (setElementsDetail(characterResistElements.HYDRO, characterWeakElements.HYDRO))
-                    {
-                        characterResistElements.HYDRO = false;
-                        characterWeakElements.HYDRO = false;
-                    }
-                    break;
-                case 4:
-                    if (setElementsDetail(characterResistElements.BIOLOGY, characterWeakElements.BIOLOGY))
-                    {
-                        characterResistElements.BIOLOGY = false;
-                        characterWeakElements.BIOLOGY = false;
-                    }
-                    break;
-                case 5:
-                    if (setElementsDetail(characterResistElements.METAL, characterWeakElements.METAL))
-                    {
-                        characterResistElements.METAL = false;
-                        characterWeakElements.METAL = false;
-                    }
-                    break;
-                case 6:
-                    if (setElementsDetail(characterResistElements.CLAY, characterWeakElements.CLAY))
-                    {
-                        characterResistElements.CLAY = false;
-                        characterWeakElements.CLAY = false;
-                    }
-                    break;
-                default:
-                    break;
+                toResEl[i] = false;
+                toWckEl[i] = false;
+            }
+            else if ((chResEl[i] + adResEl[i]) - (chWckEl[i] + adWckEl[i]) > 0) //if Character Resist
+            {
+                toResEl[i] = true;
+                toWckEl[i] = false;
+
+                if ((chResEl[i] + adResEl[i]) - (chWckEl[i] + adWckEl[i]) > 1)
+                    isOverResist = true;
+                else
+                    isOverResist = false;
+            }
+            else if ((chResEl[i] + adResEl[i]) - (chWckEl[i] + adWckEl[i]) < 0) //if Character Resist
+            {
+                toResEl[i] = false;
+                toWckEl[i] = true;
+
+                if ((chResEl[i] + adResEl[i]) - (chWckEl[i] + adWckEl[i]) < -1)
+                    isOverWeak = true;
+                else
+                    isOverWeak = false;
             }
         }
     }
