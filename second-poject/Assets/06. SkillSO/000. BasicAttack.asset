@@ -19,14 +19,15 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    METAL: 0
+    METAL: 1
     CLAY: 0
-  skillDamage: 0
-  needFOC: 0
+  skillDamage: 20
+  needFOC: 20
   needMp: 0
   needHp: 0
-  categorPyhysics: 0
+  categorPyhysics: 1
   categoryChemistry: 0
+  skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0
   victimDeceptionPer: 0

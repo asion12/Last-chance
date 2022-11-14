@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
     [SerializeField] private Text Gold;
+
+    [SerializeField] private GameObject PlayerNowHpBar;
+    [SerializeField] private GameObject PlayerNowMpBar;
+
+    [SerializeField] private GameObject TargetEnemyNowHpBar;
+    [SerializeField] private GameObject TargetEnemyNowMpBar;
     private Player player;
     private EventManager eventManager;
 
@@ -32,25 +39,26 @@ public class UIManager : MonoBehaviour
     {
         //Gold.text = GameManager.instance.Gold.ToString();
         //�ù� ����� ���� ���Ķ�  �Ф��ؼ� �̿� �Ф�.
-        //if (BattleManager.instance.nowTurnID == 0)
-        //{
-        //    playerBattleUI.transform.gameObject.SetActive(false);
-        //}
-        //else if (BattleManager.instance.nowTurnID == 1)
-        //{
-        //    playerBattleUI.transform.gameObject.SetActive(true);
-        //    battle_SkillScrollView.SetActive(true);
-        //}
-        //else if (BattleManager.instance.nowTurnID == 2)
-        //{
-        //    playerBattleUI.transform.gameObject.SetActive(true);
-        //    battle_SkillScrollView.SetActive(false);
-        //}
+        if (BattleManager.instance.nowTurnID == 0)
+        {
+            playerBattleUI.transform.gameObject.SetActive(false);
+        }
+        else if (BattleManager.instance.nowTurnID == 1)
+        {
+            playerBattleUI.transform.gameObject.SetActive(true);
+            battle_SkillScrollView.SetActive(true);
+        }
+        else if (BattleManager.instance.nowTurnID == 2)
+        {
+            playerBattleUI.transform.gameObject.SetActive(true);
+            battle_SkillScrollView.SetActive(false);
+        }
 
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
         UIUpdate_NowTurn();
-
+        UIUpdate_PlayerH_Mp();
+        UIUpdate_TargetEnemyH_Mp();
     }
 
     private void UIUpdate_NowTurn()
@@ -66,6 +74,33 @@ public class UIManager : MonoBehaviour
         else if (BattleManager.instance.nowTurnID == 2)
         {
             battle_TurnText.text = "ENEMY TURN";
+        }
+    }
+
+    private void UIUpdate_PlayerH_Mp()
+    {
+        float hpBarSize = (float)player.nowHP / (float)player.totalStats.MAX_HP;
+        float mpBarSize = (float)player.nowMP / (float)player.totalStats.MAX_MP;
+        PlayerNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
+        PlayerNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+    }
+
+    private void UIUpdate_TargetEnemyH_Mp()
+    {
+        if (BattleManager.instance.targetEnemy != null)
+        {
+            TargetEnemyNowHpBar.SetActive(true);
+            TargetEnemyNowMpBar.SetActive(true);
+
+            float hpBarSize = (float)BattleManager.instance.targetEnemy.nowHP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_HP;
+            float mpBarSize = (float)BattleManager.instance.targetEnemy.nowMP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_MP;
+            TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
+            TargetEnemyNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+        }
+        else
+        {
+            TargetEnemyNowHpBar.SetActive(false);
+            TargetEnemyNowMpBar.SetActive(false);
         }
     }
 

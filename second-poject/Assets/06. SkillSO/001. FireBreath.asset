@@ -23,7 +23,7 @@ MonoBehaviour:
     CLAY: 0
   skillDamage: 100
   needFOC: 100
-  needMp: 0
+  needMp: 100
   needHp: 0
   categorPyhysics: 0
   categoryChemistry: 1

@@ -9,8 +9,8 @@ public class SO_Skill : ScriptableObject
     public Elements skillElements;
     public float skillDamage;
     public float needFOC;
-    public float needMp;
-    public float needHp;
+    public int needMp;
+    public int needHp;
 
     public bool categorPyhysics;
     public bool categoryChemistry;

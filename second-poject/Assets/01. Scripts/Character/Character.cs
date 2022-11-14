@@ -48,6 +48,8 @@ public class Character : MonoBehaviour
 
     public virtual void SetTotalStats()
     {
+        totalStats.MAX_HP = characterStats.MAX_HP + buff_debuffStats.MAX_HP;
+        totalStats.MAX_MP = characterStats.MAX_MP + buff_debuffStats.MAX_MP;
         totalStats.STR = characterStats.STR + buff_debuffStats.STR;
         totalStats.FIR = characterStats.FIR + buff_debuffStats.FIR;
         totalStats.INT = characterStats.INT + buff_debuffStats.INT;
