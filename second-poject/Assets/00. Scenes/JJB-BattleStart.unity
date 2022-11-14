@@ -687,9 +687,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9621dbb96af14498532c97b9ede800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowHP: 100
+  nowMP: 0
   characterStats:
-    HP: 100
-    MP: 100
+    MAX_HP: 100
+    MAX_MP: 100
+    Lev: 0
+    EXP: 0
     STR: 10
     FIR: 30
     INT: 10
@@ -698,8 +702,10 @@ MonoBehaviour:
     DEX: 10
     CHA: 10
   buff_debuffStats:
-    HP: 0
-    MP: 0
+    MAX_HP: 0
+    MAX_MP: 0
+    Lev: 0
+    EXP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -708,8 +714,10 @@ MonoBehaviour:
     DEX: 0
     CHA: 0
   totalStats:
-    HP: 0
-    MP: 0
+    MAX_HP: 0
+    MAX_MP: 0
+    Lev: 0
+    EXP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -734,10 +742,19 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   battleMode: 0
+  max_carelessCounter: 0
   carelessCounter: 0
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  nowBuffing: 0
+  nowDebuffing: 0
   Level: 1
   Exp: 0
+  useSkillList: []
+  enemyBattleState: 0
 --- !u!1 &731522606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,9 +1629,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a305cdd53910944b0b8c3c4bc483d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowHP: 0
+  nowMP: 0
   characterStats:
-    HP: 100
-    MP: 100
+    MAX_HP: 0
+    MAX_MP: 0
+    Lev: 0
+    EXP: 0
     STR: 12
     FIR: 12
     INT: 32
@@ -1623,8 +1644,10 @@ MonoBehaviour:
     DEX: 10
     CHA: 10
   buff_debuffStats:
-    HP: 0
-    MP: 0
+    MAX_HP: 0
+    MAX_MP: 0
+    Lev: 0
+    EXP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -1633,8 +1656,10 @@ MonoBehaviour:
     DEX: 0
     CHA: 0
   totalStats:
-    HP: 0
-    MP: 0
+    MAX_HP: 0
+    MAX_MP: 0
+    Lev: 0
+    EXP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -1659,6 +1684,7 @@ MonoBehaviour:
     METAL: 0
     CLAY: 1
   battleMode: 0
+  max_carelessCounter: 4
   carelessCounter: 0
   skillList:
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
@@ -1666,6 +1692,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  nowBuffing: 0
+  nowDebuffing: 0
   Level: 1
   Exp: 0
   playerCamera: {fileID: 2047056543}

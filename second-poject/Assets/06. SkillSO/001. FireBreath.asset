@@ -27,6 +27,7 @@ MonoBehaviour:
   needHp: 0
   categorPyhysics: 0
   categoryChemistry: 1
+  skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0
   victimDeceptionPer: 0
