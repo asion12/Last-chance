@@ -35,8 +35,8 @@ public class BattleManager : MonoBehaviour
         //Debug.Log("Now Turn is " + nowTurnID.ToString());
         if (targetEnemy != null)
         {
-            Debug.Log(targetEnemy.nowHP);
-            Debug.Log(targetEnemy.nowMP);
+            //Debug.Log(targetEnemy.nowHP);
+            //Debug.Log(targetEnemy.nowMP);
         }
     }
 
@@ -110,89 +110,104 @@ public class BattleManager : MonoBehaviour
             bool isGuard = false;
             bool isMiss = false;
             bool isDeception = false;
+            int overDealing = 0;
             Debug.Log("Casted!");
+
             void AddCarelessCounter(Character character)
             {
                 character.carelessCounter++;
             }
 
-            bool PercentageCheck(float percnetage)
+            if (!skillVictim.isCareless)
             {
-                float accuarityRoll = UnityEngine.Random.Range(0f, 100f);
-                if (accuarityRoll < percnetage)
-                    return true;
-                else
-                    return false;
-            }
-
-            // SkillCaster FOC Check
-            if (skillCaster.totalStats.FOC > castSkill.needFOC)
-            {
-                castSkill.casterCriticalPer = skillCaster.totalStats.FOC - castSkill.needFOC;
-            }
-            else if (skillCaster.totalStats.FOC < castSkill.needFOC)
-            {
-                castSkill.accuarityPer -= castSkill.needFOC - skillCaster.totalStats.FOC;
-            }
-            else
-            {
-            }
-
-            // SkillVicTim DEX Check
-            castSkill.accuarityPer -= skillCaster.totalStats.DEX;
-            if (castSkill.accuarityPer < 0)
-            {
-                castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
-                castSkill.accuarityPer = 0;
-            }
-
-            // Skill Deception Percentage Add to CHA
-            castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
-
-            // Skill Hit Check
-            if (PercentageCheck(castSkill.accuarityPer))
-            {
-                if (CheckElement(skillVictim.totalResistElements, castSkill.skillElements))
+                bool PercentageCheck(float percnetage)
                 {
-                    Debug.Log("Guard!");
+                    float accuarityRoll = UnityEngine.Random.Range(0f, 100f);
+                    if (accuarityRoll < percnetage)
+                        return true;
+                    else
+                        return false;
+                }
+
+                // SkillCaster FOC Check
+                if (skillCaster.totalStats.FOC > castSkill.needFOC)
+                {
+                    castSkill.casterCriticalPer = skillCaster.totalStats.FOC - castSkill.needFOC;
+                }
+                else if (skillCaster.totalStats.FOC < castSkill.needFOC)
+                {
+                    castSkill.accuarityPer -= castSkill.needFOC - skillCaster.totalStats.FOC;
+                }
+                else
+                {
+                }
+
+                // SkillVicTim DEX Check
+                castSkill.accuarityPer -= skillCaster.totalStats.DEX;
+                if (castSkill.accuarityPer < 0)
+                {
+                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
+                    castSkill.accuarityPer = 0;
+                }
+
+                // Skill Deception Percentage Add to CHA
+                castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
+
+                // Skill Hit Check
+                if (PercentageCheck(castSkill.accuarityPer))
+                {
+                    if (CheckElement(skillVictim.totalResistElements, castSkill.skillElements))
+                    {
+                        Debug.Log("Guard!");
+                        skillCaster.carelessCounter++;
+                        isRejct = true;
+                        isGuard = true;
+                        if (PercentageCheck(castSkill.victimDeceptionPer))
+                        {
+                            Debug.Log("Deception!");
+                            isDeception = true;
+                            skillCaster.carelessCounter++;
+                        }
+                    }
+                    else
+                    {
+                        if (PercentageCheck(castSkill.casterCriticalPer))
+                        {
+                            Debug.Log("Critical!");
+                            isCritical = true;
+                            skillVictim.carelessCounter++;
+                        }
+
+                        if (CheckElement(skillVictim.totalWeakElements, castSkill.skillElements))
+                        {
+                            Debug.Log("Advantage!");
+                            isAdvantage = true;
+                            skillVictim.carelessCounter++;
+                        }
+
+                        Debug.Log("Hit!");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Miss!");
                     skillCaster.carelessCounter++;
-                    isRejct = true;
-                    isGuard = true;
                     if (PercentageCheck(castSkill.victimDeceptionPer))
                     {
                         Debug.Log("Deception!");
-                        isDeception = true;
                         skillCaster.carelessCounter++;
                     }
-                }
-                else
-                {
-                    if (PercentageCheck(castSkill.casterCriticalPer))
-                    {
-                        Debug.Log("Critical!");
-                        isCritical = true;
-                        skillVictim.carelessCounter++;
-                    }
-
-                    if (CheckElement(skillVictim.totalWeakElements, castSkill.skillElements))
-                    {
-                        Debug.Log("Advantage!");
-                        isAdvantage = true;
-                        skillVictim.carelessCounter++;
-                    }
-
-                    Debug.Log("Hit!");
                 }
             }
             else
             {
-                Debug.Log("Miss!");
-                skillCaster.carelessCounter++;
-                if (PercentageCheck(castSkill.victimDeceptionPer))
-                {
-                    Debug.Log("Deception!");
-                    skillCaster.carelessCounter++;
-                }
+                isCritical = true;
+                isAdvantage = true;
+                overDealing = skillVictim.carelessCounter - skillVictim.max_carelessCounter;
+                Debug.Log("Careless!");
+
+                skillVictim.carelessCounter = 0;
+                skillVictim.isCareless = false;
             }
 
             float increaseDamage = 0f;
@@ -214,14 +229,29 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Check Damage is " + checkDamage);
 
             float finalSkillDamage =
-            (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + Convert.ToInt32(isAdvantage))
+            (castSkill.skillDamage * (1 + (increaseDamage / 100)) * (1 + overDealing + Convert.ToInt32(isAdvantage))
             * (1 - (decreaseDamage * Convert.ToInt32(!isCritical) / 100))) * Convert.ToInt32(!isRejct);
 
             Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
             skillVictim.nowHP -= Convert.ToInt32(finalSkillDamage);
             Debug.Log("Now Victim Hp : " + skillVictim.nowHP.ToString());
 
+
+
             ResetSkillNurmical(castSkill);
+            CheckTurnChange(skillVictim);
+        }
+    }
+
+    private void CheckTurnChange(Character checkCharacter)
+    {
+        if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
+        {
+            Debug.Log("OneMore");
+        }
+        else
+        {
+            Debug.Log("TurnChange");
             TurnChange();
         }
     }

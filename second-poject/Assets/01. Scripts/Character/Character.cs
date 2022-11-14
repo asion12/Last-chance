@@ -12,11 +12,11 @@ public class Character : MonoBehaviour
     public Stats buff_debuffStats = new Stats();
     public Stats totalStats = new Stats();
 
-    private Elements_int characterResistElements = new Elements_int();
-    private Elements_int characterWeakElements = new Elements_int();
+    [SerializeField] private Elements_int characterResistElements = new Elements_int();
+    [SerializeField] private Elements_int characterWeakElements = new Elements_int();
 
-    private Elements_int additionResistElements = new Elements_int();
-    private Elements_int additionWeakElements = new Elements_int();
+    [SerializeField] private Elements_int additionResistElements = new Elements_int();
+    [SerializeField] private Elements_int additionWeakElements = new Elements_int();
 
     public Elements totalResistElements = new Elements();
     public Elements totalWeakElements = new Elements();
@@ -27,6 +27,8 @@ public class Character : MonoBehaviour
     public bool battleMode = false;
     public int max_carelessCounter = 0;
     public int carelessCounter = 0;
+    public bool isCareless = false;
+
     public List<SO_Skill> skillList;
     public bool nowBuffing = false;
     public bool nowDebuffing = false;
@@ -44,6 +46,14 @@ public class Character : MonoBehaviour
     {
         SetElements();
         SetTotalStats();
+        if (carelessCounter >= max_carelessCounter)
+        {
+            isCareless = true;
+        }
+        else
+        {
+            isCareless = false;
+        }
     }
 
     public virtual void SetTotalStats()
@@ -87,6 +97,24 @@ public class Character : MonoBehaviour
         return elementArr;
     }
 
+    private void SetToatalElelments(bool[] toResEl, bool[] toWckEl)
+    {
+        totalResistElements.SOLAR = toResEl[0];
+        totalResistElements.LUMINOUS = toResEl[1];
+        totalResistElements.IGNITION = toResEl[2];
+        totalResistElements.HYDRO = toResEl[3];
+        totalResistElements.BIOLOGY = toResEl[4];
+        totalResistElements.METAL = toResEl[5];
+        totalResistElements.CLAY = toResEl[6];
+
+        totalWeakElements.SOLAR = toWckEl[0];
+        totalWeakElements.LUMINOUS = toWckEl[1];
+        totalWeakElements.IGNITION = toWckEl[2];
+        totalWeakElements.HYDRO = toWckEl[3];
+        totalWeakElements.BIOLOGY = toWckEl[4];
+        totalWeakElements.METAL = toWckEl[5];
+        totalWeakElements.CLAY = toWckEl[6];
+    }
     public virtual void SetElements()
     {
         int[] chResEl = Elements_IntArrReturn(characterResistElements);
@@ -124,6 +152,7 @@ public class Character : MonoBehaviour
                     isOverWeak = false;
             }
         }
+        SetToatalElelments(toResEl, toWckEl);
     }
     // public void GetStat(int statID)
     // {

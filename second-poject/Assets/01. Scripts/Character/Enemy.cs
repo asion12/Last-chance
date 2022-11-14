@@ -67,11 +67,11 @@ public class Enemy : Character
         yield return new WaitForSeconds(0.5f);
 
         int cnt = useSkillList.Count;
-        Debug.Log("1. Now Skill Count " + useSkillList.Count);
+        //Debug.Log("1. Now Skill Count " + useSkillList.Count);
         int selectSkillIndex = Random.Range(0, cnt);
 
-        Debug.Log(selectSkillIndex);
-        Debug.Log(useSkillList[selectSkillIndex].skillName);
+        //Debug.Log(selectSkillIndex);
+        //Debug.Log(useSkillList[selectSkillIndex].skillName);
 
         int idx = selectSkillIndex;
 
@@ -97,7 +97,7 @@ public class Enemy : Character
                 useSkillList.Add(skillList[i]);
             }
         }
-        Debug.Log("2. Now Skill Count " + useSkillList.Count);
+        //Debug.Log("2. Now Skill Count " + useSkillList.Count);
     }
 
     public bool CheckHavingAndUseSkill(SO_Skill.SkillDivision checkDivision)

@@ -21,8 +21,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerNowHpBar;
     [SerializeField] private GameObject PlayerNowMpBar;
 
+    [SerializeField] private Text PlayerCarelessCount;
+    [SerializeField] private Text TargetEnemyCarelessCount;
+
     [SerializeField] private GameObject TargetEnemyNowHpBar;
     [SerializeField] private GameObject TargetEnemyNowMpBar;
+
+    [SerializeField] private Text GameLog;
     private Player player;
     private EventManager eventManager;
 
@@ -57,8 +62,8 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
         UIUpdate_NowTurn();
-        UIUpdate_PlayerH_Mp();
-        UIUpdate_TargetEnemyH_Mp();
+        UIUpdate_PlayerBase();
+        UIUpdate_TargetEnemyBase();
     }
 
     private void UIUpdate_NowTurn()
@@ -77,30 +82,43 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void UIUpdate_PlayerH_Mp()
+    private void UIUpdate_PlayerBase()
     {
+        string carelessText = "";
+
         float hpBarSize = (float)player.nowHP / (float)player.totalStats.MAX_HP;
         float mpBarSize = (float)player.nowMP / (float)player.totalStats.MAX_MP;
         PlayerNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
         PlayerNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+
+        carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
+
+        TargetEnemyCarelessCount.text = carelessText;
     }
 
-    private void UIUpdate_TargetEnemyH_Mp()
+    private void UIUpdate_TargetEnemyBase()
     {
         if (BattleManager.instance.targetEnemy != null)
         {
             TargetEnemyNowHpBar.SetActive(true);
             TargetEnemyNowMpBar.SetActive(true);
+            TargetEnemyCarelessCount.gameObject.SetActive(true);
 
             float hpBarSize = (float)BattleManager.instance.targetEnemy.nowHP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_HP;
             float mpBarSize = (float)BattleManager.instance.targetEnemy.nowMP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_MP;
+            string carelessText = "";
+
             TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
             TargetEnemyNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+            carelessText += BattleManager.instance.targetEnemy.carelessCounter.ToString() + " / " + BattleManager.instance.targetEnemy.max_carelessCounter.ToString();
+
+            TargetEnemyCarelessCount.text = carelessText;
         }
         else
         {
             TargetEnemyNowHpBar.SetActive(false);
             TargetEnemyNowMpBar.SetActive(false);
+            TargetEnemyCarelessCount.gameObject.SetActive(false);
         }
     }
 
