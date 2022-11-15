@@ -42,8 +42,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Gold.text = GameManager.instance.Gold.ToString();
-        //�ù� ����� ���� ���Ķ�  �Ф��ؼ� �̿� �Ф�.
+        Gold.text = GameManager.instance.Gold.ToString();
         if (BattleManager.instance.nowTurnID == 0)
         {
             playerBattleUI.transform.gameObject.SetActive(false);
