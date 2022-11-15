@@ -2114,8 +2114,8 @@ MonoBehaviour:
     INT: 32
     WIS: 10
     FOC: 100
-    DEX: 10
-    CHA: 10
+    DEX: 100
+    CHA: 100
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -2989,6 +2989,8 @@ MonoBehaviour:
   nowTurnID: 0
   targetEnemy: {fileID: 0}
   player: {fileID: 1272380698}
+  isTurnUsed: 0
+  isCarelessTurnUsed: 0
 --- !u!4 &1744023172
 Transform:
   m_ObjectHideFlags: 0

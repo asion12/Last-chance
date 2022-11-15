@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
 
-        TargetEnemyCarelessCount.text = carelessText;
+        PlayerCarelessCount.text = carelessText;
     }
 
     private void UIUpdate_TargetEnemyBase()

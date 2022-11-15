@@ -24,7 +24,8 @@ public class BattleManager : MonoBehaviour
 
     public Character targetEnemy;
     public Character player;
-
+    public bool isTurnUsed = false;
+    public bool isCarelessTurnUsed = false;
 
     void Start()
     {
@@ -113,13 +114,9 @@ public class BattleManager : MonoBehaviour
             int overDealing = 0;
             Debug.Log("Casted!");
 
-            void AddCarelessCounter(Character character)
-            {
-                character.carelessCounter++;
-            }
-
             if (!skillVictim.isCareless)
             {
+                isTurnUsed = true;
                 bool PercentageCheck(float percnetage)
                 {
                     float accuarityRoll = UnityEngine.Random.Range(0f, 100f);
@@ -143,7 +140,7 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // SkillVicTim DEX Check
-                castSkill.accuarityPer -= skillCaster.totalStats.DEX;
+                castSkill.accuarityPer -= skillVictim.totalStats.DEX;
                 if (castSkill.accuarityPer < 0)
                 {
                     castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer;
@@ -201,6 +198,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                isCarelessTurnUsed = true;
                 isCritical = true;
                 isAdvantage = true;
                 overDealing = skillVictim.carelessCounter - skillVictim.max_carelessCounter;
@@ -237,7 +235,6 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Now Victim Hp : " + skillVictim.nowHP.ToString());
 
 
-
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
         }
@@ -251,8 +248,17 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("TurnChange");
-            TurnChange();
+            if (!isTurnUsed)
+            {
+                Debug.Log("One More");
+            }
+            else
+            {
+                Debug.Log("TurnChange");
+                isTurnUsed = false;
+                isCarelessTurnUsed = false;
+                TurnChange();
+            }
         }
     }
 
