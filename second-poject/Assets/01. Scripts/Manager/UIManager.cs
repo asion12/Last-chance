@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject TargetEnemyNowMpBar;
 
     [SerializeField] private Text GameLog;
+    [SerializeField] private Canvas CarelessSkillUI;
     private Player player;
     private EventManager eventManager;
 
@@ -231,5 +232,17 @@ public class UIManager : MonoBehaviour
         changeToString += numString;
 
         return changeToString;
+    }
+
+    private void UIUpdate_CheckCarelessUIOn()
+    {
+        if (BattleManager.instance.player.battleMode && BattleManager.instance.targetEnemy.isCareless)
+        {
+            CarelessSkillUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            CarelessSkillUI.gameObject.SetActive(false);
+        }
     }
 }

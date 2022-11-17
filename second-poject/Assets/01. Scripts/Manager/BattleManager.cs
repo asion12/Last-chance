@@ -67,7 +67,7 @@ public class BattleManager : MonoBehaviour
         //Debug.Log("Turn Change!");
     }
 
-    public void BattleStart(bool isPlayerStart, GameObject detactedEnemy)
+    public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
         Debug.Log("BattleStart!");
         SetEnemy(detactedEnemy.GetComponent<Character>());
@@ -77,10 +77,34 @@ public class BattleManager : MonoBehaviour
         if (isPlayerStart)
         {
             nowTurnID = 1;
+            if (isVictimCareless)
+                targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
         }
         else
         {
             nowTurnID = 2;
+        }
+    }
+
+    public IEnumerator BattleRun(bool isPlayerRun)
+    {
+        nowTurnID = 0;
+        targetEnemy.battleMode = false;
+        player.battleMode = false;
+
+        if (isPlayerRun)
+        {
+            Debug.Log("Player Stunned!");
+            player.isStunned = true;
+            yield return new WaitForSeconds(5);
+            player.isStunned = false;
+        }
+        else
+        {
+            Debug.Log("Enemy Stunned!");
+            targetEnemy.isStunned = true;
+            yield return new WaitForSeconds(5);
+            targetEnemy.isStunned = false;
         }
     }
 

@@ -24,7 +24,7 @@ public class Player : Character
     {
         base.Update();
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
-        if (!battleMode)
+        if (!battleMode || isStunned)
         {
             CameraRotateToMousePointer();
             CharacterMove();
@@ -75,7 +75,12 @@ public class Player : Character
                     if (Input.GetMouseButtonDown(0))
                     {
                         //sDebug.Log("Battle Ready");
-                        BattleManager.instance.BattleStart(true, lastHitData);
+                        bool checkStun = lastHitData.transform.GetComponent<Enemy>().isStunned;
+                        bool checkCareless = false;
+                        if (checkStun || checkCareless)
+                            BattleManager.instance.BattleStart(true, true, lastHitData);
+                        else
+                            BattleManager.instance.BattleStart(true, false, lastHitData);
                     }
                 }
                 else

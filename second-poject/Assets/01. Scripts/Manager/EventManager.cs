@@ -8,4 +8,9 @@ public class EventManager : MonoBehaviour
     {
         BattleManager.instance.CastSkill(BattleManager.instance.player, BattleManager.instance.targetEnemy, castSkill);
     }
+
+    public void OnPlayerBattleRun()
+    {
+        BattleManager.instance.BattleRun(true);
+    }
 }

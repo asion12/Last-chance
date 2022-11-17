@@ -21,7 +21,7 @@ public class Enemy : Character
     protected override void Update()
     {
         base.Update();
-        if (BattleManager.instance.nowTurnID == 2 && !isChanging)
+        if (!isStunned || (battleMode && BattleManager.instance.nowTurnID == 2 && !isChanging))
         {
             StartCoroutine(EnemySkillCast());
         }
@@ -46,7 +46,6 @@ public class Enemy : Character
 
     public IEnumerator EnemySkillCast()
     {
-
         isChanging = true;
         yield return new WaitForSeconds(1);
 

@@ -33,6 +33,8 @@ public class Character : MonoBehaviour
     public bool nowBuffing = false;
     public bool nowDebuffing = false;
 
+    public bool isStunned = false;
+
     public int Level = 1;
     public int Exp = 0;
 
