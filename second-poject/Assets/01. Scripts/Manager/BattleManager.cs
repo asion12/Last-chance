@@ -39,6 +39,13 @@ public class BattleManager : MonoBehaviour
             //Debug.Log(targetEnemy.nowHP);
             //Debug.Log(targetEnemy.nowMP);
         }
+        if (nowTurnID != 0)
+        {
+            if (targetEnemy.nowHP <= 0)
+                BattleEnd(true);
+            else if (player.nowHP <= 0)
+                BattleEnd(false);
+        }
     }
 
     public void TurnChange()
@@ -80,14 +87,18 @@ public class BattleManager : MonoBehaviour
     public void BattleEnd(bool isPlayerWin)
     {
         nowTurnID = 0; // reset turn
-        targetEnemy = null; // reset targetEnemy
+        player.battleMode = false;
+        targetEnemy.battleMode = false;
+
         if (isPlayerWin)
         {
-            Debug.Log("Player Win!");
+            Debug.Log("Player Win");
+            Destroy(targetEnemy.gameObject);
+            targetEnemy = null;
         }
         else
         {
-            Debug.Log("Enemu Win!");
+            Debug.Log("Enemy Win!");
         }
     }
 

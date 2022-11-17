@@ -922,7 +922,7 @@ MonoBehaviour:
   nowHP: 100
   nowMP: 0
   characterStats:
-    MAX_HP: 1000
+    MAX_HP: 500
     MAX_MP: 1000
     Lev: 0
     EXP: 0
