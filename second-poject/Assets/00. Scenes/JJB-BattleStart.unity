@@ -301,7 +301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &226832669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2688,7 +2688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1322157277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3307,6 +3307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowTurnID: 0
   targetEnemy: {fileID: 0}
+  targetCharacter: {fileID: 0}
   player: {fileID: 1272380698}
   isTurnUsed: 0
   isCarelessTurnUsed: 0
@@ -3806,7 +3807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2049937156
 RectTransform:
   m_ObjectHideFlags: 0

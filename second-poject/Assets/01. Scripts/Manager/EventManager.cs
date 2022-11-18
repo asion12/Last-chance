@@ -11,6 +11,6 @@ public class EventManager : MonoBehaviour
 
     public void OnPlayerBattleRun()
     {
-        BattleManager.instance.BattleRun(true);
+        StartCoroutine(BattleManager.instance.BattleRun(true));
     }
 }

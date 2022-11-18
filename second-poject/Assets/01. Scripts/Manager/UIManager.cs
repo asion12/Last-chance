@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerStatsInfo();
         UIUpdate_NowTurn();
         UIUpdate_PlayerBase();
-        UIUpdate_TargetEnemyBase();
+        UIUpdate_CheckCarelessUIOn();
     }
 
     private void UIUpdate_NowTurn()
@@ -97,16 +97,21 @@ public class UIManager : MonoBehaviour
         PlayerCarelessCount.text = carelessText;
     }
 
-    private void UIUpdate_TargetEnemyBase()
+    public void UIUpdate_TargetEnemyBase(GameObject targetEnemy, bool isIn)
     {
-        if (BattleManager.instance.targetEnemy != null)
+        if (isIn && targetEnemy != null)
         {
             TargetEnemyNowHpBar.SetActive(true);
             TargetEnemyNowMpBar.SetActive(true);
             TargetEnemyCarelessCount.gameObject.SetActive(true);
 
-            float hpBarSize = (float)BattleManager.instance.targetEnemy.nowHP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_HP;
-            float mpBarSize = (float)BattleManager.instance.targetEnemy.nowMP / (float)BattleManager.instance.targetEnemy.totalStats.MAX_MP;
+            Debug.Log("TargetIn!");
+
+            BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
+
+            Debug.Log("CharaIn");
+            float hpBarSize = (float)BattleManager.instance.targetCharacter.nowHP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_HP;
+            float mpBarSize = (float)BattleManager.instance.targetCharacter.nowMP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_MP;
             string carelessText = "";
 
             TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);

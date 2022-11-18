@@ -20,6 +20,14 @@ public class Player : Character
 
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 
+    private UIManager uIManager = null;
+
+    protected virtual void Start()
+    {
+        base.Start();
+        uIManager = FindObjectOfType<UIManager>();
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -67,6 +75,18 @@ public class Player : Character
         {
             if (hitData.transform.tag == "Enemy")
             {
+                if (uIManager == null)
+                { Debug.Log("uIManager is null!"); }
+                else
+                {
+                    GameObject temp = hitData.transform.gameObject;
+                    if (temp == null)
+                    {
+                        Debug.Log("temp is null!");
+                    }
+
+                    else uIManager.UIUpdate_TargetEnemyBase(temp, true);
+                }
                 //Debug.Log("RayIn!!");
                 if (hitData.distance <= battleStartRange)
                 {
@@ -74,7 +94,7 @@ public class Player : Character
                     hitData.transform.GetComponent<Outline>().eraseRenderer = false;
                     if (Input.GetMouseButtonDown(0))
                     {
-                        //sDebug.Log("Battle Ready");
+                        Debug.Log("Battle Ready");
                         bool checkStun = lastHitData.transform.GetComponent<Enemy>().isStunned;
                         bool checkCareless = false;
                         if (checkStun || checkCareless)

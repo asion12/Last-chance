@@ -156,6 +156,14 @@ public class Character : MonoBehaviour
         }
         SetToatalElelments(toResEl, toWckEl);
     }
+
+    public virtual void ResetBattleStatus()
+    {
+        buff_debuffStats = new Stats();
+        additionResistElements = new Elements_int();
+        additionWeakElements = new Elements_int();
+        carelessCounter = 0;
+    }
     // public void GetStat(int statID)
     // {
     //     switch (statID)

@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
 
     public Character targetEnemy;
+    public Character targetCharacter;
     public Character player;
     public bool isTurnUsed = false;
     public bool isCarelessTurnUsed = false;
@@ -91,7 +92,6 @@ public class BattleManager : MonoBehaviour
         nowTurnID = 0;
         targetEnemy.battleMode = false;
         player.battleMode = false;
-
         if (isPlayerRun)
         {
             Debug.Log("Player Stunned!");
@@ -106,6 +106,12 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(5);
             targetEnemy.isStunned = false;
         }
+    }
+
+    private void ResetBattleStatus()
+    {
+        player.ResetBattleStatus();
+        targetEnemy.ResetBattleStatus();
     }
 
     public void BattleEnd(bool isPlayerWin)
@@ -131,7 +137,11 @@ public class BattleManager : MonoBehaviour
         targetEnemy = setEnemy;
     }
 
-    public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
+    public void SetCharacter(Character setEnemy)
+    {
+        targetCharacter = setEnemy;
+    }
+        public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
         if (skillCaster.nowMP < castSkill.needMp)
         {

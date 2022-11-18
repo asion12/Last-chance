@@ -21,7 +21,7 @@ public class Enemy : Character
     protected override void Update()
     {
         base.Update();
-        if (!isStunned || (battleMode && BattleManager.instance.nowTurnID == 2 && !isChanging))
+        if (!isStunned && (battleMode && BattleManager.instance.nowTurnID == 2 && !isChanging))
         {
             StartCoroutine(EnemySkillCast());
         }
