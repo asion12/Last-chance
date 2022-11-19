@@ -92,23 +92,25 @@ public class BattleManager : MonoBehaviour
         nowTurnID = 0;
         targetEnemy.battleMode = false;
         player.battleMode = false;
+        Debug.Log(player.battleMode);
+        ResetCharactersBattleStatus();
         if (isPlayerRun)
-        {
-            Debug.Log("Player Stunned!");
-            player.isStunned = true;
-            yield return new WaitForSeconds(5);
-            player.isStunned = false;
-        }
-        else
         {
             Debug.Log("Enemy Stunned!");
             targetEnemy.isStunned = true;
             yield return new WaitForSeconds(5);
             targetEnemy.isStunned = false;
         }
+        else
+        {
+            Debug.Log("Player Stunned!");
+            player.isStunned = true;
+            yield return new WaitForSeconds(5);
+            player.isStunned = false;
+        }
     }
 
-    private void ResetBattleStatus()
+    private void ResetCharactersBattleStatus()
     {
         player.ResetBattleStatus();
         targetEnemy.ResetBattleStatus();
@@ -141,7 +143,7 @@ public class BattleManager : MonoBehaviour
     {
         targetCharacter = setEnemy;
     }
-        public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
+    public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
         if (skillCaster.nowMP < castSkill.needMp)
         {
