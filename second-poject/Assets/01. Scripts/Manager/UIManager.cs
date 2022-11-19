@@ -109,23 +109,22 @@ public class UIManager : MonoBehaviour
 
             BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
 
-            Debug.Log("CharaIn");
             float hpBarSize = (float)BattleManager.instance.targetCharacter.nowHP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_HP;
             float mpBarSize = (float)BattleManager.instance.targetCharacter.nowMP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_MP;
             string carelessText = "";
-
             TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
             TargetEnemyNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
-            carelessText += BattleManager.instance.targetEnemy.carelessCounter.ToString() + " / " + BattleManager.instance.targetEnemy.max_carelessCounter.ToString();
-
+            carelessText += BattleManager.instance.targetCharacter.carelessCounter.ToString() + " / " + BattleManager.instance.targetCharacter.max_carelessCounter.ToString();
             TargetEnemyCarelessCount.text = carelessText;
         }
-        else
-        {
-            TargetEnemyNowHpBar.SetActive(false);
-            TargetEnemyNowMpBar.SetActive(false);
-            TargetEnemyCarelessCount.gameObject.SetActive(false);
-        }
+    }
+
+    public void UIUpdate_OffTargetEnemyBase()
+    {
+        Debug.Log("Target is NUll");
+        TargetEnemyNowHpBar.SetActive(false);
+        TargetEnemyNowMpBar.SetActive(false);
+        TargetEnemyCarelessCount.gameObject.SetActive(false);
     }
 
     private void SetText<T>(Text text, T state, T state2)

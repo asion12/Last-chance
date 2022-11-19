@@ -80,12 +80,7 @@ public class Player : Character
                 else
                 {
                     GameObject temp = hitData.transform.gameObject;
-                    if (temp == null)
-                    {
-                        Debug.Log("temp is null!");
-                    }
-
-                    else uIManager.UIUpdate_TargetEnemyBase(temp, true);
+                    uIManager.UIUpdate_TargetEnemyBase(temp, true);
                 }
                 //Debug.Log("RayIn!!");
                 if (hitData.distance <= battleStartRange)
@@ -126,6 +121,7 @@ public class Player : Character
 
     private void RayOutCheck()
     {
+        uIManager.UIUpdate_OffTargetEnemyBase();
         //Debug.Log("Ray Checking");
         if (lastHitData != null)
         {
