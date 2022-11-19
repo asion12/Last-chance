@@ -38,6 +38,7 @@ public class Player : Character
             CharacterMove();
             CanBattleStartByRayCast();
         }
+        TargetCharacterRayCheck();
     }
 
     public void CameraRotateToTarget(GameObject target)
@@ -80,7 +81,6 @@ public class Player : Character
                 else
                 {
                     GameObject temp = hitData.transform.gameObject;
-                    uIManager.UIUpdate_TargetEnemyBase(temp, true);
                 }
                 //Debug.Log("RayIn!!");
                 if (hitData.distance <= battleStartRange)
@@ -119,9 +119,36 @@ public class Player : Character
         // Debug.Log("now hit is" + hitData.transform.gameObject);
     }
 
+    private void TargetCharacterRayCheck()
+    {
+        RaycastHit hitData;
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+        if (Physics.Raycast(ray, out hitData))
+        {
+            if (hitData.transform.tag == "Enemy")
+            {
+                if (uIManager == null)
+                { Debug.Log("uIManager is null!"); }
+                else
+                {
+                    GameObject temp = hitData.transform.gameObject;
+                    uIManager.UIUpdate_TargetEnemyBase(temp, true);
+                }
+            }
+            else
+            {
+                uIManager.UIUpdate_OffTargetEnemyBase();
+            }
+        }
+        else
+        {
+            uIManager.UIUpdate_OffTargetEnemyBase();
+        }
+    }
+
     private void RayOutCheck()
     {
-        uIManager.UIUpdate_OffTargetEnemyBase();
         //Debug.Log("Ray Checking");
         if (lastHitData != null)
         {
