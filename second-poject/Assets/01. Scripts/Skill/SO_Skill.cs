@@ -5,16 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill", order = 1)]
 public class SO_Skill : ScriptableObject
 {
-    public bool isCanUse = true;
     public string skillName;
+    public bool categorPyhysics;
+    public bool categoryChemistry;
+    public bool isCanUse = true;
     public Elements skillElements;
     public float skillDamage;
     public float needFOC;
     public int needMp;
     public int needHp;
-
-    public bool categorPyhysics;
-    public bool categoryChemistry;
 
     public enum SkillDivision
     {

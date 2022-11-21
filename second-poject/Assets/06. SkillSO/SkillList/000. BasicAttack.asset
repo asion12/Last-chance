@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 000. BasicAttack
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: "\uD0C0\uACA9"
+  categorPyhysics: 1
+  categoryChemistry: 0
+  isCanUse: 1
   skillElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -21,12 +24,10 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 1
     CLAY: 0
-  skillDamage: 20
-  needFOC: 20
+  skillDamage: 100
+  needFOC: 10
   needMp: 0
   needHp: 0
-  categorPyhysics: 1
-  categoryChemistry: 0
   skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0

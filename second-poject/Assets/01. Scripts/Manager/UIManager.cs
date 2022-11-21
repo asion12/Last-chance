@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     private Player player;
     private EventManager eventManager;
     private List<SO_Skill> skills = new List<SO_Skill>();
-    private List<GameObject> skillButons;
+    private List<GameObject> skillButtons;
 
     void Start()
     {
@@ -222,7 +222,7 @@ public class UIManager : MonoBehaviour
             skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnPlayerCastSkillSet(skills[idx]));
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[idx].skillName;
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED FOC : " + SetIntHundred((int)skills[idx].needFOC);
-            skillButons.Add(skillButton);
+            skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
     }
@@ -234,7 +234,11 @@ public class UIManager : MonoBehaviour
         {
             if (skills[i].isCanUse)
             {
-
+                skillButtons[i].SetActive(true);
+            }
+            else
+            {
+                skillButtons[i].SetActive(false);
             }
         }
     }
