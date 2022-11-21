@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 007. FireBreath
   m_EditorClassIdentifier: 
-  skillName: "\uD654\uC5FC \uBC29\uC0AC"
+  skillName: fireball
   categorPyhysics: 0
   categoryChemistry: 1
   isCanUse: 1
@@ -28,6 +28,7 @@ MonoBehaviour:
   needFOC: 30
   needMp: 100
   needHp: 0
+  isOverClockSet: 0
   skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0

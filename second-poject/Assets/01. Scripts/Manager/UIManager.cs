@@ -27,19 +27,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject TargetEnemyNowHpBar;
     [SerializeField] private GameObject TargetEnemyNowMpBar;
 
+    [SerializeField] private GameObject SkillButtonsParent;
+
     [SerializeField] private Text GameLog;
     [SerializeField] private Canvas CarelessSkillUI;
-    private Player player;
+    private Character player = null;
     private EventManager eventManager;
     private List<SO_Skill> skills = new List<SO_Skill>();
-    private List<GameObject> skillButtons;
+
+    private void Awake()
+    {
+        player = FindObjectOfType<Player>();
+        if (player.skillList == null)
+        {
+            Debug.Log("Player Skill List is Null!");
+        }
+        else
+        {
+            skills = player.skillList;
+            UIUpdate_PlayerSkillList();
+        }
+    }
 
     void Start()
     {
         player = FindObjectOfType<Player>();
         eventManager = FindObjectOfType<EventManager>();
-        UIUpdate_PlayerSkillList();
-        skills = player.skillList;
     }
 
     // Update is called once per frame
@@ -67,6 +80,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_NowTurn();
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
+        UIUpdate_CheckSkillUse();
     }
 
     private void UIUpdate_NowTurn()
@@ -212,33 +226,37 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_PlayerSkillList()
     {
-        for (int i = 0; i < player.skillList.Count; i++)
+        for (int i = 0; i < skills.Count; i++)
         {
             Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
-            int idx = i;
-            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(skills[idx]));
-            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[idx].skillName;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED FOC : " + SetIntHundred((int)skills[idx].needFOC);
-            skillButtons.Add(skillButton);
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(skills[i]));
+            Debug.Log("now IDX = " + i);
+            Debug.Log(skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text);
+            Debug.Log(skills[i].skillName);
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[i].skillName;
+
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED " + SetIntHundred((int)skills[i].needMp) + " MP";
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)skills[i].needFOC) + " FOC";
+            skillButton.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "GIVE " + SetIntHundred((int)skills[i].skillDamage) + " DMG";
+            //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
     }
 
     private void UIUpdate_CheckSkillUse()
     {
-        skills = player.skillList;
         for (int i = 0; i < player.skillList.Count; i++)
         {
             if (skills[i].isCanUse)
             {
-                skillButtons[i].SetActive(true);
+                //SkillButtonsParent.transform.GetChild(0).gameObject.SetActive(true);
             }
             else
             {
-                skillButtons[i].SetActive(false);
+                //SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
     }

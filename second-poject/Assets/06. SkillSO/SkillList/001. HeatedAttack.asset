@@ -28,6 +28,7 @@ MonoBehaviour:
   needFOC: 10
   needMp: 50
   needHp: 0
+  isOverClockSet: 0
   skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0

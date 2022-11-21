@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviour
     {
         if (instance == null)
         {
+            Debug.Log("Instance Set");
             instance = this;
         }
     }
