@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         eventManager = FindObjectOfType<EventManager>();
         UIUpdate_PlayerSkillList();
-
+        skills = player.skillList;
     }
 
     // Update is called once per frame
@@ -214,12 +214,12 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < player.skillList.Count; i++)
         {
-            //Debug.Log("Count is " + player.skillList.Count);
+            Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
             int idx = i;
-            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnPlayerCastSkillSet(skills[idx]));
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(skills[idx]));
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[idx].skillName;
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED FOC : " + SetIntHundred((int)skills[idx].needFOC);
             skillButtons.Add(skillButton);

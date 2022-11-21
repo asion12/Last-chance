@@ -12,11 +12,11 @@ public class Character : MonoBehaviour
     public Stats buff_debuffStats = new Stats();
     public Stats totalStats = new Stats();
 
-    [SerializeField] private Elements_int characterResistElements = new Elements_int();
-    [SerializeField] private Elements_int characterWeakElements = new Elements_int();
+    public Elements_int characterResistElements = new Elements_int();
+    public Elements_int characterWeakElements = new Elements_int();
 
-    [SerializeField] private Elements_int additionResistElements = new Elements_int();
-    [SerializeField] private Elements_int additionWeakElements = new Elements_int();
+    public Elements_int additionResistElements = new Elements_int();
+    public Elements_int additionWeakElements = new Elements_int();
 
     public Elements totalResistElements = new Elements();
     public Elements totalWeakElements = new Elements();

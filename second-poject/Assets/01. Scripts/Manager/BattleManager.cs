@@ -288,6 +288,47 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void CastOverClock(Character overClockCaster, Character overClockVictim, List<SO_Skill> overClockSkillList)
+    {
+        Elements_int tempPlayerAddWckEl = overClockCaster.additionWeakElements;
+        for (int i = 0; i < overClockSkillList.Count; i++)
+        {
+            SetOverClock(overClockSkillList[i]);
+            if (overClockCaster.isOverWeak)
+            {
+                OverClockEnd(overClockCaster, tempPlayerAddWckEl);
+                break;
+            }
+        }
+    }
+
+    public void SetOverClock(SO_Skill overClockSkill)
+    {
+        int[] nowPlayerAddWckElTemp = Element_intArrReturn(player.additionWeakElements);
+        bool[] nowSkillElTemp = ElementArrReturn(overClockSkill.skillElements);
+        for (int i = 0; i < 7; i++)
+        {
+            if (nowSkillElTemp[i])
+            {
+                nowPlayerAddWckElTemp[i]++;
+                overClockSkill.isOverClockSet = true;
+            }
+        }
+    }
+
+    private void OverClockEnd(Character resetCharacter, Elements_int resetElements_int)
+    {
+        Debug.Log("OverClockEnded!");
+        resetCharacter.additionWeakElements = resetElements_int;
+        for (int i = 0; i < resetCharacter.skillList.Count; i++)
+        {
+            if (resetCharacter.skillList[i].isOverClockSet)
+            {
+                resetCharacter.skillList[i].isOverClockSet = false;
+            }
+        }
+    }
+
     private void CheckTurnChange(Character checkCharacter)
     {
         if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
@@ -320,6 +361,20 @@ public class BattleManager : MonoBehaviour
     private bool[] ElementArrReturn(Elements el)
     {
         bool[] elementArr = new bool[7];
+        elementArr[0] = el.SOLAR;
+        elementArr[1] = el.LUMINOUS;
+        elementArr[2] = el.IGNITION;
+        elementArr[3] = el.HYDRO;
+        elementArr[4] = el.BIOLOGY;
+        elementArr[5] = el.METAL;
+        elementArr[6] = el.CLAY;
+
+        return elementArr;
+    }
+
+    private int[] Element_intArrReturn(Elements_int el)
+    {
+        int[] elementArr = new int[7];
         elementArr[0] = el.SOLAR;
         elementArr[1] = el.LUMINOUS;
         elementArr[2] = el.IGNITION;

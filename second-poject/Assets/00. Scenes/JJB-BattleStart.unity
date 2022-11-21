@@ -2433,10 +2433,6 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
-  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
-  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
-  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
-  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
   nowBuffing: 0
   nowDebuffing: 0
   isStunned: 0

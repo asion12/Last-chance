@@ -14,6 +14,7 @@ public class SO_Skill : ScriptableObject
     public float needFOC;
     public int needMp;
     public int needHp;
+    public bool isOverClockSet = false;
 
     public enum SkillDivision
     {
