@@ -184,6 +184,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
+
                 }
 
                 // SkillVicTim DEX Check

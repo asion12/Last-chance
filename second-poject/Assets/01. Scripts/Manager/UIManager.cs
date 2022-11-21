@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas CarelessSkillUI;
     private Player player;
     private EventManager eventManager;
+    private List<SO_Skill> skills = new List<SO_Skill>();
+    private List<GameObject> skillButons;
 
     void Start()
     {
@@ -216,12 +218,24 @@ public class UIManager : MonoBehaviour
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
-            List<SO_Skill> skills = player.skillList;
             int idx = i;
             skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnPlayerCastSkillSet(skills[idx]));
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[idx].skillName;
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED FOC : " + SetIntHundred((int)skills[idx].needFOC);
+            skillButons.Add(skillButton);
             //Debug.Log(i);
+        }
+    }
+
+    private void UIUpdate_CheckSkillUse()
+    {
+        skills = player.skillList;
+        for (int i = 0; i < player.skillList.Count; i++)
+        {
+            if (skills[i].isCanUse)
+            {
+
+            }
         }
     }
 

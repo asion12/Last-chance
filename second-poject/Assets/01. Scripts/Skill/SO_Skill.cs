@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skill", menuName = "ScriptableObjects/Skill", order = 1)]
 public class SO_Skill : ScriptableObject
 {
+    public bool isCanUse = true;
     public string skillName;
     public Elements skillElements;
     public float skillDamage;
