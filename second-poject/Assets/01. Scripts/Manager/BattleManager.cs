@@ -303,6 +303,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void CastOverClockSkills(Character overClockSkillCaster, Character overClockSkillVictim, List<SO_Skill> overClockSkillList)
+    {
+
+    }
+
     public void SetOverClock(SO_Skill overClockSkill)
     {
         int[] nowPlayerAddWckElTemp = Element_intArrReturn(player.additionWeakElements);

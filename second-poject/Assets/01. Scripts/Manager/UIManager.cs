@@ -224,23 +224,48 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private Color GetTextColorToElement(Elements el)
+    {
+        if (el.SOLAR)
+            return Color.yellow;
+        else if (el.LUMINOUS)
+            return Color.magenta;
+        else if (el.IGNITION)
+            return Color.red;
+        else if (el.HYDRO)
+            return Color.blue;
+        else if (el.BIOLOGY)
+            return Color.green;
+        else if (el.METAL)
+            return Color.black;
+        else if (el.CLAY)
+            return Color.gray;
+
+        return Color.cyan;
+    }
+
     private void UIUpdate_PlayerSkillList()
     {
         for (int i = 0; i < skills.Count; i++)
         {
+            SO_Skill tempSkill = skills[i];
             Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
-            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(skills[i]));
-            Debug.Log("now IDX = " + i);
-            Debug.Log(skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text);
-            Debug.Log(skills[i].skillName);
-            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = skills[i].skillName;
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(tempSkill));
 
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED " + SetIntHundred((int)skills[i].needMp) + " MP";
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)skills[i].needFOC) + " FOC";
-            skillButton.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "GIVE " + SetIntHundred((int)skills[i].skillDamage) + " DMG";
+            Color textColor = GetTextColorToElement(tempSkill.skillElements);
+
+
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
+
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = textColor;
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needMp, textColor) + " MP";
+
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needFOC, Color.white) + " FOC";
+            skillButton.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "GIVE " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " DMG";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
@@ -261,13 +286,18 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private string SetIntHundred(int num)
+    private string SetIntHundred(int num, Color textColor)
     {
         string numString = num.ToString();
         string changeToString = "";
+
+        string colorString = "<color=";
+        colorString += "#" + ColorUtility.ToHtmlStringRGB(textColor) + "88";
+        colorString += ">";
+
         for (int i = 0; i < 3 - numString.Length; i++)
         {
-            changeToString += '0';
+            changeToString += colorString + "0</color>";
         }
         changeToString += numString;
 
