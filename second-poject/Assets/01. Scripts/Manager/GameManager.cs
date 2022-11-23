@@ -23,9 +23,19 @@ public class GameManager : MonoBehaviour
 
 
     public int Gold = 0;
-    public void clickGOldup()
+    public int potion = 0;
+    public void testclickGOldup()
     {
-        GameManager.instance.Gold += 100;
+        GameManager.instance.Gold += 1000;
         Debug.Log(Gold);
+    }
+    public void SellItem()
+    {
+        if (GameManager.instance.potion>=1)
+        {
+            GameManager.instance.potion -= 1;
+            GameManager.instance.Gold += 1000;
+        }
+      
     }
 }
