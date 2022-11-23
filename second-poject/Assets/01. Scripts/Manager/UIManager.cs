@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     private Character player = null;
     private EventManager eventManager;
     private List<SO_Skill> skills = new List<SO_Skill>();
+    [SerializeField]private Canvas main;
 
     private void Awake()
     {
@@ -84,8 +85,26 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
+        OnIventory();
     }
+    private void OnIventory()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
 
+            if (BattleManager.instance.nowTurnID == 0) {
+                if (main.gameObject.activeSelf)
+                {
+                    main.gameObject.SetActive(false);
+                }
+                else
+                {
+                    main.gameObject.SetActive(true);
+                }
+            }
+          
+        }
+    }
     private void UIUpdate_NowTurn()
     {
         if (BattleManager.instance.nowTurnID == 0)
