@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+
         if (BattleManager.instance.nowTurnID == 0)
         {
             Debug.Log("Battle UI OFF");
@@ -324,7 +324,7 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_CheckCarelessUIOn()
     {
-        if (BattleManager.instance.player.battleMode && BattleManager.instance.targetEnemy.isCareless)
+        if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless)
         {
             CarelessSkillUI.gameObject.SetActive(true);
         }

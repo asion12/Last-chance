@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     public bool isOverResist = false;
     public bool isOverWeak = false;
 
-    public bool battleMode = false;
+    public bool isBattleMode = false;
     public int max_carelessCounter = 0;
     public int carelessCounter = 0;
     public bool isCareless = false;

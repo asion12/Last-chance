@@ -15,13 +15,30 @@ public class Enemy : Character
     [SerializeField]
     private List<SO_Skill> useSkillList = new List<SO_Skill>();
 
+    private Collider collider;
 
     [SerializeField] private BattleState enemyBattleState = BattleState.ATTACK_READY;
     private bool isChanging = false;
+
+    protected override void Start()
+    {
+        base.Start();
+        collider = GetComponent<Collider>();
+    }
+
     protected override void Update()
     {
         base.Update();
-        if (!isStunned && (battleMode && BattleManager.instance.nowTurnID == 2 && !isChanging))
+
+        if (isBattleMode)
+        {
+            collider.isTrigger = true;
+        }
+        else
+        {
+            collider.isTrigger = false;
+        }
+        if (!isStunned && (isBattleMode && BattleManager.instance.nowTurnID == 2 && !isChanging))
         {
             StartCoroutine(EnemySkillCast());
         }

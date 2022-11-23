@@ -38,14 +38,14 @@ public class Player : Character
     {
         base.Update();
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
-        if (!battleMode || isStunned)
+        if (!isBattleMode || isStunned)
         {
             CheckIncreaseCP();
             CameraRotateToMousePointer();
             CharacterMove();
             CanBattleStartByRayCast();
         }
-        else if (battleMode)
+        else if (isBattleMode)
         {
             CheckDecreaseCP();
         }

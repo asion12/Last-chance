@@ -73,8 +73,8 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log("BattleStart!");
         SetEnemy(detactedEnemy.GetComponent<Character>());
-        targetEnemy.battleMode = true;
-        player.battleMode = true;
+        targetEnemy.isBattleMode = true;
+        player.isBattleMode = true;
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
@@ -91,9 +91,9 @@ public class BattleManager : MonoBehaviour
     public IEnumerator BattleRun(bool isPlayerRun)
     {
         nowTurnID = 0;
-        targetEnemy.battleMode = false;
-        player.battleMode = false;
-        Debug.Log(player.battleMode);
+        targetEnemy.isBattleMode = false;
+        player.isBattleMode = false;
+        Debug.Log(player.isBattleMode);
         ResetCharactersBattleStatus();
         if (isPlayerRun)
         {
@@ -120,8 +120,8 @@ public class BattleManager : MonoBehaviour
     public void BattleEnd(bool isPlayerWin)
     {
         nowTurnID = 0; // reset turn
-        player.battleMode = false;
-        targetEnemy.battleMode = false;
+        player.isBattleMode = false;
+        targetEnemy.isBattleMode = false;
 
         if (isPlayerWin)
         {
