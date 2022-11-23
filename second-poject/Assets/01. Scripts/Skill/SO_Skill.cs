@@ -11,10 +11,9 @@ public class SO_Skill : ScriptableObject
     public bool isCanUse = true;
     public Elements skillElements;
     public float skillDamage;
-    public float needFOC;
+    public float needCP;
     public int needMp;
     public int needHp;
-    public bool isOverClockSet = false;
 
     public enum SkillDivision
     {

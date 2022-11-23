@@ -18,14 +18,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
     [SerializeField] private Text Gold;
 
+    [SerializeField] private Text PlayerCarelessCount;
     [SerializeField] private GameObject PlayerNowHpBar;
     [SerializeField] private GameObject PlayerNowMpBar;
+    [SerializeField] private GameObject PlayerNowCpBar;
+    [SerializeField] private Text PlayerCpText;
 
-    [SerializeField] private Text PlayerCarelessCount;
     [SerializeField] private Text TargetEnemyCarelessCount;
-
     [SerializeField] private GameObject TargetEnemyNowHpBar;
     [SerializeField] private GameObject TargetEnemyNowMpBar;
+    [SerializeField] private GameObject TargetEnemyNowCpBar;
+    [SerializeField] private Text TargetEnemyCpText;
 
     [SerializeField] private GameObject SkillButtonsParent;
 
@@ -105,12 +108,17 @@ public class UIManager : MonoBehaviour
 
         float hpBarSize = (float)player.nowHP / (float)player.totalStats.MAX_HP;
         float mpBarSize = (float)player.nowMP / (float)player.totalStats.MAX_MP;
+        float cpBarSize = (float)player.nowCP / (float)player.maxCP;
+
         PlayerNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
         PlayerNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+        PlayerNowCpBar.transform.localScale = new Vector3(cpBarSize, 1, 1);
 
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
 
+        player.nowCP.ToString();
         PlayerCarelessCount.text = carelessText;
+        PlayerCpText.text = player.nowCP.ToString();
     }
 
     public void UIUpdate_TargetEnemyBase(GameObject targetEnemy, bool isIn)
@@ -119,6 +127,8 @@ public class UIManager : MonoBehaviour
         {
             TargetEnemyNowHpBar.SetActive(true);
             TargetEnemyNowMpBar.SetActive(true);
+            TargetEnemyNowCpBar.SetActive(true);
+            TargetEnemyCpText.gameObject.SetActive(true);
             TargetEnemyCarelessCount.gameObject.SetActive(true);
 
             Debug.Log("TargetIn!");
@@ -127,10 +137,16 @@ public class UIManager : MonoBehaviour
 
             float hpBarSize = (float)BattleManager.instance.targetCharacter.nowHP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_HP;
             float mpBarSize = (float)BattleManager.instance.targetCharacter.nowMP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_MP;
+            float cpBarSize = (float)BattleManager.instance.targetCharacter.nowCP / (float)BattleManager.instance.targetCharacter.maxCP;
             string carelessText = "";
+
+
             TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
             TargetEnemyNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
+            TargetEnemyNowCpBar.transform.localScale = new Vector3(cpBarSize, 1, 1);
+
             carelessText += BattleManager.instance.targetCharacter.carelessCounter.ToString() + " / " + BattleManager.instance.targetCharacter.max_carelessCounter.ToString();
+            TargetEnemyCpText.text = BattleManager.instance.targetCharacter.nowCP.ToString();
             TargetEnemyCarelessCount.text = carelessText;
         }
     }
@@ -140,6 +156,8 @@ public class UIManager : MonoBehaviour
         Debug.Log("Target is NUll");
         TargetEnemyNowHpBar.SetActive(false);
         TargetEnemyNowMpBar.SetActive(false);
+        TargetEnemyNowCpBar.SetActive(false);
+        TargetEnemyCpText.gameObject.SetActive(false);
         TargetEnemyCarelessCount.gameObject.SetActive(false);
     }
 
@@ -262,9 +280,9 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = textColor;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needMp, textColor) + " MP";
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "SUBT. " + SetIntHundred((int)tempSkill.needMp, textColor) + " MP";
 
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needFOC, Color.white) + " FOC";
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needCP, Color.white) + " CP";
             skillButton.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "GIVE " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " DMG";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
@@ -277,11 +295,11 @@ public class UIManager : MonoBehaviour
         {
             if (skills[i].isCanUse)
             {
-                //SkillButtonsParent.transform.GetChild(0).gameObject.SetActive(true);
+                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
             }
             else
             {
-                //SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
+                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
     }

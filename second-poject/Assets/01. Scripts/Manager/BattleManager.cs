@@ -25,7 +25,7 @@ public class BattleManager : MonoBehaviour
 
     public Character targetEnemy;
     public Character targetCharacter;
-    public Character player;
+    public Player player;
     public bool isTurnUsed = false;
     public bool isCarelessTurnUsed = false;
 
@@ -75,7 +75,7 @@ public class BattleManager : MonoBehaviour
         SetEnemy(detactedEnemy.GetComponent<Character>());
         targetEnemy.battleMode = true;
         player.battleMode = true;
-        player.GetComponent<Player>().CameraRotateToTarget(targetEnemy.transform.gameObject);
+        player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
             nowTurnID = 1;
@@ -146,6 +146,8 @@ public class BattleManager : MonoBehaviour
     }
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        float CasterCP = (float)skillCaster.nowCP;
+        float CasterCP_Percentage = CasterCP / (float)skillCaster.maxCP;
         if (skillCaster.nowMP < castSkill.needMp)
         {
         }
@@ -175,13 +177,13 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // SkillCaster FOC Check
-                if (skillCaster.totalStats.FOC > castSkill.needFOC)
+                if (CasterCP > castSkill.needCP)
                 {
-                    castSkill.casterCriticalPer = skillCaster.totalStats.FOC - castSkill.needFOC;
+                    castSkill.casterCriticalPer = CasterCP - castSkill.needCP;
                 }
-                else if (skillCaster.totalStats.FOC < castSkill.needFOC)
+                else if (CasterCP < castSkill.needCP)
                 {
-                    castSkill.accuarityPer -= castSkill.needFOC - skillCaster.totalStats.FOC;
+                    castSkill.accuarityPer -= castSkill.needCP - CasterCP;
                 }
                 else
                 {
@@ -289,50 +291,32 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void CastOverClock(Character overClockCaster, Character overClockVictim, List<SO_Skill> overClockSkillList)
+    public void SetOverClock()
     {
-        Elements_int tempPlayerAddWckEl = overClockCaster.additionWeakElements;
-        for (int i = 0; i < overClockSkillList.Count; i++)
+
+    }
+
+    public void CastOverClockSkills(Player overClockSkillCaster, Character overClockSkillVictim)
+    {
+        List<SO_Skill> casterSkillList = overClockSkillCaster.skillList;
+        for (int i = 0; i < casterSkillList.Count; i++)
         {
-            SetOverClock(overClockSkillList[i]);
-            if (overClockCaster.isOverWeak)
+            if (overClockSkillCaster.isSkillOverClockList[i])
             {
-                OverClockEnd(overClockCaster, tempPlayerAddWckEl);
-                break;
+                CastSkill(overClockSkillCaster, overClockSkillVictim, casterSkillList[i]);
+                if (overClockSkillCaster.isCareless)
+                {
+                    OverClockEnd(overClockSkillCaster);
+                    break;
+                }
             }
         }
     }
 
-    public void CastOverClockSkills(Character overClockSkillCaster, Character overClockSkillVictim, List<SO_Skill> overClockSkillList)
-    {
-
-    }
-
-    public void SetOverClock(SO_Skill overClockSkill)
-    {
-        int[] nowPlayerAddWckElTemp = Element_intArrReturn(player.additionWeakElements);
-        bool[] nowSkillElTemp = ElementArrReturn(overClockSkill.skillElements);
-        for (int i = 0; i < 7; i++)
-        {
-            if (nowSkillElTemp[i])
-            {
-                nowPlayerAddWckElTemp[i]++;
-                overClockSkill.isOverClockSet = true;
-            }
-        }
-    }
-
-    private void OverClockEnd(Character resetCharacter, Elements_int resetElements_int)
+    private void OverClockEnd(Player resetCharacter)
     {
         Debug.Log("OverClockEnded!");
-        resetCharacter.additionWeakElements = resetElements_int;
-        for (int i = 0; i < resetCharacter.skillList.Count; i++)
-        {
-            if (resetCharacter.skillList[i].isOverClockSet)
-            {
-                resetCharacter.skillList[i].isOverClockSet = false;
-            }
-        }
+        resetCharacter.isSkillOverClockList = new bool[] { false, };
     }
 
     private void CheckTurnChange(Character checkCharacter)

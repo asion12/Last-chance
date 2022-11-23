@@ -21,7 +21,13 @@ public class Player : Character
     private float xRotate, yRotate, xRotateMove, yRotateMove;
 
     private UIManager uIManager = null;
+    public bool[] isSkillOverClockList = { false, };
 
+    float cpIncreaseTimer = 0;
+    float cpIncreaseTimer_MAX = 2f;
+
+    float cpDecreaseTimer = 0;
+    float cpDecreaseTimer_MAX = 1f;
     protected virtual void Start()
     {
         base.Start();
@@ -34,11 +40,84 @@ public class Player : Character
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
         if (!battleMode || isStunned)
         {
+            CheckIncreaseCP();
             CameraRotateToMousePointer();
             CharacterMove();
             CanBattleStartByRayCast();
         }
+        else if (battleMode)
+        {
+            CheckDecreaseCP();
+        }
         TargetCharacterRayCheck();
+    }
+
+    private void CheckIncreaseCP()
+    {
+        cpIncreaseTimer += Time.deltaTime;
+        if (cpIncreaseTimer >= cpIncreaseTimer_MAX / ((100 + totalStats.CHA) / 100))
+        {
+            cpIncreaseTimer = 0;
+            nowCP++;
+            if (nowCP > maxCP)
+            {
+                nowCP = maxCP;
+            }
+        }
+    }
+
+    private void CheckDecreaseCP()
+    {
+        cpDecreaseTimer += Time.deltaTime;
+        if (cpDecreaseTimer >= cpDecreaseTimer_MAX * ((100 + totalStats.FOC) / 100))
+        {
+            cpDecreaseTimer = 0;
+            nowCP--;
+            if (nowCP < 0)
+            {
+                nowCP = 0;
+            }
+        }
+    }
+
+    private void CheckOverClockAndAddWeakElement()
+    {
+        Elements_int tempEl_int = additionWeakElements;
+        for (int i = 0; i < isSkillOverClockList.Length; i++)
+        {
+            if (isSkillOverClockList[i])
+            {
+                if (skillList[i].skillElements.SOLAR)
+                {
+                    tempEl_int.SOLAR++;
+                }
+                else if (skillList[i].skillElements.LUMINOUS)
+                {
+                    tempEl_int.LUMINOUS++;
+                }
+                else if (skillList[i].skillElements.IGNITION)
+                {
+                    tempEl_int.IGNITION++;
+                }
+                else if (skillList[i].skillElements.HYDRO)
+                {
+                    tempEl_int.HYDRO++;
+                }
+                else if (skillList[i].skillElements.BIOLOGY)
+                {
+                    tempEl_int.BIOLOGY++;
+                }
+                else if (skillList[i].skillElements.METAL)
+                {
+                    tempEl_int.METAL++;
+                }
+                else if (skillList[i].skillElements.CLAY)
+                {
+                    tempEl_int.CLAY++;
+                }
+            }
+        }
+        additionWeakElements = tempEl_int;
     }
 
     public void CameraRotateToTarget(GameObject target)

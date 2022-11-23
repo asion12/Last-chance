@@ -14,6 +14,7 @@ public class EventManager : MonoBehaviour
 
     public void OnSkillClick(SO_Skill setSkill)
     {
+
         if (isOverClockCasting)
         {
             PlayerOverClockSkillSet(setSkill);

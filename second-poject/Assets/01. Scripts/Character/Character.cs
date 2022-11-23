@@ -7,7 +7,8 @@ public class Character : MonoBehaviour
 
     public int nowHP;
     public int nowMP;
-
+    public int nowCP = 0;
+    public int maxCP = 100;
     public Stats characterStats = new Stats();
     public Stats buff_debuffStats = new Stats();
     public Stats totalStats = new Stats();
