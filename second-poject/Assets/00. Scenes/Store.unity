@@ -783,9 +783,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1212649803}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SellItem
+      - m_Target: {fileID: 1212649805}
+        m_TargetAssemblyTypeName: StoreUIManager, Assembly-CSharp
+        m_MethodName: SellGoldItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -944,7 +944,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gold: 0
-  potion: 0
+  HPportion: 0
+  MPPortion: 0
 --- !u!4 &1212649804
 Transform:
   m_ObjectHideFlags: 0
@@ -969,27 +970,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1212649802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afaa3814e8048d542a14f331bc9a89c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 081dc24f3eb28584e978946baccf388b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBattleUI: {fileID: 0}
-  battle_TurnText: {fileID: 0}
-  battle_SkillScrollView: {fileID: 0}
-  battle_PlayerElementsInfo: {fileID: 0}
-  battle_PlayerStatsInfo: {fileID: 0}
-  PlayerSkillListContent: {fileID: 0}
-  PlayerSkillButtonPrefab: {fileID: 0}
+  Prise: {fileID: 464531207}
   Gold: {fileID: 1210134185}
-  PlayerNowHpBar: {fileID: 0}
-  PlayerNowMpBar: {fileID: 0}
-  PlayerCarelessCount: {fileID: 0}
-  TargetEnemyCarelessCount: {fileID: 0}
-  TargetEnemyNowHpBar: {fileID: 0}
-  TargetEnemyNowMpBar: {fileID: 0}
-  GameLog: {fileID: 0}
-  falsebuy: {fileID: 683650911}
-  position: {fileID: 464531207}
-  prise: {fileID: 55779042}
+  HPPortion: {fileID: 55779042}
+  MPPortion: {fileID: 0}
+  falseBuy: {fileID: 683650911}
 --- !u!1 &1472239171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,8 +1608,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1212649805}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: buy
+        m_TargetAssemblyTypeName: StoreUIManager, Assembly-CSharp
+        m_MethodName: DontBuy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

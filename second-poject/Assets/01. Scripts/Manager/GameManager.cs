@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
   
@@ -23,19 +23,14 @@ public class GameManager : MonoBehaviour
 
 
     public int Gold = 0;
-    public int potion = 0;
+    public int HPportion = 0;
+    public int MPPortion = 0;
+ 
     public void testclickGOldup()
     {
         GameManager.instance.Gold += 1000;
         Debug.Log(Gold);
     }
-    public void SellItem()
-    {
-        if (GameManager.instance.potion>=1)
-        {
-            GameManager.instance.potion -= 1;
-            GameManager.instance.Gold += 1000;
-        }
-      
-    }
+    
+
 }

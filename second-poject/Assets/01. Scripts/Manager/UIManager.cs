@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text battle_PlayerStatsInfo;
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
-    [SerializeField] private Text Gold;
+
 
     [SerializeField] private Text PlayerCarelessCount;
     [SerializeField] private GameObject PlayerNowHpBar;
@@ -61,8 +61,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Gold.text = GameManager.instance.Gold.ToString();
-        //�ù� ����� ���� ���Ķ�  �Ф��ؼ� �̿� �Ф�.
+      
         if (BattleManager.instance.nowTurnID == 0)
         {
             playerBattleUI.transform.gameObject.SetActive(false);
