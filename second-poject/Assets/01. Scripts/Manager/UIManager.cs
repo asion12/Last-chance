@@ -30,7 +30,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text GameLog;
     private Player player;
     private EventManager eventManager;
-
+    public Image falsebuy;
+    public Text position;
+    public Text prise;
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -38,10 +40,28 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerSkillList();
 
     }
+    public void buy()
+    {
+        if (GameManager.instance.Gold >= 1000)
+        {
+           GameManager.instance.Gold -= 1000;
+            GameManager.instance.potion += 1;
 
+        }
+        else
+        {
+            falsebuy.gameObject.SetActive(true);
+            Invoke("ImageSee",1f);
+        }
+    }
+    public void ImageSee()
+    {
+        falsebuy.gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
+        position.text = GameManager.instance.potion.ToString();
         Gold.text = GameManager.instance.Gold.ToString();
         if (BattleManager.instance.nowTurnID == 0)
         {
