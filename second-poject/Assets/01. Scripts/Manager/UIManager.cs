@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
       
         if (BattleManager.instance.nowTurnID == 0)
         {
+            Debug.Log("Battle UI OFF");
             playerBattleUI.transform.gameObject.SetActive(false);
         }
         else if (BattleManager.instance.nowTurnID == 1)
@@ -93,11 +94,11 @@ public class UIManager : MonoBehaviour
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
-            battle_TurnText.text = "PLAYER TURN";
+            battle_TurnText.text = "Player Turn";
         }
         else if (BattleManager.instance.nowTurnID == 2)
         {
-            battle_TurnText.text = "ENEMY TURN";
+            battle_TurnText.text = "Enemy Turn";
         }
     }
 
@@ -279,10 +280,10 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = textColor;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "SUBT. " + SetIntHundred((int)tempSkill.needMp, textColor) + " MP";
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, textColor) + "";
 
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "NEED " + SetIntHundred((int)tempSkill.needCP, Color.white) + " CP";
-            skillButton.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = "GIVE " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " DMG";
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "" + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
