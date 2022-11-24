@@ -172,7 +172,17 @@ public class Player : Character
                 if (hitData.distance <= battleStartRange)
                 {
                     lastHitData = hitData.transform.gameObject;
-                    hitData.transform.GetComponent<Outline>().eraseRenderer = false;
+
+                    if (lastHitData.transform.GetComponent<Outline>() == null)
+                    {
+                        lastHitData.transform.GetChild(0).GetComponent<Outline>().eraseRenderer = false;
+                    }
+                    else
+                    {
+                        lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
+
+                    }
+
                     if (Input.GetMouseButtonDown(0))
                     {
                         Debug.Log("Battle Ready");
@@ -289,7 +299,14 @@ public class Player : Character
         if (lastHitData != null)
         {
             Debug.Log("RayOut!!");
-            lastHitData.transform.GetComponent<Outline>().eraseRenderer = true;
+            if (lastHitData.transform.GetComponent<Outline>() == null)
+            {
+                lastHitData.transform.GetChild(0).GetComponent<Outline>().eraseRenderer = true;
+            }
+            else
+            {
+                lastHitData.transform.GetComponent<Outline>().eraseRenderer = true;
+            }
         }
         lastHitData = null;
     }
