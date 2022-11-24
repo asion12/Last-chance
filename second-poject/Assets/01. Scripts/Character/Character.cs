@@ -39,6 +39,12 @@ public class Character : MonoBehaviour
     public int Level = 1;
     public int Exp = 0;
 
+
+    public ItemDBObj dbobj;
+    public ItemObj itemObj;
+    public CharacterStack characterStack;
+    public ItemAbility ability; //여기 꼭 추가해줘야함 ㅇㅇ
+
     protected virtual void Start()
     {
         nowHP = characterStats.MAX_HP;
@@ -71,7 +77,44 @@ public class Character : MonoBehaviour
         totalStats.DEX = characterStats.DEX + buff_debuffStats.DEX;
         totalStats.CHA = characterStats.CHA + buff_debuffStats.CHA;
     }
+    public void ChangeAbility(object plus)//장착 어빌리티 값 적용 
+    {
+        ItemAbility[] itemAbility = plus as ItemAbility[];
 
+        for (int i = 0; i < itemAbility.Length; i++)
+        {
+            switch (itemAbility[i].characterStack)
+            {
+                case CharacterStack.Str:
+                    characterStats.STR += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.CHA:
+                    characterStats.CHA += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.DEX:
+                    characterStats.DEX += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.FIR:
+                    characterStats.FIR += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.FOX:
+                    characterStats.FOC += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.Hp:
+                    characterStats.MAX_HP += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.INT:
+                    characterStats.INT += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.MP:
+                    characterStats.MAX_MP += itemAbility[i].valStack;
+                    break;
+                case CharacterStack.WIS:
+                    characterStats.WIS += itemAbility[i].valStack;
+                    break;
+            }
+        }
+    }
     private int[] Elements_IntArrReturn(Elements_int el)
     {
         int[] elementArr = new int[7];
