@@ -285,71 +285,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1650650484
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1650650486}
-  - component: {fileID: 1650650485}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1650650485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650650484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afaa3814e8048d542a14f331bc9a89c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBattleUI: {fileID: 0}
-  battle_TurnText: {fileID: 0}
-  battle_SkillScrollView: {fileID: 0}
-  battle_PlayerElementsInfo: {fileID: 0}
-  battle_PlayerStatsInfo: {fileID: 0}
-  PlayerSkillListContent: {fileID: 0}
-  PlayerSkillButtonPrefab: {fileID: 0}
-  PlayerCarelessCount: {fileID: 0}
-  PlayerNowHpBar: {fileID: 0}
-  PlayerNowMpBar: {fileID: 0}
-  PlayerNowCpBar: {fileID: 0}
-  PlayerCpText: {fileID: 0}
-  TargetEnemyCarelessCount: {fileID: 0}
-  TargetEnemyNowHpBar: {fileID: 0}
-  TargetEnemyNowMpBar: {fileID: 0}
-  TargetEnemyNowCpBar: {fileID: 0}
-  TargetEnemyCpText: {fileID: 0}
-  SkillButtonsParent: {fileID: 0}
-  GameLog: {fileID: 0}
-  CarelessSkillUI: {fileID: 0}
-  main: {fileID: 5960680479957933867}
---- !u!4 &1650650486
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650650484}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051877854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,7 +2803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &5960680480096575713
 CanvasRenderer:
   m_ObjectHideFlags: 0

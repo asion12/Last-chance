@@ -137,6 +137,7 @@ public abstract class UIInventory : MonoBehaviour
 
         }
     }
+
     public void OnEndDrag(GameObject gameObj)
     { 
         Destroy(MouseTransformData.mouseDragging); 
@@ -150,6 +151,7 @@ public abstract class UIInventory : MonoBehaviour
             inventoryObj.SwapItems(uiSlotLists[gameObj], mouseHoverSlotData);
         }
     }
+
 
     public void OnClick(GameObject gameObj, PointerEventData pointerEventdata)
     {
@@ -176,5 +178,6 @@ public abstract class UIInventory : MonoBehaviour
 
     protected virtual void OnLeftClick(InvenSlot invenSlot)
     {
+
     } 
 } 
