@@ -28,9 +28,11 @@ public class BattleManager : MonoBehaviour
     public Player player;
     public bool isTurnUsed = false;
     public bool isCarelessTurnUsed = false;
+    private UIManager uIManager = null;
 
     void Start()
     {
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     private void Update()
@@ -71,7 +73,9 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
+
         Debug.Log("BattleStart!");
+        uIManager.SetBattleUIActive(true);
         SetEnemy(detactedEnemy.GetComponent<Character>());
         targetEnemy.isBattleMode = true;
         player.isBattleMode = true;
@@ -88,13 +92,24 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void BattleEnd(bool isPlayerWin)
+    {
+        ResetBattleSetting();
+        if (isPlayerWin)
+        {
+            Debug.Log("Player Win");
+            Destroy(targetEnemy.gameObject);
+            targetEnemy = null;
+        }
+        else
+        {
+            Debug.Log("Enemy Win!");
+        }
+    }
+
     public IEnumerator BattleRun(bool isPlayerRun)
     {
-        nowTurnID = 0;
-        targetEnemy.isBattleMode = false;
-        player.isBattleMode = false;
-        Debug.Log(player.isBattleMode);
-        ResetCharactersBattleStatus();
+        ResetBattleSetting();
         if (isPlayerRun)
         {
             Debug.Log("Enemy Stunned!");
@@ -111,28 +126,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void ResetCharactersBattleStatus()
+    private void ResetBattleSetting()
     {
+        nowTurnID = 0;
+        targetEnemy.isBattleMode = false;
+        player.isBattleMode = false;
+        Debug.Log(player.isBattleMode);
         player.ResetBattleStatus();
         targetEnemy.ResetBattleStatus();
-    }
-
-    public void BattleEnd(bool isPlayerWin)
-    {
-        nowTurnID = 0; // reset turn
-        player.isBattleMode = false;
-        targetEnemy.isBattleMode = false;
-
-        if (isPlayerWin)
-        {
-            Debug.Log("Player Win");
-            Destroy(targetEnemy.gameObject);
-            targetEnemy = null;
-        }
-        else
-        {
-            Debug.Log("Enemy Win!");
-        }
     }
 
     public void SetEnemy(Character setEnemy)
