@@ -363,21 +363,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void FX_BattleStart()
+    public void FX_BattleStart()
     {
         Sequence battleStartSequence = DOTween.Sequence().
         Append(
-            battleStartText_0.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+            battleStartText_0.transform.DOLocalMoveX(0, 0.4f).SetEase(Ease.OutExpo)
         )
         .Join(
-            battleStartText_1.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+            battleStartText_1.transform.DOLocalMoveX(0, 0.4f).SetEase(Ease.OutExpo)
         )
-        .AppendInterval(0.2f)
         .Append(
-            battleStartText_0.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+            battleStartText_0.transform.DOLocalMoveX(-960, 0.4f).SetEase(Ease.OutExpo)
         )
         .Join(
-            battleStartText_1.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+            battleStartText_1.transform.DOLocalMoveX(960, 0.4f).SetEase(Ease.OutExpo)
         );
     }
+
+
 }

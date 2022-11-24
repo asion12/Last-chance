@@ -1,5 +1,6 @@
 using UnityEngine;
 using cakeslice;
+using DG.Tweening;
 
 public class Player : Character
 {
@@ -130,9 +131,9 @@ public class Player : Character
     public void CameraRotateToTarget(GameObject target)
     {
         Vector3 rotateDistance = target.transform.position - playerCamera.transform.position;
-        Quaternion toRotate = Quaternion.LookRotation(rotateDistance, Vector3.up);
+        Vector3 toRotate = Quaternion.LookRotation(rotateDistance, Vector3.up).eulerAngles;
         //toRotate = Quaternion.Euler(toRotate.x, toRotate.y, 0);
-        playerCamera.transform.rotation = toRotate;
+        playerCamera.transform.DORotate(toRotate, 1).SetEase(Ease.OutExpo);
         //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.x, playerCamera.transform.rotation.y, 0);
     }
 
@@ -241,12 +242,12 @@ public class Player : Character
         {
             uIManager.UIUpdate_OffTargetEnemyBase();
         }
-    } 
+    }
     private void ItemBoxCheck()
     {
         RaycastHit hit;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if(Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             if (hit.transform.tag == "Box")
             {
@@ -258,7 +259,7 @@ public class Player : Character
 
                 }
             }
-         
+
         }
     }
     private void itemcheck()
@@ -278,7 +279,7 @@ public class Player : Character
             }
 
         }
-  
+
     }
 
     public void AddnewItem()
@@ -288,11 +289,11 @@ public class Player : Character
             ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
             Item newItem = new Item(newItemObject);
             inventoryObj.AddItem(newItem, 1);
-            Debug.Log("È¹µæ");
+            Debug.Log("È¹ï¿½ï¿½");
 
         }
     }
- 
+
     private void RayOutCheck()
     {
         //Debug.Log("Ray Checking");

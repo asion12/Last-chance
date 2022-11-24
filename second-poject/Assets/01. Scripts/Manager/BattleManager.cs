@@ -77,6 +77,7 @@ public class BattleManager : MonoBehaviour
         targetEnemy.isBattleMode = true;
         player.isBattleMode = true;
         Debug.Log("BattleStartFX!");
+        uIManager.FX_BattleStart();
         Debug.Log("SkillUIOnFX!");
         uIManager.SetBattleUIActive(true);
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
