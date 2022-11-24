@@ -2766,6 +2766,14 @@ MonoBehaviour:
   isStunned: 0
   Level: 1
   Exp: 0
+  dbobj: {fileID: 0}
+  itemObj: {fileID: 0}
+  characterStack: 0
+  ability:
+    characterStack: 0
+    valStack: 0
+    min: 0
+    max: 0
   useSkillList: []
   enemyBattleState: 0
 --- !u!1 &731522606
@@ -4433,6 +4441,14 @@ MonoBehaviour:
   isStunned: 0
   Level: 1
   Exp: 0
+  dbobj: {fileID: 11400000, guid: a10b3fb73c56066428c9e457bea3a562, type: 2}
+  itemObj: {fileID: 0}
+  characterStack: 0
+  ability:
+    characterStack: 0
+    valStack: 0
+    min: 0
+    max: 0
   playerCamera: {fileID: 2047056543}
   battleStartRange: 5
   battleStartRangePoint: {fileID: 1237334324}
