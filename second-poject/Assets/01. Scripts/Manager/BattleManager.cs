@@ -73,12 +73,12 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
-
-        Debug.Log("BattleStart!");
-        uIManager.SetBattleUIActive(true);
         SetEnemy(detactedEnemy.GetComponent<Character>());
         targetEnemy.isBattleMode = true;
         player.isBattleMode = true;
+        Debug.Log("BattleStartFX!");
+        Debug.Log("SkillUIOnFX!");
+        uIManager.SetBattleUIActive(true);
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
@@ -98,12 +98,16 @@ public class BattleManager : MonoBehaviour
         if (isPlayerWin)
         {
             Debug.Log("Player Win");
+            Debug.Log("Print UI What Player Get");
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
         }
         else
         {
             Debug.Log("Enemy Win!");
+            Debug.Log("GameOverFX");
+            Debug.Log("DropPlayerInventory");
+            Debug.Log("GameRestart");
         }
     }
 

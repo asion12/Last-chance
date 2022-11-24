@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Text GameLog;
     [SerializeField] private Canvas CarelessSkillUI;
+
+    [SerializeField] private GameObject battleStartText_0;
+    [SerializeField] private GameObject battleStartText_1;
     private Character player = null;
     private EventManager eventManager;
     private List<SO_Skill> skills = new List<SO_Skill>();
@@ -357,5 +361,23 @@ public class UIManager : MonoBehaviour
         {
             CarelessSkillUI.gameObject.SetActive(false);
         }
+    }
+
+    private void FX_BattleStart()
+    {
+        Sequence battleStartSequence = DOTween.Sequence().
+        Append(
+            battleStartText_0.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+        )
+        .Join(
+            battleStartText_1.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+        )
+        .AppendInterval(0.2f)
+        .Append(
+            battleStartText_0.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+        )
+        .Join(
+            battleStartText_1.transform.DOMoveX(0, 0.4f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo)
+        );
     }
 }
