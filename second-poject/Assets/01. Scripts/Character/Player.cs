@@ -133,7 +133,7 @@ public class Player : Character
         Vector3 rotateDistance = target.transform.position - playerCamera.transform.position;
         Vector3 toRotate = Quaternion.LookRotation(rotateDistance, Vector3.up).eulerAngles;
         //toRotate = Quaternion.Euler(toRotate.x, toRotate.y, 0);
-        playerCamera.transform.DORotate(toRotate, 1).SetEase(Ease.OutExpo);
+        playerCamera.transform.DORotate(toRotate, 1.25f).SetEase(Ease.OutExpo);
         //playerCamera.transform.rotation = Quaternion.Euler(playerCamera.transform.rotation.x, playerCamera.transform.rotation.y, 0);
     }
 
@@ -181,7 +181,6 @@ public class Player : Character
                     else
                     {
                         lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
-
                     }
 
                     if (Input.GetMouseButtonDown(0))

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,12 +25,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerNowMpBar;
     [SerializeField] private GameObject PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
+    [SerializeField] private TextMeshProUGUI PlayerLevelText;
 
+    [SerializeField] private GameObject TargetEnemyBaseGroup;
     [SerializeField] private Text TargetEnemyCarelessCount;
     [SerializeField] private GameObject TargetEnemyNowHpBar;
     [SerializeField] private GameObject TargetEnemyNowMpBar;
     [SerializeField] private GameObject TargetEnemyNowCpBar;
     [SerializeField] private Text TargetEnemyCpText;
+    [SerializeField] private TextMeshProUGUI TargetEnemyLevelText;
 
     [SerializeField] private GameObject SkillButtonsParent;
 
@@ -69,7 +73,7 @@ public class UIManager : MonoBehaviour
 
         if (BattleManager.instance.nowTurnID == 0)
         {
-            Debug.Log("Battle UI OFF");
+            //Debug.Log("Battle UI OFF");
             playerBattleUI.transform.gameObject.SetActive(false);
         }
         else if (BattleManager.instance.nowTurnID == 1)
@@ -148,19 +152,22 @@ public class UIManager : MonoBehaviour
         player.nowCP.ToString();
         PlayerCarelessCount.text = carelessText;
         PlayerCpText.text = player.nowCP.ToString();
+        PlayerLevelText.text = "Lv. " + player.Level;
     }
 
     public void UIUpdate_TargetEnemyBase(GameObject targetEnemy, bool isIn)
     {
         if (isIn && targetEnemy != null)
         {
-            TargetEnemyNowHpBar.SetActive(true);
-            TargetEnemyNowMpBar.SetActive(true);
-            TargetEnemyNowCpBar.SetActive(true);
-            TargetEnemyCpText.gameObject.SetActive(true);
-            TargetEnemyCarelessCount.gameObject.SetActive(true);
+            TargetEnemyBaseGroup.SetActive(true);
 
-            Debug.Log("TargetIn!");
+            // TargetEnemyNowHpBar.SetActive(true);
+            // TargetEnemyNowMpBar.SetActive(true);
+            // TargetEnemyNowCpBar.SetActive(true);
+            // TargetEnemyCpText.gameObject.SetActive(true);
+            // TargetEnemyCarelessCount.gameObject.SetActive(true);
+            // TargetEnemyLevelText.gameObject.SetActive(true);
+            //Debug.Log("TargetIn!");
 
             BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
 
@@ -177,17 +184,19 @@ public class UIManager : MonoBehaviour
             carelessText += BattleManager.instance.targetCharacter.carelessCounter.ToString() + " / " + BattleManager.instance.targetCharacter.max_carelessCounter.ToString();
             TargetEnemyCpText.text = BattleManager.instance.targetCharacter.nowCP.ToString();
             TargetEnemyCarelessCount.text = carelessText;
+            TargetEnemyLevelText.text = "Lv. " + BattleManager.instance.targetCharacter.Level.ToString();
         }
     }
 
     public void UIUpdate_OffTargetEnemyBase()
     {
-        Debug.Log("Target is NUll");
-        TargetEnemyNowHpBar.SetActive(false);
-        TargetEnemyNowMpBar.SetActive(false);
-        TargetEnemyNowCpBar.SetActive(false);
-        TargetEnemyCpText.gameObject.SetActive(false);
-        TargetEnemyCarelessCount.gameObject.SetActive(false);
+        //Debug.Log("Target is NUll");
+        TargetEnemyBaseGroup.SetActive(false);
+        // TargetEnemyNowHpBar.SetActive(false);
+        // TargetEnemyNowMpBar.SetActive(false);
+        // TargetEnemyNowCpBar.SetActive(false);
+        // TargetEnemyCpText.gameObject.SetActive(false);
+        // TargetEnemyCarelessCount.gameObject.SetActive(false);
     }
 
     private void SetText<T>(Text text, T state, T state2)
@@ -367,16 +376,17 @@ public class UIManager : MonoBehaviour
     {
         Sequence battleStartSequence = DOTween.Sequence().
         Append(
-            battleStartText_0.transform.DOLocalMoveX(0, 0.4f).SetEase(Ease.OutExpo)
+            battleStartText_0.transform.DOLocalMoveX(0, 0.5f).SetEase(Ease.OutExpo)
         )
         .Join(
-            battleStartText_1.transform.DOLocalMoveX(0, 0.4f).SetEase(Ease.OutExpo)
+            battleStartText_1.transform.DOLocalMoveX(0, 0.5f).SetEase(Ease.OutExpo)
         )
+        .AppendInterval(0.25f)
         .Append(
-            battleStartText_0.transform.DOLocalMoveX(-960, 0.4f).SetEase(Ease.OutExpo)
+            battleStartText_0.transform.DOLocalMoveX(-960, 0.5f).SetEase(Ease.InExpo)
         )
         .Join(
-            battleStartText_1.transform.DOLocalMoveX(960, 0.4f).SetEase(Ease.OutExpo)
+            battleStartText_1.transform.DOLocalMoveX(960, 0.5f).SetEase(Ease.InExpo)
         );
     }
 
