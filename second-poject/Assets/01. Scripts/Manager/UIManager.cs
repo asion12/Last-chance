@@ -21,19 +21,21 @@ public class UIManager : MonoBehaviour
 
 
     [SerializeField] private Text PlayerCarelessCount;
-    [SerializeField] private GameObject PlayerNowHpBar;
-    [SerializeField] private GameObject PlayerNowMpBar;
-    [SerializeField] private GameObject PlayerNowCpBar;
+    [SerializeField] private Image PlayerNowHpBar;
+    [SerializeField] private Image PlayerNowMpBar;
+    [SerializeField] private Image PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
 
     [SerializeField] private GameObject TargetEnemyBaseGroup;
-    [SerializeField] private Text TargetEnemyCarelessCount;
-    [SerializeField] private GameObject TargetEnemyNowHpBar;
-    [SerializeField] private GameObject TargetEnemyNowMpBar;
-    [SerializeField] private GameObject TargetEnemyNowCpBar;
-    [SerializeField] private Text TargetEnemyCpText;
+    [SerializeField] private TextMeshProUGUI TargetEnemyCarelessCount;
+    [SerializeField] private Image TargetEnemyNowHpBar;
+    [SerializeField] private Image TargetEnemyNowMpBar;
+    [SerializeField] private Image TargetEnemyNowCpBar;
+    [SerializeField] private TextMeshProUGUI TargetEnemyCpText;
     [SerializeField] private TextMeshProUGUI TargetEnemyLevelText;
+    [SerializeField] private List<Image> TargetEnemyBaseList_Image;
+    [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
 
     [SerializeField] private GameObject SkillButtonsParent;
 
@@ -50,6 +52,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+        eventManager = FindObjectOfType<EventManager>();
         if (player.skillList == null)
         {
             Debug.Log("Player Skill List is Null!");
@@ -63,27 +66,25 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        eventManager = FindObjectOfType<EventManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (BattleManager.instance.nowTurnID == 0)
-        {
-            //Debug.Log("Battle UI OFF");
-            playerBattleUI.transform.gameObject.SetActive(false);
-        }
-        else if (BattleManager.instance.nowTurnID == 1)
-        {
-            battle_SkillScrollView.SetActive(true);
-        }
-        else if (BattleManager.instance.nowTurnID == 2)
-        {
-            battle_SkillScrollView.SetActive(false);
-        }
+        // if (BattleManager.instance.nowTurnID == 0)
+        // {
+        //     //Debug.Log("Battle UI OFF");
+        //     playerBattleUI.transform.gameObject.SetActive(false);
+        // }
+        // else if (BattleManager.instance.nowTurnID == 1)
+        // {
+        //     battle_SkillScrollView.SetActive(true);
+        // }
+        // else if (BattleManager.instance.nowTurnID == 2)
+        // {
+        //     battle_SkillScrollView.SetActive(false);
+        // }
 
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
@@ -97,6 +98,17 @@ public class UIManager : MonoBehaviour
     public void SetBattleUIActive(bool isActive)
     {
         playerBattleUI.gameObject.SetActive(isActive);
+        FX_PlayerSkillListActive();
+    }
+
+    private void FX_PlayerSkillListActive()
+    {
+        playerBattleUI.transform.DOMoveY(0, 0.5f).SetEase(Ease.OutExpo);
+    }
+
+    private void FX_PlayerSkillListInactive()
+    {
+        playerBattleUI.transform.DOMoveY(-315, 0.5f).SetEase(Ease.InExpo);
     }
 
     private void OnIventory()
@@ -160,14 +172,13 @@ public class UIManager : MonoBehaviour
         if (isIn && targetEnemy != null)
         {
             TargetEnemyBaseGroup.SetActive(true);
-
             // TargetEnemyNowHpBar.SetActive(true);
             // TargetEnemyNowMpBar.SetActive(true);
             // TargetEnemyNowCpBar.SetActive(true);
             // TargetEnemyCpText.gameObject.SetActive(true);
             // TargetEnemyCarelessCount.gameObject.SetActive(true);
             // TargetEnemyLevelText.gameObject.SetActive(true);
-            //Debug.Log("TargetIn!");
+            // Debug.Log("TargetIn!");
 
             BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
 
@@ -199,23 +210,23 @@ public class UIManager : MonoBehaviour
         // TargetEnemyCarelessCount.gameObject.SetActive(false);
     }
 
-    private void SetText<T>(Text text, T state, T state2)
+    private void SetText<T>(Text text, T state)
     {
-        text.text += $"{state} {state2}\n";
+        text.text += $"{state}\n";
     }
 
     private void UIUpdate_PlayerStatsInfo()
     {
         battle_PlayerStatsInfo.text = "";
-        SetText(battle_PlayerStatsInfo, player.characterStats.MAX_HP, player.buff_debuffStats.MAX_HP);
-        SetText(battle_PlayerStatsInfo, player.characterStats.MAX_MP, player.buff_debuffStats.MAX_MP);
-        SetText(battle_PlayerStatsInfo, player.characterStats.STR, player.buff_debuffStats.STR);
-        SetText(battle_PlayerStatsInfo, player.characterStats.FIR, player.buff_debuffStats.FIR);
-        SetText(battle_PlayerStatsInfo, player.characterStats.INT, player.buff_debuffStats.INT);
-        SetText(battle_PlayerStatsInfo, player.characterStats.WIS, player.buff_debuffStats.WIS);
-        SetText(battle_PlayerStatsInfo, player.characterStats.FOC, player.buff_debuffStats.FOC);
-        SetText(battle_PlayerStatsInfo, player.characterStats.DEX, player.buff_debuffStats.DEX);
-        SetText(battle_PlayerStatsInfo, player.characterStats.CHA, player.buff_debuffStats.CHA);
+        //SetText(battle_PlayerStatsInfo, player.characterStats.MAX_HP, player.buff_debuffStats.MAX_HP);
+        //SetText(battle_PlayerStatsInfo, player.characterStats.MAX_MP, player.buff_debuffStats.MAX_MP);
+        SetText(battle_PlayerStatsInfo, player.characterStats.STR);
+        SetText(battle_PlayerStatsInfo, player.characterStats.FIR);
+        SetText(battle_PlayerStatsInfo, player.characterStats.INT);
+        SetText(battle_PlayerStatsInfo, player.characterStats.WIS);
+        SetText(battle_PlayerStatsInfo, player.characterStats.FOC);
+        SetText(battle_PlayerStatsInfo, player.characterStats.DEX);
+        SetText(battle_PlayerStatsInfo, player.characterStats.CHA);
     }
 
     private void UIUpdate_PlayerElementsInfo()
@@ -372,23 +383,71 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void SetColorAlphaZero(Color tempColor)
+    {
+        tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
+    }
+
     public void FX_BattleStart()
     {
         Sequence battleStartSequence = DOTween.Sequence().
         Append(
-            battleStartText_0.transform.DOLocalMoveX(0, 0.5f).SetEase(Ease.OutExpo)
+            battleStartText_0.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)
         )
         .Join(
-            battleStartText_1.transform.DOLocalMoveX(0, 0.5f).SetEase(Ease.OutExpo)
+            battleStartText_1.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)
         )
         .AppendInterval(0.25f)
         .Append(
-            battleStartText_0.transform.DOLocalMoveX(-960, 0.5f).SetEase(Ease.InExpo)
+            battleStartText_0.transform.DOLocalMoveX(-960, 0.25f).SetEase(Ease.InExpo)
         )
         .Join(
-            battleStartText_1.transform.DOLocalMoveX(960, 0.5f).SetEase(Ease.InExpo)
+            battleStartText_1.transform.DOLocalMoveX(960, 0.25f).SetEase(Ease.InExpo)
         );
     }
 
+    // private void SetImageListAlphaZero(List<Image> tempImageList)
+    // {
+    //     for (int i = 0; i < tempImageList.Count; i++)
+    //     {
+    //         tempImageList[i].color = new Color(tempImageList[i].color.r, tempImageList[i].color.g, tempImageList[i].color.b, 0);
+    //     }
+    // }
+    // private void FX_ImageListActvie(List<Image> tempImageList)
+    // {
+    //     for (int i = 0; i < tempImageList.Count; i++)
+    //     {
+    //         tempImageList[i].DOFade(1, 0.5f).SetEase(Ease.OutExpo);
+    //     }
+    //     // DOTween.To(() => tempImage.color, x => tempImage.color = x, new Color(tempImage.color.r, tempImage.color.g, tempImage.color.b, 1), 0.5f).SetEase;
+    // }
+    // private void FX_ImageListInactive(List<Image> tempImageList)
+    // {
+    //     for (int i = 0; i < tempImageList.Count; i++)
+    //     {
+    //         tempImageList[i].DOFade(0, 0.5f).SetEase(Ease.InExpo).OnComplete(() => tempImageList[i].gameObject.SetActive(false));
+    //     }
+    // }
 
+    // private void SetTMPListAlphaZero(List<TextMeshProUGUI> tempTMPList)
+    // {
+    //     for (int i = 0; i < tempTMPList.Count; i++)
+    //     {
+    //         tempTMPList[i].color = new Color(tempTMPList[i].color.r, tempTMPList[i].color.g, tempTMPList[i].color.b, 0);
+    //     }
+    // }
+    // private void FX_TMPListActvie(List<TextMeshProUGUI> tempTMPList)
+    // {
+    //     for (int i = 0; i < tempTMPList.Count; i++)
+    //     {
+    //         tempTMPList[i].DOFade(1, 0.5f).SetEase(Ease.OutExpo);
+    //     }
+    // }
+    // private void FX_TMPListInactvie(List<TextMeshProUGUI> tempTMPList)
+    // {
+    //     for (int i = 0; i < tempTMPList.Count; i++)
+    //     {
+    //         tempTMPList[i].DOFade(0, 0.5f).SetEase(Ease.InExpo).OnComplete(() => tempTMPList[i].gameObject.SetActive(false));
+    //     }
+    // }
 }

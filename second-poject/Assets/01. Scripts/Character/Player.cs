@@ -321,6 +321,9 @@ public class Player : Character
         pos += transform.forward * moveX * moveSpeed * Time.deltaTime;
         pos += transform.right * moveY * moveSpeed * Time.deltaTime;
 
+        Debug.Log("Move X to " + moveX.ToString());
+        Debug.Log("Move Y to " + moveY.ToString());
+
         transform.position = pos;
     }
 }
