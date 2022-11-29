@@ -19,9 +19,5 @@ MonoBehaviour:
   itemData:
     item_id: 0
     item_name: 32
-    ability:
-    - characterStack: 1
-      valStack: 5
-      min: 5
-      max: 5
+    ability: []
   boneNameLists: []
