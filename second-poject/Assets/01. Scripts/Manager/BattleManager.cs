@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class BattleManager : MonoBehaviour
     public bool isTurnUsed = false;
     public bool isCarelessTurnUsed = false;
     private UIManager uIManager = null;
+    public NavMeshAgent monster;
 
     void Start()
     {
@@ -85,6 +87,7 @@ public class BattleManager : MonoBehaviour
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
+            monster.speed = 0;
             nowTurnID = 1;
             if (isVictimCareless)
                 targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
@@ -105,6 +108,7 @@ public class BattleManager : MonoBehaviour
             uIManager.SetBattleUIInactive();
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
+            monster.speed = 3.5f;
         }
         else
         {
@@ -112,6 +116,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("GameOverFX");
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
+            monster.speed = 3.5f;
         }
     }
 
