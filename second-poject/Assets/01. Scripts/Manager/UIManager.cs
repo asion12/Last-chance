@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
     [SerializeField] private Image PlayerSkillListBG;
     [SerializeField] private GameObject PlayerRunButton;
+    [SerializeField] private Image PlayerRunButtonBG;
 
     [Header("플레이어 베이스 UI")]
     [SerializeField] private Text PlayerCarelessCount;
@@ -44,8 +45,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject PlayerSkillList;
     [SerializeField] private GameObject SkillButtonsParent;
-
-    [SerializeField] private Canvas CarelessSkillUI;
 
     [Header("연출용 UI")]
     [SerializeField] private Text GameLog;
@@ -132,15 +131,22 @@ public class UIManager : MonoBehaviour
 
     private void FX_PlayerRunButtonActive()
     {
-        PlayerRunButton.transform.DOLocalMoveX(-530, 0.5f).SetEase(Ease.OutExpo);
+        Debug.Log("Actived!");
+        PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
+        PlayerRunButtonBG.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            PlayerRunButtonBG.gameObject.SetActive(false);
+        });
+        PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
     }
 
     private void FX_PlayerRunButtonInactive()
     {
-        PlayerRunButton.transform.DOLocalMoveX(2.5f, 0.5f).SetEase(Ease.InExpo).OnComplete(() =>
-        {
-            CarelessSkillUI.gameObject.SetActive(false);
-        });
+        Debug.Log("InActived!");
+        PlayerRunButtonBG.gameObject.SetActive(true);
+        PlayerRunButtonBG.DOFade(0.5f, 0.5f);
+        PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.InExpo);
+        PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.InExpo);
     }
 
     private void OnIventory()
@@ -415,20 +421,18 @@ public class UIManager : MonoBehaviour
         {
             isCarelessUINonSetted = true;
             isCarelessUISetted = false;
-            CarelessSkillUI.gameObject.SetActive(false);
+            SetCarelessUIInactive();
         }
     }
 
     private void SetCarelessUIActive()
     {
-        CarelessSkillUI.gameObject.SetActive(true);
         FX_PlayerRunButtonActive();
     }
 
     private void SetCarelessUIInactive()
     {
         FX_PlayerRunButtonInactive();
-        //inactive CarelessSkillUi is in FX_PlayerRunButtonInactive
     }
 
     private void SetColorAlphaZero(Color tempColor)
