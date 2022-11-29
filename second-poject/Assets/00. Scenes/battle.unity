@@ -5165,6 +5165,7 @@ MonoBehaviour:
   battleStartText_0: {fileID: 0}
   battleStartText_1: {fileID: 0}
   InventoryUI: {fileID: 543455054}
+  main: {fileID: 543455054}
 --- !u!1 &1701802469
 GameObject:
   m_ObjectHideFlags: 0
