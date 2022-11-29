@@ -25,7 +25,7 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   skillDamage: 250
-  needCP: 70
+  needFOC: 50
   needMp: 100
   needHp: 0
   skillDivision: 0
