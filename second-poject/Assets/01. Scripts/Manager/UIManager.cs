@@ -58,6 +58,15 @@ public class UIManager : MonoBehaviour
     private List<SO_Skill> skills = new List<SO_Skill>();
     [SerializeField] private Canvas InventoryUI;
 
+    private float tempPlayerHp = 0;
+    private float tempPlayerMp = 0;
+    private float tempPlayerCp = 0;
+
+    private float tempTargetHp = 0;
+    private float tempTargetMp = 0;
+    private float tempTargetCp = 0;
+
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -132,21 +141,38 @@ public class UIManager : MonoBehaviour
     private void FX_PlayerRunButtonActive()
     {
         Debug.Log("Actived!");
-        PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
-        PlayerRunButtonBG.DOFade(0, 0.5f).OnComplete(() =>
+        Sequence sequence = DOTween.Sequence();
+
+        sequence
+        .SetAutoKill(true)
+        .Append(
+            PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+        )
+        .Join(
+        PlayerRunButtonBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() =>
         {
             PlayerRunButtonBG.gameObject.SetActive(false);
-        });
-        PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
+        }))
+        .Join(
+            PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+        );
     }
 
     private void FX_PlayerRunButtonInactive()
     {
         Debug.Log("InActived!");
+        Sequence sequence = DOTween.Sequence();
         PlayerRunButtonBG.gameObject.SetActive(true);
-        PlayerRunButtonBG.DOFade(0.5f, 0.5f);
-        PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.InExpo);
-        PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.InExpo);
+
+        sequence
+        .SetAutoKill(true)
+        .Append(
+            PlayerRunButtonBG.DOFade(0.5f, 0.5f).SetEase(Ease.OutExpo))
+        .Join(
+            PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+        ).Join(
+            PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+        );
     }
 
     private void OnIventory()
@@ -163,10 +189,8 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     InventoryUI.gameObject.SetActive(true);
-
                 }
             }
-
         }
     }
     private void UIUpdate_NowTurn()
@@ -185,17 +209,28 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void SetBarSize(GameObject tempBarObject, float originValue, float tempValue, float originMaxValue)
+    {
+        float tempBarSize = originValue / originMaxValue;
+        if (tempValue != originValue)
+        {
+            tempValue = originValue;
+            FX_BarSizeChange(tempBarObject, tempBarSize);
+        }
+    }
+
+    private void FX_BarSizeChange(GameObject tempBar, float tempScaleX)
+    {
+        tempBar.transform.DOScaleX(tempScaleX, 0.25f).SetEase(Ease.OutExpo);
+    }
+
     private void UIUpdate_PlayerBase()
     {
+        SetBarSize(PlayerNowHpBar.gameObject, player.nowHP, tempPlayerHp, player.totalStats.MAX_HP);
+        SetBarSize(PlayerNowMpBar.gameObject, player.nowMP, tempPlayerMp, player.totalStats.MAX_MP);
+        SetBarSize(PlayerNowCpBar.gameObject, player.nowCP, tempPlayerCp, player.maxCP);
+
         string carelessText = "";
-
-        float hpBarSize = (float)player.nowHP / (float)player.totalStats.MAX_HP;
-        float mpBarSize = (float)player.nowMP / (float)player.totalStats.MAX_MP;
-        float cpBarSize = (float)player.nowCP / (float)player.maxCP;
-
-        PlayerNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
-        PlayerNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
-        PlayerNowCpBar.transform.localScale = new Vector3(cpBarSize, 1, 1);
 
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
 
@@ -220,15 +255,11 @@ public class UIManager : MonoBehaviour
 
             BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
 
-            float hpBarSize = (float)BattleManager.instance.targetCharacter.nowHP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_HP;
-            float mpBarSize = (float)BattleManager.instance.targetCharacter.nowMP / (float)BattleManager.instance.targetCharacter.totalStats.MAX_MP;
-            float cpBarSize = (float)BattleManager.instance.targetCharacter.nowCP / (float)BattleManager.instance.targetCharacter.maxCP;
+            SetBarSize(TargetEnemyNowHpBar.gameObject, BattleManager.instance.targetCharacter.nowHP, tempTargetHp, BattleManager.instance.targetCharacter.totalStats.MAX_HP);
+            SetBarSize(TargetEnemyNowMpBar.gameObject, BattleManager.instance.targetCharacter.nowMP, tempTargetMp, BattleManager.instance.targetCharacter.totalStats.MAX_MP);
+            SetBarSize(TargetEnemyNowCpBar.gameObject, BattleManager.instance.targetCharacter.nowCP, tempTargetCp, BattleManager.instance.targetCharacter.maxCP);
+
             string carelessText = "";
-
-
-            TargetEnemyNowHpBar.transform.localScale = new Vector3(hpBarSize, 1, 1);
-            TargetEnemyNowMpBar.transform.localScale = new Vector3(mpBarSize, 1, 1);
-            TargetEnemyNowCpBar.transform.localScale = new Vector3(cpBarSize, 1, 1);
 
             carelessText += BattleManager.instance.targetCharacter.carelessCounter.ToString() + " / " + BattleManager.instance.targetCharacter.max_carelessCounter.ToString();
             TargetEnemyCpText.text = BattleManager.instance.targetCharacter.nowCP.ToString();
@@ -239,6 +270,9 @@ public class UIManager : MonoBehaviour
 
     public void UIUpdate_OffTargetEnemyBase()
     {
+        tempTargetHp = 0;
+        tempTargetMp = 0;
+        tempTargetCp = 0;
         //Debug.Log("Target is NUll");
         TargetEnemyBaseGroup.SetActive(false);
         // TargetEnemyNowHpBar.SetActive(false);
@@ -417,10 +451,10 @@ public class UIManager : MonoBehaviour
             isCarelessUINonSetted = false;
             SetCarelessUIActive();
         }
-        else if (!BattleManager.instance.player.isBattleMode || !BattleManager.instance.targetEnemy.isCareless && !isCarelessUINonSetted)
+        else if (!isCarelessUINonSetted)
         {
-            isCarelessUINonSetted = true;
             isCarelessUISetted = false;
+            isCarelessUINonSetted = true;
             SetCarelessUIInactive();
         }
     }
