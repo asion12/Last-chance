@@ -23,14 +23,14 @@ public class StoreUIManager : MonoBehaviour
     {
         SetText(Prise, prise);
         SetText(Gold, GameManager.instance.Gold);
-        SetText(HPPortion, GameManager.instance.HPportion);
+        SetText(HPPortion, GameManager.instance.Hp_0);
        // SetText(MPPortion, GameManager.instance.MPPortion);
     }
     public void SellGoldItem()
     {
-        if (GameManager.instance.HPportion >= 1)
+        if (GameManager.instance.Hp_0 >= 1)
         {
-            GameManager.instance.HPportion -= 1;
+            GameManager.instance.Hp_0 -= 1;
             GameManager.instance.Gold += 1000;
             prise -= 100;
         }
@@ -41,7 +41,7 @@ public class StoreUIManager : MonoBehaviour
         if (GameManager.instance.Gold >= 1000)
         {
             GameManager.instance.Gold -= 1000;
-            GameManager.instance.HPportion += 1;
+            GameManager.instance.Hp_0 += 1;
             prise += 100;
         }
         else if (GameManager.instance.Gold<1000)
