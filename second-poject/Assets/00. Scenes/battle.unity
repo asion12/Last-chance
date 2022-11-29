@@ -5144,24 +5144,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBattleUI: {fileID: 1091825427}
   battle_TurnText: {fileID: 496038011}
-  battle_SkillScrollView: {fileID: 1135387866}
   battle_PlayerElementsInfo: {fileID: 731522608}
   battle_PlayerStatsInfo: {fileID: 805900148}
+  battle_SkillScrollView: {fileID: 1135387866}
   PlayerSkillListContent: {fileID: 1908826720}
   PlayerSkillButtonPrefab: {fileID: 4642891057880143183, guid: 40bc8b67ce68d544887c3bd1deef644d, type: 3}
+  PlayerSkillListBG: {fileID: 0}
+  PlayerRunButton: {fileID: 0}
+  PlayerRunButtonBG: {fileID: 0}
   PlayerCarelessCount: {fileID: 1701802471}
   PlayerNowHpBar: {fileID: 727769428}
   PlayerNowMpBar: {fileID: 1817079917}
   PlayerNowCpBar: {fileID: 1657206860}
   PlayerCpText: {fileID: 1232808380}
-  TargetEnemyCarelessCount: {fileID: 313442134}
+  PlayerLevelText: {fileID: 0}
+  TargetEnemyBaseGroup: {fileID: 0}
+  TargetEnemyCarelessCount: {fileID: 0}
   TargetEnemyNowHpBar: {fileID: 1835464442}
   TargetEnemyNowMpBar: {fileID: 164490264}
   TargetEnemyNowCpBar: {fileID: 279522147}
-  TargetEnemyCpText: {fileID: 1402703098}
+  TargetEnemyCpText: {fileID: 0}
+  TargetEnemyLevelText: {fileID: 0}
+  TargetEnemyBaseList_Image: []
+  TargetEnemyBaseList_TMP: []
+  PlayerSkillList: {fileID: 0}
   SkillButtonsParent: {fileID: 1908826720}
-  GameLog: {fileID: 203431425}
   CarelessSkillUI: {fileID: 349491728}
+<<<<<<< HEAD
+=======
+  GameLog: {fileID: 203431425}
+>>>>>>> JJB
   battleStartText_0: {fileID: 0}
   battleStartText_1: {fileID: 0}
   InventoryUI: {fileID: 543455054}
