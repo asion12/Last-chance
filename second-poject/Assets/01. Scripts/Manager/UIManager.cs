@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     private EventManager eventManager;
     private List<SO_Skill> skills = new List<SO_Skill>();
     [SerializeField] private Canvas InventoryUI;
+    [SerializeField] private Canvas StoreUI;
 
     private void Awake()
     {
@@ -80,14 +81,14 @@ public class UIManager : MonoBehaviour
         {
             battle_SkillScrollView.SetActive(false);
         }
-
+        OnIventory();
+        OnStore();
         UIUpdate_PlayerElementsInfo();
         UIUpdate_PlayerStatsInfo();
         UIUpdate_NowTurn();
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
-        OnIventory();
     }
 
     public void SetBattleUIActive(bool isActive)
@@ -99,6 +100,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("input e");
 
             if (BattleManager.instance.nowTurnID == 0)
             {
@@ -113,6 +115,26 @@ public class UIManager : MonoBehaviour
                 }
             }
 
+        }
+    }
+    private void OnStore()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (BattleManager.instance.nowTurnID == 0)
+            {
+                if (StoreUI.gameObject.activeSelf)
+                {
+                    Time.timeScale = 1f;
+                    StoreUI.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Time.timeScale = 0f;
+                    StoreUI.gameObject.SetActive(true);
+
+                }
+            }
         }
     }
     private void UIUpdate_NowTurn()
