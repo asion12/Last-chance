@@ -56,11 +56,13 @@ public class BattleManager : MonoBehaviour
     {
         if (nowTurnID == 1)
         {
+            uIManager.SetBattleUIInactive();
             Debug.Log("Turn Change To Enemy");
             nowTurnID = 2;
         }
         else if (nowTurnID == 2)
         {
+            uIManager.SetBattleUIActive();
             nowTurnID = 1;
             Debug.Log("Turn Change To Player");
         }
@@ -79,7 +81,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log("BattleStartFX!");
         uIManager.FX_BattleStart();
         Debug.Log("SkillUIOnFX!");
-        uIManager.SetBattleUIActive(true);
+        uIManager.SetBattleUIActive();
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
@@ -100,6 +102,7 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
+            uIManager.SetBattleUIInactive();
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
         }

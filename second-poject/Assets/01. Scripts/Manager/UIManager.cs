@@ -13,13 +13,17 @@ public class UIManager : MonoBehaviour
 
     // about Battle
     [SerializeField] private Text battle_TurnText;
-    [SerializeField] private GameObject battle_SkillScrollView;
     [SerializeField] private Text battle_PlayerElementsInfo;
     [SerializeField] private Text battle_PlayerStatsInfo;
+
+    [Header("전투 관련 UI")]
+    [SerializeField] private GameObject battle_SkillScrollView;
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
+    [SerializeField] private Image PlayerSkillListBG;
+    [SerializeField] private GameObject PlayerRunButton;
 
-
+    [Header("플레이어 베이스 UI")]
     [SerializeField] private Text PlayerCarelessCount;
     [SerializeField] private Image PlayerNowHpBar;
     [SerializeField] private Image PlayerNowMpBar;
@@ -27,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text PlayerCpText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
 
+    [Header("목표 적 베이스 UI")]
     [SerializeField] private GameObject TargetEnemyBaseGroup;
     [SerializeField] private TextMeshProUGUI TargetEnemyCarelessCount;
     [SerializeField] private Image TargetEnemyNowHpBar;
@@ -37,15 +42,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> TargetEnemyBaseList_Image;
     [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
 
+    [SerializeField] private GameObject PlayerSkillList;
     [SerializeField] private GameObject SkillButtonsParent;
 
-    [SerializeField] private Text GameLog;
     [SerializeField] private Canvas CarelessSkillUI;
 
+    [Header("연출용 UI")]
+    [SerializeField] private Text GameLog;
     [SerializeField] private GameObject battleStartText_0;
     [SerializeField] private GameObject battleStartText_1;
+
     private Character player = null;
     private EventManager eventManager;
+    private bool isCarelessUISetted = false;
+    private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
     [SerializeField] private Canvas InventoryUI;
 
@@ -95,20 +105,42 @@ public class UIManager : MonoBehaviour
         OnIventory();
     }
 
-    public void SetBattleUIActive(bool isActive)
+    public void SetBattleUIActive()
     {
-        playerBattleUI.gameObject.SetActive(isActive);
+        //playerBattleUI.gameObject.SetActive(true);
         FX_PlayerSkillListActive();
+    }
+
+    public void SetBattleUIInactive()
+    {
+        //playerBattleUI.gameObject.SetActive(false);
+        FX_PlayerSkillListInactive();
     }
 
     private void FX_PlayerSkillListActive()
     {
-        playerBattleUI.transform.DOMoveY(0, 0.5f).SetEase(Ease.OutExpo);
+        PlayerSkillListBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
+        PlayerSkillList.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
     }
 
     private void FX_PlayerSkillListInactive()
     {
-        playerBattleUI.transform.DOMoveY(-315, 0.5f).SetEase(Ease.InExpo);
+        PlayerSkillListBG.gameObject.SetActive(true);
+        PlayerSkillListBG.DOFade(0.75f, 0.5f).SetEase(Ease.OutExpo);
+        PlayerSkillList.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo);
+    }
+
+    private void FX_PlayerRunButtonActive()
+    {
+        PlayerRunButton.transform.DOLocalMoveX(-530, 0.5f).SetEase(Ease.OutExpo);
+    }
+
+    private void FX_PlayerRunButtonInactive()
+    {
+        PlayerRunButton.transform.DOLocalMoveX(2.5f, 0.5f).SetEase(Ease.InExpo).OnComplete(() =>
+        {
+            CarelessSkillUI.gameObject.SetActive(false);
+        });
     }
 
     private void OnIventory()
@@ -373,14 +405,30 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_CheckCarelessUIOn()
     {
-        if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless)
+        if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless && !isCarelessUISetted)
         {
-            CarelessSkillUI.gameObject.SetActive(true);
+            isCarelessUISetted = true;
+            isCarelessUINonSetted = false;
+            SetCarelessUIActive();
         }
-        else
+        else if (!BattleManager.instance.player.isBattleMode || !BattleManager.instance.targetEnemy.isCareless && !isCarelessUINonSetted)
         {
+            isCarelessUINonSetted = true;
+            isCarelessUISetted = false;
             CarelessSkillUI.gameObject.SetActive(false);
         }
+    }
+
+    private void SetCarelessUIActive()
+    {
+        CarelessSkillUI.gameObject.SetActive(true);
+        FX_PlayerRunButtonActive();
+    }
+
+    private void SetCarelessUIInactive()
+    {
+        FX_PlayerRunButtonInactive();
+        //inactive CarelessSkillUi is in FX_PlayerRunButtonInactive
     }
 
     private void SetColorAlphaZero(Color tempColor)
