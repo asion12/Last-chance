@@ -104,10 +104,12 @@ public class UIManager : MonoBehaviour
             {
                 if (InventoryUI.gameObject.activeSelf)
                 {
+                    Time.timeScale = 1f;
                     InventoryUI.gameObject.SetActive(false);
                 }
                 else
                 {
+                    Time.timeScale = 0f;
                     InventoryUI.gameObject.SetActive(true);
 
                 }

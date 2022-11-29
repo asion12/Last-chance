@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.AI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BattleManager : MonoBehaviour
     // 3: 
     // Start is called before the first frame update
 
+    public NavMeshAgent monster;
     public Character targetEnemy;
     public Character targetCharacter;
     public Player player;
@@ -83,12 +85,14 @@ public class BattleManager : MonoBehaviour
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
+            monster.speed = 0;
             nowTurnID = 1;
             if (isVictimCareless)
                 targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
         }
         else
         {
+
             nowTurnID = 2;
         }
     }
@@ -102,6 +106,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Print UI What Player Get");
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
+            monster.speed = 3.5f;
         }
         else
         {
@@ -109,6 +114,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("GameOverFX");
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
+            monster.speed = 3.5f;
         }
     }
 
