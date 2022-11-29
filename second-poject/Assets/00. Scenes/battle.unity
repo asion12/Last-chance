@@ -2766,6 +2766,14 @@ MonoBehaviour:
   isStunned: 0
   Level: 1
   Exp: 0
+  dbobj: {fileID: 0}
+  itemObj: {fileID: 0}
+  characterStack: 0
+  ability:
+    characterStack: 0
+    valStack: 0
+    min: 0
+    max: 0
   useSkillList: []
   enemyBattleState: 0
 --- !u!1 &731522606
@@ -4433,6 +4441,14 @@ MonoBehaviour:
   isStunned: 0
   Level: 1
   Exp: 0
+  dbobj: {fileID: 11400000, guid: a10b3fb73c56066428c9e457bea3a562, type: 2}
+  itemObj: {fileID: 0}
+  characterStack: 0
+  ability:
+    characterStack: 0
+    valStack: 0
+    min: 0
+    max: 0
   playerCamera: {fileID: 2047056543}
   battleStartRange: 5
   battleStartRangePoint: {fileID: 1237334324}
@@ -5128,33 +5144,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBattleUI: {fileID: 1091825427}
   battle_TurnText: {fileID: 496038011}
+  battle_SkillScrollView: {fileID: 1135387866}
   battle_PlayerElementsInfo: {fileID: 731522608}
   battle_PlayerStatsInfo: {fileID: 805900148}
-  battle_SkillScrollView: {fileID: 1135387866}
   PlayerSkillListContent: {fileID: 1908826720}
   PlayerSkillButtonPrefab: {fileID: 4642891057880143183, guid: 40bc8b67ce68d544887c3bd1deef644d, type: 3}
-  PlayerSkillListBG: {fileID: 0}
-  PlayerRunButton: {fileID: 0}
-  PlayerRunButtonBG: {fileID: 0}
   PlayerCarelessCount: {fileID: 1701802471}
   PlayerNowHpBar: {fileID: 727769428}
   PlayerNowMpBar: {fileID: 1817079917}
   PlayerNowCpBar: {fileID: 1657206860}
   PlayerCpText: {fileID: 1232808380}
-  PlayerLevelText: {fileID: 0}
-  TargetEnemyBaseGroup: {fileID: 0}
-  TargetEnemyCarelessCount: {fileID: 0}
+  TargetEnemyCarelessCount: {fileID: 313442134}
   TargetEnemyNowHpBar: {fileID: 1835464442}
   TargetEnemyNowMpBar: {fileID: 164490264}
   TargetEnemyNowCpBar: {fileID: 279522147}
-  TargetEnemyCpText: {fileID: 0}
-  TargetEnemyLevelText: {fileID: 0}
-  TargetEnemyBaseList_Image: []
-  TargetEnemyBaseList_TMP: []
-  PlayerSkillList: {fileID: 0}
+  TargetEnemyCpText: {fileID: 1402703098}
   SkillButtonsParent: {fileID: 1908826720}
-  CarelessSkillUI: {fileID: 349491728}
   GameLog: {fileID: 203431425}
+  CarelessSkillUI: {fileID: 349491728}
   battleStartText_0: {fileID: 0}
   battleStartText_1: {fileID: 0}
   InventoryUI: {fileID: 543455054}

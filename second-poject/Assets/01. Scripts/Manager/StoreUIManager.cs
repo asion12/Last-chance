@@ -7,8 +7,12 @@ public class StoreUIManager : MonoBehaviour
 {
     [SerializeField] private Text Prise;
     [SerializeField] private Text Gold;
-    [SerializeField] private Text HPPortion;
-    [SerializeField] private Text MPPortion;
+    [SerializeField] private Text HP_0;
+    [SerializeField] private Text HP_1;
+    [SerializeField] private Text HP_2;
+    [SerializeField] private Text MP_0;
+    [SerializeField] private Text MP_1;
+    [SerializeField] private Text MP_2;
     private int prise = 1000;
     public Image falseBuy;
     void Start()
@@ -23,16 +27,38 @@ public class StoreUIManager : MonoBehaviour
     {
         SetText(Prise, prise);
         SetText(Gold, GameManager.instance.Gold);
-        SetText(HPPortion, GameManager.instance.HPportion);
-       // SetText(MPPortion, GameManager.instance.MPPortion);
+        SetText(HP_0, GameManager.instance.Hp_0);
+        SetText(HP_1, GameManager.instance.HP_1);
+        SetText(HP_2, GameManager.instance.HP_2);
+        SetText(MP_0, GameManager.instance.MP_0);
+        SetText(MP_1, GameManager.instance.MP_1);
+        SetText(MP_2, GameManager.instance.MP_2);
+        // SetText(MPPortion, GameManager.instance.MPPortion);
     }
     public void SellGoldItem()
     {
-        if (GameManager.instance.HPportion >= 1)
+        if (GameManager.instance.Hp_0 >= 1)
         {
-            GameManager.instance.HPportion -= 1;
+            GameManager.instance.Hp_0 -= 1;
             GameManager.instance.Gold += 1000;
-            prise -= 100;
+        }
+
+    }
+    public void SellGoldItem1()
+    {
+        if (GameManager.instance.HP_1 >= 1)
+        {
+            GameManager.instance.HP_1 -= 1;
+            GameManager.instance.Gold += 2000;
+        }
+
+    }
+    public void SellGoldItem2()
+    {
+        if (GameManager.instance.HP_2 >= 1)
+        {
+            GameManager.instance.HP_2 -= 1;
+            GameManager.instance.Gold += 3000;
         }
 
     }
@@ -41,12 +67,114 @@ public class StoreUIManager : MonoBehaviour
         if (GameManager.instance.Gold >= 1000)
         {
             GameManager.instance.Gold -= 1000;
-            GameManager.instance.HPportion += 1;
-            prise += 100;
+            GameManager.instance.Hp_0 += 1;
         }
         else if (GameManager.instance.Gold<1000)
         {
            
+            falseBuy.gameObject.SetActive(true);
+            Invoke("OnImage", 1);
+        }
+
+    }
+    public void DontBuy1()
+    {
+        if (GameManager.instance.Gold >= 2000)
+        {
+            GameManager.instance.Gold -= 2000;
+            GameManager.instance.HP_1 += 1;
+        }
+        else if (GameManager.instance.Gold < 2000)
+        {
+
+            falseBuy.gameObject.SetActive(true);
+            Invoke("OnImage", 1);
+        }
+
+    }
+    public void DontBuy2()
+    {
+        if (GameManager.instance.Gold >= 3000)
+        {
+            GameManager.instance.Gold -= 3000;
+            GameManager.instance.HP_2 += 1;
+        }
+        else if (GameManager.instance.Gold < 3000)
+        {
+
+            falseBuy.gameObject.SetActive(true);
+            Invoke("OnImage", 1);
+        }
+
+    }
+
+    public void SellGoldItemMP()
+    {
+        if (GameManager.instance.MP_0 >= 1)
+        {
+            GameManager.instance.MP_0 -= 1;
+            GameManager.instance.Gold += 1000;
+        }
+
+    }
+    public void SellGoldItemMP1()
+    {
+        if (GameManager.instance.MP_1 >= 1)
+        {
+            GameManager.instance.MP_1 -= 1;
+            GameManager.instance.Gold += 2000;
+        }
+
+    }
+    public void SellGoldItemMP2()
+    {
+        if (GameManager.instance.MP_2 >= 1)
+        {
+            GameManager.instance.MP_2 -= 1;
+            GameManager.instance.Gold += 3000;
+        }
+
+    }
+    public void DontBuyMP()
+    {
+        if (GameManager.instance.Gold >= 1000)
+        {
+            GameManager.instance.Gold -= 1000;
+            GameManager.instance.MP_0 += 1;
+        }
+        else if (GameManager.instance.Gold < 1000)
+        {
+
+            falseBuy.gameObject.SetActive(true);
+            Invoke("OnImage", 1);
+        }
+
+    }
+    public void DontBuyMP1()
+    {
+        if (GameManager.instance.Gold >= 2000)
+        {
+            GameManager.instance.Gold -= 2000;
+            GameManager.instance.MP_1 += 1;
+        }
+        else if (GameManager.instance.Gold < 2000)
+        {
+
+            falseBuy.gameObject.SetActive(true);
+            Invoke("OnImage", 1);
+        }
+
+    }
+    public void DontBuyMP2()
+    {
+        if (GameManager.instance.Gold >= 3000)
+        {
+            GameManager.instance.Gold -= 3000;
+            GameManager.instance.MP_2 += 1;
+        }
+        else if (GameManager.instance.Gold < 3000)
+        {
+
             falseBuy.gameObject.SetActive(true);
             Invoke("OnImage", 1);
         }
