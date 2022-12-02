@@ -34,6 +34,8 @@ public class Player : Character
     public GameObject box;
     public GameObject items;
     public Transform poistion;
+
+    public int levelPoint;
     protected virtual void Start()
     {
         base.Start();
