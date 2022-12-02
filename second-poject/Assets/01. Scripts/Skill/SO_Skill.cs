@@ -26,7 +26,7 @@ public class SO_Skill : ScriptableObject
     public SkillDivision skillDivision = SkillDivision.ATTACK;
 
     public float accuarityPer = 100;
-    public float casterCriticalPer = 0;
-    public float victimDeceptionPer = 0;
+    public float casterCriticalPer;
+    public float victimDeceptionPer;
     public SideEffect sideEffect;
 }

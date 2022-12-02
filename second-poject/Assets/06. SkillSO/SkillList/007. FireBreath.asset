@@ -25,9 +25,10 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   skillDamage: 200
-  needCP: 60
+  needFOC: 30
   needMp: 100
   needHp: 0
+  isOverClockSet: 0
   skillDivision: 0
   accuarityPer: 100
   casterCriticalPer: 0
