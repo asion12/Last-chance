@@ -189,9 +189,15 @@ public class Player : Character
                         bool checkStun = lastHitData.transform.GetComponent<Enemy>().isStunned;
                         bool checkCareless = false;
                         if (checkStun || checkCareless)
+                        {
+                            Debug.Log("Enemy Careless Start!");
                             BattleManager.instance.BattleStart(true, true, lastHitData);
+                        }
                         else
+                        {
+                            Debug.Log("Enemy Not Careless Start!");
                             BattleManager.instance.BattleStart(true, false, lastHitData);
+                        }
                     }
                 }
                 else

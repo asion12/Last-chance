@@ -4,23 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-  
     public static GameManager instance = null;
 
     private void Awake()
     {
-        if (instance == null) 
+        if (instance == null)
         {
-            instance = this; 
-            DontDestroyOnLoad(gameObject); 
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if (instance != this) 
-                Destroy(this.gameObject); 
+            if (instance != this)
+                Destroy(this.gameObject);
         }
     }
 
+    private void Update()
+    {
+        if (BattleManager.instance.nowTurnID == 0)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+    }
 
     public int Gold = 0;
     public int Hp_0 = 0;
@@ -36,6 +49,4 @@ public class GameManager : MonoBehaviour
         GameManager.instance.Gold += 1000;
         Debug.Log(Gold);
     }
-    
-
 }

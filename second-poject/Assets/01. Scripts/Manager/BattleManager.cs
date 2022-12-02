@@ -87,7 +87,7 @@ public class BattleManager : MonoBehaviour
         player.CameraRotateToTarget(targetEnemy.transform.gameObject);
         if (isPlayerStart)
         {
-            monster.speed = 0;
+            //monster.speed = 0;
             nowTurnID = 1;
             if (isVictimCareless)
                 targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
@@ -108,7 +108,7 @@ public class BattleManager : MonoBehaviour
             uIManager.SetBattleUIInactive();
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
-            monster.speed = 3.5f;
+            //monster.speed = 3.5f;
         }
         else
         {
@@ -116,7 +116,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("GameOverFX");
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
-            monster.speed = 3.5f;
+            //monster.speed = 3.5f;
         }
     }
 
