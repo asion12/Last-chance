@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Character : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class Character : MonoBehaviour
     public ItemDBObj dbobj;
     public ItemObj itemObj;
     public CharacterStack characterStack;
-    public ItemAbility ability; //¿©±â ²À Ãß°¡ÇØÁà¾ßÇÔ ¤·¤·
+    public ItemAbility ability; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     protected virtual void Start()
     {
@@ -53,8 +54,9 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        SetElements();
+        SetTotalElements();
         SetTotalStats();
+        SetCharacterElements();
         if (carelessCounter >= max_carelessCounter)
         {
             isCareless = true;
@@ -63,6 +65,32 @@ public class Character : MonoBehaviour
         {
             isCareless = false;
         }
+    }
+
+    protected virtual void SetCharacterElements()
+    {
+        Elements_int tempWeakElements = new Elements_int();
+        Elements_int tempResistElements = new Elements_int();
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            tempWeakElements.SOLAR += Convert.ToInt32(skillList[i].setWeakElements.SOLAR);
+            tempWeakElements.LUMINOUS += Convert.ToInt32(skillList[i].setWeakElements.LUMINOUS);
+            tempWeakElements.IGNITION += Convert.ToInt32(skillList[i].setWeakElements.IGNITION);
+            tempWeakElements.HYDRO += Convert.ToInt32(skillList[i].setWeakElements.HYDRO);
+            tempWeakElements.BIOLOGY += Convert.ToInt32(skillList[i].setWeakElements.BIOLOGY);
+            tempWeakElements.METAL += Convert.ToInt32(skillList[i].setWeakElements.METAL);
+            tempWeakElements.CLAY += Convert.ToInt32(skillList[i].setWeakElements.CLAY);
+
+            tempResistElements.SOLAR += Convert.ToInt32(skillList[i].setWeakElements.SOLAR);
+            tempResistElements.LUMINOUS += Convert.ToInt32(skillList[i].setWeakElements.LUMINOUS);
+            tempResistElements.IGNITION += Convert.ToInt32(skillList[i].setWeakElements.IGNITION);
+            tempResistElements.HYDRO += Convert.ToInt32(skillList[i].setWeakElements.HYDRO);
+            tempResistElements.BIOLOGY += Convert.ToInt32(skillList[i].setWeakElements.BIOLOGY);
+            tempResistElements.METAL += Convert.ToInt32(skillList[i].setWeakElements.METAL);
+            tempResistElements.CLAY += Convert.ToInt32(skillList[i].setWeakElements.CLAY);
+        }
+        characterWeakElements = tempWeakElements;
+        characterResistElements = tempResistElements;
     }
 
     public virtual void SetTotalStats()
@@ -77,7 +105,7 @@ public class Character : MonoBehaviour
         totalStats.DEX = characterStats.DEX + buff_debuffStats.DEX;
         totalStats.CHA = characterStats.CHA + buff_debuffStats.CHA;
     }
-    public void ChangeAbility(object plus)//ÀåÂø ¾îºô¸®Æ¼ °ª Àû¿ë 
+    public void ChangeAbility(object plus)//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     {
         ItemAbility[] itemAbility = plus as ItemAbility[];
 
@@ -161,7 +189,7 @@ public class Character : MonoBehaviour
         totalWeakElements.METAL = toWckEl[5];
         totalWeakElements.CLAY = toWckEl[6];
     }
-    public virtual void SetElements()
+    public virtual void SetTotalElements()
     {
         int[] chResEl = Elements_IntArrReturn(characterResistElements);
         int[] chWckEl = Elements_IntArrReturn(characterWeakElements);
