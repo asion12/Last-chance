@@ -30,7 +30,7 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    METAL: 0
+    METAL: 1
     CLAY: 0
   setWeakElements:
     SOLAR: 0
