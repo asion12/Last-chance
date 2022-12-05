@@ -10,6 +10,8 @@ public class SO_Skill : ScriptableObject
     public bool categoryChemistry;
     public bool isCanUse = true;
     public Elements skillElements;
+    public Elements_int setResistElement;
+    public Elements_int setWeakElement;
     public float skillDamage;
     public float needCP;
     public int needMp;

@@ -45,6 +45,11 @@ public class BattleManager : MonoBehaviour
             //Debug.Log(targetEnemy.nowHP);
             //Debug.Log(targetEnemy.nowMP);
         }
+        CheckCharactersHp();
+    }
+
+    private void CheckCharactersHp()
+    {
         if (nowTurnID != 0)
         {
             if (targetEnemy.nowHP <= 0)
@@ -212,11 +217,12 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Skill ACC is " + castSkill.accuarityPer.ToString());
 
                 // SkillVicTim DEX Check
-                castSkill.accuarityPer /= Mathf.Log(skillVictim.totalStats.DEX, 2);
+                castSkill.accuarityPer /= Mathf.Log(skillVictim.totalStats.DEX, 2) * (skillVictim.nowCP / skillVictim.maxCP);
                 castSkill.accuarityPer -= skillVictim.totalStats.DEX;
+                castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
                 if (castSkill.accuarityPer < 0)
                 {
-                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(skillVictim.totalStats.CHA, 2) + skillVictim.totalStats.CHA;
+                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(skillVictim.totalStats.CHA, 2);
                     castSkill.accuarityPer = 0;
                 }
 

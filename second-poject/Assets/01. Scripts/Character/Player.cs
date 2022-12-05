@@ -35,7 +35,8 @@ public class Player : Character
     public GameObject items;
     public Transform poistion;
 
-    public int levelPoint;
+    public int exp = 0;
+    public int max_exp = 10;
     protected virtual void Start()
     {
         base.Start();
