@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 002. BuzzSawLauncher
   m_EditorClassIdentifier: 
   skillName: "\uC6D0\uD615\uD1B1 \uC0AC\uCD9C"
+  buyCost: 150
   categorPyhysics: 1
   categoryChemistry: 0
-  isCanUse: 1
   skillElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -24,12 +24,25 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 1
     CLAY: 0
+  setWeakElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    CLAY: 0
+  setResistElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    CLAY: 0
   skillDamage: 150
-  needFOC: 20
+  needCP: 75
   needMp: 0
   needHp: 0
   skillDivision: 0
-  accuarityPer: 100
-  casterCriticalPer: 0
-  victimDeceptionPer: 0
   sideEffect: {fileID: 0}

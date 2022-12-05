@@ -61,6 +61,7 @@ public class Player : Character
             CheckDecreaseCP();
         }
         TargetCharacterRayCheck();
+        CheckPlayerLevelAndScaleStats();
     }
 
     private void CheckIncreaseCP()
@@ -89,6 +90,45 @@ public class Player : Character
                 nowCP = 0;
             }
         }
+    }
+
+    private void CheckPlayerLevelAndScaleStats()
+    {
+        if (BattleManager.instance.targetEnemy != null)
+        {
+            float scaleSet = GetLevelScale(Level - BattleManager.instance.targetEnemy.Level);
+            buff_debuffStats.STR = characterStats.STR * scaleSet;
+            buff_debuffStats.FIR = characterStats.FIR * scaleSet;
+            buff_debuffStats.INT = characterStats.INT * scaleSet;
+            buff_debuffStats.WIS = characterStats.WIS * scaleSet;
+            buff_debuffStats.DEX = characterStats.DEX * scaleSet;
+            buff_debuffStats.FOC = characterStats.FOC * scaleSet;
+            buff_debuffStats.CHA = characterStats.CHA * scaleSet;
+        }
+        else
+        {
+            buff_debuffStats.STR = 0;
+            buff_debuffStats.FIR = 0;
+            buff_debuffStats.INT = 0;
+            buff_debuffStats.WIS = 0;
+            buff_debuffStats.DEX = 0;
+            buff_debuffStats.FOC = 0;
+            buff_debuffStats.CHA = 0;
+        }
+    }
+
+    private float GetLevelScale(float temp)
+    {
+        if (temp < 0)
+        {
+            temp *= -1;
+            temp = -1 * ((-2 / (temp + 1)) + 1) / 5;
+        }
+        else
+        {
+            temp = ((-2 / (temp + 1)) + 1) / 5;
+        }
+        return temp;
     }
 
     private void CheckOverClockAndAddWeakElement()

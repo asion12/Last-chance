@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
-  m_Name: 003. ClayLauncher
+  m_Name: 015. PlasmaCutter
   m_EditorClassIdentifier: 
-  skillName: "\uC810\uD1A0\uC0AC\uCD9C"
-  buyCost: 150
-  categorPyhysics: 1
-  categoryChemistry: 0
+  skillName: "\uD50C\uB77C\uC988\uB9C8\uCEE4\uD130"
+  buyCost: 250
+  categorPyhysics: 0
+  categoryChemistry: 1
   skillElements:
     SOLAR: 0
     LUMINOUS: 0
-    IGNITION: 0
+    IGNITION: 1
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 1
+    CLAY: 0
   setWeakElements:
     SOLAR: 0
     LUMINOUS: 0
-    IGNITION: 0
+    IGNITION: 1
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
@@ -40,9 +40,9 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     CLAY: 0
-  skillDamage: 150
-  needCP: 75
-  needMp: 0
+  skillDamage: 400
+  needCP: 70
+  needMp: 150
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

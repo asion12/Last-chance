@@ -6,12 +6,13 @@ using UnityEngine;
 public class SO_Skill : ScriptableObject
 {
     public string skillName;
+    public int buyCost = 0;
     public bool categorPyhysics;
     public bool categoryChemistry;
-    public bool isCanUse = true;
+    [System.NonSerialized] public bool isCanUse = true;
     public Elements skillElements;
-    public Elements setResistElements;
     public Elements setWeakElements;
+    public Elements setResistElements;
     public float skillDamage;
     public float needCP;
     public int needMp;
@@ -24,11 +25,10 @@ public class SO_Skill : ScriptableObject
         HEAL
     }
 
-    [SerializeField]
     public SkillDivision skillDivision = SkillDivision.ATTACK;
 
-    public float accuarityPer = 100;
-    public float casterCriticalPer;
-    public float victimDeceptionPer;
+    [System.NonSerialized] public float accuarityPer = 100;
+    [System.NonSerialized] public float casterCriticalPer;
+    [System.NonSerialized] public float victimDeceptionPer;
     public SideEffect sideEffect;
 }

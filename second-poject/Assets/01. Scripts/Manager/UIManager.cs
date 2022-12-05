@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
+    [SerializeField] private Image PlayerNowExp;
 
     [Header("목표 적 베이스 UI")]
     [SerializeField] private GameObject TargetEnemyBaseGroup;
@@ -229,7 +230,6 @@ public class UIManager : MonoBehaviour
         SetBarSize(PlayerNowHpBar.gameObject, player.nowHP, tempPlayerHp, player.totalStats.MAX_HP);
         SetBarSize(PlayerNowMpBar.gameObject, player.nowMP, tempPlayerMp, player.totalStats.MAX_MP);
         SetBarSize(PlayerNowCpBar.gameObject, player.nowCP, tempPlayerCp, player.maxCP);
-
         string carelessText = "";
 
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
@@ -237,7 +237,7 @@ public class UIManager : MonoBehaviour
         player.nowCP.ToString();
         PlayerCarelessCount.text = carelessText;
         PlayerCpText.text = player.nowCP.ToString();
-        PlayerLevelText.text = "Lv. " + player.Level;
+        PlayerLevelText.text = "Level " + player.Level;
     }
 
     public void UIUpdate_TargetEnemyBase(GameObject targetEnemy, bool isIn)
@@ -270,9 +270,16 @@ public class UIManager : MonoBehaviour
 
     public void UIUpdate_OffTargetEnemyBase()
     {
+        Debug.Log("OffTarget!");
+
         tempTargetHp = 0;
         tempTargetMp = 0;
         tempTargetCp = 0;
+
+        TargetEnemyNowHpBar.transform.localScale = new Vector3(0, 1, 1);
+        TargetEnemyNowMpBar.transform.localScale = new Vector3(0, 1, 1);
+        TargetEnemyNowCpBar.transform.localScale = new Vector3(0, 1, 1);
+
         //Debug.Log("Target is NUll");
         TargetEnemyBaseGroup.SetActive(false);
         // TargetEnemyNowHpBar.SetActive(false);

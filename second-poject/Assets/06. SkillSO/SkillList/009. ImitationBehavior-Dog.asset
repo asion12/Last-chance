@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
-  m_Name: 003. ClayLauncher
+  m_Name: 009. ImitationBehavior-Dog
   m_EditorClassIdentifier: 
-  skillName: "\uC810\uD1A0\uC0AC\uCD9C"
-  buyCost: 150
+  skillName: "\uBAA8\uBC29\uD589\uB3D9-\uAC1C"
+  buyCost: 100
   categorPyhysics: 1
   categoryChemistry: 0
   skillElements:
@@ -21,9 +21,9 @@ MonoBehaviour:
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
-    BIOLOGY: 0
+    BIOLOGY: 1
     METAL: 0
-    CLAY: 1
+    CLAY: 0
   setWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     METAL: 0
     CLAY: 0
   skillDamage: 150
-  needCP: 75
-  needMp: 0
+  needCP: 60
+  needMp: 50
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

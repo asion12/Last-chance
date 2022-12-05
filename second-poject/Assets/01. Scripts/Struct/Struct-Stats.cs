@@ -3,8 +3,6 @@ public struct Stats
 {
     public int MAX_HP;
     public int MAX_MP;
-    public int Lev;
-    public int EXP;
     public float STR;
     public float FIR;
     public float INT;
@@ -15,12 +13,10 @@ public struct Stats
 
 
 
-    public Stats(int _HP, int _MP, int _Lev, int _EXP, float _STR, float _FIR, float _INT, float _WIS, float _FOC, float _DEX, float _CHA)
+    public Stats(int _HP, int _MP, float _STR, float _FIR, float _INT, float _WIS, float _FOC, float _DEX, float _CHA)
     {
         MAX_HP = _HP;
         MAX_MP = _MP;
-        EXP = _EXP;
-        Lev = _Lev;
         STR = _STR;
         FIR = _FIR;
         INT = _INT;

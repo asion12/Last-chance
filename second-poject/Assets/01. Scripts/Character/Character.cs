@@ -32,8 +32,8 @@ public class Character : MonoBehaviour
     public bool isCareless = false;
 
     public List<SO_Skill> skillList;
-    public bool nowBuffing = false;
-    public bool nowDebuffing = false;
+    [System.NonSerialized] public bool nowBuffing = false;
+    [System.NonSerialized] public bool nowDebuffing = false;
 
     public bool isStunned = false;
 
@@ -81,13 +81,13 @@ public class Character : MonoBehaviour
             tempWeakElements.METAL += Convert.ToInt32(skillList[i].setWeakElements.METAL);
             tempWeakElements.CLAY += Convert.ToInt32(skillList[i].setWeakElements.CLAY);
 
-            tempResistElements.SOLAR += Convert.ToInt32(skillList[i].setWeakElements.SOLAR);
-            tempResistElements.LUMINOUS += Convert.ToInt32(skillList[i].setWeakElements.LUMINOUS);
-            tempResistElements.IGNITION += Convert.ToInt32(skillList[i].setWeakElements.IGNITION);
-            tempResistElements.HYDRO += Convert.ToInt32(skillList[i].setWeakElements.HYDRO);
-            tempResistElements.BIOLOGY += Convert.ToInt32(skillList[i].setWeakElements.BIOLOGY);
-            tempResistElements.METAL += Convert.ToInt32(skillList[i].setWeakElements.METAL);
-            tempResistElements.CLAY += Convert.ToInt32(skillList[i].setWeakElements.CLAY);
+            tempResistElements.SOLAR += Convert.ToInt32(skillList[i].setResistElements.SOLAR);
+            tempResistElements.LUMINOUS += Convert.ToInt32(skillList[i].setResistElements.LUMINOUS);
+            tempResistElements.IGNITION += Convert.ToInt32(skillList[i].setResistElements.IGNITION);
+            tempResistElements.HYDRO += Convert.ToInt32(skillList[i].setResistElements.HYDRO);
+            tempResistElements.BIOLOGY += Convert.ToInt32(skillList[i].setResistElements.BIOLOGY);
+            tempResistElements.METAL += Convert.ToInt32(skillList[i].setResistElements.METAL);
+            tempResistElements.CLAY += Convert.ToInt32(skillList[i].setResistElements.CLAY);
         }
         characterWeakElements = tempWeakElements;
         characterResistElements = tempResistElements;
