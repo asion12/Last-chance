@@ -35,6 +35,8 @@ public class Player : Character
     public GameObject items;
     public Transform poistion;
 
+    public bool isCanExit = false;
+
     public int exp = 0;
     public int max_exp = 10;
     protected virtual void Start()
@@ -47,21 +49,25 @@ public class Player : Character
     {
         base.Update();
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
-        if (!isBattleMode || isStunned)
+        if (GameManager.instance.isGameStarted)
         {
-            CheckIncreaseCP();
-            CameraRotateToMousePointer();
-            CharacterMove();
-            CanBattleStartByRayCast();
-            ItemBoxCheck();
-            itemcheck();
+            if (!isBattleMode || isStunned)
+            {
+                CheckIncreaseCP();
+                CameraRotateToMousePointer();
+                CharacterMove();
+                CanBattleStartByRayCast();
+                ItemBoxCheck();
+                itemcheck();
+            }
+            else if (isBattleMode)
+            {
+                CheckDecreaseCP();
+            }
+            TargetCharacterRayCheck();
+            CheckPlayerLevelAndScaleStats();
+            ExitCheck();
         }
-        else if (isBattleMode)
-        {
-            CheckDecreaseCP();
-        }
-        TargetCharacterRayCheck();
-        CheckPlayerLevelAndScaleStats();
     }
 
     private void CheckIncreaseCP()
@@ -372,5 +378,32 @@ public class Player : Character
         pos += transform.right * moveY * moveSpeed * Time.deltaTime;
 
         transform.position = pos;
+    }
+
+    private void ExitCheck()
+    {
+        if (isCanExit)
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                GameManager.instance.ResetDungeon();
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ExitPannel")
+        {
+            isCanExit = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "ExitPannel")
+        {
+            isCanExit = false;
+        }
     }
 }

@@ -52,12 +52,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject battleStartText_0;
     [SerializeField] private GameObject battleStartText_1;
 
+    [Header("탈출 UI")]
+    [SerializeField] private GameObject canExitText;
+
+    [Header("인벤토리 UI")]
+    [SerializeField] private Canvas InventoryUI;
+
     private Character player = null;
     private EventManager eventManager;
     private bool isCarelessUISetted = false;
     private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
-    [SerializeField] private Canvas InventoryUI;
 
     private float tempPlayerHp = 0;
     private float tempPlayerMp = 0;
@@ -111,6 +116,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
+        UIUpdate_CheckPlayerCanExit();
         OnIventory();
     }
 
@@ -176,6 +182,18 @@ public class UIManager : MonoBehaviour
         );
     }
 
+    private void UIUpdate_CheckPlayerCanExit()
+    {
+        if (player.GetComponent<Player>().isCanExit)
+        {
+            canExitText.SetActive(true);
+        }
+        else
+        {
+            canExitText.SetActive(false);
+        }
+    }
+
     private void OnIventory()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -194,6 +212,7 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
     private void UIUpdate_NowTurn()
     {
         if (BattleManager.instance.nowTurnID == 0)
@@ -270,7 +289,7 @@ public class UIManager : MonoBehaviour
 
     public void UIUpdate_OffTargetEnemyBase()
     {
-        Debug.Log("OffTarget!");
+        //Debug.Log("OffTarget!");
 
         tempTargetHp = 0;
         tempTargetMp = 0;
@@ -407,8 +426,8 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = textColor;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, textColor) + "";
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = Color.white;
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
 
             skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
             skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "" + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";

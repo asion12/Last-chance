@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
+    [System.NonSerialized] public bool isGameStarted = true;
+    public GameObject playerStartPoint;
+    private Player player;
 
+    public static GameManager instance = null;
     private void Awake()
     {
+        ActiveDungeon();
         if (instance == null)
         {
             instance = this;
@@ -18,6 +24,7 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(this.gameObject);
         }
+        player = FindObjectOfType<Player>();
     }
 
     private void Update()
@@ -48,5 +55,22 @@ public class GameManager : MonoBehaviour
     {
         GameManager.instance.Gold += 1000;
         Debug.Log(Gold);
+    }
+
+    public void ActiveDungeon()
+    {
+        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+    }
+
+    public void ResetDungeon()
+    {
+        player.transform.position = playerStartPoint.transform.position;
+        SceneManager.UnloadSceneAsync("JJB-Dungeon");
+        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+    }
+
+    public void ExitDungeon()
+    {
+
     }
 }
