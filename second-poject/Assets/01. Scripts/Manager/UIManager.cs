@@ -25,13 +25,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerRunButtonBG;
 
     [Header("플레이어 베이스 UI")]
-    [SerializeField] private Text PlayerCarelessCount;
+    [SerializeField] private TextMeshProUGUI PlayerCarelessCount;
     [SerializeField] private Image PlayerNowHpBar;
     [SerializeField] private Image PlayerNowMpBar;
     [SerializeField] private Image PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
-    [SerializeField] private Image PlayerNowExp;
+    [SerializeField] private Image PlayerNowExpBar;
+    [SerializeField] private TextMeshProUGUI PlayerExpText;
 
     [Header("목표 적 베이스 UI")]
     [SerializeField] private GameObject TargetEnemyBaseGroup;
@@ -44,28 +45,34 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> TargetEnemyBaseList_Image;
     [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
 
+    [Header("플레이어 스킬 관련 UI")]
     [SerializeField] private GameObject PlayerSkillList;
     [SerializeField] private GameObject SkillButtonsParent;
 
     [Header("연출용 UI")]
-    [SerializeField] private Text GameLog;
+    [SerializeField] private TextMeshProUGUI GameLog;
     [SerializeField] private GameObject battleStartText_0;
     [SerializeField] private GameObject battleStartText_1;
+
+    [Header("탈출 UI")]
+    [SerializeField] private GameObject canExitText;
+
+    [Header("인벤토리 UI")]
+    [SerializeField] private Canvas InventoryUI;
 
     private Character player = null;
     private EventManager eventManager;
     private bool isCarelessUISetted = false;
     private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
-    [SerializeField] private Canvas InventoryUI;
 
-    private float tempPlayerHp = 0;
-    private float tempPlayerMp = 0;
-    private float tempPlayerCp = 0;
-
-    private float tempTargetHp = 0;
-    private float tempTargetMp = 0;
-    private float tempTargetCp = 0;
+    private float tempPlayerHp = -1;
+    private float tempPlayerMp = -1;
+    private float tempPlayerCp = -1;
+    private float tempPlayerExp = -1;
+    private float tempTargetHp = -1;
+    private float tempTargetMp = -1;
+    private float tempTargetCp = -1;
 
 
     private void Awake()
@@ -111,6 +118,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
+        UIUpdate_CheckPlayerCanExit();
         OnIventory();
     }
 
@@ -176,6 +184,18 @@ public class UIManager : MonoBehaviour
         );
     }
 
+    private void UIUpdate_CheckPlayerCanExit()
+    {
+        if (player.GetComponent<Player>().isCanExit)
+        {
+            canExitText.SetActive(true);
+        }
+        else
+        {
+            canExitText.SetActive(false);
+        }
+    }
+
     private void OnIventory()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -194,19 +214,20 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
     private void UIUpdate_NowTurn()
     {
         if (BattleManager.instance.nowTurnID == 0)
         {
-            battle_TurnText.text = "PEACE";
+            battle_TurnText.text = "비 전투 상태";
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
-            battle_TurnText.text = "Player Turn";
+            battle_TurnText.text = "플레이어 턴";
         }
         else if (BattleManager.instance.nowTurnID == 2)
         {
-            battle_TurnText.text = "Enemy Turn";
+            battle_TurnText.text = "에너미 턴";
         }
     }
 
@@ -230,10 +251,15 @@ public class UIManager : MonoBehaviour
         SetBarSize(PlayerNowHpBar.gameObject, player.nowHP, tempPlayerHp, player.totalStats.MAX_HP);
         SetBarSize(PlayerNowMpBar.gameObject, player.nowMP, tempPlayerMp, player.totalStats.MAX_MP);
         SetBarSize(PlayerNowCpBar.gameObject, player.nowCP, tempPlayerCp, player.maxCP);
-        string carelessText = "";
+        SetBarSize(PlayerNowExpBar.gameObject, player.GetComponent<Player>().EXP, tempPlayerExp, player.GetComponent<Player>().maxEXP);
 
+        string carelessText = "";
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
 
+        string expText = "";
+        expText += player.GetComponent<Player>().EXP.ToString() + " / " + player.GetComponent<Player>().maxEXP.ToString();
+
+        PlayerExpText.text = expText;
         player.nowCP.ToString();
         PlayerCarelessCount.text = carelessText;
         PlayerCpText.text = player.nowCP.ToString();
@@ -270,7 +296,7 @@ public class UIManager : MonoBehaviour
 
     public void UIUpdate_OffTargetEnemyBase()
     {
-        Debug.Log("OffTarget!");
+        //Debug.Log("OffTarget!");
 
         tempTargetHp = 0;
         tempTargetMp = 0;
@@ -407,8 +433,8 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = textColor;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, textColor) + "";
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = Color.white;
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
 
             skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
             skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "" + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";

@@ -39,4 +39,9 @@ public class EventManager : MonoBehaviour
     {
         StartCoroutine(BattleManager.instance.BattleRun(true));
     }
+
+    public void OnDungeonTravelStart()
+    {
+        GameManager.instance.isGameStarted = true;
+    }
 }
