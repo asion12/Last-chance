@@ -39,6 +39,7 @@ public class Player : Character
 
     public int EXP = 0;
     public int maxEXP = 10;
+    public int skillPoint = 0;
     protected virtual void Start()
     {
         base.Start();
