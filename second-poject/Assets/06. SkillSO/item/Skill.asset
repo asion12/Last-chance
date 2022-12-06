@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f7c33595477b5459d4b41b1955ca2b, type: 3}
   m_Name: Skill
   m_EditorClassIdentifier: 
-  itemType: 5
+  itemType: 4
   getFlagStackable: 0
   itemIcon: {fileID: 21300000, guid: 50a947e39c924a34190e2127f6d76ebb, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 4
+    item_id: 0
     item_name: 32
     ability: []
   boneNameLists: []
