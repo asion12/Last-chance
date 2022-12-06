@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
     public void ResetDungeon()
     {
         player.transform.position = playerStartPoint.transform.position;
+        player.nowHP = player.characterStats.MAX_HP;
+        player.nowMP = player.characterStats.MAX_MP;
+        player.nowCP = player.maxCP;
         SceneManager.UnloadSceneAsync("JJB-Dungeon");
         SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
     }

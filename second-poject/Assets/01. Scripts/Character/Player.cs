@@ -128,11 +128,11 @@ public class Player : Character
         if (temp < 0)
         {
             temp *= -1;
-            temp = -1 * ((-2 / (temp + 1)) + 1) / 5;
+            temp = -1 * ((-2 / (temp + 1.5f)) + 1) / 2;
         }
         else
         {
-            temp = ((-2 / (temp + 1)) + 1) / 5;
+            temp = ((-2 / (temp + 1.5f)) + 1f) / 2;
         }
         return temp;
     }

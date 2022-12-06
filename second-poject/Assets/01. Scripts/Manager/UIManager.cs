@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerRunButtonBG;
 
     [Header("플레이어 베이스 UI")]
-    [SerializeField] private Text PlayerCarelessCount;
+    [SerializeField] private TextMeshProUGUI PlayerCarelessCount;
     [SerializeField] private Image PlayerNowHpBar;
     [SerializeField] private Image PlayerNowMpBar;
     [SerializeField] private Image PlayerNowCpBar;
@@ -44,11 +44,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> TargetEnemyBaseList_Image;
     [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
 
+    [Header("플레이어 스킬 관련 UI")]
     [SerializeField] private GameObject PlayerSkillList;
     [SerializeField] private GameObject SkillButtonsParent;
 
     [Header("연출용 UI")]
-    [SerializeField] private Text GameLog;
+    [SerializeField] private TextMeshProUGUI GameLog;
     [SerializeField] private GameObject battleStartText_0;
     [SerializeField] private GameObject battleStartText_1;
 
