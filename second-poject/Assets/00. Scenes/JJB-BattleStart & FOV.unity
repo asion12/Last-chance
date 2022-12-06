@@ -5128,6 +5128,7 @@ MonoBehaviour:
   battleStartText_0: {fileID: 1376385698}
   battleStartText_1: {fileID: 1474396075}
   InventoryUI: {fileID: 0}
+  StoreUI: {fileID: 0}
 --- !u!1 &1701802469
 GameObject:
   m_ObjectHideFlags: 0
@@ -5314,6 +5315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nowTurnID: 0
+  monstor: {fileID: 0}
   targetEnemy: {fileID: 0}
   targetCharacter: {fileID: 0}
   player: {fileID: 1272380698}

@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Use
   m_EditorClassIdentifier: 
   itemType: 4
-  getFlagStackable: 0
+  getFlagStackable: 1
   itemIcon: {fileID: 21300000, guid: c5eceadfabbf8214abff1dad1b45500c, type: 3}
   objModelPrefab: {fileID: 0}
   itemData:
-    item_id: 5
+    item_id: 1
     item_name: 32
-    ability: []
+    ability:
+    - characterStack: 1
+      valStack: 0
+      min: 0
+      max: 0
   boneNameLists: []
