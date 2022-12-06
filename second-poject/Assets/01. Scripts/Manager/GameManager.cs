@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
+    [System.NonSerialized] public bool isGameStarted = true;
+    public GameObject playerStartPoint;
+    private Player player;
+    public Canvas ui;
+    private bool canvas=false;
 
+    public static GameManager instance = null;
     private void Awake()
     {
+        ActiveDungeon();
         if (instance == null)
         {
             instance = this;
@@ -18,21 +26,12 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(this.gameObject);
         }
+        player = FindObjectOfType<Player>();
     }
 
     private void Update()
     {
-        if (BattleManager.instance.nowTurnID == 0)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
+        CursorLook();
     }
 
     public int Gold = 0;
@@ -43,10 +42,47 @@ public class GameManager : MonoBehaviour
     public int MP_0 = 0;
     public int MP_1 = 0;
     public int MP_2 = 0;
+    public void CursorLook()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (ui.gameObject.activeSelf)
+            {
+                ui.gameObject.SetActive(false);
+            }
+            else
+            {
+                ui.gameObject.SetActive(true);
+            }
+        }
+        
 
+      
+    }
     public void testclickGOldup()
     {
         GameManager.instance.Gold += 1000;
         Debug.Log(Gold);
+    }
+
+    public void ActiveDungeon()
+    {
+        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+    }
+
+    public void ResetDungeon()
+    {
+        player.transform.position = playerStartPoint.transform.position;
+        player.nowHP = player.characterStats.MAX_HP;
+        player.nowMP = player.characterStats.MAX_MP;
+        player.nowCP = player.maxCP;
+        player.GetComponent<Player>().isCanExit = false;
+        SceneManager.UnloadSceneAsync("JJB-Dungeon");
+        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+    }
+
+    public void ExitDungeon()
+    {
+
     }
 }

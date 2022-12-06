@@ -121,6 +121,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("GameOverFX");
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
+            GameManager.instance.ResetDungeon();
             //monster.speed = 3.5f;
         }
     }
