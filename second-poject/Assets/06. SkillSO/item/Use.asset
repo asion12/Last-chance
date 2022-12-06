@@ -22,6 +22,6 @@ MonoBehaviour:
     ability:
     - characterStack: 1
       valStack: 0
-      min: 0
-      max: 0
+      min: 100
+      max: 100
   boneNameLists: []
