@@ -18,9 +18,22 @@ public class StoreUIManager : MonoBehaviour
     public InventoryObj equipObj;
     public InventoryObj inventoryObj;
     public ItemDBObj itemDBObj;
+    public bool ison = false;
     void Start()
     {
         
+    }
+    public void onclick()
+    {
+
+        if (ison == true)
+        {
+            ison = false;
+        }
+        else
+        {
+            ison = true;
+        }
     }
     public void SetText<T>(Text text, T value)
     {
