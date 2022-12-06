@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         player.nowHP = player.characterStats.MAX_HP;
         player.nowMP = player.characterStats.MAX_MP;
         player.nowCP = player.maxCP;
+        player.GetComponent<Player>().isCanExit = false;
         SceneManager.UnloadSceneAsync("JJB-Dungeon");
         SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
     }

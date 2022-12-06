@@ -37,8 +37,8 @@ public class Player : Character
 
     public bool isCanExit = false;
 
-    public int exp = 0;
-    public int max_exp = 10;
+    public int EXP = 0;
+    public int maxEXP = 10;
     protected virtual void Start()
     {
         base.Start();

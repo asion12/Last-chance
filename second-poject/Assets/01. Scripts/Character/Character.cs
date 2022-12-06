@@ -38,7 +38,6 @@ public class Character : MonoBehaviour
     public bool isStunned = false;
 
     public int Level = 1;
-    public int Exp = 0;
 
 
     public ItemDBObj dbobj;

@@ -31,7 +31,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
-    [SerializeField] private Image PlayerNowExp;
+    [SerializeField] private Image PlayerNowExpBar;
+    [SerializeField] private TextMeshProUGUI PlayerExpText;
 
     [Header("목표 적 베이스 UI")]
     [SerializeField] private GameObject TargetEnemyBaseGroup;
@@ -65,13 +66,13 @@ public class UIManager : MonoBehaviour
     private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
 
-    private float tempPlayerHp = 0;
-    private float tempPlayerMp = 0;
-    private float tempPlayerCp = 0;
-
-    private float tempTargetHp = 0;
-    private float tempTargetMp = 0;
-    private float tempTargetCp = 0;
+    private float tempPlayerHp = -1;
+    private float tempPlayerMp = -1;
+    private float tempPlayerCp = -1;
+    private float tempPlayerExp = -1;
+    private float tempTargetHp = -1;
+    private float tempTargetMp = -1;
+    private float tempTargetCp = -1;
 
 
     private void Awake()
@@ -218,15 +219,15 @@ public class UIManager : MonoBehaviour
     {
         if (BattleManager.instance.nowTurnID == 0)
         {
-            battle_TurnText.text = "PEACE";
+            battle_TurnText.text = "비 전투 상태";
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
-            battle_TurnText.text = "Player Turn";
+            battle_TurnText.text = "플레이어 턴";
         }
         else if (BattleManager.instance.nowTurnID == 2)
         {
-            battle_TurnText.text = "Enemy Turn";
+            battle_TurnText.text = "에너미 턴";
         }
     }
 
@@ -250,10 +251,15 @@ public class UIManager : MonoBehaviour
         SetBarSize(PlayerNowHpBar.gameObject, player.nowHP, tempPlayerHp, player.totalStats.MAX_HP);
         SetBarSize(PlayerNowMpBar.gameObject, player.nowMP, tempPlayerMp, player.totalStats.MAX_MP);
         SetBarSize(PlayerNowCpBar.gameObject, player.nowCP, tempPlayerCp, player.maxCP);
-        string carelessText = "";
+        SetBarSize(PlayerNowExpBar.gameObject, player.GetComponent<Player>().EXP, tempPlayerExp, player.GetComponent<Player>().maxEXP);
 
+        string carelessText = "";
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
 
+        string expText = "";
+        expText += player.GetComponent<Player>().EXP.ToString() + " / " + player.GetComponent<Player>().maxEXP.ToString();
+
+        PlayerExpText.text = expText;
         player.nowCP.ToString();
         PlayerCarelessCount.text = carelessText;
         PlayerCpText.text = player.nowCP.ToString();
