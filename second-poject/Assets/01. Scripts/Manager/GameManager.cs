@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized] public bool isGameStarted = true;
     public GameObject playerStartPoint;
     private Player player;
+    public Canvas ui;
+    private bool canvas = false;
 
     public static GameManager instance = null;
     private void Awake()
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
+        CursorLook();
     }
 
     public int Gold = 0;
@@ -49,7 +52,23 @@ public class GameManager : MonoBehaviour
     public int MP_0 = 0;
     public int MP_1 = 0;
     public int MP_2 = 0;
+    public void CursorLook()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (ui.gameObject.activeSelf)
+            {
+                ui.gameObject.SetActive(false);
+            }
+            else
+            {
+                ui.gameObject.SetActive(true);
+            }
+        }
 
+
+
+    }
     public void testclickGOldup()
     {
         GameManager.instance.Gold += 1000;

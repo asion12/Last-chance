@@ -18,6 +18,8 @@ public class StoreUIManager : MonoBehaviour
     public InventoryObj equipObj;
     public InventoryObj inventoryObj;
     public ItemDBObj itemDBObj;
+    public Canvas store;
+    public bool canvas=false;
     void Start()
     {
         
@@ -28,6 +30,7 @@ public class StoreUIManager : MonoBehaviour
     }
     void Update()
     {
+        on();
         SetText(Prise, prise);
         SetText(Gold, GameManager.instance.Gold);
         SetText(HP_0, GameManager.instance.Hp_0);
@@ -199,5 +202,18 @@ public class StoreUIManager : MonoBehaviour
         }
     }
 
-    
+    private void on()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (canvas == true)
+            {
+                canvas = true;
+            }
+            else
+            {
+                canvas = false;
+            }
+        }
+    }
 }
