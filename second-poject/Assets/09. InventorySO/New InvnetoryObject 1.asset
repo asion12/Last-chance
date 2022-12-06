@@ -16,27 +16,21 @@ MonoBehaviour:
   type: 1
   inventory:
     InvenSlots:
-    - itemTypes: 00000000
-      item:
-        item_id: 0
-        item_name: head
-        ability: []
-      itemCnt: 1
-    - itemTypes: 01000000
+    - itemTypes: 04000000
       item:
         item_id: 1
-        item_name: body
+        item_name: Use
         ability: []
       itemCnt: 1
-    - itemTypes: 02000000
+    - itemTypes: 04000000
       item:
-        item_id: 2
-        item_name: Lefthand
+        item_id: -1
+        item_name: 
         ability: []
-      itemCnt: 1
-    - itemTypes: 03000000
+      itemCnt: 0
+    - itemTypes: 04000000
       item:
-        item_id: 3
-        item_name: Righthand
+        item_id: -1
+        item_name: 
         ability: []
-      itemCnt: 1
+      itemCnt: 0

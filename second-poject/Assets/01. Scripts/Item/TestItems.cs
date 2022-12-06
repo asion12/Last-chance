@@ -19,7 +19,6 @@ public class TestItems : MonoBehaviour
             ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
             Item newItem = new Item(newItemObject);
             inventoryObj.AddItem(newItem, 1);
-            Debug.Log("a?");
 
         }
     }

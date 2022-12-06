@@ -15,6 +15,9 @@ public class StoreUIManager : MonoBehaviour
     [SerializeField] private Text MP_2;
     private int prise = 1000;
     public Image falseBuy;
+    public InventoryObj equipObj;
+    public InventoryObj inventoryObj;
+    public ItemDBObj itemDBObj;
     void Start()
     {
         
@@ -141,6 +144,7 @@ public class StoreUIManager : MonoBehaviour
         {
             GameManager.instance.Gold -= 1000;
             GameManager.instance.MP_0 += 1;
+            AddnewItem0();
         }
         else if (GameManager.instance.Gold < 1000)
         {
@@ -184,4 +188,16 @@ public class StoreUIManager : MonoBehaviour
     {
         falseBuy.gameObject.SetActive(false);
     }
+    public void AddnewItem0()
+    {
+        if (itemDBObj.itemObjs.Length > 0)
+        {
+            ItemObj newItemObject = itemDBObj.itemObjs[0];
+            Item newItem = new Item(newItemObject);
+            inventoryObj.AddItem(newItem, 1);
+
+        }
+    }
+
+    
 }
