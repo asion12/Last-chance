@@ -66,6 +66,8 @@ public class UIManager : MonoBehaviour
     private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
 
+    public bool isInvenOn = false;
+
     private float tempPlayerHp = -1;
     private float tempPlayerMp = -1;
     private float tempPlayerCp = -1;
@@ -205,10 +207,12 @@ public class UIManager : MonoBehaviour
             {
                 if (InventoryUI.gameObject.activeSelf)
                 {
+                    isInvenOn = false;
                     InventoryUI.gameObject.SetActive(false);
                 }
                 else
                 {
+                    isInvenOn = true;
                     InventoryUI.gameObject.SetActive(true);
                 }
             }

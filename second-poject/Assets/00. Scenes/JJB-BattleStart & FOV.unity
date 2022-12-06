@@ -1687,7 +1687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364670995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.56, z: -11.88}
+  m_LocalPosition: {x: 1, y: 0.56, z: -11.88}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2845,7 +2845,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &796873028
 GameObject:
@@ -3175,7 +3175,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4083,7 +4083,7 @@ RectTransform:
   - {fileID: 1141596748}
   - {fileID: 381811991}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4916,7 +4916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272380693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2, z: -11.95}
+  m_LocalPosition: {x: 1, y: 2.2, z: -11.95}
   m_LocalScale: {x: 1, y: 1.65, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5054,6 +5054,7 @@ MonoBehaviour:
   isCanExit: 0
   EXP: 0
   maxEXP: 10
+  skillPoint: 0
   nowHitObject: {fileID: 0}
 --- !u!54 &1272380699
 Rigidbody:
@@ -5749,7 +5750,7 @@ Transform:
   - {fileID: 1665803837}
   - {fileID: 20441510}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1554042268
 GameObject:
@@ -6119,6 +6120,7 @@ MonoBehaviour:
   battleStartText_1: {fileID: 1474396075}
   canExitText: {fileID: 140269383}
   InventoryUI: {fileID: 0}
+  isInvenOn: 0
 --- !u!1 &1742888585
 GameObject:
   m_ObjectHideFlags: 0
@@ -7542,6 +7544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStartPoint: {fileID: 632762167}
+  ui: {fileID: 0}
   Gold: 0
   Hp_0: 0
   HP_1: 0

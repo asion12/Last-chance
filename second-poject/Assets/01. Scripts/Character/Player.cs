@@ -52,7 +52,7 @@ public class Player : Character
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
         if (GameManager.instance.isGameStarted)
         {
-            if (!isBattleMode || isStunned)
+            if ((!isBattleMode || isStunned) && !uIManager.isInvenOn)
             {
                 CheckIncreaseCP();
                 CameraRotateToMousePointer();
@@ -231,7 +231,6 @@ public class Player : Character
                     else
                     {
                         lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
-
                     }
 
                     if (Input.GetMouseButtonDown(0))

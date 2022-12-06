@@ -518,7 +518,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
   isStunned: 0
   Level: 1
-  Exp: 0
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -799,7 +798,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
   isStunned: 0
   Level: 3
-  Exp: 0
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -828,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1730536256
 MeshCollider:
   m_ObjectHideFlags: 0
