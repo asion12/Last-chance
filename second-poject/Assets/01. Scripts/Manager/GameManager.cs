@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerStartPoint;
     private Player player;
     public Canvas ui;
-    private bool canvas=false;
+    private bool canvas = false;
 
     public static GameManager instance = null;
     private void Awake()
@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (BattleManager.instance.nowTurnID == 0)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         CursorLook();
     }
 
@@ -55,9 +65,9 @@ public class GameManager : MonoBehaviour
                 ui.gameObject.SetActive(true);
             }
         }
-        
 
-      
+
+
     }
     public void testclickGOldup()
     {
