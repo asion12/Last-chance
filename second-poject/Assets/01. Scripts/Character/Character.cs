@@ -39,7 +39,6 @@ public class Character : MonoBehaviour
 
     public int Level = 1;
 
-
     public ItemDBObj dbobj;
     public ItemObj itemObj;
     public CharacterStack characterStack;
