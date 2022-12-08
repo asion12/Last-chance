@@ -58,8 +58,11 @@ public class Enemy : Character
 
     private IEnumerator SetLimitOverMode()
     {
-        Level += 1;
-        yield return new WaitForSeconds(2);
+        while (true)
+        {
+            Level += 1;
+            yield return new WaitForSeconds(2);
+        }
     }
 
     private void BattleStateCheck()

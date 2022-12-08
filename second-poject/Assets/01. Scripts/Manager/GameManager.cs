@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     private Player player;
     public Canvas ui;
     private bool canvas = false;
-    public float nowTimeLimit = 0;
-    public float maxTimeLimit = 180;
+    [System.NonSerialized] public float nowTimeLimit = 0;
+    [System.NonSerialized] public float maxTimeLimit = 10;
     public bool isTimeLimitOver = false;
     public static GameManager instance = null;
     private void Awake()
@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        nowTimeLimit += Time.deltaTime;
         if (BattleManager.instance.nowTurnID == 0)
         {
             Cursor.visible = false;
@@ -54,7 +53,7 @@ public class GameManager : MonoBehaviour
         {
             nowTimeLimit += Time.deltaTime;
         }
-        if (nowTimeLimit >= maxTimeLimit)
+        if (maxTimeLimit - nowTimeLimit < 0)
         {
             isTimeLimitOver = true;
         }
@@ -95,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetDungeon()
     {
-        isGameStarted = false;
+        // /isGameStarted = false;
         isTimeLimitOver = false;
         nowTimeLimit = 0;
         player.transform.position = playerStartPoint.transform.position;

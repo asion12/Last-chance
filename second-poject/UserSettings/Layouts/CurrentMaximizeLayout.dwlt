@@ -83,8 +83,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 1
-    m_VSlider: 1
+    m_HSlider: 0
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -97,18 +97,18 @@ MonoBehaviour:
       y: 21
       width: 590.80005
       height: 390
-    m_Scale: {x: 4, y: 4}
-    m_Translation: {x: 7.2731667, y: 1132.0443}
+    m_Scale: {x: 0.38463545, y: 0.38463545}
+    m_Translation: {x: 295.40002, y: 195}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1.8182917
-      y: -283.01108
-      width: 147.70001
-      height: 97.5
+      x: -768
+      y: -506.97354
+      width: 1536
+      height: 1013.9471
     m_MinimalGUI: 1
   m_defaultScale: 0.38463545
   m_LastWindowPixelSize: {x: 738.50006, y: 513.75}
@@ -224,10 +224,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 260}
-      m_SelectedIDs: f671feff7a5b0000286bfeff385c0000de1ffeffa85b00002c5b0000645b00001a5c0000c88dfeff
-      m_LastClickedID: -94776
-      m_ExpandedIDs: ce24fffff86cffff36fbffff38fbffff725b00000e5c0000d65c0000ee5c0000145d0000285d0000
+      scrollPos: {x: 0, y: 402}
+      m_SelectedIDs: 684bfdff
+      m_LastClickedID: -177304
+      m_ExpandedIDs: ce24fffff86cffff36fbffff38fbffff145b0000725b0000b05b00000a5c00000e5c0000cc5c0000d65c0000ee5c0000145d0000285d0000a85d0000b85d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -535,9 +535,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 968.23224, y: 819.8046, z: -0.14961958}
+    m_Target: {x: 452, y: 1044, z: 0}
     speed: 2
-    m_Value: {x: 968.23224, y: 819.8046, z: -0.14961958}
+    m_Value: {x: 452.0001, y: 1044, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -588,9 +588,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
-    m_Target: 52.82516
+    m_Target: 351.49017
     speed: 2
-    m_Value: 50.550392
+    m_Value: 351.49023
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 49626
+  controlID: 70920
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -738,15 +738,15 @@ MonoBehaviour:
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 16
   m_LastFolders:
   - Assets/10. Fonts
-  m_LastFoldersGridSize: -1
+  m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\GitHub\Dung\second-poject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 142.20001}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs: 94600000
     m_LastClickedID: 24724
     m_ExpandedIDs: 00000000b85f0000ba5f0000bc5f0000be5f0000c05f000000ca9a3bffffff7f
@@ -802,10 +802,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f671feff7a5b0000286bfeff385c0000de1ffeffa85b00002c5b0000645b00001a5c0000c88dfeff
-    m_LastClickedInstanceID: -101898
+    m_SelectedInstanceIDs: 684bfdff
+    m_LastClickedInstanceID: -177304
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c6230000c05e0000b65e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -830,7 +830,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
 --- !u!114 &13
@@ -855,7 +855,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 505.6
-    width: 780.6
+    width: 774.2
     height: 277.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -972,11 +972,11 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 160
+    m_CachedPref: 323
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 26.400024
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
