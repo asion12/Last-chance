@@ -29,10 +29,12 @@ public class Player : Character
 
     float cpDecreaseTimer = 0;
     float cpDecreaseTimer_MAX = 1f;
-    public ItemDBObj itemDBObj;
-    public InventoryObj inventoryObj;
-    public GameObject box;
-    public GameObject items;
+
+    //public ItemDBObj itemDBObj;
+    //public InventoryObj inventoryObj;
+    //public GameObject box;
+    //public GameObject items;
+
     public Transform poistion;
 
     public bool isCanExit = false;
@@ -58,8 +60,8 @@ public class Player : Character
                 CameraRotateToMousePointer();
                 CharacterMove();
                 CanBattleStartByRayCast();
-                ItemBoxCheck();
-                itemcheck();
+                //ItemBoxCheck();
+                //itemcheck();
             }
             else if (isBattleMode)
             {
@@ -298,56 +300,56 @@ public class Player : Character
             uIManager.UIUpdate_OffTargetEnemyBase();
         }
     }
-    private void ItemBoxCheck()
-    {
-        RaycastHit hit;
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.tag == "Box")
-            {
-                Debug.Log("start");
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    items.gameObject.SetActive(true);
-                    Destroy(box.gameObject);
+    // private void ItemBoxCheck()
+    // {
+    //     RaycastHit hit;
+    //     Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //     if (Physics.Raycast(ray, out hit))
+    //     {
+    //         if (hit.transform.tag == "Box")
+    //         {
+    //             Debug.Log("start");
+    //             if (Input.GetKeyDown(KeyCode.F))
+    //             {
+    //                 items.gameObject.SetActive(true);
+    //                 Destroy(box.gameObject);
 
-                }
-            }
+    //             }
+    //         }
 
-        }
-    }
-    private void itemcheck()
-    {
-        RaycastHit hit;
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.tag == "items")
-            {
-                if (Input.GetKeyDown(KeyCode.V))
-                {
-                    AddnewItem();
-                    Destroy(items);
+    //     }
+    // }
+    // private void itemcheck()
+    // {
+    //     RaycastHit hit;
+    //     Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //     if (Physics.Raycast(ray, out hit))
+    //     {
+    //         if (hit.transform.tag == "items")
+    //         {
+    //             if (Input.GetKeyDown(KeyCode.V))
+    //             {
+    //                 AddnewItem();
+    //                 Destroy(items);
 
-                }
-            }
+    //             }
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
-    public void AddnewItem()
-    {
-        if (itemDBObj.itemObjs.Length > 0)
-        {
-            ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
-            Item newItem = new Item(newItemObject);
-            inventoryObj.AddItem(newItem, 1);
-            Debug.Log("ȹ��");
+    // public void AddnewItem()
+    // {
+    //     if (itemDBObj.itemObjs.Length > 0)
+    //     {
+    //         ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
+    //         Item newItem = new Item(newItemObject);
+    //         inventoryObj.AddItem(newItem, 1);
+    //         Debug.Log("ȹ��");
 
-        }
-    }
+    //     }
+    // }
 
     private void RayOutCheck()
     {

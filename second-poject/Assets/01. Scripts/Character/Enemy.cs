@@ -45,6 +45,14 @@ public class Enemy : Character
         BattleStateCheck();
     }
 
+    private void CheckTimeLimitOver()
+    {
+        if (GameManager.instance.isTimeLimitOver)
+        {
+            // 적 강화 함수 생성
+        }
+    }
+
     private void BattleStateCheck()
     {
         if (nowHP / characterStats.MAX_HP < 0.5f && CheckHavingAndUseSkill(SO_Skill.SkillDivision.HEAL))

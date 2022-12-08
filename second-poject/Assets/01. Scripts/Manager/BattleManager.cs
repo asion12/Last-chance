@@ -82,24 +82,32 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
-        SetEnemy(detactedEnemy.GetComponent<Character>());
-        targetEnemy.isBattleMode = true;
-        player.isBattleMode = true;
-        Debug.Log("BattleStartFX!");
-        uIManager.FX_BattleStart();
-        Debug.Log("SkillUIOnFX!");
-        uIManager.SetBattleUIActive();
-        player.CameraRotateToTarget(targetEnemy.transform.gameObject);
-        if (isPlayerStart)
+        // if now Battlemode
+        if (nowTurnID != 0)
         {
-            //monster.speed = 0;
-            nowTurnID = 1;
-            if (isVictimCareless)
-                targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
+            Debug.LogWarning("Now is Battle Mode But Trying Battle Start!");
         }
         else
         {
-            nowTurnID = 2;
+            SetEnemy(detactedEnemy.GetComponent<Character>());
+            targetEnemy.isBattleMode = true;
+            player.isBattleMode = true;
+            Debug.Log("BattleStartFX!");
+            uIManager.FX_BattleStart();
+            Debug.Log("SkillUIOnFX!");
+            uIManager.SetBattleUIActive();
+            player.CameraRotateToTarget(targetEnemy.transform.gameObject);
+            if (isPlayerStart)
+            {
+                //monster.speed = 0;
+                nowTurnID = 1;
+                if (isVictimCareless)
+                    targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
+            }
+            else
+            {
+                nowTurnID = 2;
+            }
         }
     }
 
@@ -150,7 +158,7 @@ public class BattleManager : MonoBehaviour
         nowTurnID = 0;
         targetEnemy.isBattleMode = false;
         player.isBattleMode = false;
-        Debug.Log(player.isBattleMode);
+        // Debug.Log(player.isBattleMode);
         player.ResetBattleStatus();
         targetEnemy.ResetBattleStatus();
     }

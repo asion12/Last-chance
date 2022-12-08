@@ -19,10 +19,10 @@ public class StoreUIManager : MonoBehaviour
     public InventoryObj inventoryObj;
     public ItemDBObj itemDBObj;
     public Canvas store;
-    public bool canvas=false;
+    public bool canvas = false;
     void Start()
     {
-        
+
     }
     public void SetText<T>(Text text, T value)
     {
@@ -75,13 +75,12 @@ public class StoreUIManager : MonoBehaviour
             GameManager.instance.Gold -= 1000;
             GameManager.instance.Hp_0 += 1;
         }
-        else if (GameManager.instance.Gold<1000)
+        else if (GameManager.instance.Gold < 1000)
         {
-           
+
             falseBuy.gameObject.SetActive(true);
             Invoke("OnImage", 1);
         }
-
     }
     public void DontBuy1()
     {

@@ -58,7 +58,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject canExitText;
 
     [Header("인벤토리 UI")]
-    [SerializeField] private Canvas InventoryUI;
+    [SerializeField] private GameObject ItemList;
+    //[SerializeField] private Canvas InventoryUI;
 
     private Character player = null;
     private EventManager eventManager;
@@ -121,7 +122,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
         UIUpdate_CheckPlayerCanExit();
-        OnIventory();
+        //OnIventory();
     }
 
     public void SetBattleUIActive()
@@ -138,15 +139,15 @@ public class UIManager : MonoBehaviour
 
     private void FX_PlayerSkillListActive()
     {
-        PlayerSkillListBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
-        PlayerSkillList.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
+        PlayerSkillListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
+        PlayerSkillList.transform.DOScale(1, 0.125f);
     }
 
     private void FX_PlayerSkillListInactive()
     {
         PlayerSkillListBG.gameObject.SetActive(true);
-        PlayerSkillListBG.DOFade(0.75f, 0.5f).SetEase(Ease.OutExpo);
-        PlayerSkillList.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo);
+        PlayerSkillListBG.DOFade(1f, 0.125f);
+        PlayerSkillList.transform.DOScale(0.975f, 0.125f);
     }
 
     private void FX_PlayerRunButtonActive()
@@ -198,40 +199,40 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnIventory()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+    // private void OnIventory()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
 
-            if (BattleManager.instance.nowTurnID == 0)
-            {
-                if (InventoryUI.gameObject.activeSelf)
-                {
-                    isInvenOn = false;
-                    InventoryUI.gameObject.SetActive(false);
-                }
-                else
-                {
-                    isInvenOn = true;
-                    InventoryUI.gameObject.SetActive(true);
-                }
-            }
-        }
-    }
+    //         if (BattleManager.instance.nowTurnID == 0)
+    //         {
+    //             if (InventoryUI.gameObject.activeSelf)
+    //             {
+    //                 isInvenOn = false;
+    //                 InventoryUI.gameObject.SetActive(false);
+    //             }
+    //             else
+    //             {
+    //                 isInvenOn = true;
+    //                 InventoryUI.gameObject.SetActive(true);
+    //             }
+    //         }
+    //     }
+    // }
 
     private void UIUpdate_NowTurn()
     {
         if (BattleManager.instance.nowTurnID == 0)
         {
-            battle_TurnText.text = "비 전투 상태";
+            battle_TurnText.text = "NON-BATTLE MODE";
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
-            battle_TurnText.text = "플레이어 턴";
+            battle_TurnText.text = "PLAYER TURN";
         }
         else if (BattleManager.instance.nowTurnID == 2)
         {
-            battle_TurnText.text = "에너미 턴";
+            battle_TurnText.text = "ENEMY TURN";
         }
     }
 
@@ -515,7 +516,7 @@ public class UIManager : MonoBehaviour
     {
         Sequence battleStartSequence = DOTween.Sequence().
         Append(
-            battleStartText_0.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)
+            battleStartText_0.transform.DOLocalMoveX(-10, 0.25f).SetEase(Ease.OutExpo)
         )
         .Join(
             battleStartText_1.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)

@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     private Player player;
     public Canvas ui;
     private bool canvas = false;
-
+    public float nowTimeLimit = 0;
+    public float maxTimeLimit = 180;
+    public bool isTimeLimitOver = false;
     public static GameManager instance = null;
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        nowTimeLimit += Time.deltaTime;
         if (BattleManager.instance.nowTurnID == 0)
         {
             Cursor.visible = false;
@@ -42,6 +45,19 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
         }
         CursorLook();
+        TimeLimitCheck();
+    }
+
+    private void TimeLimitCheck()
+    {
+        if (isGameStarted)
+        {
+            nowTimeLimit += Time.deltaTime;
+        }
+        if (nowTimeLimit >= maxTimeLimit)
+        {
+            isTimeLimitOver = true;
+        }
     }
 
     public int Gold = 0;
@@ -65,9 +81,6 @@ public class GameManager : MonoBehaviour
                 ui.gameObject.SetActive(true);
             }
         }
-
-
-
     }
     public void testclickGOldup()
     {
@@ -82,6 +95,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetDungeon()
     {
+        isGameStarted = false;
+        isTimeLimitOver = false;
+        nowTimeLimit = 0;
         player.transform.position = playerStartPoint.transform.position;
         player.nowHP = player.characterStats.MAX_HP;
         player.nowMP = player.characterStats.MAX_MP;
