@@ -40,7 +40,7 @@ public class Player : Character
     public bool isCanExit = false;
 
     public int EXP = 0;
-    public int maxEXP = 10;
+    public int maxEXP = 100;
     public int skillPoint = 0;
     protected virtual void Start()
     {
@@ -71,6 +71,22 @@ public class Player : Character
             CheckPlayerLevelAndScaleStats();
             ExitCheck();
         }
+        CheckExpOver();
+        SetMaxEXP();
+    }
+
+    private void CheckExpOver()
+    {
+        if (EXP >= maxEXP)
+        {
+            EXP = 0;
+            Level++;
+        }
+    }
+
+    private void SetMaxEXP()
+    {
+        maxEXP = (int)(20 * GetNewMaxEXP(Level + 1));
     }
 
     private void CheckIncreaseCP()
@@ -105,7 +121,7 @@ public class Player : Character
     {
         if (BattleManager.instance.targetEnemy != null)
         {
-            float scaleSet = GetLevelScale(Level - BattleManager.instance.targetEnemy.Level);
+            float scaleSet = GetLevelScale_forBattle(Level - BattleManager.instance.targetEnemy.Level);
             buff_debuffStats.STR = characterStats.STR * scaleSet;
             buff_debuffStats.FIR = characterStats.FIR * scaleSet;
             buff_debuffStats.INT = characterStats.INT * scaleSet;
@@ -126,17 +142,28 @@ public class Player : Character
         }
     }
 
-    private float GetLevelScale(float temp)
+    public float GetLevelScale_forBattle(float temp)
     {
         if (temp < 0)
         {
             temp *= -1;
             temp = -1 * ((-2 / (temp + 1.5f)) + 1) / 2;
         }
-        else
+        else if (temp > 0)
         {
             temp = ((-2 / (temp + 1.5f)) + 1f) / 2;
         }
+        else
+        {
+            temp = 0;
+        }
+        return temp;
+    }
+
+    public float GetNewMaxEXP(float temp)
+    {
+        temp = (-1 * ((10) / (temp + 4)) + 2) * 5;
+
         return temp;
     }
 

@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerSkillListBG;
     [SerializeField] private GameObject PlayerRunButton;
     [SerializeField] private Image PlayerRunButtonBG;
+    private bool isRunButtonOn = false;
 
     [Header("플레이어 베이스 UI")]
     [SerializeField] private TextMeshProUGUI PlayerCarelessCount;
@@ -343,6 +344,12 @@ public class UIManager : MonoBehaviour
         FX_PlayerSkillListActive();
     }
 
+    private void ResetPlayerSkillList()
+    {
+        SetPlayerSkillListEnable();
+        SetPlayerSkillList();
+    }
+
     private void SetPlayerSkillList()
     {
         for (int i = 0; i < skills.Count; i++)
@@ -368,6 +375,15 @@ public class UIManager : MonoBehaviour
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
+    }
+
+    private void SetPlayerSkillListEnable()
+    {
+        for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
+        {
+            Destroy(PlayerSkillList.transform.GetChild(i));
+        }
+
     }
 
     private void SetBarSize(GameObject tempBarObject, float originValue, float tempValue, float originMaxValue)
@@ -490,39 +506,46 @@ public class UIManager : MonoBehaviour
 
     private void FX_PlayerRunButtonActive()
     {
-        Debug.Log("Actived!");
-        Sequence sequence = DOTween.Sequence();
-
-        sequence
-        .SetAutoKill(true)
-        .Append(
-            PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
-        )
-        .Join(
-        PlayerRunButtonBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() =>
+        if (!isRunButtonOn)
         {
-            PlayerRunButtonBG.gameObject.SetActive(false);
-        }))
-        .Join(
-            PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
-        );
+            Debug.Log("Actived!");
+            isRunButtonOn = true;
+            Sequence sequence = DOTween.Sequence();
+
+            sequence
+            .SetAutoKill(true)
+            .Append(
+                PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+            )
+            .Join(
+            PlayerRunButtonBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() =>
+            {
+                PlayerRunButtonBG.gameObject.SetActive(false);
+            }))
+            .Join(
+                PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+            );
+        }
     }
 
     private void FX_PlayerRunButtonInactive()
     {
-        Debug.Log("InActived!");
-        Sequence sequence = DOTween.Sequence();
-        PlayerRunButtonBG.gameObject.SetActive(true);
+        if (isRunButtonOn)
+        {
+            Debug.Log("InActived!");
+            Sequence sequence = DOTween.Sequence();
+            PlayerRunButtonBG.gameObject.SetActive(true);
 
-        sequence
-        .SetAutoKill(true)
-        .Append(
-            PlayerRunButtonBG.DOFade(0.5f, 0.5f).SetEase(Ease.OutExpo))
-        .Join(
-            PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
-        ).Join(
-            PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
-        );
+            sequence
+            .SetAutoKill(true)
+            .Append(
+                PlayerRunButtonBG.DOFade(0.5f, 0.5f).SetEase(Ease.OutExpo))
+            .Join(
+                PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+            ).Join(
+                PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+            );
+        }
     }
 
     private void FX_BarSizeChange(GameObject tempBar, float tempScaleX)

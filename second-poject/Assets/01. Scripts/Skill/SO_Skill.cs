@@ -7,7 +7,7 @@ public class SO_Skill : ScriptableObject
 {
     public string skillName;
     public int buyCost = 0;
-    public bool categorPyhysics;
+    public bool categorPhysics;
     public bool categoryChemistry;
     [System.NonSerialized] public bool isCanUse = true;
     public Elements skillElements;
