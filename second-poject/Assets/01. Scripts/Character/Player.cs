@@ -130,16 +130,16 @@ public class Player : Character
             buff_debuffStats.FOC = characterStats.FOC * scaleSet;
             buff_debuffStats.CHA = characterStats.CHA * scaleSet;
         }
-        else
-        {
-            buff_debuffStats.STR = 0;
-            buff_debuffStats.FIR = 0;
-            buff_debuffStats.INT = 0;
-            buff_debuffStats.WIS = 0;
-            buff_debuffStats.DEX = 0;
-            buff_debuffStats.FOC = 0;
-            buff_debuffStats.CHA = 0;
-        }
+        // else
+        // {
+        //     buff_debuffStats.STR = 0;
+        //     buff_debuffStats.FIR = 0;
+        //     buff_debuffStats.INT = 0;
+        //     buff_debuffStats.WIS = 0;
+        //     buff_debuffStats.DEX = 0;
+        //     buff_debuffStats.FOC = 0;
+        //     buff_debuffStats.CHA = 0;
+        // }
     }
 
     public float GetLevelScale_forBattle(float temp)
@@ -147,11 +147,11 @@ public class Player : Character
         if (temp < 0)
         {
             temp *= -1;
-            temp = -1 * ((-2 / (temp + 1.5f)) + 1) / 2;
+            temp = -1 * ((-2 / (temp + 2f)) + 1f) / 2;
         }
         else if (temp > 0)
         {
-            temp = ((-2 / (temp + 1.5f)) + 1f) / 2;
+            temp = ((-2 / (temp + 2f)) + 1f) / 2;
         }
         else
         {
@@ -198,9 +198,9 @@ public class Player : Character
                 {
                     tempEl_int.METAL++;
                 }
-                else if (skillList[i].skillElements.CLAY)
+                else if (skillList[i].skillElements.SOIL)
                 {
-                    tempEl_int.CLAY++;
+                    tempEl_int.SOIL++;
                 }
             }
         }

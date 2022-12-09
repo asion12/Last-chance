@@ -10,7 +10,7 @@ public struct Elements
     public bool HYDRO; // water
     public bool BIOLOGY; // tree
     public bool METAL; // steel
-    public bool CLAY; // solid
+    public bool SOIL; // solil
 }
 
 // public enum eElement

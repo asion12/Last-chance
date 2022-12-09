@@ -205,17 +205,17 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // SkillCaster FOC Check
-                castSkill.accuarityPer += Mathf.Log(skillCaster.totalStats.FOC, 2) * 5;
-                castSkill.casterCriticalPer += Mathf.Log(skillCaster.totalStats.FOC, 2) * 5;
+                castSkill.accuarityPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
+                castSkill.casterCriticalPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
                 if (skillCaster.nowCP > castSkill.needCP)
                 {
                     Debug.Log("Cp Over!!");
-                    castSkill.accuarityPer += (skillCaster.nowCP - castSkill.needCP) * Mathf.Log(skillCaster.totalStats.FOC, 2);
+                    castSkill.accuarityPer += (skillCaster.nowCP - castSkill.needCP) * Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
                 }
                 else if (skillCaster.nowCP < castSkill.needCP)
                 {
                     Debug.Log("Cp Min!!");
-                    castSkill.accuarityPer -= (castSkill.needCP - skillCaster.nowCP) / Mathf.Log(skillCaster.totalStats.FOC, 2);
+                    castSkill.accuarityPer -= (castSkill.needCP - skillCaster.nowCP) / Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
                 }
                 else
                 {
@@ -226,11 +226,11 @@ public class BattleManager : MonoBehaviour
 
                 // SkillVicTim DEX Check
                 castSkill.accuarityPer = castSkill.accuarityPer
-                - ((castSkill.accuarityPer * (Mathf.Log(skillVictim.totalStats.DEX, 2) - 1) / Mathf.Log(skillVictim.totalStats.DEX, 2))
-                * (Mathf.Log(skillVictim.totalStats.CHA, 2) - 1 + (skillVictim.nowCP / skillVictim.maxCP))
-                / Mathf.Log(skillVictim.totalStats.CHA, 2));
+                - ((castSkill.accuarityPer * (Mathf.Log(1 + skillVictim.totalStats.DEX, 2) - 1) / Mathf.Log(1 + skillVictim.totalStats.DEX, 2))
+                * (Mathf.Log(1 + skillVictim.totalStats.CHA, 2) - 1 + (skillVictim.nowCP / skillVictim.maxCP))
+                / Mathf.Log(1 + skillVictim.totalStats.CHA, 2));
 
-                Debug.Log("DexVal = " + Mathf.Log(skillVictim.totalStats.DEX, 2).ToString());
+                Debug.Log("DexVal = " + Mathf.Log(1 + skillVictim.totalStats.DEX, 2).ToString());
                 Debug.Log("VicNowCP = " + skillVictim.nowCP + "VicMaxCP = " + skillVictim.maxCP + " CPVal = " + ((float)((float)skillVictim.nowCP / (float)skillVictim.maxCP)).ToString());
                 Debug.Log("After Skill_1 ACC is " + castSkill.accuarityPer.ToString());
 
@@ -238,20 +238,22 @@ public class BattleManager : MonoBehaviour
 
                 Debug.Log("After Skill_2 ACC is " + castSkill.accuarityPer.ToString());
 
-                castSkill.victimDeceptionPer += Mathf.Log(skillVictim.totalStats.CHA, 2) * 10;
+                castSkill.victimDeceptionPer += Mathf.Log(1 + skillVictim.totalStats.CHA, 2) * 10;
 
 
                 if (castSkill.accuarityPer > 100)
                 {
+                    Debug.Log("Cp Over!!");
                     castSkill.casterCriticalPer += castSkill.accuarityPer - 100;
                 }
                 else if (castSkill.accuarityPer < 0)
                 {
-                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(skillVictim.totalStats.CHA, 2);
+                    Debug.Log("Cp Min!!");
+                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(1 + skillVictim.totalStats.CHA, 2);
                     castSkill.accuarityPer = (float)0;
                 }
                 // // Skill Deception Percentage Add to CHA
-                // castSkill.victimDeceptionPer *= Mathf.Log( 1 + skillVictim.totalStats.CHA, 2);
+                // castSkill.victimDeceptionPer *= Mathf.Log( 1 +  1 + skillVictim.totalStats.CHA, 2);
                 // castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
 
                 // Skill Hit Check
@@ -326,22 +328,24 @@ public class BattleManager : MonoBehaviour
 
             if (castSkill.categorPhysics)
             {
-                increaseDamage = Mathf.Log(skillCaster.totalStats.STR, 2);
-                decreaseDamage = Mathf.Log(skillVictim.totalStats.FIR, 2);
+                increaseDamage = Mathf.Log(1 + skillCaster.totalStats.STR, 2f);
+                decreaseDamage = Mathf.Log(1 + skillVictim.totalStats.FIR, 2f);
             }
             else if (castSkill.categoryChemistry)
             {
                 Debug.Log("Chemistry");
-                increaseDamage = Mathf.Log(skillCaster.totalStats.INT, 2);
-                decreaseDamage = Mathf.Log(skillVictim.totalStats.WIS, 2);
+                increaseDamage = Mathf.Log(1 + skillCaster.totalStats.INT, 2f);
+                decreaseDamage = Mathf.Log(1 + skillVictim.totalStats.WIS, 2f);
             }
 
-            float checkDamage = castSkill.skillDamage * increaseDamage;
+            Debug.Log("Cast Skill Damage  = " + castSkill.skillDamage.ToString());
+            Debug.Log("increaseDamage = " + (float)increaseDamage);
+            float checkDamage = (float)castSkill.skillDamage * increaseDamage;
             Debug.Log("Check Damage is " + checkDamage);
 
             float finalSkillDamage =
-            (castSkill.skillDamage * increaseDamage * (1 + overDealing + Convert.ToInt32(isAdvantage))
-            / (isCritical ? 1 : decreaseDamage)) * Convert.ToInt32(!isReject);
+            (castSkill.skillDamage * increaseDamage * (1f + (float)overDealing + (float)Convert.ToDouble(isAdvantage))
+            / (isCritical ? 1f : (float)decreaseDamage)) * (float)Convert.ToDouble(!isReject);
 
             Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
             skillVictim.nowHP -= (int)finalSkillDamage;
@@ -418,7 +422,7 @@ public class BattleManager : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -432,7 +436,7 @@ public class BattleManager : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -480,7 +484,7 @@ public class BattleManager : MonoBehaviour
         //                 count++;
         //             break;
         //         case 6:
-        //             if (characterElements.CLAY && skillElements.CLAY)
+        //             if (characterElements.SOIL && skillElements.SOIL)
         //                 count++;
         //             break;
         //         default:

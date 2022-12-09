@@ -326,7 +326,7 @@ public class UIManager : MonoBehaviour
             return Color.green;
         else if (el.METAL)
             return Color.black;
-        else if (el.CLAY)
+        else if (el.SOIL)
             return Color.gray;
 
         return Color.cyan;
@@ -446,9 +446,9 @@ public class UIManager : MonoBehaviour
                         PlayerElementsInfo.text += weakText;
                     break;
                 case 6:
-                    if (resistElements.CLAY)
+                    if (resistElements.SOIL)
                         PlayerElementsInfo.text += resistText;
-                    else if (weakElements.CLAY)
+                    else if (weakElements.SOIL)
                         PlayerElementsInfo.text += weakText;
                     break;
                 default:
