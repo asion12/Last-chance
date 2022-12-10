@@ -39,7 +39,6 @@ public class Character : MonoBehaviour
 
     public int Level = 1;
 
-
     public ItemDBObj dbobj;
     public ItemObj itemObj;
     public CharacterStack characterStack;
@@ -78,7 +77,7 @@ public class Character : MonoBehaviour
             tempWeakElements.HYDRO += Convert.ToInt32(skillList[i].setWeakElements.HYDRO);
             tempWeakElements.BIOLOGY += Convert.ToInt32(skillList[i].setWeakElements.BIOLOGY);
             tempWeakElements.METAL += Convert.ToInt32(skillList[i].setWeakElements.METAL);
-            tempWeakElements.CLAY += Convert.ToInt32(skillList[i].setWeakElements.CLAY);
+            tempWeakElements.SOIL += Convert.ToInt32(skillList[i].setWeakElements.SOIL);
 
             tempResistElements.SOLAR += Convert.ToInt32(skillList[i].setResistElements.SOLAR);
             tempResistElements.LUMINOUS += Convert.ToInt32(skillList[i].setResistElements.LUMINOUS);
@@ -86,7 +85,7 @@ public class Character : MonoBehaviour
             tempResistElements.HYDRO += Convert.ToInt32(skillList[i].setResistElements.HYDRO);
             tempResistElements.BIOLOGY += Convert.ToInt32(skillList[i].setResistElements.BIOLOGY);
             tempResistElements.METAL += Convert.ToInt32(skillList[i].setResistElements.METAL);
-            tempResistElements.CLAY += Convert.ToInt32(skillList[i].setResistElements.CLAY);
+            tempResistElements.SOIL += Convert.ToInt32(skillList[i].setResistElements.SOIL);
         }
         characterWeakElements = tempWeakElements;
         characterResistElements = tempResistElements;
@@ -151,7 +150,7 @@ public class Character : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -165,7 +164,7 @@ public class Character : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -178,7 +177,7 @@ public class Character : MonoBehaviour
         totalResistElements.HYDRO = toResEl[3];
         totalResistElements.BIOLOGY = toResEl[4];
         totalResistElements.METAL = toResEl[5];
-        totalResistElements.CLAY = toResEl[6];
+        totalResistElements.SOIL = toResEl[6];
 
         totalWeakElements.SOLAR = toWckEl[0];
         totalWeakElements.LUMINOUS = toWckEl[1];
@@ -186,7 +185,7 @@ public class Character : MonoBehaviour
         totalWeakElements.HYDRO = toWckEl[3];
         totalWeakElements.BIOLOGY = toWckEl[4];
         totalWeakElements.METAL = toWckEl[5];
-        totalWeakElements.CLAY = toWckEl[6];
+        totalWeakElements.SOIL = toWckEl[6];
     }
     public virtual void SetTotalElements()
     {

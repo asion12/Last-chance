@@ -19,6 +19,7 @@ public class Enemy : Character
 
     [SerializeField] private BattleState enemyBattleState = BattleState.ATTACK_READY;
     private bool isChanging = false;
+    private bool isLimitOverMode = false;
 
     protected override void Start()
     {
@@ -43,6 +44,25 @@ public class Enemy : Character
             StartCoroutine(EnemySkillCast());
         }
         BattleStateCheck();
+        CheckTimeLimitOver();
+    }
+
+    private void CheckTimeLimitOver()
+    {
+        if (GameManager.instance.isTimeLimitOver && !isLimitOverMode)
+        {
+            isLimitOverMode = true;
+            StartCoroutine(SetLimitOverMode());
+        }
+    }
+
+    private IEnumerator SetLimitOverMode()
+    {
+        while (true)
+        {
+            Level += 1;
+            yield return new WaitForSeconds(2);
+        }
     }
 
     private void BattleStateCheck()

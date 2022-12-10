@@ -20,10 +20,10 @@ public class StoreUIManager : MonoBehaviour
     public InventoryObj inventoryObj;
     public ItemDBObj itemDBObj;
     public Canvas store;
-    public bool canvas=false;
+    public bool canvas = false;
     void Start()
     {
-        
+
     }
     public void SetText<T>(Text text, T value)
     {
@@ -63,13 +63,12 @@ public class StoreUIManager : MonoBehaviour
             invenSlot.addCnt(GameManager.instance.Hp_0);
 
         }
-        else if (GameManager.instance.Gold<1000)
+        else if (GameManager.instance.Gold < 1000)
         {
-           
+
             falseBuy.gameObject.SetActive(true);
             Invoke("OnImage", 1);
         }
-
     }
  
 

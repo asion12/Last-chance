@@ -11771,6 +11771,7 @@ MonoBehaviour:
   battleStartText_1: {fileID: 1474396075}
   canExitText: {fileID: 140269383}
   InventoryUI: {fileID: 1275467232}
+  isInvenOn: 0
 --- !u!1 &1671239590
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour
     public bool isCarelessTurnUsed = false;
     private UIManager uIManager = null;
     public NavMeshAgent monster;
-
+    private int BonusExpScale = 0;
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -82,24 +82,32 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
-        SetEnemy(detactedEnemy.GetComponent<Character>());
-        targetEnemy.isBattleMode = true;
-        player.isBattleMode = true;
-        Debug.Log("BattleStartFX!");
-        uIManager.FX_BattleStart();
-        Debug.Log("SkillUIOnFX!");
-        uIManager.SetBattleUIActive();
-        player.CameraRotateToTarget(targetEnemy.transform.gameObject);
-        if (isPlayerStart)
+        // if now Battlemode
+        if (nowTurnID != 0)
         {
-            //monster.speed = 0;
-            nowTurnID = 1;
-            if (isVictimCareless)
-                targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
+            Debug.LogWarning("Now is Battle Mode But Trying Battle Start!");
         }
         else
         {
-            nowTurnID = 2;
+            SetEnemy(detactedEnemy.GetComponent<Character>());
+            targetEnemy.isBattleMode = true;
+            player.isBattleMode = true;
+            Debug.Log("BattleStartFX!");
+            uIManager.FX_BattleStart();
+            Debug.Log("SkillUIOnFX!");
+            uIManager.SetBattleUIActive();
+            player.CameraRotateToTarget(targetEnemy.transform.gameObject);
+            if (isPlayerStart)
+            {
+                //monster.speed = 0;
+                nowTurnID = 1;
+                if (isVictimCareless)
+                    targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
+            }
+            else
+            {
+                nowTurnID = 2;
+            }
         }
     }
 
@@ -108,6 +116,9 @@ public class BattleManager : MonoBehaviour
         ResetBattleSetting();
         if (isPlayerWin)
         {
+            float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
+            player.EXP += (int)(20 * (1 + (player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 2)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)));
+            BonusExpScale = 0;
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
             uIManager.SetBattleUIInactive();
@@ -117,10 +128,12 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            BonusExpScale = 0;
             Debug.Log("Enemy Win!");
             Debug.Log("GameOverFX");
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
+            uIManager.SetBattleUIInactive();
             GameManager.instance.ResetDungeon();
             //monster.speed = 3.5f;
         }
@@ -131,17 +144,14 @@ public class BattleManager : MonoBehaviour
         ResetBattleSetting();
         if (isPlayerRun)
         {
+            uIManager.SetBattleUIInactive();
             Debug.Log("Enemy Stunned!");
-            targetEnemy.isStunned = true;
             yield return new WaitForSeconds(5);
-            targetEnemy.isStunned = false;
         }
         else
         {
             Debug.Log("Player Stunned!");
-            player.isStunned = true;
             yield return new WaitForSeconds(5);
-            player.isStunned = false;
         }
     }
 
@@ -150,7 +160,7 @@ public class BattleManager : MonoBehaviour
         nowTurnID = 0;
         targetEnemy.isBattleMode = false;
         player.isBattleMode = false;
-        Debug.Log(player.isBattleMode);
+        // Debug.Log(player.isBattleMode);
         player.ResetBattleStatus();
         targetEnemy.ResetBattleStatus();
     }
@@ -166,8 +176,6 @@ public class BattleManager : MonoBehaviour
     }
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
-        float CasterCP = (float)skillCaster.nowCP;
-        float CasterCP_Percentage = CasterCP / (float)skillCaster.maxCP;
         if (skillCaster.nowMP < castSkill.needMp)
         {
         }
@@ -197,18 +205,17 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // SkillCaster FOC Check
-                castSkill.accuarityPer += skillCaster.totalStats.FOC;
-                castSkill.casterCriticalPer += skillCaster.totalStats.FOC;
-                if (CasterCP > castSkill.needCP)
+                castSkill.accuarityPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
+                castSkill.casterCriticalPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
+                if (skillCaster.nowCP > castSkill.needCP)
                 {
                     Debug.Log("Cp Over!!");
-                    castSkill.accuarityPer = 100;
-                    castSkill.casterCriticalPer += (CasterCP - castSkill.needCP) * Mathf.Log(skillCaster.totalStats.FOC, 2);
+                    castSkill.accuarityPer += (skillCaster.nowCP - castSkill.needCP) * Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
                 }
-                else if (CasterCP < castSkill.needCP)
+                else if (skillCaster.nowCP < castSkill.needCP)
                 {
                     Debug.Log("Cp Min!!");
-                    castSkill.accuarityPer -= (castSkill.needCP - CasterCP) / Mathf.Log(skillCaster.totalStats.FOC, 2);
+                    castSkill.accuarityPer -= (castSkill.needCP - skillCaster.nowCP) / Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
                 }
                 else
                 {
@@ -218,18 +225,35 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Skill ACC is " + castSkill.accuarityPer.ToString());
 
                 // SkillVicTim DEX Check
-                castSkill.accuarityPer /= Mathf.Log(skillVictim.totalStats.DEX, 2) * (skillVictim.nowCP / skillVictim.maxCP);
-                castSkill.accuarityPer -= skillVictim.totalStats.DEX;
-                castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
-                if (castSkill.accuarityPer < 0)
-                {
-                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(skillVictim.totalStats.CHA, 2);
-                    castSkill.accuarityPer = 0;
-                }
+                castSkill.accuarityPer = castSkill.accuarityPer
+                - ((castSkill.accuarityPer * (Mathf.Log(1 + skillVictim.totalStats.DEX, 2) - 1) / Mathf.Log(1 + skillVictim.totalStats.DEX, 2))
+                * (Mathf.Log(1 + skillVictim.totalStats.CHA, 2) - 1 + (skillVictim.nowCP / skillVictim.maxCP))
+                / Mathf.Log(1 + skillVictim.totalStats.CHA, 2));
 
-                Debug.Log("After Skill ACC is " + castSkill.accuarityPer.ToString());
+                Debug.Log("DexVal = " + Mathf.Log(1 + skillVictim.totalStats.DEX, 2).ToString());
+                Debug.Log("VicNowCP = " + skillVictim.nowCP + "VicMaxCP = " + skillVictim.maxCP + " CPVal = " + ((float)((float)skillVictim.nowCP / (float)skillVictim.maxCP)).ToString());
+                Debug.Log("After Skill_1 ACC is " + castSkill.accuarityPer.ToString());
+
+                castSkill.accuarityPer -= skillVictim.totalStats.DEX;
+
+                Debug.Log("After Skill_2 ACC is " + castSkill.accuarityPer.ToString());
+
+                castSkill.victimDeceptionPer += Mathf.Log(1 + skillVictim.totalStats.CHA, 2) * 10;
+
+
+                if (castSkill.accuarityPer > 100)
+                {
+                    Debug.Log("Cp Over!!");
+                    castSkill.casterCriticalPer += castSkill.accuarityPer - 100;
+                }
+                else if (castSkill.accuarityPer < 0)
+                {
+                    Debug.Log("Cp Min!!");
+                    castSkill.victimDeceptionPer += -1 * castSkill.accuarityPer * Mathf.Log(1 + skillVictim.totalStats.CHA, 2);
+                    castSkill.accuarityPer = (float)0;
+                }
                 // // Skill Deception Percentage Add to CHA
-                // castSkill.victimDeceptionPer *= Mathf.Log(skillVictim.totalStats.CHA, 2);
+                // castSkill.victimDeceptionPer *= Mathf.Log( 1 +  1 + skillVictim.totalStats.CHA, 2);
                 // castSkill.victimDeceptionPer += skillVictim.totalStats.CHA;
 
                 // Skill Hit Check
@@ -293,32 +317,39 @@ public class BattleManager : MonoBehaviour
                 skillVictim.isCareless = false;
             }
 
+            if (isDeception)
+            {
+                BonusExpScale++;
+                Debug.Log("기만 성공! 경험치 배율 조정됨!");
+            }
+
             float increaseDamage = 0f;
             float decreaseDamage = 0f;
 
-            if (castSkill.categorPyhysics)
+            if (castSkill.categorPhysics)
             {
-                increaseDamage = Mathf.Log(skillCaster.totalStats.STR, 2);
-                decreaseDamage = Mathf.Log(skillVictim.totalStats.FIR, 2);
+                increaseDamage = Mathf.Log(1 + skillCaster.totalStats.STR, 2f);
+                decreaseDamage = Mathf.Log(1 + skillVictim.totalStats.FIR, 2f);
             }
             else if (castSkill.categoryChemistry)
             {
                 Debug.Log("Chemistry");
-                increaseDamage = Mathf.Log(skillCaster.totalStats.INT, 2);
-                decreaseDamage = Mathf.Log(skillVictim.totalStats.WIS, 2);
+                increaseDamage = Mathf.Log(1 + skillCaster.totalStats.INT, 2f);
+                decreaseDamage = Mathf.Log(1 + skillVictim.totalStats.WIS, 2f);
             }
 
-            float checkDamage = castSkill.skillDamage * (increaseDamage / 100);
+            Debug.Log("Cast Skill Damage  = " + castSkill.skillDamage.ToString());
+            Debug.Log("increaseDamage = " + (float)increaseDamage);
+            float checkDamage = (float)castSkill.skillDamage * increaseDamage;
             Debug.Log("Check Damage is " + checkDamage);
 
             float finalSkillDamage =
-            (castSkill.skillDamage * increaseDamage * (1 + overDealing + Convert.ToInt32(isAdvantage))
-            / (isCritical ? 1 : decreaseDamage)) * Convert.ToInt32(!isReject);
+            (castSkill.skillDamage * increaseDamage * (1f + (float)overDealing + (float)Convert.ToDouble(isAdvantage))
+            / (isCritical ? 1f : (float)decreaseDamage)) * (float)Convert.ToDouble(!isReject);
 
             Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
-            skillVictim.nowHP -= Convert.ToInt32(finalSkillDamage);
+            skillVictim.nowHP -= (int)finalSkillDamage;
             Debug.Log("Now Victim Hp : " + skillVictim.nowHP.ToString());
-
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
@@ -391,7 +422,7 @@ public class BattleManager : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -405,7 +436,7 @@ public class BattleManager : MonoBehaviour
         elementArr[3] = el.HYDRO;
         elementArr[4] = el.BIOLOGY;
         elementArr[5] = el.METAL;
-        elementArr[6] = el.CLAY;
+        elementArr[6] = el.SOIL;
 
         return elementArr;
     }
@@ -453,7 +484,7 @@ public class BattleManager : MonoBehaviour
         //                 count++;
         //             break;
         //         case 6:
-        //             if (characterElements.CLAY && skillElements.CLAY)
+        //             if (characterElements.SOIL && skillElements.SOIL)
         //                 count++;
         //             break;
         //         default:

@@ -8,6 +8,9 @@ TagManager:
   - Box
   - items
   - ExitPannel
+  - EditorTile
+  - eraser
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - Wall
   - Box
-  - 
+  - Obstacle
   - 
   - 
   - 

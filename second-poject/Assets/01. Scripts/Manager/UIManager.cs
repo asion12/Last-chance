@@ -8,13 +8,10 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // about Base UI
-    public Canvas playerBattleUI;
 
-    // about Battle
-    [SerializeField] private Text battle_TurnText;
-    [SerializeField] private Text battle_PlayerElementsInfo;
-    [SerializeField] private Text battle_PlayerStatsInfo;
+    [Header("외부 캔버스 UI")]
+    [SerializeField] private TMP_Text LeftOverTimeLimitText;
+    [SerializeField] private TMP_Text battle_TurnText;
 
     [Header("전투 관련 UI")]
     [SerializeField] private GameObject battle_SkillScrollView;
@@ -23,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerSkillListBG;
     [SerializeField] private GameObject PlayerRunButton;
     [SerializeField] private Image PlayerRunButtonBG;
+    private bool isRunButtonOn = false;
 
     [Header("플레이어 베이스 UI")]
     [SerializeField] private TextMeshProUGUI PlayerCarelessCount;
@@ -33,6 +31,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
     [SerializeField] private Image PlayerNowExpBar;
     [SerializeField] private TextMeshProUGUI PlayerExpText;
+    [SerializeField] private Text PlayerElementsInfo;
+    [SerializeField] private Text PlayerStatsInfo;
 
     [Header("목표 적 베이스 UI")]
     [SerializeField] private GameObject TargetEnemyBaseGroup;
@@ -58,13 +58,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject canExitText;
 
     [Header("인벤토리 UI")]
-    [SerializeField] private Canvas InventoryUI;
+    [SerializeField] private GameObject ItemList;
+    //[SerializeField] private Canvas InventoryUI;
 
     private Character player = null;
     private EventManager eventManager;
     private bool isCarelessUISetted = false;
     private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
+
+    public bool isInvenOn = false;
 
     private float tempPlayerHp = -1;
     private float tempPlayerMp = -1;
@@ -86,7 +89,7 @@ public class UIManager : MonoBehaviour
         else
         {
             skills = player.skillList;
-            UIUpdate_PlayerSkillList();
+            SetPlayerSkillList();
         }
     }
 
@@ -118,73 +121,12 @@ public class UIManager : MonoBehaviour
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
         UIUpdate_CheckSkillUse();
-        UIUpdate_CheckPlayerCanExit();
-        OnIventory();
+        UIUpdate_SetPlayerCanExit();
+        UIUpdate_SetLeftOverTimeLimit();
+        //OnIventory();
     }
 
-    public void SetBattleUIActive()
-    {
-        //playerBattleUI.gameObject.SetActive(true);
-        FX_PlayerSkillListActive();
-    }
-
-    public void SetBattleUIInactive()
-    {
-        //playerBattleUI.gameObject.SetActive(false);
-        FX_PlayerSkillListInactive();
-    }
-
-    private void FX_PlayerSkillListActive()
-    {
-        PlayerSkillListBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
-        PlayerSkillList.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo);
-    }
-
-    private void FX_PlayerSkillListInactive()
-    {
-        PlayerSkillListBG.gameObject.SetActive(true);
-        PlayerSkillListBG.DOFade(0.75f, 0.5f).SetEase(Ease.OutExpo);
-        PlayerSkillList.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo);
-    }
-
-    private void FX_PlayerRunButtonActive()
-    {
-        Debug.Log("Actived!");
-        Sequence sequence = DOTween.Sequence();
-
-        sequence
-        .SetAutoKill(true)
-        .Append(
-            PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
-        )
-        .Join(
-        PlayerRunButtonBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() =>
-        {
-            PlayerRunButtonBG.gameObject.SetActive(false);
-        }))
-        .Join(
-            PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
-        );
-    }
-
-    private void FX_PlayerRunButtonInactive()
-    {
-        Debug.Log("InActived!");
-        Sequence sequence = DOTween.Sequence();
-        PlayerRunButtonBG.gameObject.SetActive(true);
-
-        sequence
-        .SetAutoKill(true)
-        .Append(
-            PlayerRunButtonBG.DOFade(0.5f, 0.5f).SetEase(Ease.OutExpo))
-        .Join(
-            PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
-        ).Join(
-            PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
-        );
-    }
-
-    private void UIUpdate_CheckPlayerCanExit()
+    private void UIUpdate_SetPlayerCanExit()
     {
         if (player.GetComponent<Player>().isCanExit)
         {
@@ -196,54 +138,41 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void OnIventory()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+    // private void OnIventory()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.E))
+    //     {
 
-            if (BattleManager.instance.nowTurnID == 0)
-            {
-                if (InventoryUI.gameObject.activeSelf)
-                {
-                    InventoryUI.gameObject.SetActive(false);
-                }
-                else
-                {
-                    InventoryUI.gameObject.SetActive(true);
-                }
-            }
-        }
-    }
+    //         if (BattleManager.instance.nowTurnID == 0)
+    //         {
+    //             if (InventoryUI.gameObject.activeSelf)
+    //             {
+    //                 isInvenOn = false;
+    //                 InventoryUI.gameObject.SetActive(false);
+    //             }
+    //             else
+    //             {
+    //                 isInvenOn = true;
+    //                 InventoryUI.gameObject.SetActive(true);
+    //             }
+    //         }
+    //     }
+    // }
 
     private void UIUpdate_NowTurn()
     {
         if (BattleManager.instance.nowTurnID == 0)
         {
-            battle_TurnText.text = "비 전투 상태";
+            battle_TurnText.text = "NON-BATTLE STATE";
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
-            battle_TurnText.text = "플레이어 턴";
+            battle_TurnText.text = "PLAYER\nTURN";
         }
         else if (BattleManager.instance.nowTurnID == 2)
         {
-            battle_TurnText.text = "에너미 턴";
+            battle_TurnText.text = "ENEMY\nTURN";
         }
-    }
-
-    private void SetBarSize(GameObject tempBarObject, float originValue, float tempValue, float originMaxValue)
-    {
-        float tempBarSize = originValue / originMaxValue;
-        if (tempValue != originValue)
-        {
-            tempValue = originValue;
-            FX_BarSizeChange(tempBarObject, tempBarSize);
-        }
-    }
-
-    private void FX_BarSizeChange(GameObject tempBar, float tempScaleX)
-    {
-        tempBar.transform.DOScaleX(tempScaleX, 0.25f).SetEase(Ease.OutExpo);
     }
 
     private void UIUpdate_PlayerBase()
@@ -315,84 +244,71 @@ public class UIManager : MonoBehaviour
         // TargetEnemyCarelessCount.gameObject.SetActive(false);
     }
 
-    private void SetText<T>(Text text, T state)
-    {
-        text.text += $"{state}\n";
-    }
-
     private void UIUpdate_PlayerStatsInfo()
     {
-        battle_PlayerStatsInfo.text = "";
-        //SetText(battle_PlayerStatsInfo, player.characterStats.MAX_HP, player.buff_debuffStats.MAX_HP);
-        //SetText(battle_PlayerStatsInfo, player.characterStats.MAX_MP, player.buff_debuffStats.MAX_MP);
-        SetText(battle_PlayerStatsInfo, player.characterStats.STR);
-        SetText(battle_PlayerStatsInfo, player.characterStats.FIR);
-        SetText(battle_PlayerStatsInfo, player.characterStats.INT);
-        SetText(battle_PlayerStatsInfo, player.characterStats.WIS);
-        SetText(battle_PlayerStatsInfo, player.characterStats.FOC);
-        SetText(battle_PlayerStatsInfo, player.characterStats.DEX);
-        SetText(battle_PlayerStatsInfo, player.characterStats.CHA);
+        PlayerStatsInfo.text = "";
+        //SetText(PlayerStatsInfo, player.characterStats.MAX_HP, player.buff_debuffStats.MAX_HP);
+        //SetText(PlayerStatsInfo, player.characterStats.MAX_MP, player.buff_debuffStats.MAX_MP);
+        SetText(PlayerStatsInfo, player.characterStats.STR);
+        SetText(PlayerStatsInfo, player.characterStats.FIR);
+        SetText(PlayerStatsInfo, player.characterStats.INT);
+        SetText(PlayerStatsInfo, player.characterStats.WIS);
+        SetText(PlayerStatsInfo, player.characterStats.FOC);
+        SetText(PlayerStatsInfo, player.characterStats.DEX);
+        SetText(PlayerStatsInfo, player.characterStats.CHA);
     }
 
     private void UIUpdate_PlayerElementsInfo()
     {
-        CheckElementAndAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
+        SetElementAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
     }
 
-    private void CheckElementAndAddInfo(Elements resistElements, Elements weakElements, string resistText, string weakText)
+    private void UIUpdate_CheckSkillUse()
     {
-        battle_PlayerElementsInfo.text = "";
-
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < player.skillList.Count; i++)
         {
-            switch (i)
+            if (skills[i].isCanUse)
             {
-                case 0:
-                    if (resistElements.SOLAR)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.SOLAR)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 1:
-                    if (resistElements.LUMINOUS)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.LUMINOUS)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 2:
-                    if (resistElements.IGNITION)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.IGNITION)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 3:
-                    if (resistElements.HYDRO)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.HYDRO)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 4:
-                    if (resistElements.BIOLOGY)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.BIOLOGY)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 5:
-                    if (resistElements.METAL)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.METAL)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                case 6:
-                    if (resistElements.CLAY)
-                        battle_PlayerElementsInfo.text += resistText;
-                    else if (weakElements.CLAY)
-                        battle_PlayerElementsInfo.text += weakText;
-                    break;
-                default:
-                    break;
+                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
             }
-            battle_PlayerElementsInfo.text += "\n";
+            else
+            {
+                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void UIUpdate_CheckCarelessUIOn()
+    {
+        if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless && !isCarelessUISetted)
+        {
+            isCarelessUISetted = true;
+            isCarelessUINonSetted = false;
+            SetCarelessUIActive();
+        }
+        else if (!isCarelessUINonSetted)
+        {
+            isCarelessUISetted = false;
+            isCarelessUINonSetted = true;
+            SetCarelessUIInactive();
+        }
+    }
+
+    private void UIUpdate_SetLeftOverTimeLimit()
+    {
+        if (!GameManager.instance.isTimeLimitOver)
+        {
+            // string tempBeforeString = LeftOverTimeLimitText.text;
+            // string tempAfterString = (GameManager.instance.nowTimeLimit - GameManager.instance.maxTimeLimit).ToString("F2");
+            // if (tempBeforeString != tempAfterString)
+            // {
+            //     //FX_ChangingCharacterOfString_forLeftOverTimeLimitText(tempBeforeString, tempAfterString);
+            // }
+            LeftOverTimeLimitText.text = (GameManager.instance.maxTimeLimit - GameManager.instance.nowTimeLimit).ToString("F2");
+        }
+        else
+        {
+            LeftOverTimeLimitText.text = "RUN!";
         }
     }
 
@@ -410,13 +326,31 @@ public class UIManager : MonoBehaviour
             return Color.green;
         else if (el.METAL)
             return Color.black;
-        else if (el.CLAY)
+        else if (el.SOIL)
             return Color.gray;
 
         return Color.cyan;
     }
 
-    private void UIUpdate_PlayerSkillList()
+    public void SetBattleUIInactive()
+    {
+        //playerBattleUI.gameObject.SetActive(false);
+        FX_PlayerSkillListInactive();
+    }
+
+    public void SetBattleUIActive()
+    {
+        //playerBattleUI.gameObject.SetActive(true);
+        FX_PlayerSkillListActive();
+    }
+
+    private void ResetPlayerSkillList()
+    {
+        SetPlayerSkillListEnable();
+        SetPlayerSkillList();
+    }
+
+    private void SetPlayerSkillList()
     {
         for (int i = 0; i < skills.Count; i++)
         {
@@ -443,18 +377,84 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void UIUpdate_CheckSkillUse()
+    private void SetPlayerSkillListEnable()
     {
-        for (int i = 0; i < player.skillList.Count; i++)
+        for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
-            if (skills[i].isCanUse)
+            Destroy(PlayerSkillList.transform.GetChild(i));
+        }
+
+    }
+
+    private void SetBarSize(GameObject tempBarObject, float originValue, float tempValue, float originMaxValue)
+    {
+        float tempBarSize = originValue / originMaxValue;
+        if (tempValue != originValue)
+        {
+            tempValue = originValue;
+            FX_BarSizeChange(tempBarObject, tempBarSize);
+        }
+    }
+
+    private void SetText<T>(Text text, T state)
+    {
+        text.text += $"{state}\n";
+    }
+
+    private void SetElementAddInfo(Elements resistElements, Elements weakElements, string resistText, string weakText)
+    {
+        PlayerElementsInfo.text = "";
+
+        for (int i = 0; i < 7; i++)
+        {
+            switch (i)
             {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
+                case 0:
+                    if (resistElements.SOLAR)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.SOLAR)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 1:
+                    if (resistElements.LUMINOUS)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.LUMINOUS)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 2:
+                    if (resistElements.IGNITION)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.IGNITION)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 3:
+                    if (resistElements.HYDRO)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.HYDRO)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 4:
+                    if (resistElements.BIOLOGY)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.BIOLOGY)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 5:
+                    if (resistElements.METAL)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.METAL)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                case 6:
+                    if (resistElements.SOIL)
+                        PlayerElementsInfo.text += resistText;
+                    else if (weakElements.SOIL)
+                        PlayerElementsInfo.text += weakText;
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
-            }
+            PlayerElementsInfo.text += "\n";
         }
     }
 
@@ -476,22 +476,6 @@ public class UIManager : MonoBehaviour
         return changeToString;
     }
 
-    private void UIUpdate_CheckCarelessUIOn()
-    {
-        if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless && !isCarelessUISetted)
-        {
-            isCarelessUISetted = true;
-            isCarelessUINonSetted = false;
-            SetCarelessUIActive();
-        }
-        else if (!isCarelessUINonSetted)
-        {
-            isCarelessUISetted = false;
-            isCarelessUINonSetted = true;
-            SetCarelessUIInactive();
-        }
-    }
-
     private void SetCarelessUIActive()
     {
         FX_PlayerRunButtonActive();
@@ -507,11 +491,73 @@ public class UIManager : MonoBehaviour
         tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
     }
 
+    private void FX_PlayerSkillListActive()
+    {
+        PlayerSkillListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
+        PlayerSkillList.transform.DOScale(1, 0.125f);
+    }
+
+    private void FX_PlayerSkillListInactive()
+    {
+        PlayerSkillListBG.gameObject.SetActive(true);
+        PlayerSkillListBG.DOFade(1f, 0.125f);
+        PlayerSkillList.transform.DOScale(0.975f, 0.125f);
+    }
+
+    private void FX_PlayerRunButtonActive()
+    {
+        if (!isRunButtonOn)
+        {
+            Debug.Log("Actived!");
+            isRunButtonOn = true;
+            Sequence sequence = DOTween.Sequence();
+
+            sequence
+            .SetAutoKill(true)
+            .Append(
+                PlayerRunButtonBG.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+            )
+            .Join(
+            PlayerRunButtonBG.DOFade(0, 0.5f).SetEase(Ease.OutExpo).OnComplete(() =>
+            {
+                PlayerRunButtonBG.gameObject.SetActive(false);
+            }))
+            .Join(
+                PlayerRunButton.transform.DOScale(1, 0.5f).SetEase(Ease.OutExpo)
+            );
+        }
+    }
+
+    private void FX_PlayerRunButtonInactive()
+    {
+        if (isRunButtonOn)
+        {
+            Debug.Log("InActived!");
+            Sequence sequence = DOTween.Sequence();
+            PlayerRunButtonBG.gameObject.SetActive(true);
+
+            sequence
+            .SetAutoKill(true)
+            .Append(
+                PlayerRunButtonBG.DOFade(0.5f, 0.5f).SetEase(Ease.OutExpo))
+            .Join(
+                PlayerRunButtonBG.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+            ).Join(
+                PlayerRunButton.transform.DOScale(0.95f, 0.5f).SetEase(Ease.OutExpo)
+            );
+        }
+    }
+
+    private void FX_BarSizeChange(GameObject tempBar, float tempScaleX)
+    {
+        tempBar.transform.DOScaleX(tempScaleX, 0.25f).SetEase(Ease.OutExpo);
+    }
+
     public void FX_BattleStart()
     {
         Sequence battleStartSequence = DOTween.Sequence().
         Append(
-            battleStartText_0.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)
+            battleStartText_0.transform.DOLocalMoveX(-10, 0.25f).SetEase(Ease.OutExpo)
         )
         .Join(
             battleStartText_1.transform.DOLocalMoveX(0, 0.25f).SetEase(Ease.OutExpo)
@@ -524,6 +570,11 @@ public class UIManager : MonoBehaviour
             battleStartText_1.transform.DOLocalMoveX(960, 0.25f).SetEase(Ease.InExpo)
         );
     }
+
+    // public void FX_ChangingCharacterOfString_forLeftOverTimeLimitText(string beforeString, string afterString)
+    // {
+    //     //for (LeftOverTimeLimitText.textInfo.characterCount)
+    // }
 
     // private void SetImageListAlphaZero(List<Image> tempImageList)
     // {

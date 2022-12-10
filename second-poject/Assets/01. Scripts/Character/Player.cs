@@ -29,16 +29,18 @@ public class Player : Character
 
     float cpDecreaseTimer = 0;
     float cpDecreaseTimer_MAX = 1f;
-    public ItemDBObj itemDBObj;
-    public InventoryObj inventoryObj;
-    public GameObject box;
-    public GameObject items;
+
+    //public ItemDBObj itemDBObj;
+    //public InventoryObj inventoryObj;
+    //public GameObject box;
+    //public GameObject items;
+
     public Transform poistion;
 
     public bool isCanExit = false;
 
     public int EXP = 0;
-    public int maxEXP = 10;
+    public int maxEXP = 100;
     public int skillPoint = 0;
     protected virtual void Start()
     {
@@ -52,14 +54,14 @@ public class Player : Character
         //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.red);
         if (GameManager.instance.isGameStarted)
         {
-            if (!isBattleMode || isStunned)
+            if ((!isBattleMode || isStunned) && !uIManager.isInvenOn)
             {
                 CheckIncreaseCP();
                 CameraRotateToMousePointer();
                 CharacterMove();
                 CanBattleStartByRayCast();
-                ItemBoxCheck();
-                itemcheck();
+                //ItemBoxCheck();
+                //itemcheck();
             }
             else if (isBattleMode)
             {
@@ -69,6 +71,22 @@ public class Player : Character
             CheckPlayerLevelAndScaleStats();
             ExitCheck();
         }
+        CheckExpOver();
+        SetMaxEXP();
+    }
+
+    private void CheckExpOver()
+    {
+        if (EXP >= maxEXP)
+        {
+            EXP = 0;
+            Level++;
+        }
+    }
+
+    private void SetMaxEXP()
+    {
+        maxEXP = (int)(20 * GetNewMaxEXP(Level + 1));
     }
 
     private void CheckIncreaseCP()
@@ -103,7 +121,7 @@ public class Player : Character
     {
         if (BattleManager.instance.targetEnemy != null)
         {
-            float scaleSet = GetLevelScale(Level - BattleManager.instance.targetEnemy.Level);
+            float scaleSet = GetLevelScale_forBattle(Level - BattleManager.instance.targetEnemy.Level);
             buff_debuffStats.STR = characterStats.STR * scaleSet;
             buff_debuffStats.FIR = characterStats.FIR * scaleSet;
             buff_debuffStats.INT = characterStats.INT * scaleSet;
@@ -112,29 +130,40 @@ public class Player : Character
             buff_debuffStats.FOC = characterStats.FOC * scaleSet;
             buff_debuffStats.CHA = characterStats.CHA * scaleSet;
         }
-        else
-        {
-            buff_debuffStats.STR = 0;
-            buff_debuffStats.FIR = 0;
-            buff_debuffStats.INT = 0;
-            buff_debuffStats.WIS = 0;
-            buff_debuffStats.DEX = 0;
-            buff_debuffStats.FOC = 0;
-            buff_debuffStats.CHA = 0;
-        }
+        // else
+        // {
+        //     buff_debuffStats.STR = 0;
+        //     buff_debuffStats.FIR = 0;
+        //     buff_debuffStats.INT = 0;
+        //     buff_debuffStats.WIS = 0;
+        //     buff_debuffStats.DEX = 0;
+        //     buff_debuffStats.FOC = 0;
+        //     buff_debuffStats.CHA = 0;
+        // }
     }
 
-    private float GetLevelScale(float temp)
+    public float GetLevelScale_forBattle(float temp)
     {
         if (temp < 0)
         {
             temp *= -1;
-            temp = -1 * ((-2 / (temp + 1.5f)) + 1) / 2;
+            temp = -1 * ((-2 / (temp + 2f)) + 1f) / 2;
+        }
+        else if (temp > 0)
+        {
+            temp = ((-2 / (temp + 2f)) + 1f) / 2;
         }
         else
         {
-            temp = ((-2 / (temp + 1.5f)) + 1f) / 2;
+            temp = 0;
         }
+        return temp;
+    }
+
+    public float GetNewMaxEXP(float temp)
+    {
+        temp = (-1 * ((10) / (temp + 4)) + 2) * 5;
+
         return temp;
     }
 
@@ -169,9 +198,9 @@ public class Player : Character
                 {
                     tempEl_int.METAL++;
                 }
-                else if (skillList[i].skillElements.CLAY)
+                else if (skillList[i].skillElements.SOIL)
                 {
-                    tempEl_int.CLAY++;
+                    tempEl_int.SOIL++;
                 }
             }
         }
@@ -231,7 +260,6 @@ public class Player : Character
                     else
                     {
                         lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
-
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -299,56 +327,56 @@ public class Player : Character
             uIManager.UIUpdate_OffTargetEnemyBase();
         }
     }
-    private void ItemBoxCheck()
-    {
-        RaycastHit hit;
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.tag == "Box")
-            {
-                Debug.Log("start");
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    items.gameObject.SetActive(true);
-                    Destroy(box.gameObject);
+    // private void ItemBoxCheck()
+    // {
+    //     RaycastHit hit;
+    //     Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //     if (Physics.Raycast(ray, out hit))
+    //     {
+    //         if (hit.transform.tag == "Box")
+    //         {
+    //             Debug.Log("start");
+    //             if (Input.GetKeyDown(KeyCode.F))
+    //             {
+    //                 items.gameObject.SetActive(true);
+    //                 Destroy(box.gameObject);
 
-                }
-            }
+    //             }
+    //         }
 
-        }
-    }
-    private void itemcheck()
-    {
-        RaycastHit hit;
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.tag == "items")
-            {
-                if (Input.GetKeyDown(KeyCode.V))
-                {
-                    AddnewItem();
-                    Destroy(items);
+    //     }
+    // }
+    // private void itemcheck()
+    // {
+    //     RaycastHit hit;
+    //     Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //     if (Physics.Raycast(ray, out hit))
+    //     {
+    //         if (hit.transform.tag == "items")
+    //         {
+    //             if (Input.GetKeyDown(KeyCode.V))
+    //             {
+    //                 AddnewItem();
+    //                 Destroy(items);
 
-                }
-            }
+    //             }
+    //         }
 
-        }
+    //     }
 
-    }
+    // }
 
-    public void AddnewItem()
-    {
-        if (itemDBObj.itemObjs.Length > 0)
-        {
-            ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
-            Item newItem = new Item(newItemObject);
-            inventoryObj.AddItem(newItem, 1);
-            Debug.Log("ȹ��");
+    // public void AddnewItem()
+    // {
+    //     if (itemDBObj.itemObjs.Length > 0)
+    //     {
+    //         ItemObj newItemObject = itemDBObj.itemObjs[Random.Range(0, itemDBObj.itemObjs.Length)];
+    //         Item newItem = new Item(newItemObject);
+    //         inventoryObj.AddItem(newItem, 1);
+    //         Debug.Log("ȹ��");
 
-        }
-    }
+    //     }
+    // }
 
     private void RayOutCheck()
     {
