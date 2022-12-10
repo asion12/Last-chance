@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
     {
         if (BattleManager.instance.nowTurnID == 0)
         {
-            battle_TurnText.text = "NON-BATTLE STATE";
+            battle_TurnText.text = "NO-ONE\nFIGHTING";
         }
         else if (BattleManager.instance.nowTurnID == 1)
         {
@@ -183,6 +183,9 @@ public class UIManager : MonoBehaviour
         SetBarSize(PlayerNowMpBar.gameObject, player.nowMP, tempPlayerMp, player.totalStats.MAX_MP);
         SetBarSize(PlayerNowCpBar.gameObject, player.nowCP, tempPlayerCp, player.maxCP);
         SetBarSize(PlayerNowExpBar.gameObject, player.GetComponent<Player>().EXP, tempPlayerExp, player.GetComponent<Player>().maxEXP);
+
+        PlayerHPText.text = player.nowHP.ToString() + " / " + player.characterStats.MAX_HP.ToString();
+        PlayerMPText.text = player.nowMP.ToString() + " / " + player.characterStats.MAX_MP.ToString();
 
         string carelessText = "";
         carelessText += player.carelessCounter.ToString() + " / " + player.max_carelessCounter.ToString();
