@@ -4744,7 +4744,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   characterWeakElements:
     SOLAR: 1
     LUMINOUS: 0
@@ -4752,7 +4752,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -4760,7 +4760,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -4768,7 +4768,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -4776,7 +4776,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalWeakElements:
     SOLAR: 1
     LUMINOUS: 0
@@ -4784,7 +4784,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   isOverResist: 0
   isOverWeak: 0
   isBattleMode: 0
@@ -8582,7 +8582,7 @@ MonoBehaviour:
   nowCP: 50
   maxCP: 100
   characterStats:
-    MAX_HP: 1000
+    MAX_HP: 4000
     MAX_MP: 1000
     STR: 2
     FIR: 2
@@ -8618,7 +8618,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   characterWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -8626,7 +8626,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -8634,7 +8634,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -8642,7 +8642,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -8650,7 +8650,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -8658,7 +8658,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   isOverResist: 0
   isOverWeak: 0
   isBattleMode: 0

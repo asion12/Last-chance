@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 014. Laser
   m_EditorClassIdentifier: 
-  skillName: "\uB808\uC774\uC800"
+  skillName: "\uC815\uBC00-\uB808\uC774\uC800"
   buyCost: 250
   categorPhysics: 0
   categoryChemistry: 1

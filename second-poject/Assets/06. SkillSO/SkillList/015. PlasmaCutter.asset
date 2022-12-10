@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 015. PlasmaCutter
   m_EditorClassIdentifier: 
-  skillName: "\uD50C\uB77C\uC988\uB9C8\uCEE4\uD130"
+  skillName: "\uC815\uBC00-\uD50C\uB77C\uC988\uB9C8\uCEE4\uD130"
   buyCost: 250
   categorPhysics: 0
   categoryChemistry: 1

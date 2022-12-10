@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uBAA8\uBC29\uD589\uB3D9-\uAC1C"
   buyCost: 150
-  categorPhysics: 0
+  categorPhysics: 1
   categoryChemistry: 0
   skillElements:
     SOLAR: 0

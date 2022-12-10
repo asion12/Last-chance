@@ -45,6 +45,7 @@ public class Enemy : Character
         }
         BattleStateCheck();
         CheckTimeLimitOver();
+        CheckPlayerLevelAndScaleStats();
     }
 
     private void CheckTimeLimitOver()
@@ -148,6 +149,49 @@ public class Enemy : Character
             }
         }
         return tempBool;
+    }
+
+    private void CheckPlayerLevelAndScaleStats()
+    {
+        if (BattleManager.instance.player != null)
+        {
+            float scaleSet = GetLevelScale_forBattle(Level - BattleManager.instance.player.Level);
+            buff_debuffStats.STR = characterStats.STR * scaleSet;
+            buff_debuffStats.FIR = characterStats.FIR * scaleSet;
+            buff_debuffStats.INT = characterStats.INT * scaleSet;
+            buff_debuffStats.WIS = characterStats.WIS * scaleSet;
+            buff_debuffStats.DEX = characterStats.DEX * scaleSet;
+            buff_debuffStats.FOC = characterStats.FOC * scaleSet;
+            buff_debuffStats.CHA = characterStats.CHA * scaleSet;
+        }
+        else
+        {
+            buff_debuffStats.STR = 0;
+            buff_debuffStats.FIR = 0;
+            buff_debuffStats.INT = 0;
+            buff_debuffStats.WIS = 0;
+            buff_debuffStats.DEX = 0;
+            buff_debuffStats.FOC = 0;
+            buff_debuffStats.CHA = 0;
+        }
+    }
+
+    public float GetLevelScale_forBattle(float temp)
+    {
+        if (temp < 0)
+        {
+            temp *= -1;
+            temp = -1 * ((-2 / (temp + 2f)) + 1f);
+        }
+        else if (temp > 0)
+        {
+            temp = ((-2 / (temp + 2f)) + 1f);
+        }
+        else
+        {
+            temp = 0;
+        }
+        return temp;
     }
 
 }

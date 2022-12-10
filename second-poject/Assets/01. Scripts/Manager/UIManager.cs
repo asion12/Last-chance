@@ -28,6 +28,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image PlayerNowMpBar;
     [SerializeField] private Image PlayerNowCpBar;
     [SerializeField] private Text PlayerCpText;
+    [SerializeField] private TMP_Text PlayerHPText;
+    [SerializeField] private TMP_Text PlayerMPText;
     [SerializeField] private TextMeshProUGUI PlayerLevelText;
     [SerializeField] private Image PlayerNowExpBar;
     [SerializeField] private TextMeshProUGUI PlayerExpText;

@@ -4,6 +4,9 @@ using DG.Tweening;
 
 public class Player : Character
 {
+    public int EXP = 0;
+    public int maxEXP = 100;
+
     // about Battle Start Check
     [SerializeField] private Camera playerCamera = null;
     [SerializeField] private float battleStartRange = 0f;
@@ -39,8 +42,7 @@ public class Player : Character
 
     public bool isCanExit = false;
 
-    public int EXP = 0;
-    public int maxEXP = 100;
+
     public int skillPoint = 0;
     protected virtual void Start()
     {
@@ -68,7 +70,7 @@ public class Player : Character
                 CheckDecreaseCP();
             }
             TargetCharacterRayCheck();
-            CheckPlayerLevelAndScaleStats();
+            CheckTargetEnemyLevelAndScaleStats();
             ExitCheck();
         }
         CheckExpOver();
@@ -79,7 +81,7 @@ public class Player : Character
     {
         if (EXP >= maxEXP)
         {
-            EXP = 0;
+            EXP = EXP - maxEXP;
             Level++;
         }
     }
@@ -117,7 +119,7 @@ public class Player : Character
         }
     }
 
-    private void CheckPlayerLevelAndScaleStats()
+    private void CheckTargetEnemyLevelAndScaleStats()
     {
         if (BattleManager.instance.targetEnemy != null)
         {
@@ -130,16 +132,16 @@ public class Player : Character
             buff_debuffStats.FOC = characterStats.FOC * scaleSet;
             buff_debuffStats.CHA = characterStats.CHA * scaleSet;
         }
-        // else
-        // {
-        //     buff_debuffStats.STR = 0;
-        //     buff_debuffStats.FIR = 0;
-        //     buff_debuffStats.INT = 0;
-        //     buff_debuffStats.WIS = 0;
-        //     buff_debuffStats.DEX = 0;
-        //     buff_debuffStats.FOC = 0;
-        //     buff_debuffStats.CHA = 0;
-        // }
+        else
+        {
+            buff_debuffStats.STR = 0;
+            buff_debuffStats.FIR = 0;
+            buff_debuffStats.INT = 0;
+            buff_debuffStats.WIS = 0;
+            buff_debuffStats.DEX = 0;
+            buff_debuffStats.FOC = 0;
+            buff_debuffStats.CHA = 0;
+        }
     }
 
     public float GetLevelScale_forBattle(float temp)
