@@ -38,7 +38,7 @@ MonoBehaviour:
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    METAL: 1
+    METAL: 0
     SOIL: 0
   skillDamage: 200
   needCP: 50

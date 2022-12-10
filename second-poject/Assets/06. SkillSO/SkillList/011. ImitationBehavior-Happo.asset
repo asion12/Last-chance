@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 011. ImitationBehavior-Happo
   m_EditorClassIdentifier: 
   skillName: "\uBAA8\uBC29\uD589\uB3D9-\uD558\uB9C8"
-  buyCost: 200
-  categorPyhysics: 1
+  buyCost: 150
+  categorPhysics: 0
   categoryChemistry: 0
   skillElements:
     SOLAR: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 1
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   setWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -31,18 +31,18 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   setResistElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
-    BIOLOGY: 0
+    BIOLOGY: 1
     METAL: 0
-    CLAY: 0
-  skillDamage: 300
+    SOIL: 0
+  skillDamage: 350
   needCP: 90
-  needMp: 100
+  needMp: 150
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

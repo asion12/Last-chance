@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uAE30\uC0DD\uBB3C\uC8FC\uC785"
   buyCost: 200
-  categorPyhysics: 0
+  categorPhysics: 0
   categoryChemistry: 1
   skillElements:
     SOLAR: 0
@@ -23,25 +23,25 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 1
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   setWeakElements:
-    SOLAR: 0
-    LUMINOUS: 0
-    IGNITION: 1
-    HYDRO: 0
-    BIOLOGY: 0
-    METAL: 0
-    CLAY: 0
-  setResistElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 1
-  skillDamage: 250
-  needCP: 70
+    SOIL: 0
+  setResistElements:
+    SOLAR: 1
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  skillDamage: 200
+  needCP: 75
   needMp: 100
   needHp: 0
   skillDivision: 0

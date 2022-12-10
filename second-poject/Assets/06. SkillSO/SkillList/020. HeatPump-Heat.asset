@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
-  m_Name: 000. BasicAttack
+  m_Name: 020. HeatPump-Heat
   m_EditorClassIdentifier: 
-  skillName: "\uD0C0\uACA9"
-  buyCost: 100
-  categorPhysics: 1
-  categoryChemistry: 0
+  skillName: "\uD788\uD2B8\uD38C\uD504-\uB0C9\uAC01"
+  buyCost: 350
+  categorPhysics: 0
+  categoryChemistry: 1
   skillElements:
-    SOLAR: 0
+    SOLAR: 1
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
-    METAL: 1
+    METAL: 0
     SOIL: 0
   setWeakElements:
     SOLAR: 0
-    LUMINOUS: 0
+    LUMINOUS: 1
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
@@ -40,9 +40,9 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 75
-  needCP: 25
-  needMp: 0
+  skillDamage: 550
+  needCP: 50
+  needMp: 50
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

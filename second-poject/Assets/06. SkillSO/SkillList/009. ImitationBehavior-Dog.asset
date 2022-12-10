@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 009. ImitationBehavior-Dog
   m_EditorClassIdentifier: 
   skillName: "\uBAA8\uBC29\uD589\uB3D9-\uAC1C"
-  buyCost: 100
-  categorPyhysics: 1
+  buyCost: 150
+  categorPhysics: 0
   categoryChemistry: 0
   skillElements:
     SOLAR: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 1
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   setWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -31,17 +31,17 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   setResistElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
-    BIOLOGY: 0
+    BIOLOGY: 1
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   skillDamage: 150
-  needCP: 60
+  needCP: 70
   needMp: 50
   needHp: 0
   skillDivision: 0

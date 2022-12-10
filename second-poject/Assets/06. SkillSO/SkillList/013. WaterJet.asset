@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uC6CC\uD130\uC81C\uD2B8"
   buyCost: 250
-  categorPhysics: 0
-  categoryChemistry: 1
+  categorPhysics: 1
+  categoryChemistry: 0
   skillElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -40,9 +40,9 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 400
-  needCP: 70
-  needMp: 150
+  skillDamage: 750
+  needCP: 75
+  needMp: 100
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}
