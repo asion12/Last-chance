@@ -66,7 +66,6 @@ public class UIManager : MonoBehaviour
     private Character player = null;
     private EventManager eventManager;
     private bool isCarelessUISetted = false;
-    private bool isCarelessUINonSetted = false;
     private List<SO_Skill> skills = new List<SO_Skill>();
 
     public bool isInvenOn = false;
@@ -78,7 +77,6 @@ public class UIManager : MonoBehaviour
     private float tempTargetHp = -1;
     private float tempTargetMp = -1;
     private float tempTargetCp = -1;
-
 
     private void Awake()
     {
@@ -288,13 +286,11 @@ public class UIManager : MonoBehaviour
         if (BattleManager.instance.player.isBattleMode && BattleManager.instance.targetEnemy.isCareless && !isCarelessUISetted)
         {
             isCarelessUISetted = true;
-            isCarelessUINonSetted = false;
             SetCarelessUIActive();
         }
-        else if (!isCarelessUINonSetted)
+        else if (BattleManager.instance.player.isBattleMode && !BattleManager.instance.targetEnemy.isCareless && isCarelessUISetted)
         {
             isCarelessUISetted = false;
-            isCarelessUINonSetted = true;
             SetCarelessUIInactive();
         }
     }
