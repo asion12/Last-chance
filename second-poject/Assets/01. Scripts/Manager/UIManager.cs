@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
 
     [Header("인벤토리 UI")]
     [SerializeField] private GameObject ItemList;
-    //[SerializeField] private Canvas InventoryUI;
+    [SerializeField] private Canvas InventoryUI;
 
     private Character player = null;
     private EventManager eventManager;
@@ -138,26 +138,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // private void OnIventory()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.E))
-    //     {
-
-    //         if (BattleManager.instance.nowTurnID == 0)
-    //         {
-    //             if (InventoryUI.gameObject.activeSelf)
-    //             {
-    //                 isInvenOn = false;
-    //                 InventoryUI.gameObject.SetActive(false);
-    //             }
-    //             else
-    //             {
-    //                 isInvenOn = true;
-    //                 InventoryUI.gameObject.SetActive(true);
-    //             }
-    //         }
-    //     }
-    // }
+    private void OnIventory()
+    {
+        if (BattleManager.instance.nowTurnID == 0)
+        {
+            if (InventoryUI.gameObject.activeSelf)
+            {
+                isInvenOn = false;
+                InventoryUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                isInvenOn = true;
+                InventoryUI.gameObject.SetActive(true);
+            }
+        }
+    }
 
     private void UIUpdate_NowTurn()
     {
@@ -345,7 +341,7 @@ public class UIManager : MonoBehaviour
         FX_PlayerSkillListActive();
     }
 
-    private void ResetPlayerSkillList()
+    public void ResetPlayerSkillList()
     {
         SetPlayerSkillListEnable();
         SetPlayerSkillList();

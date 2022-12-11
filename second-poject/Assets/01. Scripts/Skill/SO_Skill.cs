@@ -13,6 +13,8 @@ public class SO_Skill : ScriptableObject
     public Elements skillElements;
     public Elements setWeakElements;
     public Elements setResistElements;
+    [System.NonSerialized] public int playerHavingCount = 0;
+    [System.NonSerialized] public bool playerSkillSetted;
     public float skillDamage;
     public float needCP;
     public int needMp;

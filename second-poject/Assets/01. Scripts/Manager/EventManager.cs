@@ -5,7 +5,12 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private bool isOverClockCasting = false;
+    private Player player = null;
 
+    private void Awake()
+    {
+        player = FindObjectOfType<Player>();
+    }
 
     public void OnPlayerOverClockCast()
     {
@@ -25,6 +30,25 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void OnSkillSet(SO_Skill setSkill)
+    {
+        if (setSkill.playerSkillSetted)
+        {
+            Debug.Log("this Skill is now Setting! !");
+            player.RemoveSkillFromList(setSkill);
+            setSkill.playerHavingCount++;
+        }
+        else if (setSkill.playerHavingCount < 1)
+        {
+            Debug.Log("Not Enough Skill Count!");
+        }
+        else
+        {
+            player.AddSkillToList(setSkill);
+            setSkill.playerHavingCount--;
+        }
+    }
+
     public void PlayerCastSkillSet(SO_Skill castSkill)
     {
         BattleManager.instance.CastSkill(BattleManager.instance.player, BattleManager.instance.targetEnemy, castSkill);
@@ -40,8 +64,8 @@ public class EventManager : MonoBehaviour
         StartCoroutine(BattleManager.instance.BattleRun(true));
     }
 
-    public void OnDungeonTravelStart()
+    public void OnEnterDungeon()
     {
-        GameManager.instance.isGameStarted = true;
+        GameManager.instance.EnterDungeon();
     }
 }

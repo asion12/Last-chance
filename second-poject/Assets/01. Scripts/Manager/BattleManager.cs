@@ -134,7 +134,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("DropPlayerInventory");
             Debug.Log("GameRestart");
             uIManager.SetBattleUIInactive();
-            GameManager.instance.ResetDungeon();
+            GameManager.instance.DieOutDungeon();
             //monster.speed = 3.5f;
         }
     }

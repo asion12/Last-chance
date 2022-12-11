@@ -417,7 +417,7 @@ public class Player : Character
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                GameManager.instance.ResetDungeon();
+                GameManager.instance.ExitDungeon();
             }
         }
     }
@@ -436,5 +436,17 @@ public class Player : Character
         {
             isCanExit = false;
         }
+    }
+
+    public void RemoveSkillFromList(SO_Skill removeSkill)
+    {
+        skillList.Remove(removeSkill);
+        uIManager.ResetPlayerSkillList();
+    }
+
+    public void AddSkillToList(SO_Skill addSkill)
+    {
+        skillList.Add(addSkill);
+        uIManager.ResetPlayerSkillList();
     }
 }

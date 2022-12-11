@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [System.NonSerialized] public bool isGameStarted = true;
+    [System.NonSerialized] public bool isGameStarted = false;
     public GameObject playerStartPoint;
     private Player player;
-    public Canvas ui;
+    // public Canvas ui;
     private bool canvas = false;
     [System.NonSerialized] public float nowTimeLimit = 0;
     [System.NonSerialized] public float maxTimeLimit = 10;
     public bool isTimeLimitOver = false;
     public static GameManager instance = null;
+
+    private OutDungeonUIManager outDungeonUIManager;
     private void Awake()
     {
+        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
         ActiveDungeon();
         if (instance == null)
         {
@@ -33,17 +36,25 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (BattleManager.instance.nowTurnID == 0)
+        if (isGameStarted)
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (BattleManager.instance.nowTurnID == 0)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
         }
         else
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        CursorLook();
+        // CursorLook();
         TimeLimitCheck();
     }
 
@@ -67,25 +78,27 @@ public class GameManager : MonoBehaviour
     public int MP_0 = 0;
     public int MP_1 = 0;
     public int MP_2 = 0;
-    public void CursorLook()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (ui.gameObject.activeSelf)
-            {
-                ui.gameObject.SetActive(false);
-            }
-            else
-            {
-                ui.gameObject.SetActive(true);
-            }
-        }
-    }
-    public void testclickGOldup()
-    {
-        GameManager.instance.Gold += 1000;
-        Debug.Log(Gold);
-    }
+
+    // public void CursorLook()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.P))
+    //     {
+    //         if (ui.gameObject.activeSelf)
+    //         {
+    //             ui.gameObject.SetActive(false);
+    //         }
+    //         else
+    //         {
+    //             ui.gameObject.SetActive(true);
+    //         }
+    //     }
+    // }
+
+    // public void testclickGoldup()
+    // {
+    //     GameManager.instance.Gold += 1000;
+    //     Debug.Log(Gold);
+    // }
 
     public void ActiveDungeon()
     {
@@ -106,8 +119,44 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
+    public void EnterDungeon()
+    {
+        outDungeonUIManager.InactiveOutDungeonUI();
+        isGameStarted = true;
+    }
+
     public void ExitDungeon()
     {
+        Debug.Log("Exit!");
+        ResetPlayerSkillList();
+        ResetDungeon();
+    }
 
+    public void DieOutDungeon()
+    {
+        Debug.Log("Dead!");
+        Debug.Log("LosshavingSkill");
+        LossPlayerSkillList();
+        player.skillList = new List<SO_Skill>();
+        ResetDungeon();
+    }
+
+    private void CheckPlayerSkillSet()
+    {
+
+    }
+
+    private void LossPlayerSkillList()
+    {
+        for (int i = 0; i < player.skillList.Count; i++)
+        {
+            player.skillList[i].playerHavingCount--;
+        }
+        player.skillList = new List<SO_Skill>();
+    }
+
+    private void ResetPlayerSkillList()
+    {
+        player.skillList = new List<SO_Skill>();
     }
 }
