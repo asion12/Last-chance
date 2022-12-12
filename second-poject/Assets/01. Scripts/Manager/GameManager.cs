@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     private OutDungeonUIManager outDungeonUIManager;
+    private UIManager uIManager;
     private void Awake()
     {
+        uIManager = FindObjectOfType<UIManager>();
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
         ActiveDungeon();
         if (instance == null)
@@ -122,6 +124,8 @@ public class GameManager : MonoBehaviour
     public void EnterDungeon()
     {
         outDungeonUIManager.InactiveOutDungeonUI();
+        uIManager.ResetPlayerSkillList();
+        ResetDungeon();
         isGameStarted = true;
     }
 
@@ -130,6 +134,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Exit!");
         ResetPlayerSkillList();
         ResetDungeon();
+        isGameStarted = false;
+        outDungeonUIManager.ActiveOutDungeonUI();
     }
 
     public void DieOutDungeon()
@@ -139,6 +145,8 @@ public class GameManager : MonoBehaviour
         LossPlayerSkillList();
         player.skillList = new List<SO_Skill>();
         ResetDungeon();
+        isGameStarted = false;
+        outDungeonUIManager.ActiveOutDungeonUI();
     }
 
     private void CheckPlayerSkillSet()

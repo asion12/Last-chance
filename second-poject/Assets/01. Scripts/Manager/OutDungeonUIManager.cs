@@ -7,16 +7,124 @@ using TMPro;
 
 public class OutDungeonUIManager : MonoBehaviour
 {
+    [Header("기본 오브젝트")]
     [SerializeField] private Canvas OutDungeonUI;
     [SerializeField] private GameObject OutDungeonUIGroup;
+
+    [Header("스킬 인벤토리 버튼 관련")]
     [SerializeField] private List<SO_Skill> PlayerInventorySkillListData;
     [SerializeField] private GameObject PlayerInventorySkillButtonPrefab;
     [SerializeField] private GameObject PlayerInventorySkillListContent;
+
+    [Header("던전 진입 관련")]
+    [SerializeField] private TextMeshProUGUI EnterInfo_0;
+    [SerializeField] private TextMeshProUGUI EnterInfo_1;
+    [SerializeField] private TextMeshProUGUI EnterInfo_2;
+    [SerializeField] private Image DungeonEnterButton;
+    [SerializeField] private Image DungeonEnterButtonBG;
+
+    private bool enterCheck_0 = false;
+    private bool enterCheck_1 = false;
+    private bool enterCheck_2 = false;
+
     private EventManager eventManager;
+    private Player player;
     private void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
+        player = FindObjectOfType<Player>();
+    }
+
+    private void Start()
+    {
         ResetPlayerSkillInventory();
+        DungeonEnterCheck();
+    }
+
+    private void Update()
+    {
+    }
+
+    public void SetActiveDungeonEnterButton()
+    {
+        if (enterCheck_0 && enterCheck_1 && enterCheck_2)
+        {
+            FX_ActiveDungeonEnterButton();
+        }
+        else
+        {
+            FX_InactiveDungeonEnterButton();
+        }
+    }
+
+    private void FX_ActiveDungeonEnterButton()
+    {
+        DungeonEnterButtonBG.DOFade(0, 0.125f).OnComplete(() => { DungeonEnterButtonBG.gameObject.SetActive(false); });
+    }
+
+    private void FX_InactiveDungeonEnterButton()
+    {
+        DungeonEnterButtonBG.gameObject.SetActive(true);
+        DungeonEnterButtonBG.DOFade(0.75f, 0.125f);
+    }
+
+    public void DungeonEnterCheck()
+    {
+        if (player.isOverResist || player.isOverWeak)
+        {
+            enterCheck_0 = false;
+            FX_InactiveEnterInfo(EnterInfo_0);
+        }
+        else
+        {
+            enterCheck_0 = true;
+            FX_ActiveEnterInfo(EnterInfo_0);
+        }
+
+        if (!CheckPlayerHasNoMp0Skill())
+        {
+            enterCheck_1 = false;
+            FX_InactiveEnterInfo(EnterInfo_1);
+        }
+        else
+        {
+            enterCheck_1 = true;
+            FX_ActiveEnterInfo(EnterInfo_1);
+        }
+
+        if (player.skillList.Count < 1 || 5 < player.skillList.Count)
+        {
+            enterCheck_2 = false;
+            FX_InactiveEnterInfo(EnterInfo_2);
+        }
+        else
+        {
+            enterCheck_2 = true;
+            FX_ActiveEnterInfo(EnterInfo_2);
+        }
+        SetActiveDungeonEnterButton();
+    }
+
+    private bool CheckPlayerHasNoMp0Skill()
+    {
+        for (int i = 0; i < player.skillList.Count; i++)
+        {
+            if (player.skillList[i].needMp <= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void FX_ActiveEnterInfo(TextMeshProUGUI tempTMP)
+    {
+        tempTMP.DOFade(1, 0.125f);
+    }
+
+    private void FX_InactiveEnterInfo(TextMeshProUGUI tempTMP)
+    {
+        tempTMP.DOFade(0.25f, 0.125f);
     }
 
     public void ResetPlayerSkillInventory()

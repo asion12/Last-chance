@@ -52,6 +52,7 @@ public class EventManager : MonoBehaviour
             outDungeonUIManager.SetSkillInventoryButton(tempObj);
             player.AddSkillToList(setSkill);
         }
+        outDungeonUIManager.DungeonEnterCheck();
     }
 
     public void PlayerCastSkillSet(SO_Skill castSkill)
@@ -71,6 +72,7 @@ public class EventManager : MonoBehaviour
 
     public void OnEnterDungeon()
     {
+        Debug.Log("Enter Dungeon!");
         GameManager.instance.EnterDungeon();
     }
 }
