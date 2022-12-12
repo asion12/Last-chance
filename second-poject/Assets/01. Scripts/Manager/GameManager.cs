@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
     public int Hp_0 = 0;
     public int HP_1 = 0;
     public int HP_2 = 0;
-    public int MPPortion = 0;
     public int MP_0 = 0;
     public int MP_1 = 0;
     public int MP_2 = 0;
