@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: 000. BasicAttack
   m_EditorClassIdentifier: 
   skillName: "\uD0C0\uACA9"
-  buyCost: 100
+  buyCost: 0
+  playerHavingCount: 9999
+  playerSkillSetted: 0
   categorPhysics: 1
   categoryChemistry: 0
   skillElements:

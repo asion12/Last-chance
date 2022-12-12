@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EventManager : MonoBehaviour
 {
     private bool isOverClockCasting = false;
     private Player player = null;
+    private OutDungeonUIManager outDungeonUIManager = null;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
     }
 
     public void OnPlayerOverClockCast()
@@ -32,11 +35,12 @@ public class EventManager : MonoBehaviour
 
     public void OnSkillSet(SO_Skill setSkill)
     {
+        GameObject tempObj = EventSystem.current.currentSelectedGameObject;
         if (setSkill.playerSkillSetted)
         {
             Debug.Log("this Skill is now Setting! !");
+            outDungeonUIManager.Non_SetSkillInventoryButton(tempObj);
             player.RemoveSkillFromList(setSkill);
-            setSkill.playerHavingCount++;
         }
         else if (setSkill.playerHavingCount < 1)
         {
@@ -44,8 +48,9 @@ public class EventManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Skill Setted!");
+            outDungeonUIManager.SetSkillInventoryButton(tempObj);
             player.AddSkillToList(setSkill);
-            setSkill.playerHavingCount--;
         }
     }
 

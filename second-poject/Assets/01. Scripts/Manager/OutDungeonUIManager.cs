@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using TMPro;
 
 public class OutDungeonUIManager : MonoBehaviour
 {
     [SerializeField] private Canvas OutDungeonUI;
+    [SerializeField] private GameObject OutDungeonUIGroup;
     [SerializeField] private List<SO_Skill> PlayerInventorySkillListData;
     [SerializeField] private GameObject PlayerInventorySkillButtonPrefab;
     [SerializeField] private GameObject PlayerInventorySkillListContent;
@@ -16,7 +19,7 @@ public class OutDungeonUIManager : MonoBehaviour
         ResetPlayerSkillInventory();
     }
 
-    private void ResetPlayerSkillInventory()
+    public void ResetPlayerSkillInventory()
     {
         EnablePlayerSkillInventory();
         SetPlayerSkillInvnetory();
@@ -26,7 +29,7 @@ public class OutDungeonUIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerInventorySkillListContent.transform.childCount; i++)
         {
-            Destroy(PlayerInventorySkillListContent.transform.GetChild(i));
+            Destroy(PlayerInventorySkillListContent.transform.GetChild(i).gameObject);
         }
     }
 
@@ -38,7 +41,7 @@ public class OutDungeonUIManager : MonoBehaviour
             GameObject skillButton;
             skillButton = Instantiate(PlayerInventorySkillButtonPrefab);
             skillButton.transform.SetParent(PlayerInventorySkillListContent.transform);
-            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillClick(tempSkill));
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillSet(tempSkill));
 
             Color textColor = GetTextColorToElement(tempSkill.skillElements);
 
@@ -212,5 +215,37 @@ public class OutDungeonUIManager : MonoBehaviour
     public void InactiveOutDungeonUI()
     {
         OutDungeonUI.transform.gameObject.SetActive(false);
+    }
+
+    public void Non_SetSkillInventoryButton(GameObject SkillInventoryButton)
+    {
+        FX_SkillInventoryBGInactive(SkillInventoryButton.transform.GetChild(3).gameObject.GetComponent<Image>());
+        FX_SkillInventorySetTextInactive(SkillInventoryButton.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>());
+    }
+
+    public void SetSkillInventoryButton(GameObject SkillInventoryButton)
+    {
+        FX_SkillInventoryBGActive(SkillInventoryButton.transform.GetChild(3).gameObject.GetComponent<Image>());
+        FX_SkillInventorySetTextActive(SkillInventoryButton.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>());
+    }
+
+    private void FX_SkillInventoryBGActive(Image effectImage)
+    {
+        effectImage.DOFade(0.75f, 0.125f);
+    }
+
+    private void FX_SkillInventoryBGInactive(Image effectImage)
+    {
+        effectImage.DOFade(0f, 0.125f);
+    }
+
+    private void FX_SkillInventorySetTextActive(TextMeshProUGUI effectText)
+    {
+        effectText.DOFade(1, 0.125f);
+    }
+
+    private void FX_SkillInventorySetTextInactive(TextMeshProUGUI effectText)
+    {
+        effectText.DOFade(0, 0.125f);
     }
 }

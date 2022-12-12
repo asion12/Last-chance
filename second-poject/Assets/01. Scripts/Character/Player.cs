@@ -440,12 +440,14 @@ public class Player : Character
 
     public void RemoveSkillFromList(SO_Skill removeSkill)
     {
+        removeSkill.playerSkillSetted = false;
         skillList.Remove(removeSkill);
         uIManager.ResetPlayerSkillList();
     }
 
     public void AddSkillToList(SO_Skill addSkill)
     {
+        addSkill.playerSkillSetted = true;
         skillList.Add(addSkill);
         uIManager.ResetPlayerSkillList();
     }

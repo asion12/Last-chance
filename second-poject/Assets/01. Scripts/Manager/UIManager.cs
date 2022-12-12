@@ -120,7 +120,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_NowTurn();
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
-        UIUpdate_CheckSkillUse();
+        // UIUpdate_CheckSkillUse();
         UIUpdate_SetPlayerCanExit();
         UIUpdate_SetLeftOverTimeLimit();
         //OnIventory();
@@ -262,20 +262,20 @@ public class UIManager : MonoBehaviour
         SetElementAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
     }
 
-    private void UIUpdate_CheckSkillUse()
-    {
-        for (int i = 0; i < player.skillList.Count; i++)
-        {
-            if (skills[i].isCanUse)
-            {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
-    }
+    // private void UIUpdate_CheckSkillUse()
+    // {
+    //     for (int i = 0; i < player.skillList.Count; i++)
+    //     {
+    //         if (skills[i].isCanUse)
+    //         {
+    //             SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
+    //         }
+    //         else
+    //         {
+    //             SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
+    //         }
+    //     }
+    // }
 
     private void UIUpdate_CheckCarelessUIOn()
     {
@@ -378,7 +378,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
-            Destroy(PlayerSkillList.transform.GetChild(i));
+            Destroy(PlayerSkillListContent.transform.GetChild(i).gameObject);
         }
 
     }

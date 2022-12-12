@@ -153,10 +153,12 @@ public class GameManager : MonoBehaviour
             player.skillList[i].playerHavingCount--;
         }
         player.skillList = new List<SO_Skill>();
+        outDungeonUIManager.ResetPlayerSkillInventory();
     }
 
     private void ResetPlayerSkillList()
     {
         player.skillList = new List<SO_Skill>();
+        outDungeonUIManager.ResetPlayerSkillInventory();
     }
 }
