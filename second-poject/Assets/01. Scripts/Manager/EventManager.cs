@@ -76,13 +76,14 @@ public class EventManager : MonoBehaviour
         GameManager.instance.EnterDungeon();
     }
 
-    public void BuyPotion(string potionID)
+    public void OnBuyPotion(string potionID)
     {
         if (potionID == "HP_LOW")
         {
             if (CheckPrice(100))
             {
                 GameManager.instance.Hp_0++;
+                DecreaseGold(100);
             }
         }
         else if (potionID == "MP_LOW")
@@ -90,6 +91,7 @@ public class EventManager : MonoBehaviour
             if (CheckPrice(100))
             {
                 GameManager.instance.MP_0++;
+                DecreaseGold(100);
             }
         }
         else if (potionID == "HP_MID")
@@ -97,6 +99,7 @@ public class EventManager : MonoBehaviour
             if (CheckPrice(250))
             {
                 GameManager.instance.HP_1++;
+                DecreaseGold(250);
             }
         }
         else if (potionID == "MP_MID")
@@ -104,6 +107,7 @@ public class EventManager : MonoBehaviour
             if (CheckPrice(250))
             {
                 GameManager.instance.MP_1++;
+                DecreaseGold(250);
             }
         }
         else if (potionID == "HP_HIGH")
@@ -111,6 +115,7 @@ public class EventManager : MonoBehaviour
             if (CheckPrice(750))
             {
                 GameManager.instance.HP_2++;
+                DecreaseGold(750);
             }
         }
         else if (potionID == "MP_HIGH")
@@ -118,6 +123,7 @@ public class EventManager : MonoBehaviour
             if (CheckPrice(750))
             {
                 GameManager.instance.MP_2++;
+                DecreaseGold(750);
             }
         }
         else
@@ -125,6 +131,63 @@ public class EventManager : MonoBehaviour
             Debug.Log("Loss!!!!");
         }
     }
+
+    public void OnSellPotion(string potionID)
+    {
+        if (potionID == "HP_LOW")
+        {
+            if (GameManager.instance.Hp_0 >= 1)
+            {
+                IncreaseGold(100);
+                GameManager.instance.Hp_0--;
+            }
+        }
+        else if (potionID == "MP_LOW")
+        {
+            if (GameManager.instance.MP_0 >= 1)
+            {
+                IncreaseGold(100);
+                GameManager.instance.MP_0--;
+            }
+        }
+        else if (potionID == "HP_MID")
+        {
+            if (GameManager.instance.HP_1 >= 1)
+            {
+                IncreaseGold(250);
+                GameManager.instance.HP_1--;
+            }
+        }
+        else if (potionID == "MP_MID")
+        {
+            if (GameManager.instance.MP_1 >= 1)
+            {
+                IncreaseGold(250);
+                GameManager.instance.MP_1--;
+            }
+        }
+        else if (potionID == "HP_HIGH")
+        {
+            if (GameManager.instance.HP_2 >= 1)
+            {
+                IncreaseGold(750);
+                GameManager.instance.HP_2--;
+            }
+        }
+        else if (potionID == "MP_HIGH")
+        {
+            if (GameManager.instance.MP_2 >= 1)
+            {
+                IncreaseGold(750);
+                GameManager.instance.MP_2--;
+            }
+        }
+        else
+        {
+            Debug.Log("Loss!!!!");
+        }
+    }
+
     private bool CheckPrice(int itemPrice)
     {
         if (GameManager.instance.Gold >= itemPrice)
@@ -135,5 +198,15 @@ public class EventManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void DecreaseGold(int decraeseValue)
+    {
+        GameManager.instance.Gold -= decraeseValue;
+    }
+
+    private void IncreaseGold(int increaseValue)
+    {
+        GameManager.instance.Gold += increaseValue;
     }
 }
