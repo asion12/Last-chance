@@ -75,4 +75,65 @@ public class EventManager : MonoBehaviour
         Debug.Log("Enter Dungeon!");
         GameManager.instance.EnterDungeon();
     }
+
+    public void BuyPotion(string potionID)
+    {
+        if (potionID == "HP_LOW")
+        {
+            if (CheckPrice(100))
+            {
+                GameManager.instance.Hp_0++;
+            }
+        }
+        else if (potionID == "MP_LOW")
+        {
+            if (CheckPrice(100))
+            {
+                GameManager.instance.MP_0++;
+            }
+        }
+        else if (potionID == "HP_MID")
+        {
+            if (CheckPrice(250))
+            {
+                GameManager.instance.HP_1++;
+            }
+        }
+        else if (potionID == "MP_MID")
+        {
+            if (CheckPrice(250))
+            {
+                GameManager.instance.MP_1++;
+            }
+        }
+        else if (potionID == "HP_HIGH")
+        {
+            if (CheckPrice(750))
+            {
+                GameManager.instance.HP_2++;
+            }
+        }
+        else if (potionID == "MP_HIGH")
+        {
+            if (CheckPrice(750))
+            {
+                GameManager.instance.MP_2++;
+            }
+        }
+        else
+        {
+            Debug.Log("Loss!!!!");
+        }
+    }
+    private bool CheckPrice(int itemPrice)
+    {
+        if (GameManager.instance.Gold >= itemPrice)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

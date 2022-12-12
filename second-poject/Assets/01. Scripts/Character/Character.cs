@@ -55,6 +55,7 @@ public class Character : MonoBehaviour
         SetTotalElements();
         SetTotalStats();
         SetCharacterElements();
+        CheckMaxPoints();
         if (carelessCounter >= max_carelessCounter)
         {
             isCareless = true;
@@ -62,6 +63,19 @@ public class Character : MonoBehaviour
         else
         {
             isCareless = false;
+        }
+    }
+
+    protected virtual void CheckMaxPoints()
+    {
+        if (nowHP > characterStats.MAX_HP)
+        {
+            nowHP = characterStats.MAX_HP;
+        }
+
+        if (nowMP > characterStats.MAX_MP)
+        {
+            nowMP = characterStats.MAX_MP;
         }
     }
 

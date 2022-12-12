@@ -18,6 +18,15 @@ public class GameManager : MonoBehaviour
 
     private OutDungeonUIManager outDungeonUIManager;
     private UIManager uIManager;
+
+    public int Gold = 0;
+    public int Hp_0 = 0;
+    public int HP_1 = 0;
+    public int HP_2 = 0;
+    public int MP_0 = 0;
+    public int MP_1 = 0;
+    public int MP_2 = 0;
+
     private void Awake()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -72,13 +81,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int Gold = 0;
-    public int Hp_0 = 0;
-    public int HP_1 = 0;
-    public int HP_2 = 0;
-    public int MP_0 = 0;
-    public int MP_1 = 0;
-    public int MP_2 = 0;
 
     // public void CursorLook()
     // {
