@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject battle_SkillScrollView;
     [SerializeField] private GameObject PlayerSkillListContent;
     [SerializeField] private GameObject PlayerSkillButtonPrefab;
-    [SerializeField] private Image PlayerSkillListBG;
     [SerializeField] private GameObject PlayerRunButton;
     [SerializeField] private Image PlayerRunButtonBG;
     private bool isRunButtonOn = false;
@@ -48,8 +47,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
 
     [Header("플레이어 스킬 관련 UI")]
+    [SerializeField] private Canvas PlayerSkillListUI;
     [SerializeField] private GameObject PlayerSkillList;
+    [SerializeField] private Image PlayerSkillListBG;
     [SerializeField] private GameObject SkillButtonsParent;
+
+    [Header("아이템 인벤토리 UI")]
+    [SerializeField] private Canvas PlayerItemListUI;
+    [SerializeField] private GameObject PlayerItemList;
+    [SerializeField] private Image PlayerItemListBG;
 
     [Header("연출용 UI")]
     [SerializeField] private TextMeshProUGUI GameLog;
@@ -58,10 +64,7 @@ public class UIManager : MonoBehaviour
 
     [Header("탈출 UI")]
     [SerializeField] private GameObject canExitText;
-
-    [Header("인벤토리 UI")]
-    [SerializeField] private GameObject ItemList;
-    //[SerializeField] private Canvas InventoryUI;
+    // [SerializeField] private Canvas InventoryUI;
 
     private Character player = null;
     private EventManager eventManager;
@@ -120,7 +123,7 @@ public class UIManager : MonoBehaviour
         UIUpdate_NowTurn();
         UIUpdate_PlayerBase();
         UIUpdate_CheckCarelessUIOn();
-        UIUpdate_CheckSkillUse();
+        // UIUpdate_CheckSkillUse();
         UIUpdate_SetPlayerCanExit();
         UIUpdate_SetLeftOverTimeLimit();
         //OnIventory();
@@ -140,21 +143,17 @@ public class UIManager : MonoBehaviour
 
     // private void OnIventory()
     // {
-    //     if (Input.GetKeyDown(KeyCode.E))
+    //     if (BattleManager.instance.nowTurnID == 0)
     //     {
-
-    //         if (BattleManager.instance.nowTurnID == 0)
+    //         if (InventoryUI.gameObject.activeSelf)
     //         {
-    //             if (InventoryUI.gameObject.activeSelf)
-    //             {
-    //                 isInvenOn = false;
-    //                 InventoryUI.gameObject.SetActive(false);
-    //             }
-    //             else
-    //             {
-    //                 isInvenOn = true;
-    //                 InventoryUI.gameObject.SetActive(true);
-    //             }
+    //             isInvenOn = false;
+    //             InventoryUI.gameObject.SetActive(false);
+    //         }
+    //         else
+    //         {
+    //             isInvenOn = true;
+    //             InventoryUI.gameObject.SetActive(true);
     //         }
     //     }
     // }
@@ -266,20 +265,20 @@ public class UIManager : MonoBehaviour
         SetElementAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
     }
 
-    private void UIUpdate_CheckSkillUse()
-    {
-        for (int i = 0; i < player.skillList.Count; i++)
-        {
-            if (skills[i].isCanUse)
-            {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
-    }
+    // private void UIUpdate_CheckSkillUse()
+    // {
+    //     for (int i = 0; i < player.skillList.Count; i++)
+    //     {
+    //         if (skills[i].isCanUse)
+    //         {
+    //             SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(true);
+    //         }
+    //         else
+    //         {
+    //             SkillButtonsParent.transform.GetChild(i).gameObject.SetActive(false);
+    //         }
+    //     }
+    // }
 
     private void UIUpdate_CheckCarelessUIOn()
     {
@@ -335,20 +334,45 @@ public class UIManager : MonoBehaviour
 
     public void SetBattleUIInactive()
     {
+        PlayerSkillListBG.gameObject.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+        sequence
+        .Append(PlayerSkillListBG.DOFade(1f, 0.125f))
+        .Join(PlayerSkillList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
+        {
+            PlayerSkillListUI.sortingOrder = -1;
+            PlayerItemListUI.sortingOrder = 1;
+        }))
+        .Append(PlayerItemListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerItemListBG.gameObject.SetActive(false); }))
+        .Join(PlayerItemList.gameObject.transform.DOScale(1, 0.125f));
         //playerBattleUI.gameObject.SetActive(false);
-        FX_PlayerSkillListInactive();
+        //FX_PlayerSkillListInactive();
+        FX_PlayerItemListActive();
     }
 
     public void SetBattleUIActive()
     {
+        PlayerItemListBG.gameObject.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+        sequence
+        .Append(PlayerItemListBG.DOFade(1f, 0.125f))
+        .Join(PlayerItemList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
+        {
+            PlayerItemListUI.sortingOrder = -1;
+            PlayerSkillListUI.sortingOrder = 1;
+        }))
+        .Append(PlayerSkillListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); }))
+        .Join(PlayerSkillList.gameObject.transform.DOScale(1, 0.125f));
         //playerBattleUI.gameObject.SetActive(true);
-        FX_PlayerSkillListActive();
+        //FX_PlayerItemListInactive();
+        //FX_PlayerSkillListActive();
     }
 
-    private void ResetPlayerSkillList()
+    public void ResetPlayerSkillList()
     {
         SetPlayerSkillListEnable();
         SetPlayerSkillList();
+        Debug.Log("Skill Set Complete_Remove");
     }
 
     private void SetPlayerSkillList()
@@ -356,7 +380,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < skills.Count; i++)
         {
             SO_Skill tempSkill = skills[i];
-            Debug.Log("Count is " + player.skillList.Count);
+            //Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
@@ -382,7 +406,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
-            Destroy(PlayerSkillList.transform.GetChild(i));
+            Destroy(PlayerSkillListContent.transform.GetChild(i).gameObject);
         }
 
     }
@@ -465,7 +489,7 @@ public class UIManager : MonoBehaviour
         string changeToString = "";
 
         string colorString = "<color=";
-        colorString += "#" + ColorUtility.ToHtmlStringRGB(textColor) + "88";
+        colorString += "#" + ColorUtility.ToHtmlStringRGB(textColor) + "BB";
         colorString += ">";
 
         for (int i = 0; i < 3 - numString.Length; i++)
@@ -494,15 +518,36 @@ public class UIManager : MonoBehaviour
 
     private void FX_PlayerSkillListActive()
     {
+        PlayerSkillListUI.sortingOrder = 1;
         PlayerSkillListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); });
-        PlayerSkillList.transform.DOScale(1, 0.125f);
+        PlayerSkillList.gameObject.transform.DOScale(1, 0.125f);
     }
 
     private void FX_PlayerSkillListInactive()
     {
         PlayerSkillListBG.gameObject.SetActive(true);
         PlayerSkillListBG.DOFade(1f, 0.125f);
-        PlayerSkillList.transform.DOScale(0.975f, 0.125f);
+        PlayerSkillList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
+        {
+            PlayerSkillListUI.sortingOrder = -1;
+        });
+    }
+
+    private void FX_PlayerItemListActive()
+    {
+        PlayerItemListUI.sortingOrder = 1;
+        PlayerItemListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerItemListBG.gameObject.SetActive(false); });
+        PlayerItemList.gameObject.transform.DOScale(1, 0.125f);
+    }
+
+    private void FX_PlayerItemListInactive()
+    {
+        PlayerItemListBG.gameObject.SetActive(true);
+        PlayerItemListBG.DOFade(1f, 0.125f);
+        PlayerItemList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
+        {
+            PlayerItemListUI.sortingOrder = -1;
+        });
     }
 
     private void FX_PlayerRunButtonActive()

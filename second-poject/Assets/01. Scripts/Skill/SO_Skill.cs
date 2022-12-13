@@ -7,9 +7,11 @@ public class SO_Skill : ScriptableObject
 {
     public string skillName;
     public int buyCost = 0;
+    public int playerHavingCount = 0;
+    public bool playerSkillSetted = false;
     public bool categorPhysics;
     public bool categoryChemistry;
-    [System.NonSerialized] public bool isCanUse = true;
+    // [System.NonSerialized] public bool isCanUse = true;
     public Elements skillElements;
     public Elements setWeakElements;
     public Elements setResistElements;
