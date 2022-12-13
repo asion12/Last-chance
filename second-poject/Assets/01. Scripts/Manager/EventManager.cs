@@ -35,24 +35,28 @@ public class EventManager : MonoBehaviour
 
     public void OnSkillSet(SO_Skill setSkill)
     {
+        //player.SetTotalElements();
+        Debug.Log("Skill Set Start");
         GameObject tempObj = EventSystem.current.currentSelectedGameObject;
         if (setSkill.playerSkillSetted)
         {
-            Debug.Log("this Skill is now Setting! !");
+            Debug.Log("Remove Skill Start !");
             outDungeonUIManager.Non_SetSkillInventoryButton(tempObj);
             player.RemoveSkillFromList(setSkill);
+            //outDungeonUIManager.DungeonEnterCheck();
         }
         else if (setSkill.playerHavingCount < 1)
         {
             Debug.Log("Not Enough Skill Count!");
+            //outDungeonUIManager.DungeonEnterCheck();
         }
         else
         {
-            Debug.Log("Skill Setted!");
+            Debug.Log("Set Skill Start !");
             outDungeonUIManager.SetSkillInventoryButton(tempObj);
             player.AddSkillToList(setSkill);
+            //outDungeonUIManager.DungeonEnterCheck();
         }
-        outDungeonUIManager.DungeonEnterCheck();
     }
 
     public void PlayerCastSkillSet(SO_Skill castSkill)

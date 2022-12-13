@@ -44,15 +44,19 @@ public class Character : MonoBehaviour
     public CharacterStack characterStack;
     public ItemAbility ability; //���� �� �߰�������� ����
 
+    private OutDungeonUIManager outDungeonUIManager = null;
+
     protected virtual void Start()
     {
+        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+        //SetTotalElements();
         nowHP = characterStats.MAX_HP;
         nowMP = characterStats.MAX_MP;
     }
 
     protected virtual void Update()
     {
-        SetTotalElements();
+        //SetTotalElements();
         SetTotalStats();
         SetCharacterElements();
         CheckMaxPoints();
@@ -185,6 +189,7 @@ public class Character : MonoBehaviour
 
     private void SetToatalElelments(bool[] toResEl, bool[] toWckEl)
     {
+        Debug.Log("Element Check Comlete!");
         totalResistElements.SOLAR = toResEl[0];
         totalResistElements.LUMINOUS = toResEl[1];
         totalResistElements.IGNITION = toResEl[2];
@@ -200,9 +205,11 @@ public class Character : MonoBehaviour
         totalWeakElements.BIOLOGY = toWckEl[4];
         totalWeakElements.METAL = toWckEl[5];
         totalWeakElements.SOIL = toWckEl[6];
+        outDungeonUIManager.DungeonEnterCheck();
     }
     public virtual void SetTotalElements()
     {
+        Debug.Log("ElementChecked!");
         int[] chResEl = Elements_IntArrReturn(characterResistElements);
         int[] chWckEl = Elements_IntArrReturn(characterWeakElements);
         int[] adResEl = Elements_IntArrReturn(additionResistElements);
@@ -238,6 +245,10 @@ public class Character : MonoBehaviour
                     isOverWeak = false;
             }
         }
+        // if (isOverResist)
+        //     Debug.Log("OverResist!");
+        // if (isOverWeak)
+        //     Debug.Log("OverWeak!");
         SetToatalElelments(toResEl, toWckEl);
     }
 

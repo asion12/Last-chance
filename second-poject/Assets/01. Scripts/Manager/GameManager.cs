@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // public Canvas ui;
     private bool canvas = false;
     [System.NonSerialized] public float nowTimeLimit = 0;
-    [System.NonSerialized] public float maxTimeLimit = 10;
+    [System.NonSerialized] public float maxTimeLimit = 180;
     public bool isTimeLimitOver = false;
     public static GameManager instance = null;
 

@@ -8582,7 +8582,7 @@ MonoBehaviour:
   nowCP: 50
   maxCP: 100
   characterStats:
-    MAX_HP: 4000
+    MAX_HP: 2500
     MAX_MP: 1000
     STR: 2
     FIR: 2

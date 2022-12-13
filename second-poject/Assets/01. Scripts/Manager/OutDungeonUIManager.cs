@@ -23,9 +23,12 @@ public class OutDungeonUIManager : MonoBehaviour
     [SerializeField] private Image DungeonEnterButton;
     [SerializeField] private Image DungeonEnterButtonBG;
 
-    private bool enterCheck_0 = false;
-    private bool enterCheck_1 = false;
-    private bool enterCheck_2 = false;
+    [Header("상점 관련")]
+    [SerializeField] private TextMeshProUGUI PlayerGoldText;
+
+    [SerializeField] private bool enterCheck_0 = false;
+    [SerializeField] private bool enterCheck_1 = false;
+    [SerializeField] private bool enterCheck_2 = false;
 
     private EventManager eventManager;
     private Player player;
@@ -43,9 +46,15 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private void Update()
     {
+        SetPlayerGoldText();
     }
 
-    public void SetActiveDungeonEnterButton()
+    public void SetPlayerGoldText()
+    {
+        PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G";
+    }
+
+    public void CheckActiveDungeonEnterButton()
     {
         if (enterCheck_0 && enterCheck_1 && enterCheck_2)
         {
@@ -72,11 +81,13 @@ public class OutDungeonUIManager : MonoBehaviour
     {
         if (player.isOverResist || player.isOverWeak)
         {
+            //Debug.Log("0 inactive!");
             enterCheck_0 = false;
             FX_InactiveEnterInfo(EnterInfo_0);
         }
         else
         {
+            //Debug.Log("0 active!");
             enterCheck_0 = true;
             FX_ActiveEnterInfo(EnterInfo_0);
         }
@@ -102,7 +113,9 @@ public class OutDungeonUIManager : MonoBehaviour
             enterCheck_2 = true;
             FX_ActiveEnterInfo(EnterInfo_2);
         }
-        SetActiveDungeonEnterButton();
+
+        Debug.Log("Enter Checked!");
+        CheckActiveDungeonEnterButton();
     }
 
     private bool CheckPlayerHasNoMp0Skill()
@@ -146,6 +159,7 @@ public class OutDungeonUIManager : MonoBehaviour
         for (int i = 0; i < PlayerInventorySkillListData.Count; i++)
         {
             SO_Skill tempSkill = PlayerInventorySkillListData[i];
+            tempSkill.playerSkillSetted = false;
             GameObject skillButton;
             skillButton = Instantiate(PlayerInventorySkillButtonPrefab);
             skillButton.transform.SetParent(PlayerInventorySkillListContent.transform);

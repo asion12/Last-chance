@@ -6,7 +6,7 @@ public class Player : Character
 {
     public int EXP = 0;
     public int maxEXP = 100;
-
+    public int statPoint = 0;
     // about Battle Start Check
     [SerializeField] private Camera playerCamera = null;
     [SerializeField] private float battleStartRange = 0f;
@@ -31,7 +31,7 @@ public class Player : Character
     float cpIncreaseTimer_MAX = 2f;
 
     float cpDecreaseTimer = 0;
-    float cpDecreaseTimer_MAX = 1f;
+    float cpDecreaseTimer_MAX = 0.5f;
 
     //public ItemDBObj itemDBObj;
     //public InventoryObj inventoryObj;
@@ -44,6 +44,11 @@ public class Player : Character
 
 
     public int skillPoint = 0;
+    private OutDungeonUIManager outDungeonUIManager;
+    private void Awake()
+    {
+        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+    }
     protected virtual void Start()
     {
         base.Start();
@@ -440,15 +445,22 @@ public class Player : Character
 
     public void RemoveSkillFromList(SO_Skill removeSkill)
     {
+        //SetTotalElements();
         removeSkill.playerSkillSetted = false;
         skillList.Remove(removeSkill);
+        SetTotalElements();
         uIManager.ResetPlayerSkillList();
+        //outDungeonUIManager.DungeonEnterCheck();
     }
 
     public void AddSkillToList(SO_Skill addSkill)
     {
+        //SetTotalElements();
         addSkill.playerSkillSetted = true;
         skillList.Add(addSkill);
         uIManager.ResetPlayerSkillList();
+        Debug.Log("Skill Set Complete_Add");
+        SetTotalElements();
+        //outDungeonUIManager.DungeonEnterCheck();
     }
 }

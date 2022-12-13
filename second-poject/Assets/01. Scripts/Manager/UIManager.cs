@@ -372,6 +372,7 @@ public class UIManager : MonoBehaviour
     {
         SetPlayerSkillListEnable();
         SetPlayerSkillList();
+        Debug.Log("Skill Set Complete_Remove");
     }
 
     private void SetPlayerSkillList()
@@ -379,7 +380,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < skills.Count; i++)
         {
             SO_Skill tempSkill = skills[i];
-            Debug.Log("Count is " + player.skillList.Count);
+            //Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
