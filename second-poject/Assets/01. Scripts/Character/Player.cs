@@ -44,10 +44,10 @@ public class Player : Character
 
 
     public int skillPoint = 0;
-    private OutDungeonUIManager outDungeonUIManager;
+    //private OutDungeonUIManager outDungeonUIManager;
     private void Awake()
     {
-        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+        //outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
     }
     protected virtual void Start()
     {

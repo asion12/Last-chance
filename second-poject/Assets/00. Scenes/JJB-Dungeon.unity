@@ -8671,7 +8671,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e553000a860c1d4fb1aaed8ff0b915e, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
   isStunned: 0
-  Level: 3
+  Level: 2
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
