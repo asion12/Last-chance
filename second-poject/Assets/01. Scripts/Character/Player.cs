@@ -448,7 +448,8 @@ public class Player : Character
         //SetTotalElements();
         removeSkill.playerSkillSetted = false;
         skillList.Remove(removeSkill);
-        SetTotalElements();
+        //SetTotalElements();
+        Invoke("SetTotalElements", 0.05f);
         uIManager.ResetPlayerSkillList();
         //outDungeonUIManager.DungeonEnterCheck();
     }
@@ -458,9 +459,9 @@ public class Player : Character
         //SetTotalElements();
         addSkill.playerSkillSetted = true;
         skillList.Add(addSkill);
+        // /SetTotalElements();
+        Invoke("SetTotalElements", 0.05f);
         uIManager.ResetPlayerSkillList();
-        Debug.Log("Skill Set Complete_Add");
-        SetTotalElements();
         //outDungeonUIManager.DungeonEnterCheck();
     }
 }
