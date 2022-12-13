@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+
 using UnityEditor;
+
+#endif
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-//CustomEditor¸¦ ¼±¾ðÇØ¾ß FieldOfView¿¡ ´ëÇÑ editor¸¦ ¼³Ä¡ ÇÒ ¼ö ÀÖ´Ù 
+//CustomEditorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ FieldOfViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ editorï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ 
 [CustomEditor(typeof(FOV))]
 public class FOVEditor : Editor
 {
