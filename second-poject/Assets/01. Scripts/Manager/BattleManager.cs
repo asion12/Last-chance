@@ -30,11 +30,13 @@ public class BattleManager : MonoBehaviour
     public bool isTurnUsed = false;
     public bool isCarelessTurnUsed = false;
     private UIManager uIManager = null;
+    private EffectManager effectManager = null;
     public NavMeshAgent monster;
     private int BonusExpScale = 0;
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
+        effectManager = FindObjectOfType<EffectManager>();
     }
 
     private void Update()
@@ -326,7 +328,7 @@ public class BattleManager : MonoBehaviour
             float increaseDamage = 0f;
             float decreaseDamage = 0f;
 
-            if (castSkill.categorPhysics)
+            if (castSkill.categoryPhysics)
             {
                 increaseDamage = Mathf.Log(1 + skillCaster.totalStats.STR, 2f);
                 decreaseDamage = Mathf.Log(1 + skillVictim.totalStats.FIR, 2f);
@@ -350,6 +352,17 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Final Skill Damage is " + finalSkillDamage.ToString());
             skillVictim.nowHP -= (int)finalSkillDamage;
             Debug.Log("Now Victim Hp : " + skillVictim.nowHP.ToString());
+
+            if (!isReject && skillVictim.nowHP > 0)
+            {
+                StartCoroutine(effectManager.HitStop(skillVictim.gameObject,
+                // (Convert.ToInt32(skillVictim.isCareless) + Convert.ToInt32(isAdvantage) + Convert.ToInt32(isCritical))
+                1));
+            }
+            else
+            {
+                Debug.Log("Rejected!!!!!!");
+            }
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);

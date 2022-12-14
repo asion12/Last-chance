@@ -16,7 +16,7 @@ MonoBehaviour:
   buyCost: 200
   playerHavingCount: 1
   playerSkillSetted: 0
-  categorPhysics: 0
+  categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
     SOLAR: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
-    HYDRO: 1
+    HYDRO: 0
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
-    BIOLOGY: 1
+    BIOLOGY: 0
     METAL: 0
     SOIL: 0
   skillDamage: 200

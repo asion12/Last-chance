@@ -25,7 +25,18 @@ public class OutDungeonUIManager : MonoBehaviour
 
     [Header("상점 관련")]
     [SerializeField] private TextMeshProUGUI PlayerGoldText;
+    [SerializeField] private GameObject SkillTableParent;
+    [SerializeField] private GameObject SkillTableButtonPrefab;
 
+    [Header("스탯 업그레이드 관련")]
+    public TextMeshProUGUI addStatInfo_STR;
+    public TextMeshProUGUI addStatInfo_FIR;
+    public TextMeshProUGUI addStatInfo_INT;
+    public TextMeshProUGUI addStatInfo_WIS;
+    public TextMeshProUGUI addStatInfo_FOC;
+    public TextMeshProUGUI addStatInfo_DEX;
+    public TextMeshProUGUI addStatInfo_CHA;
+    [SerializeField] private TextMeshProUGUI PlayerStatPointText;
     [SerializeField] private bool enterCheck_0 = false;
     [SerializeField] private bool enterCheck_1 = false;
     [SerializeField] private bool enterCheck_2 = false;
@@ -46,12 +57,48 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private void Update()
     {
-        SetPlayerGoldText();
+        UIUpdate_SetPlayerGoldText();
+        UIUpdate_SetPlayerStatPointText();
+        UIUpdate_SetPlayerStatAddInfo();
     }
 
-    public void SetPlayerGoldText()
+    private void EnableSkillTable()
+    {
+        for (int i = 0; i < SkillTableParent.transform.childCount; i++)
+        {
+            Destroy(SkillTableParent.transform.GetChild(0));
+        }
+    }
+
+    public void SetSkillTable(List<SO_Skill> setSkills)
+    {
+        for (int i = 0; i < setSkills.Count; i++)
+        {
+            GameObject tempObj;
+            tempObj = Instantiate(SkillTableButtonPrefab);
+            tempObj.transform.SetParent(SkillTableParent.transform);
+        }
+    }
+
+    private void UIUpdate_SetPlayerStatAddInfo()
+    {
+        addStatInfo_STR.text = "+" + (player.characterStats.STR - 2).ToString();
+        addStatInfo_FIR.text = "+" + (player.characterStats.FIR - 2).ToString();
+        addStatInfo_INT.text = "+" + (player.characterStats.INT - 2).ToString();
+        addStatInfo_WIS.text = "+" + (player.characterStats.WIS - 2).ToString();
+        addStatInfo_FOC.text = "+" + (player.characterStats.FOC - 2).ToString();
+        addStatInfo_DEX.text = "+" + (player.characterStats.DEX - 2).ToString();
+        addStatInfo_CHA.text = "+" + (player.characterStats.CHA - 2).ToString();
+    }
+
+    public void UIUpdate_SetPlayerGoldText()
     {
         PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G";
+    }
+
+    public void UIUpdate_SetPlayerStatPointText()
+    {
+        PlayerStatPointText.text = player.statPoint.ToString() + " SP";
     }
 
     public void CheckActiveDungeonEnterButton()
@@ -103,7 +150,7 @@ public class OutDungeonUIManager : MonoBehaviour
             FX_ActiveEnterInfo(EnterInfo_1);
         }
 
-        if (player.skillList.Count < 1 || 5 < player.skillList.Count)
+        if (10 < player.skillList.Count + GameManager.instance.potionCount)
         {
             enterCheck_2 = false;
             FX_InactiveEnterInfo(EnterInfo_2);
@@ -163,18 +210,34 @@ public class OutDungeonUIManager : MonoBehaviour
             GameObject skillButton;
             skillButton = Instantiate(PlayerInventorySkillButtonPrefab);
             skillButton.transform.SetParent(PlayerInventorySkillListContent.transform);
-            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillSet(tempSkill));
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnInvenSkillClick(tempSkill));
 
             Color textColor = GetTextColorToElement(tempSkill.skillElements);
 
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = Color.white;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
+            //skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
 
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
-            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "" + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
+
+            string tempStr = "";
+            if (tempSkill.categoryPhysics)
+            {
+                tempStr = "물리";
+            }
+            else
+            {
+                tempStr = "화학";
+            }
+
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = tempStr + " 대미지 " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + "";
+            //skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().color = textColor;
+
+            Color color;
+            ColorUtility.TryParseHtmlString("#FFB300", out color);
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().color = color;
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
 
             // 스킬 추가 정보 표기
             skillButton.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = SetElementInfoString(tempSkill);
@@ -196,85 +259,85 @@ public class OutDungeonUIManager : MonoBehaviour
                 case 0:
                     if (tempSkill.setResistElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Solar";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "SOLAR";
                     }
                     else if (tempSkill.setWeakElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Solar";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "SOLAR";
                     }
                     break;
                 case 1:
                     if (tempSkill.setResistElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Luminous";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "LUMINOUS";
                     }
                     else if (tempSkill.setWeakElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Luminous";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "LUMINOUS";
                     }
                     break;
                 case 2:
                     if (tempSkill.setResistElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Ignition";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "IGNITION";
                     }
                     else if (tempSkill.setWeakElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Ignition";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "IGNITION";
                     }
                     break;
                 case 3:
                     if (tempSkill.setResistElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Hydro";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "HYDRO";
                     }
                     else if (tempSkill.setWeakElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Hydro";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "HYDRO";
                     }
                     break;
                 case 4:
                     if (tempSkill.setResistElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Biology";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "BIOLOGY";
                     }
                     else if (tempSkill.setWeakElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Biology";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "BIOLOGY";
                     }
                     break;
                 case 5:
                     if (tempSkill.setResistElements.METAL)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Metal";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "METAL";
                     }
                     else if (tempSkill.setWeakElements.METAL)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Metal";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "METAL";
                     }
                     break;
                 case 6:
                     if (tempSkill.setResistElements.SOIL)
                     {
-                        elementResOrWckInfoString += "Resist";
-                        elementInfoString += "Soil";
+                        elementResOrWckInfoString += "RESIST";
+                        elementInfoString += "SOIL";
                     }
                     else if (tempSkill.setWeakElements.SOIL)
                     {
-                        elementResOrWckInfoString += "Weak";
-                        elementInfoString += "Soil";
+                        elementResOrWckInfoString += "WEAK";
+                        elementInfoString += "SOIL";
                     }
                     break;
                 default:
@@ -293,22 +356,23 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private Color GetTextColorToElement(Elements el)
     {
+        Color tempColor = Color.white;
         if (el.SOLAR)
-            return Color.yellow;
+            ColorUtility.TryParseHtmlString("#ebc802", out tempColor);
         else if (el.LUMINOUS)
-            return Color.magenta;
+            ColorUtility.TryParseHtmlString("#2a0599", out tempColor);
         else if (el.IGNITION)
-            return Color.red;
+            ColorUtility.TryParseHtmlString("#FF0505", out tempColor);
         else if (el.HYDRO)
-            return Color.blue;
+            ColorUtility.TryParseHtmlString("#02d0eb", out tempColor);
         else if (el.BIOLOGY)
-            return Color.green;
+            ColorUtility.TryParseHtmlString("#03961e", out tempColor);
         else if (el.METAL)
-            return Color.black;
+            ColorUtility.TryParseHtmlString("#4a4d59", out tempColor);
         else if (el.SOIL)
-            return Color.gray;
+            ColorUtility.TryParseHtmlString("#75350d", out tempColor);
 
-        return Color.cyan;
+        return tempColor;
     }
 
     private string SetIntHundred(int num, Color textColor)

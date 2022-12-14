@@ -20,12 +20,14 @@ public class GameManager : MonoBehaviour
     private UIManager uIManager;
 
     public int Gold = 0;
-    public int Hp_0 = 0;
+    public int HP_0 = 0;
     public int HP_1 = 0;
     public int HP_2 = 0;
     public int MP_0 = 0;
     public int MP_1 = 0;
     public int MP_2 = 0;
+
+    public int potionCount = 0;
 
     private void Awake()
     {
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         }
         // CursorLook();
         TimeLimitCheck();
+        //CheckPotionCount();
     }
 
     private void TimeLimitCheck()
@@ -108,6 +111,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
+    public void CheckPotionCount()
+    {
+        potionCount = HP_0 + HP_1 + HP_2 + MP_0 + MP_1 + MP_2;
+        Debug.Log("Potion Count " + potionCount.ToString());
+    }
+
     public void ResetDungeon()
     {
         // /isGameStarted = false;
@@ -134,6 +143,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Exit!");
         ResetPlayerSkillList();
+        player.skillList = new List<SO_Skill>();
+        player.SetTotalElements();
         ResetDungeon();
         isGameStarted = false;
         outDungeonUIManager.ActiveOutDungeonUI();
@@ -145,6 +156,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("LosshavingSkill");
         LossPlayerSkillList();
         player.skillList = new List<SO_Skill>();
+        player.SetTotalElements();
         ResetDungeon();
         isGameStarted = false;
         outDungeonUIManager.ActiveOutDungeonUI();

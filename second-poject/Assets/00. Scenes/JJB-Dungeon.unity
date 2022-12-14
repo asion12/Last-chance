@@ -9042,7 +9042,7 @@ MonoBehaviour:
   maxCP: 100
   characterStats:
     MAX_HP: 2500
-    MAX_MP: 1000
+    MAX_MP: 500
     STR: 2
     FIR: 2
     INT: 2
@@ -9122,7 +9122,7 @@ MonoBehaviour:
   isOverWeak: 0
   isBattleMode: 0
   max_carelessCounter: 5
-  carelessCounter: 4
+  carelessCounter: 0
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
@@ -9130,7 +9130,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e553000a860c1d4fb1aaed8ff0b915e, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
   isStunned: 0
-  Level: 3
+  Level: 1
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0

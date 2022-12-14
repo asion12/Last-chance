@@ -42,12 +42,10 @@ public class Player : Character
 
     public bool isCanExit = false;
 
-
-    public int skillPoint = 0;
-    private OutDungeonUIManager outDungeonUIManager;
+    //private OutDungeonUIManager outDungeonUIManager;
     private void Awake()
     {
-        outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+        //outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
     }
     protected virtual void Start()
     {
@@ -87,7 +85,13 @@ public class Player : Character
         if (EXP >= maxEXP)
         {
             EXP = EXP - maxEXP;
+            characterStats.MAX_HP += 1000;
+            characterStats.MAX_MP += 500;
+            nowHP = characterStats.MAX_HP;
+            nowMP = characterStats.MAX_MP;
+            nowCP = maxCP;
             Level++;
+            statPoint += 16;
         }
     }
 

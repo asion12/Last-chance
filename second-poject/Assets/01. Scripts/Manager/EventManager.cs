@@ -8,11 +8,15 @@ public class EventManager : MonoBehaviour
     private bool isOverClockCasting = false;
     private Player player = null;
     private OutDungeonUIManager outDungeonUIManager = null;
-
+    private StoreManager_New storeManager_New = null;
+    private EffectManager effectManager = null;
+    private bool isSellMode = false;
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+        storeManager_New = FindObjectOfType<StoreManager_New>();
+        effectManager = FindObjectOfType<EffectManager>();
     }
 
     public void OnPlayerOverClockCast()
@@ -29,8 +33,29 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            PlayerCastSkillSet(setSkill);
+            if (BattleManager.instance.nowTurnID == 1)
+            {
+                effectManager.MakeSkillEffect(setSkill, true);
+                PlayerCastSkillSet(setSkill);
+            }
         }
+    }
+
+    public void OnInvenSkillClick(SO_Skill targetSkill)
+    {
+        if (isSellMode)
+        {
+            OnSkillSetSellMode(targetSkill);
+        }
+        else
+        {
+            OnSkillSet(targetSkill);
+        }
+    }
+
+    public void OnSkillSetSellMode(SO_Skill sellSkill)
+    {
+
     }
 
     public void OnSkillSet(SO_Skill setSkill)
@@ -80,137 +105,217 @@ public class EventManager : MonoBehaviour
         GameManager.instance.EnterDungeon();
     }
 
+    public void OnIncreaseStat(string statID)
+    {
+        if (statID == "STR")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.STR >= 32)
+            {
+                Debug.Log("STR OVER");
+            }
+            else
+            {
+                player.characterStats.STR++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "FIR")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.FIR >= 32)
+            {
+                Debug.Log("FIR OVER");
+            }
+            else
+            {
+                player.characterStats.FIR++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "INT")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.INT >= 32)
+            {
+                Debug.Log("INT OVER");
+            }
+            else
+            {
+                player.characterStats.INT++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "WIS")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.WIS >= 32)
+            {
+                Debug.Log("WIS OVER");
+            }
+            else
+            {
+                player.characterStats.WIS++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "FOC")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.FOC >= 32)
+            {
+                Debug.Log("FOC OVER");
+            }
+            else
+            {
+                player.characterStats.FOC++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "DEX")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.DEX >= 32)
+            {
+                Debug.Log("DEX OVER");
+            }
+            else
+            {
+                player.characterStats.DEX++;
+                player.statPoint--;
+            }
+        }
+        else if (statID == "CHA")
+        {
+            if (player.statPoint <= 0)
+            {
+                Debug.Log("Not Enough Point!");
+            }
+            else if (player.characterStats.CHA >= 32)
+            {
+                Debug.Log("CHA OVER");
+            }
+            else
+            {
+                player.characterStats.CHA++;
+                player.statPoint--;
+            }
+        }
+    }
+
+    public void OnDecreaseStat(string statID)
+    {
+        if (statID == "STR")
+        {
+            if (player.characterStats.STR <= 2)
+            {
+                Debug.Log("STR ENDLESS");
+            }
+            else
+            {
+                player.characterStats.STR--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "FIR")
+        {
+            if (player.characterStats.FIR <= 2)
+            {
+                Debug.Log("FIR ENDLESS");
+            }
+            else
+            {
+                player.characterStats.FIR--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "INT")
+        {
+            if (player.characterStats.INT <= 2)
+            {
+                Debug.Log("INT ENDLESS");
+            }
+            else
+            {
+                player.characterStats.INT--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "WIS")
+        {
+            if (player.characterStats.STR <= 2)
+            {
+                Debug.Log("WIS ENDLESS");
+            }
+            else
+            {
+                player.characterStats.WIS--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "FOC")
+        {
+            if (player.characterStats.FOC <= 2)
+            {
+                Debug.Log("FOC ENDLESS");
+            }
+            else
+            {
+                player.characterStats.FOC--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "DEX")
+        {
+            if (player.characterStats.DEX <= 2)
+            {
+                Debug.Log("DEX ENDLESS");
+            }
+            else
+            {
+                player.characterStats.DEX--;
+                player.statPoint++;
+            }
+        }
+        else if (statID == "CHA")
+        {
+            if (player.characterStats.CHA <= 2)
+            {
+                Debug.Log("CHA ENDLESS");
+            }
+            else
+            {
+                player.characterStats.CHA--;
+                player.statPoint++;
+            }
+        }
+    }
+
     public void OnBuyPotion(string potionID)
     {
-        if (potionID == "HP_LOW")
-        {
-            if (CheckPrice(100))
-            {
-                GameManager.instance.Hp_0++;
-                DecreaseGold(100);
-            }
-        }
-        else if (potionID == "MP_LOW")
-        {
-            if (CheckPrice(100))
-            {
-                GameManager.instance.MP_0++;
-                DecreaseGold(100);
-            }
-        }
-        else if (potionID == "HP_MID")
-        {
-            if (CheckPrice(250))
-            {
-                GameManager.instance.HP_1++;
-                DecreaseGold(250);
-            }
-        }
-        else if (potionID == "MP_MID")
-        {
-            if (CheckPrice(250))
-            {
-                GameManager.instance.MP_1++;
-                DecreaseGold(250);
-            }
-        }
-        else if (potionID == "HP_HIGH")
-        {
-            if (CheckPrice(750))
-            {
-                GameManager.instance.HP_2++;
-                DecreaseGold(750);
-            }
-        }
-        else if (potionID == "MP_HIGH")
-        {
-            if (CheckPrice(750))
-            {
-                GameManager.instance.MP_2++;
-                DecreaseGold(750);
-            }
-        }
-        else
-        {
-            Debug.Log("Loss!!!!");
-        }
+        storeManager_New.BuyPotion(potionID);
     }
 
     public void OnSellPotion(string potionID)
     {
-        if (potionID == "HP_LOW")
-        {
-            if (GameManager.instance.Hp_0 >= 1)
-            {
-                IncreaseGold(100);
-                GameManager.instance.Hp_0--;
-            }
-        }
-        else if (potionID == "MP_LOW")
-        {
-            if (GameManager.instance.MP_0 >= 1)
-            {
-                IncreaseGold(100);
-                GameManager.instance.MP_0--;
-            }
-        }
-        else if (potionID == "HP_MID")
-        {
-            if (GameManager.instance.HP_1 >= 1)
-            {
-                IncreaseGold(250);
-                GameManager.instance.HP_1--;
-            }
-        }
-        else if (potionID == "MP_MID")
-        {
-            if (GameManager.instance.MP_1 >= 1)
-            {
-                IncreaseGold(250);
-                GameManager.instance.MP_1--;
-            }
-        }
-        else if (potionID == "HP_HIGH")
-        {
-            if (GameManager.instance.HP_2 >= 1)
-            {
-                IncreaseGold(750);
-                GameManager.instance.HP_2--;
-            }
-        }
-        else if (potionID == "MP_HIGH")
-        {
-            if (GameManager.instance.MP_2 >= 1)
-            {
-                IncreaseGold(750);
-                GameManager.instance.MP_2--;
-            }
-        }
-        else
-        {
-            Debug.Log("Loss!!!!");
-        }
-    }
-
-    private bool CheckPrice(int itemPrice)
-    {
-        if (GameManager.instance.Gold >= itemPrice)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private void DecreaseGold(int decraeseValue)
-    {
-        GameManager.instance.Gold -= decraeseValue;
-    }
-
-    private void IncreaseGold(int increaseValue)
-    {
-        GameManager.instance.Gold += increaseValue;
+        storeManager_New.SellPotion(potionID);
     }
 }

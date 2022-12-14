@@ -56,6 +56,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas PlayerItemListUI;
     [SerializeField] private GameObject PlayerItemList;
     [SerializeField] private Image PlayerItemListBG;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_HPLOW;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_HPMID;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_HPHIGH;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_MPLOW;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_MPMID;
+    [SerializeField] private TextMeshProUGUI PlayerItemCount_MPHIGH;
 
     [Header("연출용 UI")]
     [SerializeField] private TextMeshProUGUI GameLog;
@@ -126,7 +132,18 @@ public class UIManager : MonoBehaviour
         // UIUpdate_CheckSkillUse();
         UIUpdate_SetPlayerCanExit();
         UIUpdate_SetLeftOverTimeLimit();
+        UIUpdate_SetPlayerItemCount();
         //OnIventory();
+    }
+
+    private void UIUpdate_SetPlayerItemCount()
+    {
+        PlayerItemCount_HPLOW.text = GameManager.instance.HP_0.ToString("D2");
+        PlayerItemCount_HPMID.text = GameManager.instance.HP_1.ToString("D2");
+        PlayerItemCount_HPHIGH.text = GameManager.instance.HP_2.ToString("D2");
+        PlayerItemCount_MPLOW.text = GameManager.instance.MP_0.ToString("D2");
+        PlayerItemCount_MPMID.text = GameManager.instance.MP_1.ToString("D2");
+        PlayerItemCount_MPHIGH.text = GameManager.instance.MP_2.ToString("D2");
     }
 
     private void UIUpdate_SetPlayerCanExit()
@@ -314,22 +331,23 @@ public class UIManager : MonoBehaviour
 
     private Color GetTextColorToElement(Elements el)
     {
+        Color tempColor = Color.white;
         if (el.SOLAR)
-            return Color.yellow;
+            ColorUtility.TryParseHtmlString("#ebc802", out tempColor);
         else if (el.LUMINOUS)
-            return Color.magenta;
+            ColorUtility.TryParseHtmlString("#2a0599", out tempColor);
         else if (el.IGNITION)
-            return Color.red;
+            ColorUtility.TryParseHtmlString("#FF0505", out tempColor);
         else if (el.HYDRO)
-            return Color.blue;
+            ColorUtility.TryParseHtmlString("#02d0eb", out tempColor);
         else if (el.BIOLOGY)
-            return Color.green;
+            ColorUtility.TryParseHtmlString("#03961e", out tempColor);
         else if (el.METAL)
-            return Color.black;
+            ColorUtility.TryParseHtmlString("#4a4d59", out tempColor);
         else if (el.SOIL)
-            return Color.gray;
+            ColorUtility.TryParseHtmlString("#75350d", out tempColor);
 
-        return Color.cyan;
+        return tempColor;
     }
 
     public void SetBattleUIInactive()
@@ -392,11 +410,21 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().color = Color.white;
-            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().color = Color.white;
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
 
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
-            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "" + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";
+            string tempString = "";
+            if (tempSkill.categoryChemistry)
+            {
+                tempString = "화학";
+            }
+            else
+            {
+                tempString = "물리";
+            }
+
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = tempString + " " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
@@ -413,7 +441,16 @@ public class UIManager : MonoBehaviour
 
     private void SetBarSize(GameObject tempBarObject, float originValue, float tempValue, float originMaxValue)
     {
-        float tempBarSize = originValue / originMaxValue;
+
+        float tempBarSize = 0;
+        if (originValue <= 0 || originMaxValue <= 0)
+        {
+            tempBarSize = 0.00001f;
+        }
+        else
+        {
+            tempBarSize = originValue / originMaxValue;
+        }
         if (tempValue != originValue)
         {
             tempValue = originValue;
