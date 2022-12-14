@@ -742,11 +742,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a305cdd53910944b0b8c3c4bc483d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowHP: 0
+  nowMP: 0
+  nowCP: 0
+  maxCP: 100
   characterStats:
-    HP: 0
-    MP: 0
-    Lev: 0
-    EXP: 0
+    MAX_HP: 0
+    MAX_MP: 0
     STR: 0
     FIR: 0
     INT: 0
@@ -754,32 +756,102 @@ MonoBehaviour:
     FOC: 0
     DEX: 0
     CHA: 0
-  resistElements:
+  buff_debuffStats:
+    MAX_HP: 0
+    MAX_MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+  totalStats:
+    MAX_HP: 0
+    MAX_MP: 0
+    STR: 0
+    FIR: 0
+    INT: 0
+    WIS: 0
+    FOC: 0
+    DEX: 0
+    CHA: 0
+  characterResistElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
-  weakElements:
+    SOIL: 0
+  characterWeakElements:
     SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
-  battleMode: 0
+    SOIL: 0
+  additionResistElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  additionWeakElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  totalResistElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  totalWeakElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  isOverResist: 0
+  isOverWeak: 0
+  isBattleMode: 0
+  max_carelessCounter: 0
   carelessCounter: 0
+  isCareless: 0
   skillList: []
+  isStunned: 0
   Level: 1
-  Exp: 0
+  dbobj: {fileID: 0}
+  itemObj: {fileID: 0}
+  characterStack: 0
+  ability:
+    characterStack: 0
+    valStack: 0
+    min: 0
+    max: 0
+  EXP: 0
+  maxEXP: 100
+  statPoint: 0
   playerCamera: {fileID: 642158073}
   battleStartRange: 0
   battleStartRangePoint: {fileID: 0}
   moveSpeed: 6.54
   rotateSpeed: 500
+  isSkillOverClockList: 00
+  poistion: {fileID: 0}
+  isCanExit: 0
   nowHitObject: {fileID: 0}
 --- !u!54 &1828148456
 Rigidbody:
