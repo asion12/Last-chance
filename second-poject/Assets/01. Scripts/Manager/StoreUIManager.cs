@@ -34,7 +34,7 @@ public class StoreUIManager : MonoBehaviour
         on();
         SetText(Prise, prise);
         SetText(Gold, GameManager.instance.Gold);
-        SetText(HP_0, GameManager.instance.Hp_0);
+        SetText(HP_0, GameManager.instance.HP_0);
         SetText(HP_1, GameManager.instance.HP_1);
         SetText(HP_2, GameManager.instance.HP_2);
         SetText(MP_0, GameManager.instance.MP_0);
@@ -45,9 +45,9 @@ public class StoreUIManager : MonoBehaviour
     public void SellGoldItem()
     {
 
-        if (GameManager.instance.Hp_0 >= 1)
+        if (GameManager.instance.HP_0 >= 1)
         {
-            GameManager.instance.Hp_0 -= 1;
+            GameManager.instance.HP_0 -= 1;
             GameManager.instance.Gold += 1000;
         }
 
@@ -58,9 +58,9 @@ public class StoreUIManager : MonoBehaviour
         if (GameManager.instance.Gold >= 1000)
         {
             GameManager.instance.Gold -= 1000;
-            GameManager.instance.Hp_0 += 1;
+            GameManager.instance.HP_0 += 1;
             AddnewItem0();
-            invenSlot.addCnt(GameManager.instance.Hp_0);
+            invenSlot.addCnt(GameManager.instance.HP_0);
 
         }
         else if (GameManager.instance.Gold < 1000)
@@ -70,7 +70,7 @@ public class StoreUIManager : MonoBehaviour
             Invoke("OnImage", 1);
         }
     }
- 
+
 
     public void SellGoldItemMP()
     {

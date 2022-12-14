@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
   m_Name: 020. HeatPump-Heat
   m_EditorClassIdentifier: 
-  skillName: "\uD788\uD2B8\uD38C\uD504-\uB0C9\uAC01"
+  skillName: "\uD788\uD2B8\uD38C\uD504-\uAC00\uC5F4"
   buyCost: 350
   playerHavingCount: 1
   playerSkillSetted: 0
-  categorPhysics: 0
+  categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
     SOLAR: 1

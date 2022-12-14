@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 016. HydrogenExplosion
   m_EditorClassIdentifier: 
   skillName: "\uC218\uC18C\uD3ED\uBC1C"
-  buyCost: 500
+  buyCost: 999
   playerHavingCount: 1
   playerSkillSetted: 0
-  categorPhysics: 0
+  categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
     SOLAR: 0
@@ -42,9 +42,9 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 1500
-  needCP: 0
-  needMp: 1500
+  skillDamage: 999
+  needCP: 99
+  needMp: 999
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

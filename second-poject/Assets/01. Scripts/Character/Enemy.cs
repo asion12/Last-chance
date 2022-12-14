@@ -21,10 +21,13 @@ public class Enemy : Character
     private bool isChanging = false;
     private bool isLimitOverMode = false;
 
+    EffectManager effectManager = null;
+
     protected override void Start()
     {
         base.Start();
         collider = GetComponent<Collider>();
+        effectManager = FindObjectOfType<EffectManager>();
     }
 
     protected override void Update()
@@ -85,7 +88,7 @@ public class Enemy : Character
     public IEnumerator EnemySkillCast()
     {
         isChanging = true;
-        yield return new WaitForSeconds(1);
+
 
         if (enemyBattleState == BattleState.ATTACK_READY)
         {
@@ -101,8 +104,6 @@ public class Enemy : Character
             AddUseSkillList(SO_Skill.SkillDivision.HEAL);
         }
 
-        yield return new WaitForSeconds(0.5f);
-
         int cnt = useSkillList.Count;
         //Debug.Log("1. Now Skill Count " + useSkillList.Count);
         int selectSkillIndex = Random.Range(0, cnt);
@@ -112,8 +113,9 @@ public class Enemy : Character
 
         int idx = selectSkillIndex;
 
-        yield return new WaitForSeconds(0.5f);
 
+        yield return new WaitForSeconds(1f);
+        effectManager.MakeSkillEffect(useSkillList[idx], false);
         BattleManager.instance.CastSkill(this, BattleManager.instance.player, useSkillList[idx]);
 
         Debug.Log("Enemy Casted!");

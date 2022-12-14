@@ -16,7 +16,7 @@ MonoBehaviour:
   buyCost: 150
   playerHavingCount: 1
   playerSkillSetted: 0
-  categorPhysics: 1
+  categoryPhysics: 1
   categoryChemistry: 0
   skillElements:
     SOLAR: 0

@@ -9,10 +9,10 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 //CustomEditor�� �����ؾ� FieldOfView�� ���� editor�� ��ġ �� �� �ִ� 
+#if UNITY_EDITOR
 [CustomEditor(typeof(FOV))]
 public class FOVEditor : Editor
 {
-
     void OnSceneGUI()
     {
         FOV fov = (FOV)target;
@@ -40,3 +40,5 @@ public class FOVEditor : Editor
         }
     }
 }
+
+#endif
