@@ -10,7 +10,9 @@ public class stateRoaming : State<MonsterFSM>
 { 
     private CharacterController characterController;
     private NavMeshAgent agent;
-      
+    private float wait = 3f;
+    private float fTickTime;
+
 
     public override void OnAwake()
     { 
@@ -33,11 +35,13 @@ public class stateRoaming : State<MonsterFSM>
 
     public override void OnUpdate(float deltaTime)
     {
-        Transform target = stateMachineClass.SearchMonster();
+        fTickTime += Time.deltaTime;
+        
+            Transform target = stateMachineClass.SearchMonster();
         if (target)
         {
             if (stateMachineClass.getFlagAtk)
-            { 
+            {
                 stateMachine.ChangeState<stateAtk>();
             }
             else
@@ -46,25 +50,30 @@ public class stateRoaming : State<MonsterFSM>
             }
         }
         else
-        { 
-            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
+        {
+            if (fTickTime >= wait)
             {
-                Debug.Log(agent.remainingDistance + "<=" + agent.stoppingDistance);
-                Transform nextRoamingPosition = stateMachineClass.getPositionNextRoaming();
-                if(nextRoamingPosition)
+                if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
                 {
-                    agent.SetDestination(nextRoamingPosition.position);
+                    Debug.Log(agent.remainingDistance + "<=" + agent.stoppingDistance);
+                    Transform nextRoamingPosition = stateMachineClass.getPositionNextRoaming();
+                    if (nextRoamingPosition)
+                    {
+                        agent.SetDestination(nextRoamingPosition.position);
+                        fTickTime = 0;
+                    }
+
+                    stateMachineClass.ChangeState<stateIdle>();
                 }
+                else
+                {
+                    characterController.Move(agent.velocity * Time.deltaTime);
+                }
+            }
 
-                stateMachineClass.ChangeState<stateIdle>();
-            }
-            else
-            {
-                characterController.Move(agent.velocity * Time.deltaTime);
-            }
         }
-    }
 
+    }
     public override void OnEnd()
     {
         agent.stoppingDistance =  stateMachineClass.atkRange; 
