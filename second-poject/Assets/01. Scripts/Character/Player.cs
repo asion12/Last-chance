@@ -320,12 +320,15 @@ public class Player : Character
         {
             if (hitData.transform.tag == "Enemy")
             {
-                if (uIManager == null)
-                { Debug.Log("uIManager is null!"); }
-                else
+                if (hitData.distance <= battleStartRange + 2)
                 {
-                    GameObject temp = hitData.transform.gameObject;
-                    uIManager.UIUpdate_TargetEnemyBase(temp, true);
+                    if (uIManager == null)
+                    { Debug.Log("uIManager is null!"); }
+                    else
+                    {
+                        GameObject temp = hitData.transform.gameObject;
+                        uIManager.UIUpdate_TargetEnemyBase(temp, true);
+                    }
                 }
             }
             else
@@ -454,7 +457,7 @@ public class Player : Character
         skillList.Remove(removeSkill);
         //SetTotalElements();
         Invoke("SetTotalElements", 0.05f);
-        uIManager.ResetPlayerSkillList();
+        uIManager.ResetButtonPlayerSkillList();
         //outDungeonUIManager.DungeonEnterCheck();
     }
 
@@ -465,7 +468,7 @@ public class Player : Character
         skillList.Add(addSkill);
         // /SetTotalElements();
         Invoke("SetTotalElements", 0.05f);
-        uIManager.ResetPlayerSkillList();
+        uIManager.ResetButtonPlayerSkillList();
         //outDungeonUIManager.DungeonEnterCheck();
     }
 }

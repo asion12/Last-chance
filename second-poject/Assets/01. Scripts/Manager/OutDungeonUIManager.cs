@@ -12,7 +12,7 @@ public class OutDungeonUIManager : MonoBehaviour
     [SerializeField] private GameObject OutDungeonUIGroup;
 
     [Header("스킬 인벤토리 버튼 관련")]
-    [SerializeField] private List<SO_Skill> PlayerInventorySkillListData;
+    public List<SO_Skill> PlayerInventorySkillListData;
     [SerializeField] private GameObject PlayerInventorySkillButtonPrefab;
     [SerializeField] private GameObject PlayerInventorySkillListContent;
 
@@ -51,6 +51,7 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private void Start()
     {
+        ResetSkillSettedValue();
         ResetPlayerSkillInventory();
         DungeonEnterCheck();
     }
@@ -413,6 +414,14 @@ public class OutDungeonUIManager : MonoBehaviour
     {
         FX_SkillInventoryBGActive(SkillInventoryButton.transform.GetChild(3).gameObject.GetComponent<Image>());
         FX_SkillInventorySetTextActive(SkillInventoryButton.transform.GetChild(4).gameObject.GetComponent<TextMeshProUGUI>());
+    }
+
+    public void ResetSkillSettedValue()
+    {
+        for (int i = 0; i < PlayerInventorySkillListData.Count; i++)
+        {
+            PlayerInventorySkillListData[i].playerSkillSetted = false;
+        }
     }
 
     private void FX_SkillInventoryBGActive(Image effectImage)

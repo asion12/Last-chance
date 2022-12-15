@@ -19,7 +19,7 @@ public class StoreManager_New : MonoBehaviour
 
     }
 
-    private void SetSkilStore()
+    private void SetSkillStore()
     {
         nowSkillTable = new List<SO_Skill>();
         for (int i = 0; i < 3; i++)

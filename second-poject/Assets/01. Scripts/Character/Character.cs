@@ -211,7 +211,7 @@ public class Character : MonoBehaviour
     }
     public virtual void SetTotalElements()
     {
-        Debug.Log("ElementChecked!");
+        Debug.LogWarning("Total Element Checked!");
         int[] chResEl = Elements_IntArrReturn(characterResistElements);
         int[] chWckEl = Elements_IntArrReturn(characterWeakElements);
         int[] adResEl = Elements_IntArrReturn(additionResistElements);

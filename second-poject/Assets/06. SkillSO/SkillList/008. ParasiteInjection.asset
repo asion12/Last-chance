@@ -15,8 +15,9 @@ MonoBehaviour:
   skillName: "\uAE30\uC0DD\uBB3C\uC8FC\uC785"
   buyCost: 200
   playerHavingCount: 1
+  isSell: 0
   playerSkillSetted: 0
-  categorPhysics: 0
+  categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
     SOLAR: 0
