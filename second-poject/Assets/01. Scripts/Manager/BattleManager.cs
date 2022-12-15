@@ -84,6 +84,8 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
+        SetAllEnemysStop();
+
         // if now Battlemode
         if (nowTurnID != 0)
         {
@@ -140,6 +142,25 @@ public class BattleManager : MonoBehaviour
             GameManager.instance.DieOutDungeon();
             //monster.speed = 3.5f;
         }
+    }
+
+    private void SetAllEnemysStop()
+    {
+        Enemy[] Enemys = FindObjectsOfType<Enemy>();
+        for (int i = 0; i < Enemys.Length; i++)
+        {
+            Enemys[i].StopMoving();
+        }
+    }
+
+    private void SetAllEnemysRestart()
+    {
+        Enemy[] Enemys = GetComponents<Enemy>();
+        for (int i = 0; i < Enemys.Length; i++)
+        {
+            Enemys[i].RestartMoving();
+        }
+
     }
 
     public IEnumerator BattleRun(bool isPlayerRun)

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7bf66c3ec049443a085132e603d122, type: 3}
+  m_Name: 999. Kill Test
+  m_EditorClassIdentifier: 
+  skillName: "\uD55C\uBC29\uCEF7"
+  buyCost: 0
+  playerHavingCount: 9999
+  isSell: 0
+  playerSkillSetted: 0
+  categoryPhysics: 1
+  categoryChemistry: 0
+  skillElements:
+    SOLAR: 1
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  setWeakElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  setResistElements:
+    SOLAR: 0
+    LUMINOUS: 0
+    IGNITION: 0
+    HYDRO: 0
+    BIOLOGY: 0
+    METAL: 0
+    SOIL: 0
+  skillDamage: 9999
+  needCP: 0
+  needMp: 0
+  needHp: 0
+  skillDivision: 0
+  sideEffect: {fileID: 0}

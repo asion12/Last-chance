@@ -35,7 +35,8 @@ public class EventManager : MonoBehaviour
         {
             if (BattleManager.instance.nowTurnID == 1)
             {
-                effectManager.MakeSkillEffect(setSkill, true);
+                if (setSkill.needMp <= player.nowMP)
+                    effectManager.MakeSkillEffect(setSkill, true);
                 PlayerCastSkillSet(setSkill);
             }
         }

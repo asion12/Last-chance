@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Character
 {
@@ -23,6 +24,8 @@ public class Enemy : Character
 
     EffectManager effectManager = null;
 
+    private float orginNavSpeed = 0;
+    private Vector3 orginVel = new Vector3(0, 0, 0);
     protected override void Start()
     {
         base.Start();
@@ -196,4 +199,41 @@ public class Enemy : Character
         return temp;
     }
 
+    public void StopMoving()
+    {
+        NavMeshAgent tempNav = gameObject.GetComponent<NavMeshAgent>();
+        //CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
+        // orginNavSpeed = tempNav.speed;
+        // orginVel = tempNav.velocity;
+
+        // tempNav.ResetPath();
+        // tempNav.velocity = Vector3.zero;
+        // tempNav.isStopped = true;
+        // tempNav.speed = 0;
+        //tempCharaCOn.enabled = false;
+        // Vector3 tempPos = gameObject.transform.position;
+        // tempNav.isStopped = true;
+        // gameObject.transform.position = tempPos;
+
+        orginVel = tempNav.velocity;
+        tempNav.velocity = Vector3.zero;
+        tempNav.SetDestination(transform.position);
+        Debug.Log("Stop");
+        tempNav.enabled = true;
+    }
+
+    public void RestartMoving()
+    {
+        NavMeshAgent tempNav = gameObject.GetComponent<NavMeshAgent>();
+        //CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
+        // tempNav.isStopped = false;
+        // tempNav.speed = orginNavSpeed;
+        // tempNav.velocity = orginVel;
+
+        //tempCharaCOn.enabled = true;
+        //tempNav.isStopped = false;
+
+        tempNav.velocity = orginVel;
+        tempNav.enabled = false;
+    }
 }

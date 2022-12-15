@@ -8,14 +8,14 @@ public class startbattle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Enemy")
+        if (other.transform.tag == "Enemy" && BattleManager.instance.nowTurnID == 0)
         {
-            Debug.Log("fsdfsd");
-            BattleManager.instance.BattleStart(false, false, gameObject);
+            //Debug.Log("fsdfsd");
+            BattleManager.instance.BattleStart(false, false, other.gameObject);
         }
     }
 }

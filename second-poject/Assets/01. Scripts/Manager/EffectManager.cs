@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.AI;
 
 public class EffectManager : MonoBehaviour
 {
@@ -128,6 +129,13 @@ public class EffectManager : MonoBehaviour
         }
         else
         {
+            bool isHitObjHasNav = false;
+            if (HitObject.GetComponent<NavMeshAgent>())
+            {
+                isHitObjHasNav = true;
+                HitObject.GetComponent<NavMeshAgent>().enabled = true;
+            }
+
             Vector3 orginPos = HitObject.transform.localPosition;
             // /Sequence seq = DOTween.Sequence();
             Debug.LogWarning("Hit Stopped!");
@@ -142,10 +150,14 @@ public class EffectManager : MonoBehaviour
             HitObject.transform.DOShakePosition(0.5f, 1f * HitValue, 100 * (int)HitValue, 90).OnComplete(() =>
             {
                 HitObject.transform.localPosition = orginPos;
+                if (isHitObjHasNav)
+                    HitObject.GetComponent<NavMeshAgent>().enabled = false;
             }).OnKill(() =>
             {
 
                 HitObject.transform.localPosition = orginPos;
+                if (isHitObjHasNav)
+                    HitObject.GetComponent<NavMeshAgent>().enabled = false;
             });
         }
     }

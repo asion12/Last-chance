@@ -19,7 +19,7 @@ public class StoreManager_New : MonoBehaviour
 
     }
 
-    private void SetSkillStore()
+    private void ResetSkillStore()
     {
         nowSkillTable = new List<SO_Skill>();
         for (int i = 0; i < 3; i++)
@@ -27,6 +27,33 @@ public class StoreManager_New : MonoBehaviour
             int randomIndex = Random.Range(0, StoreSkillPool.Count);
             nowSkillTable.Add(StoreSkillPool[randomIndex]);
         }
+    }
+
+    public void BuySkill(SO_Skill tempSkill)
+    {
+        if (CheckPrice(tempSkill.buyCost))
+        {
+            DecreaseGold(tempSkill.buyCost);
+            tempSkill.playerHavingCount++;
+        }
+    }
+
+    public void SellSkillSet(SO_Skill tempSkill)
+    {
+        if (tempSkill.playerHavingCount > 0 && tempSkill.playerSkillSetted == false)
+        {
+            // IncreaseGold(tempSkill.buyCost);
+            // tempSkill.playerHavingCount--;
+            tempSkill.isSell = true;
+        }
+    }
+
+    public void SellAllSkillSet(SO_Skill tempSkill)
+    {
+        // for(int i = 0; i < outDungeonUIManager.PlayerInventorySkillListData.Count; i++)
+        // {
+        //     if()
+        // }
     }
 
     public void SellPotion(string potionID)
