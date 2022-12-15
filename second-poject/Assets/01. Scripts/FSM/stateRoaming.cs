@@ -10,7 +10,7 @@ public class stateRoaming : State<MonsterFSM>
 { 
     private CharacterController characterController;
     private NavMeshAgent agent;
-    private float wait = 3f;
+    private float wait = 1f;
     private float fTickTime;
 
 
@@ -47,6 +47,7 @@ public class stateRoaming : State<MonsterFSM>
             else
             {
                 stateMachine.ChangeState<stateMove>();
+                
             }
         }
         else
