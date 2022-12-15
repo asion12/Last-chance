@@ -48,6 +48,7 @@ public class MonsterFSM : MonoBehaviour
         fsmManager.Update(Time.deltaTime);
         if(!(fsmManager.getNowState is stateMove) && !(fsmManager.getNowState is stateDie))
         {
+
             lookAtTarget();
             
         }
