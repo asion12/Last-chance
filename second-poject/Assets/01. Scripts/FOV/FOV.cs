@@ -35,7 +35,7 @@ public class FOV : MonoBehaviour
             if (Vector3.Angle(transform.forward, LookAtTarget) < eyeAngle / 2)
             {
                 float nowFirstDistanceTarget = Vector3.Distance(transform.position, target.position);
-
+               
                 if (!Physics.Raycast(transform.position, LookAtTarget, nowFirstDistanceTarget, blockLayerMask)) 
                 TargetLists.Add(target);
                 if (firstTarget==null||(distanceTarget>nowFirstDistanceTarget))
@@ -56,7 +56,7 @@ public class FOV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
     IEnumerator updateFindTargets(float delay)

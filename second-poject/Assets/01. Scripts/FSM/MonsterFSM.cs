@@ -18,7 +18,9 @@ public class MonsterFSM : MonoBehaviour
     public Transform[] posRoamingLists;
     public Transform posRoaming = null;
     private int posRoamingListIdx = 0;
+    private GameObject lastHitData;
 
+    public GameObject player;
 
     public Transform SetPositon;
     private FOV fov;
@@ -50,8 +52,9 @@ public class MonsterFSM : MonoBehaviour
         {
 
             lookAtTarget();
-            
+         
         }
+
     }
 
     private void LateUpdate()
@@ -99,6 +102,7 @@ public class MonsterFSM : MonoBehaviour
     }
 
     public virtual bool getFlagAtk => false;
+
 
     public J ChangeState<J>() where J : State<MonsterFSM>
     {

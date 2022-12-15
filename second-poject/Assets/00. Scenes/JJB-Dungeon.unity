@@ -5383,13 +5383,13 @@ GameObject:
   - component: {fileID: 351860958}
   - component: {fileID: 351860957}
   - component: {fileID: 351860956}
-  - component: {fileID: 351860955}
   - component: {fileID: 351860954}
   - component: {fileID: 351860953}
   - component: {fileID: 351860952}
   - component: {fileID: 351860951}
   - component: {fileID: 351860950}
   - component: {fileID: 351860949}
+  - component: {fileID: 351860960}
   m_Layer: 0
   m_Name: MobEnemy (13)
   m_TagString: Enemy
@@ -5449,6 +5449,7 @@ MonoBehaviour:
   - {fileID: 393965754}
   - {fileID: 801401341}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 351860948}
 --- !u!114 &351860951
 MonoBehaviour:
@@ -5623,22 +5624,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &351860955
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351860947}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &351860956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5716,6 +5701,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351860947}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &351860960
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351860947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &359643085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5993,13 +5998,13 @@ GameObject:
   - component: {fileID: 387900378}
   - component: {fileID: 387900377}
   - component: {fileID: 387900376}
-  - component: {fileID: 387900375}
   - component: {fileID: 387900374}
   - component: {fileID: 387900373}
   - component: {fileID: 387900372}
   - component: {fileID: 387900371}
   - component: {fileID: 387900370}
   - component: {fileID: 387900369}
+  - component: {fileID: 387900380}
   m_Layer: 0
   m_Name: MobEnemy (12)
   m_TagString: Enemy
@@ -6059,6 +6064,7 @@ MonoBehaviour:
   - {fileID: 1636608059}
   - {fileID: 759099915}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 387900368}
 --- !u!114 &387900371
 MonoBehaviour:
@@ -6233,22 +6239,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &387900375
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387900367}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &387900376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6326,6 +6316,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387900367}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &387900380
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387900367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &391636693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6882,13 +6892,13 @@ GameObject:
   - component: {fileID: 454619034}
   - component: {fileID: 454619033}
   - component: {fileID: 454619032}
-  - component: {fileID: 454619031}
   - component: {fileID: 454619030}
   - component: {fileID: 454619029}
   - component: {fileID: 454619028}
   - component: {fileID: 454619027}
   - component: {fileID: 454619026}
   - component: {fileID: 454619037}
+  - component: {fileID: 454619038}
   m_Layer: 0
   m_Name: MobEnemy (1)
   m_TagString: Enemy
@@ -6913,6 +6923,7 @@ MonoBehaviour:
   - {fileID: 2119907169}
   - {fileID: 1364289777}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 454619036}
 --- !u!114 &454619027
 MonoBehaviour:
@@ -7087,22 +7098,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &454619031
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454619025}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &454619032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7213,6 +7208,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &454619038
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454619025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &455268914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10247,13 +10262,13 @@ GameObject:
   - component: {fileID: 665733386}
   - component: {fileID: 665733385}
   - component: {fileID: 665733384}
-  - component: {fileID: 665733383}
   - component: {fileID: 665733382}
   - component: {fileID: 665733381}
   - component: {fileID: 665733380}
   - component: {fileID: 665733379}
   - component: {fileID: 665733378}
   - component: {fileID: 665733377}
+  - component: {fileID: 665733388}
   m_Layer: 0
   m_Name: MobEnemy (11)
   m_TagString: Enemy
@@ -10311,6 +10326,7 @@ MonoBehaviour:
   - {fileID: 1011185746}
   - {fileID: 242380331}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 665733376}
 --- !u!114 &665733379
 MonoBehaviour:
@@ -10485,22 +10501,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &665733383
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665733375}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &665733384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10578,6 +10578,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665733375}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &665733388
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665733375}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &667529142
 GameObject:
   m_ObjectHideFlags: 0
@@ -11182,13 +11202,13 @@ GameObject:
   - component: {fileID: 730138080}
   - component: {fileID: 730138079}
   - component: {fileID: 730138083}
-  - component: {fileID: 730138084}
   - component: {fileID: 730138085}
   - component: {fileID: 730138086}
   - component: {fileID: 730138089}
   - component: {fileID: 730138088}
   - component: {fileID: 730138087}
   - component: {fileID: 730138090}
+  - component: {fileID: 730138091}
   m_Layer: 0
   m_Name: MobEnemy
   m_TagString: Enemy
@@ -11288,22 +11308,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 1
---- !u!54 &730138084
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730138078}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &730138085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11463,6 +11467,7 @@ MonoBehaviour:
   - {fileID: 883242669}
   - {fileID: 433810705}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 730138082}
 --- !u!114 &730138088
 MonoBehaviour:
@@ -11516,6 +11521,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &730138091
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730138078}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &740554487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13558,13 +13583,13 @@ GameObject:
   - component: {fileID: 868615306}
   - component: {fileID: 868615305}
   - component: {fileID: 868615304}
-  - component: {fileID: 868615303}
   - component: {fileID: 868615302}
   - component: {fileID: 868615301}
   - component: {fileID: 868615300}
   - component: {fileID: 868615299}
   - component: {fileID: 868615298}
   - component: {fileID: 868615297}
+  - component: {fileID: 868615308}
   m_Layer: 0
   m_Name: MobEnemy (16)
   m_TagString: Enemy
@@ -13622,6 +13647,7 @@ MonoBehaviour:
   - {fileID: 1309495615}
   - {fileID: 953305852}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 868615296}
 --- !u!114 &868615299
 MonoBehaviour:
@@ -13796,22 +13822,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &868615303
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868615295}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &868615304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13889,6 +13899,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868615295}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &868615308
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868615295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &870696489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14135,13 +14165,13 @@ GameObject:
   - component: {fileID: 885303233}
   - component: {fileID: 885303232}
   - component: {fileID: 885303231}
-  - component: {fileID: 885303230}
   - component: {fileID: 885303229}
   - component: {fileID: 885303228}
   - component: {fileID: 885303227}
   - component: {fileID: 885303226}
   - component: {fileID: 885303225}
   - component: {fileID: 885303236}
+  - component: {fileID: 885303237}
   m_Layer: 0
   m_Name: MobEnemy (3)
   m_TagString: Enemy
@@ -14166,6 +14196,7 @@ MonoBehaviour:
   - {fileID: 1053860220}
   - {fileID: 792214084}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 885303235}
 --- !u!114 &885303226
 MonoBehaviour:
@@ -14340,22 +14371,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &885303230
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885303224}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &885303231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14466,6 +14481,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &885303237
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885303224}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &889852758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14743,13 +14778,13 @@ GameObject:
   - component: {fileID: 902810264}
   - component: {fileID: 902810263}
   - component: {fileID: 902810262}
-  - component: {fileID: 902810261}
   - component: {fileID: 902810260}
   - component: {fileID: 902810259}
   - component: {fileID: 902810258}
   - component: {fileID: 902810257}
   - component: {fileID: 902810256}
   - component: {fileID: 902810255}
+  - component: {fileID: 902810266}
   m_Layer: 0
   m_Name: MobEnemy (9)
   m_TagString: Enemy
@@ -14809,6 +14844,7 @@ MonoBehaviour:
   - {fileID: 2070822485}
   - {fileID: 2013464501}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 902810254}
 --- !u!114 &902810257
 MonoBehaviour:
@@ -14983,22 +15019,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &902810261
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902810253}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &902810262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15076,6 +15096,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902810253}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &902810266
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902810253}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &910720848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20463,13 +20503,13 @@ GameObject:
   - component: {fileID: 1349962408}
   - component: {fileID: 1349962407}
   - component: {fileID: 1349962406}
-  - component: {fileID: 1349962405}
   - component: {fileID: 1349962404}
   - component: {fileID: 1349962403}
   - component: {fileID: 1349962402}
   - component: {fileID: 1349962401}
   - component: {fileID: 1349962400}
   - component: {fileID: 1349962411}
+  - component: {fileID: 1349962412}
   m_Layer: 0
   m_Name: MobEnemy (2)
   m_TagString: Enemy
@@ -20494,6 +20534,7 @@ MonoBehaviour:
   - {fileID: 1594508290}
   - {fileID: 703132699}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1349962410}
 --- !u!114 &1349962401
 MonoBehaviour:
@@ -20668,22 +20709,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1349962405
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349962399}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1349962406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20794,6 +20819,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1349962412
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349962399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1350037126
 GameObject:
   m_ObjectHideFlags: 0
@@ -20807,13 +20852,16 @@ GameObject:
   - component: {fileID: 1350037135}
   - component: {fileID: 1350037134}
   - component: {fileID: 1350037133}
-  - component: {fileID: 1350037132}
   - component: {fileID: 1350037131}
   - component: {fileID: 1350037130}
   - component: {fileID: 1350037129}
   - component: {fileID: 1350037128}
   - component: {fileID: 1350037127}
   - component: {fileID: 1350037138}
+  - component: {fileID: 1350037139}
+  - component: {fileID: 1350037140}
+  - component: {fileID: 1350037141}
+  - component: {fileID: 1350037142}
   m_Layer: 0
   m_Name: MobEnemy (4)
   m_TagString: Enemy
@@ -20838,6 +20886,7 @@ MonoBehaviour:
   - {fileID: 552530704}
   - {fileID: 172860481}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1350037137}
 --- !u!114 &1350037128
 MonoBehaviour:
@@ -21012,22 +21061,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1350037132
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350037126}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1350037133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21138,6 +21171,68 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1350037139
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350037126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1350037140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350037126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1398bdb5a43a16c4880ae36a6c6a4953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!114 &1350037141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350037126}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1398bdb5a43a16c4880ae36a6c6a4953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!54 &1350037142
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350037126}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1354321111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23822,13 +23917,13 @@ GameObject:
   - component: {fileID: 1564422405}
   - component: {fileID: 1564422404}
   - component: {fileID: 1564422403}
-  - component: {fileID: 1564422402}
   - component: {fileID: 1564422401}
   - component: {fileID: 1564422400}
   - component: {fileID: 1564422399}
   - component: {fileID: 1564422398}
   - component: {fileID: 1564422397}
   - component: {fileID: 1564422396}
+  - component: {fileID: 1564422407}
   m_Layer: 0
   m_Name: MobEnemy (15)
   m_TagString: Enemy
@@ -23886,6 +23981,7 @@ MonoBehaviour:
   - {fileID: 667529143}
   - {fileID: 1921304168}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1564422395}
 --- !u!114 &1564422398
 MonoBehaviour:
@@ -24060,22 +24156,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1564422402
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564422394}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1564422403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24153,6 +24233,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564422394}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1564422407
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564422394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1564560384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27324,13 +27424,13 @@ GameObject:
   - component: {fileID: 1768394761}
   - component: {fileID: 1768394760}
   - component: {fileID: 1768394759}
-  - component: {fileID: 1768394758}
   - component: {fileID: 1768394757}
   - component: {fileID: 1768394756}
   - component: {fileID: 1768394755}
   - component: {fileID: 1768394754}
   - component: {fileID: 1768394753}
   - component: {fileID: 1768394752}
+  - component: {fileID: 1768394763}
   m_Layer: 0
   m_Name: MobEnemy (17)
   m_TagString: Enemy
@@ -27388,6 +27488,7 @@ MonoBehaviour:
   - {fileID: 1764886002}
   - {fileID: 1836821789}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1768394751}
 --- !u!114 &1768394754
 MonoBehaviour:
@@ -27562,22 +27663,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1768394758
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768394750}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1768394759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27655,6 +27740,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768394750}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1768394763
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768394750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1769551510
 GameObject:
   m_ObjectHideFlags: 0
@@ -27668,13 +27773,13 @@ GameObject:
   - component: {fileID: 1769551521}
   - component: {fileID: 1769551520}
   - component: {fileID: 1769551519}
-  - component: {fileID: 1769551518}
   - component: {fileID: 1769551517}
   - component: {fileID: 1769551516}
   - component: {fileID: 1769551515}
   - component: {fileID: 1769551514}
   - component: {fileID: 1769551513}
   - component: {fileID: 1769551512}
+  - component: {fileID: 1769551523}
   m_Layer: 0
   m_Name: MobEnemy (10)
   m_TagString: Enemy
@@ -27731,6 +27836,7 @@ MonoBehaviour:
   posRoamingLists:
   - {fileID: 58786423}
   posRoaming: {fileID: 58786423}
+  player: {fileID: 0}
   SetPositon: {fileID: 1769551511}
 --- !u!114 &1769551514
 MonoBehaviour:
@@ -27905,22 +28011,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1769551518
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769551510}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1769551519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27998,6 +28088,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769551510}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1769551523
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769551510}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1772999924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28861,13 +28971,13 @@ GameObject:
   - component: {fileID: 1830581527}
   - component: {fileID: 1830581526}
   - component: {fileID: 1830581525}
-  - component: {fileID: 1830581524}
   - component: {fileID: 1830581523}
   - component: {fileID: 1830581522}
   - component: {fileID: 1830581521}
   - component: {fileID: 1830581520}
   - component: {fileID: 1830581519}
   - component: {fileID: 1830581518}
+  - component: {fileID: 1830581529}
   m_Layer: 0
   m_Name: MobEnemy (14)
   m_TagString: Enemy
@@ -28927,6 +29037,7 @@ MonoBehaviour:
   - {fileID: 224836647}
   - {fileID: 692492310}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1830581517}
 --- !u!114 &1830581520
 MonoBehaviour:
@@ -29101,22 +29212,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1830581524
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830581516}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1830581525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29194,6 +29289,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830581516}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1830581529
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830581516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1836821788
 GameObject:
   m_ObjectHideFlags: 0
@@ -30294,13 +30409,13 @@ GameObject:
   - component: {fileID: 1904782500}
   - component: {fileID: 1904782499}
   - component: {fileID: 1904782498}
-  - component: {fileID: 1904782497}
   - component: {fileID: 1904782496}
   - component: {fileID: 1904782495}
   - component: {fileID: 1904782494}
   - component: {fileID: 1904782493}
   - component: {fileID: 1904782492}
   - component: {fileID: 1904782491}
+  - component: {fileID: 1904782502}
   m_Layer: 0
   m_Name: MobEnemy (7)
   m_TagString: Enemy
@@ -30358,6 +30473,7 @@ MonoBehaviour:
   - {fileID: 929759254}
   - {fileID: 347185944}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1904782490}
 --- !u!114 &1904782493
 MonoBehaviour:
@@ -30532,22 +30648,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1904782497
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904782489}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1904782498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30625,6 +30725,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904782489}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1904782502
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904782489}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1909772357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30700,13 +30820,13 @@ GameObject:
   - component: {fileID: 1912803033}
   - component: {fileID: 1912803032}
   - component: {fileID: 1912803031}
-  - component: {fileID: 1912803030}
   - component: {fileID: 1912803029}
   - component: {fileID: 1912803028}
   - component: {fileID: 1912803027}
   - component: {fileID: 1912803026}
   - component: {fileID: 1912803025}
   - component: {fileID: 1912803024}
+  - component: {fileID: 1912803035}
   m_Layer: 0
   m_Name: MobEnemy (6)
   m_TagString: Enemy
@@ -30764,6 +30884,7 @@ MonoBehaviour:
   - {fileID: 1381018276}
   - {fileID: 944748059}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 1912803023}
 --- !u!114 &1912803026
 MonoBehaviour:
@@ -30938,22 +31059,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &1912803030
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1912803022}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1912803031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31031,6 +31136,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912803022}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1912803035
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912803022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1919500384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32395,13 +32520,13 @@ GameObject:
   - component: {fileID: 2015766754}
   - component: {fileID: 2015766753}
   - component: {fileID: 2015766752}
-  - component: {fileID: 2015766751}
   - component: {fileID: 2015766750}
   - component: {fileID: 2015766749}
   - component: {fileID: 2015766748}
   - component: {fileID: 2015766747}
   - component: {fileID: 2015766746}
   - component: {fileID: 2015766745}
+  - component: {fileID: 2015766756}
   m_Layer: 0
   m_Name: MobEnemy (5)
   m_TagString: Enemy
@@ -32459,6 +32584,7 @@ MonoBehaviour:
   - {fileID: 1737318319}
   - {fileID: 1451201659}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 2015766744}
 --- !u!114 &2015766747
 MonoBehaviour:
@@ -32633,22 +32759,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &2015766751
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015766743}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2015766752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32726,6 +32836,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015766743}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &2015766756
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015766743}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2025178207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34004,13 +34134,13 @@ GameObject:
   - component: {fileID: 2087307902}
   - component: {fileID: 2087307901}
   - component: {fileID: 2087307900}
-  - component: {fileID: 2087307899}
   - component: {fileID: 2087307898}
   - component: {fileID: 2087307897}
   - component: {fileID: 2087307896}
   - component: {fileID: 2087307895}
   - component: {fileID: 2087307894}
   - component: {fileID: 2087307893}
+  - component: {fileID: 2087307904}
   m_Layer: 0
   m_Name: MobEnemy (8)
   m_TagString: Enemy
@@ -34068,6 +34198,7 @@ MonoBehaviour:
   - {fileID: 1748505491}
   - {fileID: 1513124086}
   posRoaming: {fileID: 0}
+  player: {fileID: 0}
   SetPositon: {fileID: 2087307892}
 --- !u!114 &2087307895
 MonoBehaviour:
@@ -34242,22 +34373,6 @@ MonoBehaviour:
     max: 0
   useSkillList: []
   enemyBattleState: 0
---- !u!54 &2087307899
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087307891}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2087307900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34335,6 +34450,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087307891}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &2087307904
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087307891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2097238263
 PrefabInstance:
   m_ObjectHideFlags: 0
