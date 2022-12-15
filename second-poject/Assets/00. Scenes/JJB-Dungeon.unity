@@ -5569,6 +5569,7 @@ GameObject:
   - component: {fileID: 454619027}
   - component: {fileID: 454619026}
   - component: {fileID: 454619037}
+  - component: {fileID: 454619038}
   m_Layer: 0
   m_Name: MobEnemy (1)
   m_TagString: Enemy
@@ -5893,6 +5894,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &454619038
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454619025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &455268914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9505,6 +9526,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bb0a368af62247459bfb84451776eec, type: 2}
   - {fileID: 11400000, guid: 0e553000a860c1d4fb1aaed8ff0b915e, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
+  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
   isStunned: 0
   Level: 1
   dbobj: {fileID: 0}
@@ -11798,6 +11820,7 @@ GameObject:
   - component: {fileID: 885303226}
   - component: {fileID: 885303225}
   - component: {fileID: 885303236}
+  - component: {fileID: 885303237}
   m_Layer: 0
   m_Name: MobEnemy (3)
   m_TagString: Enemy
@@ -12122,6 +12145,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &885303237
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885303224}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &889852758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17297,6 +17340,7 @@ GameObject:
   - component: {fileID: 1349962401}
   - component: {fileID: 1349962400}
   - component: {fileID: 1349962411}
+  - component: {fileID: 1349962412}
   m_Layer: 0
   m_Name: MobEnemy (2)
   m_TagString: Enemy
@@ -17621,6 +17665,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1349962412
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349962399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1350037126
 GameObject:
   m_ObjectHideFlags: 0
@@ -17641,6 +17705,7 @@ GameObject:
   - component: {fileID: 1350037128}
   - component: {fileID: 1350037127}
   - component: {fileID: 1350037138}
+  - component: {fileID: 1350037139}
   m_Layer: 0
   m_Name: MobEnemy (4)
   m_TagString: Enemy
@@ -17965,6 +18030,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1350037139
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350037126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1354321111
 PrefabInstance:
   m_ObjectHideFlags: 0

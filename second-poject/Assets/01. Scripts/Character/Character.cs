@@ -52,6 +52,7 @@ public class Character : MonoBehaviour
         //SetTotalElements();
         nowHP = characterStats.MAX_HP;
         nowMP = characterStats.MAX_MP;
+        Invoke("SetTotalElements", 0.05f);
     }
 
     protected virtual void Update()
@@ -205,6 +206,7 @@ public class Character : MonoBehaviour
         totalWeakElements.BIOLOGY = toWckEl[4];
         totalWeakElements.METAL = toWckEl[5];
         totalWeakElements.SOIL = toWckEl[6];
+
         outDungeonUIManager.DungeonEnterCheck();
     }
     public virtual void SetTotalElements()
