@@ -10,8 +10,9 @@ public class stateRoaming : State<MonsterFSM>
 { 
     private CharacterController characterController;
     private NavMeshAgent agent;
-    private float wait = 1f;
-    private float fTickTime;
+    //private float wait = 1f;
+    //private float fTickTime;
+ 
 
 
     public override void OnAwake()
@@ -35,7 +36,6 @@ public class stateRoaming : State<MonsterFSM>
 
     public override void OnUpdate(float deltaTime)
     {
-        fTickTime += Time.deltaTime;
         
             Transform target = stateMachineClass.SearchMonster();
         if (target)
@@ -43,17 +43,15 @@ public class stateRoaming : State<MonsterFSM>
             if (stateMachineClass.getFlagAtk)
             {
                 stateMachine.ChangeState<stateAtk>();
+
             }
             else
             {
                 stateMachine.ChangeState<stateMove>();
-                
+
             }
         }
         else
-        {
-            if (fTickTime >= wait)
-            {
                 if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
                 {
                     Debug.Log(agent.remainingDistance + "<=" + agent.stoppingDistance);
@@ -61,23 +59,23 @@ public class stateRoaming : State<MonsterFSM>
                     if (nextRoamingPosition)
                     {
                         agent.SetDestination(nextRoamingPosition.position);
-                        fTickTime = 0;
-                    }
-
                     stateMachineClass.ChangeState<stateIdle>();
+
+
                 }
                 else
                 {
                     characterController.Move(agent.velocity * Time.deltaTime);
                 }
-            }
 
+            }   
         }
 
-    }
+    
     public override void OnEnd()
     {
         agent.stoppingDistance =  stateMachineClass.atkRange; 
         agent.ResetPath();
+
     } 
 } 

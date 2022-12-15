@@ -32,7 +32,6 @@ public class stateIdle : State<MonsterFSM>
     { 
         if (stateMachineClass.target)
         {
-            Debug.Log(stateMachineClass.getFlagAtk); 
             if (stateMachineClass.getFlagAtk)
             {  
                 stateMachine.ChangeState<stateAtk>();

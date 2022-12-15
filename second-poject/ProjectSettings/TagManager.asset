@@ -11,6 +11,7 @@ TagManager:
   - EditorTile
   - eraser
   - Obstacle
+  - av
   layers:
   - Default
   - TransparentFX
