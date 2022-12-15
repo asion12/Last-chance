@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour
         else
         {
             skills = player.skillList;
-            SetPlayerSkillList();
+            SetButtonPlayerSkillList();
         }
     }
 
@@ -386,14 +386,14 @@ public class UIManager : MonoBehaviour
         //FX_PlayerSkillListActive();
     }
 
-    public void ResetPlayerSkillList()
+    public void ResetButtonPlayerSkillList()
     {
-        SetPlayerSkillListEnable();
-        SetPlayerSkillList();
+        SetButtonPlayerSkillListEnable();
+        SetButtonPlayerSkillList();
         Debug.Log("Skill Set Complete_Remove");
     }
 
-    private void SetPlayerSkillList()
+    private void SetButtonPlayerSkillList()
     {
         for (int i = 0; i < skills.Count; i++)
         {
@@ -430,7 +430,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void SetPlayerSkillListEnable()
+    private void SetButtonPlayerSkillListEnable()
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {

@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     public void EnterDungeon()
     {
         outDungeonUIManager.InactiveOutDungeonUI();
-        uIManager.ResetPlayerSkillList();
+        uIManager.ResetButtonPlayerSkillList();
         ResetDungeon();
         isGameStarted = true;
     }
@@ -142,9 +142,11 @@ public class GameManager : MonoBehaviour
     public void ExitDungeon()
     {
         Debug.Log("Exit!");
-        ResetPlayerSkillList();
+        ResetSkills();
         player.skillList = new List<SO_Skill>();
-        player.SetTotalElements();
+        //player.SetTotalElements();
+        ReSetPlayerTotalElements();
+        outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
         outDungeonUIManager.ActiveOutDungeonUI();
@@ -154,20 +156,47 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Dead!");
         Debug.Log("LosshavingSkill");
-        LossPlayerSkillList();
+        LossSkills();
         player.skillList = new List<SO_Skill>();
-        player.SetTotalElements();
+        //player.SetTotalElements();
+        ReSetPlayerTotalElements();
+        outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
         outDungeonUIManager.ActiveOutDungeonUI();
     }
 
+    private void ReSetPlayerTotalElements()
+    {
+        player.totalResistElements.SOLAR = false;
+        player.totalResistElements.LUMINOUS = false;
+        player.totalResistElements.IGNITION = false;
+        player.totalResistElements.HYDRO = false;
+        player.totalResistElements.BIOLOGY = false;
+        player.totalResistElements.METAL = false;
+        player.totalResistElements.SOIL = false;
+
+        player.totalWeakElements.SOLAR = false;
+        player.totalWeakElements.LUMINOUS = false;
+        player.totalWeakElements.IGNITION = false;
+        player.totalWeakElements.HYDRO = false;
+        player.totalWeakElements.BIOLOGY = false;
+        player.totalWeakElements.METAL = false;
+        player.totalWeakElements.SOIL = false;
+    }
+    // private void ResetPlayerSkillSettedValue()
+    // {
+    //     for (int i = 0; i < outDungeonUIManager.PlayerInventorySkillListData.Count; i++)
+    //     {
+    //         outDungeonUIManager.PlayerInventorySkillListData[i].playerSkillSetted = false;
+    //     }
+    // }
     private void CheckPlayerSkillSet()
     {
 
     }
 
-    private void LossPlayerSkillList()
+    private void LossSkills()
     {
         for (int i = 0; i < player.skillList.Count; i++)
         {
@@ -177,7 +206,7 @@ public class GameManager : MonoBehaviour
         outDungeonUIManager.ResetPlayerSkillInventory();
     }
 
-    private void ResetPlayerSkillList()
+    private void ResetSkills()
     {
         player.skillList = new List<SO_Skill>();
         outDungeonUIManager.ResetPlayerSkillInventory();

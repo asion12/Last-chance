@@ -55,7 +55,14 @@ public class EventManager : MonoBehaviour
 
     public void OnSkillSetSellMode(SO_Skill sellSkill)
     {
-
+        if (sellSkill.playerSkillSetted)
+        {
+            Debug.Log("Player Skill Setted! you cant sell this skill");
+        }
+        else
+        {
+            sellSkill.isSell = true;
+        }
     }
 
     public void OnSkillSet(SO_Skill setSkill)
