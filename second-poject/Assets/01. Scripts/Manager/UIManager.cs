@@ -45,6 +45,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TargetEnemyLevelText;
     [SerializeField] private List<Image> TargetEnemyBaseList_Image;
     [SerializeField] private List<TextMeshProUGUI> TargetEnemyBaseList_TMP;
+    public GameObject CanBattleUI;
+    [SerializeField] private Image CanBattleUI_Image;
+    [SerializeField] private TextMeshProUGUI CanBattleUI_TMP;
 
     [Header("플레이어 스킬 관련 UI")]
     [SerializeField] private Canvas PlayerSkillListUI;
@@ -134,6 +137,43 @@ public class UIManager : MonoBehaviour
         UIUpdate_SetLeftOverTimeLimit();
         UIUpdate_SetPlayerItemCount();
         //OnIventory();
+    }
+
+    public void ActiveCanBatteUI()
+    {
+        //Debug.LogError("CanBattleActivated!");
+        CanBattleUI.SetActive(true);
+        FX_ActiveCanBattleUI();
+    }
+
+    public void InactiveCanBatteUI()
+    {
+        FX_InactiveCanBattleUI();
+    }
+
+    private void FX_ActiveCanBattleUI()
+    {
+        CanBattleUI_Image.transform.DOKill();
+        CanBattleUI_TMP.color = new Color(CanBattleUI_TMP.color.r, CanBattleUI_TMP.color.g, CanBattleUI_TMP.color.b, 0);
+        CanBattleUI_TMP.transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+        CanBattleUI_Image.transform.localScale = new Vector3(0, 1, 1);
+        CanBattleUI_TMP.DOKill();
+        Sequence seq = DOTween.Sequence();
+        seq
+        .Append(CanBattleUI_Image.transform.DOScaleX(1, 0.125f))
+        .Append(CanBattleUI_TMP.DOFade(1, 0.125f))
+        .Join(CanBattleUI_TMP.DOScale(1, 0.125f));
+    }
+
+    private void FX_InactiveCanBattleUI()
+    {
+        CanBattleUI_Image.transform.DOKill();
+        CanBattleUI_TMP.DOKill();
+        Sequence seq = DOTween.Sequence();
+        seq
+        .Append(CanBattleUI_Image.transform.DOScaleX(0, 0.125f))
+        .Append(CanBattleUI_TMP.DOFade(0, 0.125f))
+        .Join(CanBattleUI_TMP.DOScale(1.25f, 0.125f)).OnComplete(() => { CanBattleUI.SetActive(false); });
     }
 
     private void UIUpdate_SetPlayerItemCount()
@@ -633,7 +673,7 @@ public class UIManager : MonoBehaviour
 
     private void FX_BarSizeChange(GameObject tempBar, float tempScaleX)
     {
-        tempBar.transform.DOScaleX(tempScaleX, 0.25f).SetEase(Ease.OutExpo);
+        tempBar.transform.DOScaleX(tempScaleX, 0.5f).SetEase(Ease.OutExpo);
     }
 
     public void FX_BattleStart()

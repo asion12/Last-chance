@@ -260,17 +260,28 @@ public class Player : Character
                     GameObject temp = hitData.transform.gameObject;
                 }
                 //Debug.Log("RayIn!!");
+
+                if (lastHitData != null)
+                {
+                    if (lastHitData.transform.position != hitData.transform.position)
+                        RayOutCheck();
+                }
+
                 if (hitData.distance <= battleStartRange)
                 {
                     lastHitData = hitData.transform.gameObject;
 
-                    if (lastHitData.transform.GetComponent<Outline>() == null)
+                    // if (lastHitData.transform.GetComponent<Outline>() == null)
+                    // {
+                    //     lastHitData.transform.GetChild(0).GetComponent<Outline>().eraseRenderer = false;
+                    // }
+                    // else
+                    // {
+                    // lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
+                    // }
+                    if (BattleManager.instance.nowTurnID == 0)
                     {
-                        lastHitData.transform.GetChild(0).GetComponent<Outline>().eraseRenderer = false;
-                    }
-                    else
-                    {
-                        lastHitData.transform.GetComponent<Outline>().eraseRenderer = false;
+                        uIManager.ActiveCanBatteUI();
                     }
 
                     if (Input.GetMouseButtonDown(0))
@@ -397,15 +408,7 @@ public class Player : Character
         //Debug.Log("Ray Checking");
         if (lastHitData != null)
         {
-            Debug.Log("RayOut!!");
-            if (lastHitData.transform.GetComponent<Outline>() == null)
-            {
-                lastHitData.transform.GetChild(0).GetComponent<Outline>().eraseRenderer = true;
-            }
-            else
-            {
-                lastHitData.transform.GetComponent<Outline>().eraseRenderer = true;
-            }
+            uIManager.InactiveCanBatteUI();
         }
         lastHitData = null;
     }

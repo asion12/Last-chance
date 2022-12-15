@@ -94,8 +94,8 @@ public class EffectManager : MonoBehaviour
         Vector3 MoveVector;
         if (isCasterPlayer)
         {
-            SetVector = BattleManager.instance.targetEnemy.transform.localPosition;
-            MoveVector = new Vector3(BattleManager.instance.player.transform.localPosition.x,
+            SetVector = BattleManager.instance.targetEnemy.transform.position;
+            MoveVector = new Vector3(BattleManager.instance.player.transform.position.x,
             BattleManager.instance.player.transform.localPosition.y + 0.75f,
             BattleManager.instance.player.transform.localPosition.z);
 
@@ -139,8 +139,12 @@ public class EffectManager : MonoBehaviour
             HitObject.transform.DOKill();
 
             //HitObject.transform.localPosition = orginPos;
-            HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 100 * (int)HitValue, 45).OnComplete(() =>
+            HitObject.transform.DOShakePosition(0.5f, 1f * HitValue, 100 * (int)HitValue, 90).OnComplete(() =>
             {
+                HitObject.transform.localPosition = orginPos;
+            }).OnKill(() =>
+            {
+
                 HitObject.transform.localPosition = orginPos;
             });
         }

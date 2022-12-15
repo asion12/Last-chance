@@ -91,6 +91,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
+            uIManager.InactiveCanBatteUI();
             SetEnemy(detactedEnemy.GetComponent<Character>());
             targetEnemy.isBattleMode = true;
             player.isBattleMode = true;
