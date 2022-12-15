@@ -488,8 +488,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
-  m_sharedMaterial: {fileID: 6258201277726234473, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3219,8 +3219,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Lv.  10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
-  m_sharedMaterial: {fileID: 6258201277726234473, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9360,7 +9360,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   characterWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -9368,7 +9368,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -9376,7 +9376,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   additionWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -9384,7 +9384,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalResistElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -9392,7 +9392,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   totalWeakElements:
     SOLAR: 0
     LUMINOUS: 0
@@ -9400,7 +9400,7 @@ MonoBehaviour:
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    CLAY: 0
+    SOIL: 0
   isOverResist: 0
   isOverWeak: 0
   isBattleMode: 0
@@ -9422,21 +9422,17 @@ MonoBehaviour:
     valStack: 0
     min: 0
     max: 0
+  EXP: 0
+  maxEXP: 10
+  statPoint: 0
   playerCamera: {fileID: 2047056543}
   battleStartRange: 5
   battleStartRangePoint: {fileID: 1237334324}
   moveSpeed: 3
   rotateSpeed: 500
   isSkillOverClockList: 00
-  itemDBObj: {fileID: 11400000, guid: a10b3fb73c56066428c9e457bea3a562, type: 2}
-  inventoryObj: {fileID: 11400000, guid: 903812451eb7e3948a979f32f4e0e6df, type: 2}
-  box: {fileID: 2126132025}
-  items: {fileID: 1342712735}
   poistion: {fileID: 2126132029}
   isCanExit: 0
-  EXP: 0
-  maxEXP: 10
-  skillPoint: 0
   nowHitObject: {fileID: 0}
 --- !u!54 &1272380699
 Rigidbody:
@@ -11727,14 +11723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaa3814e8048d542a14f331bc9a89c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBattleUI: {fileID: 1091825427}
-  battle_TurnText: {fileID: 1554042270}
-  battle_PlayerElementsInfo: {fileID: 731522608}
-  battle_PlayerStatsInfo: {fileID: 805900148}
+  LeftOverTimeLimitText: {fileID: 0}
+  battle_TurnText: {fileID: 0}
   battle_SkillScrollView: {fileID: 1135387866}
   PlayerSkillListContent: {fileID: 1908826720}
   PlayerSkillButtonPrefab: {fileID: 4642891057880143183, guid: 40bc8b67ce68d544887c3bd1deef644d, type: 3}
-  PlayerSkillListBG: {fileID: 703308325}
   PlayerRunButton: {fileID: 569188035}
   PlayerRunButtonBG: {fileID: 105187613}
   PlayerCarelessCount: {fileID: 240208148}
@@ -11742,9 +11735,13 @@ MonoBehaviour:
   PlayerNowMpBar: {fileID: 1817079919}
   PlayerNowCpBar: {fileID: 1657206862}
   PlayerCpText: {fileID: 1232808380}
+  PlayerHPText: {fileID: 0}
+  PlayerMPText: {fileID: 0}
   PlayerLevelText: {fileID: 1773130821}
   PlayerNowExpBar: {fileID: 1506326940}
   PlayerExpText: {fileID: 150598633}
+  PlayerElementsInfo: {fileID: 0}
+  PlayerStatsInfo: {fileID: 0}
   TargetEnemyBaseGroup: {fileID: 181772317}
   TargetEnemyCarelessCount: {fileID: 2141164810}
   TargetEnemyNowHpBar: {fileID: 1835464444}
@@ -11764,13 +11761,23 @@ MonoBehaviour:
   - {fileID: 443663814}
   - {fileID: 2141164810}
   - {fileID: 60549922}
+  PlayerSkillListUI: {fileID: 0}
   PlayerSkillList: {fileID: 1135387866}
+  PlayerSkillListBG: {fileID: 703308325}
   SkillButtonsParent: {fileID: 1908826720}
+  PlayerItemListUI: {fileID: 0}
+  PlayerItemList: {fileID: 0}
+  PlayerItemListBG: {fileID: 0}
+  PlayerItemCount_HPLOW: {fileID: 0}
+  PlayerItemCount_HPMID: {fileID: 0}
+  PlayerItemCount_HPHIGH: {fileID: 0}
+  PlayerItemCount_MPLOW: {fileID: 0}
+  PlayerItemCount_MPMID: {fileID: 0}
+  PlayerItemCount_MPHIGH: {fileID: 0}
   GameLog: {fileID: 1169808098}
   battleStartText_0: {fileID: 1376385698}
   battleStartText_1: {fileID: 1474396075}
   canExitText: {fileID: 140269383}
-  InventoryUI: {fileID: 1275467232}
   isInvenOn: 0
 --- !u!1 &1671239590
 GameObject:
@@ -14267,15 +14274,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStartPoint: {fileID: 632762167}
-  ui: {fileID: 2036971976}
+  isTimeLimitOver: 0
   Gold: 0
-  Hp_0: 0
+  HP_0: 0
   HP_1: 0
   HP_2: 0
-  MPPortion: 0
   MP_0: 0
   MP_1: 0
   MP_2: 0
+  potionCount: 0
 --- !u!1 &2075562887
 GameObject:
   m_ObjectHideFlags: 0
@@ -14739,7 +14746,7 @@ GameObject:
   - component: {fileID: 2126132028}
   - component: {fileID: 2126132027}
   - component: {fileID: 2126132026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -14960,8 +14967,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5 / 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
-  m_sharedMaterial: {fileID: 6258201277726234473, guid: d2503f19854db1b4f831e3219b82b3e7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
