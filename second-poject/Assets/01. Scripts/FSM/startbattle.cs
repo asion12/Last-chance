@@ -12,7 +12,7 @@ public class startbattle : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "av")
+        if (other.transform.tag == "Enemy")
         {
             Debug.Log("fsdfsd");
             BattleManager.instance.BattleStart(false, false, gameObject);
