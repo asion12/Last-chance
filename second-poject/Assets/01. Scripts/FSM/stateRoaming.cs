@@ -27,7 +27,10 @@ public class stateRoaming : State<MonsterFSM>
         if (stateMachineClass?.posRoaming != null)
         {
             Vector3 destination = stateMachineClass.posRoaming.position;
+            //if (agent.enabled == true)
+            //{
             agent?.SetDestination(destination);
+            //}
         }
     }
 
@@ -47,20 +50,23 @@ public class stateRoaming : State<MonsterFSM>
         }
         else
         {
-            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
+            if (agent.enabled == true)
             {
-                Debug.Log(agent.remainingDistance + "<=" + agent.stoppingDistance);
-                Transform nextRoamingPosition = stateMachineClass.getPositionNextRoaming();
-                if (nextRoamingPosition)
+                if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
                 {
-                    agent.SetDestination(nextRoamingPosition.position);
-                }
+                    //Debug.Log(agent.remainingDistance + "<=" + agent.stoppingDistance);
+                    Transform nextRoamingPosition = stateMachineClass.getPositionNextRoaming();
+                    if (nextRoamingPosition)
+                    {
+                        agent.SetDestination(nextRoamingPosition.position);
+                    }
 
-                stateMachineClass.ChangeState<stateIdle>();
-            }
-            else
-            {
-                characterController.Move(agent.velocity * Time.deltaTime);
+                    stateMachineClass.ChangeState<stateIdle>();
+                }
+                else
+                {
+                    characterController.Move(agent.velocity * Time.deltaTime);
+                }
             }
         }
     }

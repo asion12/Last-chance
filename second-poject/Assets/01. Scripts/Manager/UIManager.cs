@@ -68,6 +68,7 @@ public class UIManager : MonoBehaviour
 
     [Header("연출용 UI")]
     [SerializeField] private TextMeshProUGUI GameLog;
+    private bool isMessaging = false;
     [SerializeField] private GameObject battleStartText_0;
     [SerializeField] private GameObject battleStartText_1;
 
@@ -136,7 +137,41 @@ public class UIManager : MonoBehaviour
         UIUpdate_SetPlayerCanExit();
         UIUpdate_SetLeftOverTimeLimit();
         UIUpdate_SetPlayerItemCount();
+        UIUpdate_SetGameLog();
         //OnIventory();
+    }
+
+    private void UIUpdate_SetGameLog()
+    {
+        if (!isMessaging)
+        {
+            if (player.isBattleMode && BattleManager.instance.nowTurnID == 1)
+            {
+                //GameLog.text = ">> 커맨드?";
+            }
+            else if (GameManager.instance.isGameStarted && !player.isBattleMode)
+            {
+                GameLog.text = "당신은(는) 던전을 배회하고 있다...";
+            }
+            else if (!GameManager.instance.isGameStarted)
+            {
+                GameLog.text = "당신은(는) 던전에 들어가기 전에 준비를 하고있다!";
+            }
+        }
+    }
+
+    public IEnumerator SendGameLog(string LogMessage)
+    {
+        isMessaging = true;
+        GameLog.text = LogMessage;
+        yield return new WaitForSeconds(1.99f);
+        GameLog.text = "";
+        isMessaging = false;
+    }
+
+    public void SetGameLog_PlayerTurnCommand()
+    {
+        GameLog.text = ">> 커맨드?";
     }
 
     public void ActiveCanBatteUI()

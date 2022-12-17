@@ -28,10 +28,10 @@ public class Player : Character
     public bool[] isSkillOverClockList = { false, };
 
     float cpIncreaseTimer = 0;
-    float cpIncreaseTimer_MAX = 2f;
+    float cpIncreaseTimer_MAX = 1f;
 
     float cpDecreaseTimer = 0;
-    float cpDecreaseTimer_MAX = 0.5f;
+    float cpDecreaseTimer_MAX = 1f;
 
     //public ItemDBObj itemDBObj;
     //public InventoryObj inventoryObj;

@@ -68,7 +68,7 @@ public sealed class StateMachine<T>
     {
         var newType = typeof(Q);
 
-        if (nowState.GetType() == newType) { return nowState as Q; }
+        //if (nowState.GetType() == newType) { return nowState as Q; }
 
         if (nowState != null) { nowState.OnEnd(); }
 

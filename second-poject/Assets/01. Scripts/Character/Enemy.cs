@@ -19,7 +19,7 @@ public class Enemy : Character
     private Collider collider;
 
     [SerializeField] private BattleState enemyBattleState = BattleState.ATTACK_READY;
-    private bool isChanging = false;
+    public bool isChanging = false;
     private bool isLimitOverMode = false;
 
     EffectManager effectManager = null;
@@ -117,13 +117,12 @@ public class Enemy : Character
         int idx = selectSkillIndex;
 
 
-        yield return new WaitForSeconds(1f);
         effectManager.MakeSkillEffect(useSkillList[idx], false);
         BattleManager.instance.CastSkill(this, BattleManager.instance.player, useSkillList[idx]);
-
+        //yield return new WaitForSeconds(2f);
+        yield return null;
         Debug.Log("Enemy Casted!");
         Debug.Log("Turn Changed");
-        isChanging = false;
     }
 
 
@@ -202,7 +201,7 @@ public class Enemy : Character
     public void StopMoving()
     {
         NavMeshAgent tempNav = gameObject.GetComponent<NavMeshAgent>();
-        //CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
+        CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
         // orginNavSpeed = tempNav.speed;
         // orginVel = tempNav.velocity;
 
@@ -215,17 +214,19 @@ public class Enemy : Character
         // tempNav.isStopped = true;
         // gameObject.transform.position = tempPos;
 
-        orginVel = tempNav.velocity;
-        tempNav.velocity = Vector3.zero;
-        tempNav.SetDestination(transform.position);
+        //orginVel = tempNav.velocity;
+        //tempNav.velocity = Vector3.zero;
+        //tempNav.SetDestination(transform.position);
         Debug.Log("Stop");
-        tempNav.enabled = true;
+        tempNav.enabled = false;
+        tempCharaCOn.enabled = false;
     }
 
     public void RestartMoving()
     {
+        Debug.LogWarning("Restart");
         NavMeshAgent tempNav = gameObject.GetComponent<NavMeshAgent>();
-        //CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
+        CharacterController tempCharaCOn = gameObject.GetComponent<CharacterController>();
         // tempNav.isStopped = false;
         // tempNav.speed = orginNavSpeed;
         // tempNav.velocity = orginVel;
@@ -233,7 +234,9 @@ public class Enemy : Character
         //tempCharaCOn.enabled = true;
         //tempNav.isStopped = false;
 
-        tempNav.velocity = orginVel;
-        tempNav.enabled = false;
+        //tempNav.velocity = orginVel;
+        tempNav.enabled = true;
+        tempCharaCOn.enabled = true;
+        gameObject.GetComponent<MonsterFSM>().ChangeState<stateRoaming>();
     }
 }

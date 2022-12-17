@@ -33,6 +33,7 @@ public class BattleManager : MonoBehaviour
     private EffectManager effectManager = null;
     public NavMeshAgent monster;
     private int BonusExpScale = 0;
+    private int disBonusExpScale = 0;
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -47,32 +48,40 @@ public class BattleManager : MonoBehaviour
             //Debug.Log(targetEnemy.nowHP);
             //Debug.Log(targetEnemy.nowMP);
         }
-        CheckCharactersHp();
+        //CheckCharactersHp();
     }
 
-    private void CheckCharactersHp()
+    private bool CheckBattleEnd()
     {
-        if (nowTurnID != 0)
+        if (player.nowHP <= 0)
         {
-            if (targetEnemy.nowHP <= 0)
-                BattleEnd(true);
-            else if (player.nowHP <= 0)
-                BattleEnd(false);
+            BattleEnd(false);
+            return true;
         }
+        else if (targetEnemy.nowHP <= 0)
+        {
+            BattleEnd(true);
+            return true;
+        }
+        return false;
     }
 
-    public void TurnChange()
+    public IEnumerator TurnChange()
     {
         if (nowTurnID == 1)
         {
             uIManager.SetBattleUIInactive();
+            yield return new WaitForSeconds(1.25f);
             Debug.Log("Turn Change To Enemy");
             nowTurnID = 2;
         }
         else if (nowTurnID == 2)
         {
+            yield return new WaitForSeconds(1.25f);
             uIManager.SetBattleUIActive();
+            uIManager.SetGameLog_PlayerTurnCommand();
             nowTurnID = 1;
+            targetEnemy.GetComponent<Enemy>().isChanging = false;
             Debug.Log("Turn Change To Player");
         }
         else
@@ -105,6 +114,7 @@ public class BattleManager : MonoBehaviour
             if (isPlayerStart)
             {
                 //monster.speed = 0;
+                uIManager.SetGameLog_PlayerTurnCommand();
                 nowTurnID = 1;
                 if (isVictimCareless)
                     targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
@@ -118,11 +128,12 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd(bool isPlayerWin)
     {
+        SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerWin)
         {
             float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 2)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)));
+            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 2)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
             BonusExpScale = 0;
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
@@ -155,10 +166,11 @@ public class BattleManager : MonoBehaviour
 
     private void SetAllEnemysRestart()
     {
-        Enemy[] Enemys = GetComponents<Enemy>();
+        Enemy[] Enemys = FindObjectsOfType<Enemy>();
         for (int i = 0; i < Enemys.Length; i++)
         {
             Enemys[i].RestartMoving();
+            //Enemys[i].gameObject.GetComponent<MonsterFSM>().ChangeState<stateIdle>();
         }
 
     }
@@ -198,8 +210,19 @@ public class BattleManager : MonoBehaviour
     {
         targetCharacter = setEnemy;
     }
+
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        if (skillCaster.GetComponent<Player>() != null)
+        {
+            StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
+        }
+        else
+        {
+            StartCoroutine(uIManager.SendGameLog("상대은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
+        }
+
+
         if (skillCaster.nowMP < castSkill.needMp)
         {
         }
@@ -341,10 +364,15 @@ public class BattleManager : MonoBehaviour
                 skillVictim.isCareless = false;
             }
 
-            if (isDeception)
+            if (isDeception && skillCaster.GetComponent<Player>() != null)
             {
                 BonusExpScale++;
-                Debug.Log("기만 성공! 경험치 배율 조정됨!");
+                Debug.Log("기만 성공! 경험치 배율 상승됨!");
+            }
+            else if (isDeception && skillCaster.GetComponent<Enemy>() != null)
+            {
+                disBonusExpScale++;
+                Debug.Log("적 기만 성공! 경혐치 배율 하락됨...");
             }
 
             float increaseDamage = 0f;
@@ -421,7 +449,11 @@ public class BattleManager : MonoBehaviour
 
     private void CheckTurnChange(Character checkCharacter)
     {
-        if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
+        if (CheckBattleEnd())
+        {
+
+        }
+        else if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
         {
             Debug.Log("OneMore");
         }
@@ -436,7 +468,7 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("TurnChange");
                 isTurnUsed = false;
                 isCarelessTurnUsed = false;
-                TurnChange();
+                StartCoroutine(TurnChange());
             }
         }
     }
