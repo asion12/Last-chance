@@ -162,7 +162,7 @@ public class OutDungeonUIManager : MonoBehaviour
             FX_ActiveEnterInfo(EnterInfo_2);
         }
 
-        Debug.Log("Enter Checked!");
+        //Debug.Log("Enter Checked!");
         CheckActiveDungeonEnterButton();
     }
 

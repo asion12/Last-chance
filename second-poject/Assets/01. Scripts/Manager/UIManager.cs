@@ -470,6 +470,7 @@ public class UIManager : MonoBehaviour
 
     private void SetButtonPlayerSkillList()
     {
+        skills = player.skillList;
         for (int i = 0; i < skills.Count; i++)
         {
             SO_Skill tempSkill = skills[i];
@@ -509,6 +510,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
+            Debug.LogWarning("Destroyed");
             Destroy(PlayerSkillListContent.transform.GetChild(i).gameObject);
         }
 

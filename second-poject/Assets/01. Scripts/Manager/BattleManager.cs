@@ -178,6 +178,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator BattleRun(bool isPlayerRun)
     {
+        SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerRun)
         {
@@ -448,6 +449,11 @@ public class BattleManager : MonoBehaviour
         resetCharacter.isSkillOverClockList = new bool[] { false, };
     }
 
+    private void OneMoreForEnemy()
+    {
+        targetEnemy.GetComponent<Enemy>().isChanging = false;
+    }
+
     private void CheckTurnChange(Character checkCharacter)
     {
         if (CheckBattleEnd())
@@ -457,12 +463,24 @@ public class BattleManager : MonoBehaviour
         else if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
         {
             Debug.Log("OneMore");
+            if (checkCharacter.GetComponent<Player>() != null)
+            {
+                //Debug.Log("One More Enemy Casted");
+                Invoke("OneMoreForEnemy", 1f);
+                //StartCoroutine(targetEnemy.GetComponent<Enemy>().EnemySkillCast());
+            }
         }
         else
         {
             if (!isTurnUsed)
             {
                 Debug.Log("One More");
+                if (checkCharacter.GetComponent<Player>() != null)
+                {
+                    //Debug.Log("One More Enemy Casted");
+                    Invoke("OneMoreForEnemy", 1f);
+                    //StartCoroutine(targetEnemy.GetComponent<Enemy>().EnemySkillCast());
+                }
             }
             else
             {
