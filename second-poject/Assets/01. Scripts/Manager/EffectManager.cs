@@ -164,6 +164,11 @@ public class EffectManager : MonoBehaviour
         }
     }
 
+    public void MakeDamageInfoEffect()
+    {
+
+    }
+
     // private void ShakeObject(float duration, int vibrato, GameObject shakeObject)
     // {
 
