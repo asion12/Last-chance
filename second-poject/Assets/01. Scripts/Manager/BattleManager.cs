@@ -71,13 +71,13 @@ public class BattleManager : MonoBehaviour
         if (nowTurnID == 1)
         {
             uIManager.SetBattleUIInactive();
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(1.5f);
             Debug.Log("Turn Change To Enemy");
             nowTurnID = 2;
         }
         else if (nowTurnID == 2)
         {
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(1.5f);
             uIManager.SetBattleUIActive();
             uIManager.SetGameLog_PlayerTurnCommand();
             nowTurnID = 1;
@@ -466,7 +466,7 @@ public class BattleManager : MonoBehaviour
             if (checkCharacter.GetComponent<Player>() != null)
             {
                 //Debug.Log("One More Enemy Casted");
-                Invoke("OneMoreForEnemy", 1f);
+                Invoke("OneMoreForEnemy", 1.5f);
                 //StartCoroutine(targetEnemy.GetComponent<Enemy>().EnemySkillCast());
             }
         }
@@ -478,7 +478,7 @@ public class BattleManager : MonoBehaviour
                 if (checkCharacter.GetComponent<Player>() != null)
                 {
                     //Debug.Log("One More Enemy Casted");
-                    Invoke("OneMoreForEnemy", 1f);
+                    Invoke("OneMoreForEnemy", 1.5f);
                     //StartCoroutine(targetEnemy.GetComponent<Enemy>().EnemySkillCast());
                 }
             }
