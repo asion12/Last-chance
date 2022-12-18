@@ -34,7 +34,6 @@ public class BattleManager : MonoBehaviour
     public NavMeshAgent monster;
     private int BonusExpScale = 0;
     private int disBonusExpScale = 0;
-    private bool soundck = true;
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -95,8 +94,7 @@ public class BattleManager : MonoBehaviour
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
         SetAllEnemysStop();
-        soundck = true;
-        SoundManager.instance.backgroundSoundpl(soundck);
+
         // if now Battlemode
         if (nowTurnID != 0)
         {
@@ -115,7 +113,6 @@ public class BattleManager : MonoBehaviour
             player.CameraRotateToTarget(targetEnemy.transform.gameObject);
             if (isPlayerStart)
             {
-                
                 //monster.speed = 0;
                 uIManager.SetGameLog_PlayerTurnCommand();
                 nowTurnID = 1;
@@ -131,8 +128,6 @@ public class BattleManager : MonoBehaviour
 
     public void BattleEnd(bool isPlayerWin)
     {
-        soundck = false;
-        SoundManager.instance.backgroundSoundpl(soundck);
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerWin)

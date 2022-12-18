@@ -33,7 +33,7 @@ public class EffectManager : MonoBehaviour
 
     }
 
-    public void MakeSkillEffect (SO_Skill useSkill, bool isCasterPlayer)
+    public void MakeSkillEffect(SO_Skill useSkill, bool isCasterPlayer)
     {
         Debug.LogWarning("Effect!");
         GameObject setEffect = null;
