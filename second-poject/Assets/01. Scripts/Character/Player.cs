@@ -437,9 +437,9 @@ public class Player : Character
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ExitPannel" && BattleManager.instance.nowTurnID == 0)
+        if (other.gameObject.tag == "ExitPannel")
         {
             isCanExit = true;
         }

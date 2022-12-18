@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     [System.NonSerialized] public bool isGameStarted = false;
     public GameObject playerStartPoint;
-    public GameObject playerOutDungeonPoint;
     private Player player;
     // public Canvas ui;
     private bool canvas = false;
@@ -123,7 +122,7 @@ public class GameManager : MonoBehaviour
         // /isGameStarted = false;
         isTimeLimitOver = false;
         nowTimeLimit = 0;
-        player.transform.position = playerOutDungeonPoint.transform.position;
+        player.transform.position = playerStartPoint.transform.position;
         player.nowHP = player.characterStats.MAX_HP;
         player.nowMP = player.characterStats.MAX_MP;
         player.nowCP = player.maxCP;
@@ -136,8 +135,7 @@ public class GameManager : MonoBehaviour
     {
         outDungeonUIManager.InactiveOutDungeonUI();
         uIManager.ResetButtonPlayerSkillList();
-        //ResetDungeon();
-        player.transform.position = playerStartPoint.transform.position;
+        ResetDungeon();
         isGameStarted = true;
     }
 
