@@ -111,7 +111,7 @@ public class EffectManager : MonoBehaviour
             MoveVector = BattleManager.instance.targetEnemy.transform.localPosition;
 
             tempEffect = Instantiate(setEffect, SetVector, Quaternion.identity) as GameObject;
-            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * -1f);
+            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * 1);
         }
 
         ParticleSystem particleSystem = tempEffect.GetComponent<ParticleSystem>();

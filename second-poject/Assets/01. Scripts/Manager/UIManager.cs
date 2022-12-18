@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
         isMessaging = true;
         GameLog.text = LogMessage;
         yield return new WaitForSeconds(1.99f);
-        GameLog.text = "";
+        //GameLog.text = "";
         isMessaging = false;
     }
 

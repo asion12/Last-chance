@@ -153,6 +153,7 @@ public class BattleManager : MonoBehaviour
             GameManager.instance.DieOutDungeon();
             //monster.speed = 3.5f;
         }
+        uIManager.InactiveCanBatteUI();
     }
 
     private void SetAllEnemysStop()

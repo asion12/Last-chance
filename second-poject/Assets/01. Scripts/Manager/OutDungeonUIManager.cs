@@ -11,7 +11,7 @@ public class OutDungeonUIManager : MonoBehaviour
     [SerializeField] private Canvas OutDungeonUI;
     [SerializeField] private GameObject OutDungeonUIGroup;
 
-    [Header("스킬 인벤토리 버튼 관련"), Space(100f)]
+    [Header("스킬 인벤토리 버튼 관련")]
     public List<SO_Skill> PlayerInventorySkillListData;
     [SerializeField] private GameObject PlayerInventorySkillButtonPrefab;
     [SerializeField] private GameObject PlayerInventorySkillListContent;
