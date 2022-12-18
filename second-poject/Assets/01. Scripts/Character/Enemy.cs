@@ -92,7 +92,6 @@ public class Enemy : Character
     {
         isChanging = true;
 
-
         if (enemyBattleState == BattleState.ATTACK_READY)
         {
             Debug.Log("Set Attack Skill");

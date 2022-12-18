@@ -92,6 +92,33 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public void OnSkillBuyOrder(SO_Skill setSkill)
+    {
+        Debug.Log("Skill Buy Set");
+        GameObject tempObj = EventSystem.current.currentSelectedGameObject;
+        if (setSkill.playerSkillOrdered)
+        {
+            Debug.Log("Remove Order Skill Start !");
+            outDungeonUIManager.Non_SetSkillInventoryButton(tempObj);
+            storeManager_New.nowOrderSkillTable.Remove(setSkill);
+            GameManager.instance.Gold += setSkill.buyCost;
+            setSkill.playerSkillOrdered = false;
+            //outDungeonUIManager.DungeonEnterCheck();
+        }
+        else if (setSkill.buyCost > GameManager.instance.Gold)
+        {
+            Debug.Log("Not Enough Gold!");
+            //outDungeonUIManager.DungeonEnterCheck();
+        }
+        else
+        {
+            Debug.Log("Set Order Skill Start !");
+            outDungeonUIManager.SetSkillInventoryButton(tempObj);
+            storeManager_New.nowOrderSkillTable.Add(setSkill);
+            //outDungeonUIManager.DungeonEnterCheck();
+        }
+    }
+
     public void PlayerCastSkillSet(SO_Skill castSkill)
     {
         BattleManager.instance.CastSkill(BattleManager.instance.player, BattleManager.instance.targetEnemy, castSkill);

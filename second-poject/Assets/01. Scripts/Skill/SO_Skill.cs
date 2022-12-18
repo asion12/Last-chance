@@ -10,6 +10,7 @@ public class SO_Skill : ScriptableObject
     public int playerHavingCount = 0;
     public bool isSell = false;
     public bool playerSkillSetted = false;
+    public bool playerSkillOrdered = false;
     public bool categoryPhysics;
     public bool categoryChemistry;
     // [System.NonSerialized] public bool isCanUse = true;

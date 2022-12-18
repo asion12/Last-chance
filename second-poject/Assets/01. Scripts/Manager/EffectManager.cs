@@ -111,7 +111,7 @@ public class EffectManager : MonoBehaviour
             MoveVector = BattleManager.instance.targetEnemy.transform.localPosition;
 
             tempEffect = Instantiate(setEffect, SetVector, Quaternion.identity) as GameObject;
-            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * -1f);
+            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * 1);
         }
 
         ParticleSystem particleSystem = tempEffect.GetComponent<ParticleSystem>();
@@ -136,28 +136,31 @@ public class EffectManager : MonoBehaviour
             // }
 
             Vector3 orginPos = HitObject.transform.localPosition;
+            if (HitObject != null)
+            {
+                Debug.LogWarning("Hit Stopped!");
+                Time.timeScale = 0f;
+                yield return new WaitForSecondsRealtime(0.15f * HitValue);
+                Debug.LogWarning("HitStopEnd!");
+                Time.timeScale = 1f;
+
+                HitObject.transform.DOKill();
+
+                //HitObject.transform.localPosition = orginPos;
+                HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
+                {
+                    //HitObject.transform.position = orginPos;
+                    // if (isHitObjHasNav)
+                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                }).OnKill(() =>
+                {
+
+                    //HitObject.transform.position = orginPos;
+                    // if (isHitObjHasNav)
+                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                });
+            }
             // /Sequence seq = DOTween.Sequence();
-            Debug.LogWarning("Hit Stopped!");
-            Time.timeScale = 0f;
-            yield return new WaitForSecondsRealtime(0.15f * HitValue);
-            Debug.LogWarning("HitStopEnd!");
-            Time.timeScale = 1f;
-
-            HitObject.transform.DOKill();
-
-            //HitObject.transform.localPosition = orginPos;
-            HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
-            {
-                //HitObject.transform.position = orginPos;
-                // if (isHitObjHasNav)
-                //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-            }).OnKill(() =>
-            {
-
-                //HitObject.transform.position = orginPos;
-                // if (isHitObjHasNav)
-                //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-            });
         }
     }
 

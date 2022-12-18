@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class StoreManager_New : MonoBehaviour
 {
-    List<SO_Skill> StoreSkillPool;
-    List<SO_Skill> nowSkillTable;
+    public List<SO_Skill> StoreSkillPool;
+    public List<SO_Skill> nowStoreSkillTable;
+    public List<SO_Skill> nowOrderSkillTable;
     OutDungeonUIManager outDungeonUIManager;
     // Start is called before the first frame update
     void Start()
     {
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
+        ResetSkillStore();
     }
 
     // Update is called once per frame
@@ -21,11 +23,11 @@ public class StoreManager_New : MonoBehaviour
 
     private void ResetSkillStore()
     {
-        nowSkillTable = new List<SO_Skill>();
+        nowStoreSkillTable = new List<SO_Skill>();
         for (int i = 0; i < 3; i++)
         {
             int randomIndex = Random.Range(0, StoreSkillPool.Count);
-            nowSkillTable.Add(StoreSkillPool[randomIndex]);
+            nowStoreSkillTable.Add(StoreSkillPool[randomIndex]);
         }
     }
 

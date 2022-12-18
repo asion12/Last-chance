@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
         isMessaging = true;
         GameLog.text = LogMessage;
         yield return new WaitForSeconds(1.99f);
-        GameLog.text = "";
+        //GameLog.text = "";
         isMessaging = false;
     }
 
@@ -380,6 +380,12 @@ public class UIManager : MonoBehaviour
             SetCarelessUIActive();
         }
         else if (BattleManager.instance.player.isBattleMode && !BattleManager.instance.targetEnemy.isCareless && isCarelessUISetted)
+        // if (BattleManager.instance.player.isBattleMode && !BattleManager.instance.targetEnemy.isCareless && isCarelessUISetted)
+        {
+            isCarelessUISetted = false;
+            SetCarelessUIInactive();
+        }
+        else if (!BattleManager.instance.player.isBattleMode)
         {
             isCarelessUISetted = false;
             SetCarelessUIInactive();
@@ -470,6 +476,7 @@ public class UIManager : MonoBehaviour
 
     private void SetButtonPlayerSkillList()
     {
+        skills = player.skillList;
         for (int i = 0; i < skills.Count; i++)
         {
             SO_Skill tempSkill = skills[i];
@@ -509,6 +516,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
+            Debug.LogWarning("Destroyed");
             Destroy(PlayerSkillListContent.transform.GetChild(i).gameObject);
         }
 
@@ -690,6 +698,7 @@ public class UIManager : MonoBehaviour
     {
         if (isRunButtonOn)
         {
+            isRunButtonOn = false;
             Debug.Log("InActived!");
             Sequence sequence = DOTween.Sequence();
             PlayerRunButtonBG.gameObject.SetActive(true);
