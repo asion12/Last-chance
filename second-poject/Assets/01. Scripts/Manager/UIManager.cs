@@ -380,6 +380,12 @@ public class UIManager : MonoBehaviour
             SetCarelessUIActive();
         }
         else if (BattleManager.instance.player.isBattleMode && !BattleManager.instance.targetEnemy.isCareless && isCarelessUISetted)
+        // if (BattleManager.instance.player.isBattleMode && !BattleManager.instance.targetEnemy.isCareless && isCarelessUISetted)
+        {
+            isCarelessUISetted = false;
+            SetCarelessUIInactive();
+        }
+        else if (!BattleManager.instance.player.isBattleMode)
         {
             isCarelessUISetted = false;
             SetCarelessUIInactive();
@@ -692,6 +698,7 @@ public class UIManager : MonoBehaviour
     {
         if (isRunButtonOn)
         {
+            isRunButtonOn = false;
             Debug.Log("InActived!");
             Sequence sequence = DOTween.Sequence();
             PlayerRunButtonBG.gameObject.SetActive(true);
