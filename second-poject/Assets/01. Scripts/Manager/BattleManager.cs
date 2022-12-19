@@ -418,7 +418,14 @@ public class BattleManager : MonoBehaviour
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
+            SkillDamageEffect((int)finalSkillDamage, skillVictim.isCareless, isCritical, isAdvantage, isMiss, isGuard, isDeception,
+            skillVictim.GetComponent<Player>() != null ? true : false);
         }
+    }
+
+    private void SkillDamageEffect(int DamageVal, bool isSuprised, bool isCritical, bool isAdditional, bool isMissed, bool isGuarded, bool isDeception, bool isPlayerEffect)
+    {
+        StartCoroutine(effectManager.MakeDamageInfoEffect(DamageVal, isSuprised, isCritical, isAdditional, isMissed, isGuarded, isDeception, isPlayerEffect));
     }
 
     public void SetOverClock()
