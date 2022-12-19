@@ -32,7 +32,10 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private List<GameObject> EnemyDamageEffectGroup;
     void Start()
     {
-
+        StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, true));
+        StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, false));
+        //FX_DamageEffect(PlayerEffectBase);
+        //FX_DamageEffect_Base(EnemyEffectBase);
     }
 
     // Update is called once per frame
@@ -174,11 +177,11 @@ public class EffectManager : MonoBehaviour
 
     private int fxCount = 1;
 
-    public IEnumerator MakeDamageInfoEffect(int DamageVal, bool isSuprised, bool isCritical, bool isAdditional, bool isMissed, bool isGuarded, bool isPlayerEffect)
+    public IEnumerator MakeDamageInfoEffect(int DamageVal, bool isSuprised, bool isCritical, bool isAdditional, bool isMissed, bool isGuarded, bool isDeception, bool isPlayerEffect)
     {
         fxCount = 1;
 
-        bool[] effectActiveList = { false, };
+        bool[] effectActiveList = { false, false, false, false, false, false };
 
         if (isSuprised)
         {
@@ -195,7 +198,7 @@ public class EffectManager : MonoBehaviour
             effectActiveList[2] = true;
             fxCount++;
         }
-        if (isCritical)
+        if (isMissed)
         {
             effectActiveList[3] = true;
             fxCount++;
@@ -205,20 +208,25 @@ public class EffectManager : MonoBehaviour
             effectActiveList[4] = true;
             fxCount++;
         }
+        if (isDeception)
+        {
+            effectActiveList[5] = true;
+            fxCount++;
+        }
 
         if (isPlayerEffect)
         {
             fxCount++;
             FX_DamageEffect_PlayerBG();
             yield return new WaitForSeconds(1 / fxCount);
-            FX_DamageEffect_Base(PlayerEffectBase);
+            FX_DamageEffect(PlayerEffectBase);
         }
         else
-            FX_DamageEffect_Base(EnemyEffectBase);
+            FX_DamageEffect(EnemyEffectBase);
 
         yield return new WaitForSeconds(1 / fxCount);
 
-        for (int i = 0; i < fxCount; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (effectActiveList[i])
             {
@@ -234,6 +242,26 @@ public class EffectManager : MonoBehaviour
                 }
             }
         }
+        yield return new WaitForSeconds(1);
+        FX_AllDamageEffectOff(effectActiveList, isPlayerEffect);
+    }
+
+    private void FX_AllDamageEffectOff(bool[] tempActiveList, bool isPlayerEffect)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (tempActiveList[i])
+            {
+                if (isPlayerEffect)
+                {
+                    FX_DamageEffect_Off(PlayerDamageEffectGroup[i]);
+                }
+                else
+                {
+                    FX_DamageEffect_Off(EnemyDamageEffectGroup[i]);
+                }
+            }
+        }
     }
 
     private void FX_DamageEffect_PlayerBG()
@@ -241,40 +269,64 @@ public class EffectManager : MonoBehaviour
         PlaeyrEffectBG.DOFade(0.75f, 1 / fxCount);
     }
 
-    private void FX_DamageEffect_Base(GameObject effectBaseObject)
-    {
-        effectBaseObject.transform.DOKill();
+    // private void FX_DamageEffect_Base(GameObject effectBaseObject)
+    // {
+    //     effectBaseObject.transform.localScale = new Vector3(0, 0, 0);
+    //     effectBaseObject.SetActive(true);
 
-        //effectBaseSet
-        effectBaseObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+    //     Sequence sequence = DOTween.Sequence();
+    //     sequence
+    //     .Append(effectBaseObject.transform.DOScale(1.25f, 1f))
+    //     .Append(effectBaseObject.transform.DOScale(1f, 1f));
+    //     // effectBaseObject.transform.DOKill();
 
-        //effectBaseImageSet
-        effectBaseObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(effectBaseObject.GetComponent<Image>().color.r, effectBaseObject.GetComponent<Image>().color.g, effectBaseObject.GetComponent<Image>().color.b, 0);
+    //     // //effectBaseSet
+    //     // effectBaseObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
 
-        //effectBaseDamageIntSet
-        Color tempColor = effectBaseObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color;
-        effectBaseObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
+    //     // //effectBaseImageSet
+    //     // effectBaseObject.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(effectBaseObject.GetComponent<Image>().color.r, effectBaseObject.GetComponent<Image>().color.g, effectBaseObject.GetComponent<Image>().color.b, 0);
 
-        //EffectBaseInfoSet
-        tempColor = effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color;
-        effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
+    //     // //effectBaseDamageIntSet
+    //     // Color tempColor = effectBaseObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color;
+    //     // effectBaseObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
+
+    //     // //EffectBaseInfoSet
+    //     // tempColor = effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color;
+    //     // effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color = new Color(tempColor.r, tempColor.g, tempColor.b, 0);
 
 
-        effectBaseObject.SetActive(true);
+    //     // effectBaseObject.SetActive(true);
 
-        effectBaseObject.transform.DOScale(1, 1 / fxCount);
-        effectBaseObject.transform.GetChild(0).gameObject.GetComponent<Image>().DOFade(1, 1 / fxCount);
+    //     // //effectBaseTwee 
+    //     // effectBaseObject.transform.DOScale(1, 1 / fxCount);
 
-    }
+    //     // //effectBaseImageTween
+    //     // effectBaseObject.transform.GetChild(0).gameObject.GetComponent<Image>().DOFade(1, 1 / fxCount);
+
+    //     // //effectBaseImageTween
+    //     // effectBaseObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().DOFade(1, 1 / fxCount);
+
+    //     // //effectBase
+    //     // effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().DOFade(1, 1 / fxCount);
+    // }
 
     private void FX_DamageEffect(GameObject effectObject)
     {
-        effectObject.transform.DOKill();
-        effectObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-        effectObject.GetComponent<Image>().color = new Color(effectObject.GetComponent<Image>().color.r, effectObject.GetComponent<Image>().color.g, effectObject.GetComponent<Image>().color.b, 0);
+        effectObject.transform.localScale = new Vector3(0, 0, 0);
         effectObject.SetActive(true);
-        effectObject.transform.DOScale(1, 1 / fxCount);
-        effectObject.GetComponent<Image>().DOFade(1, 1 / fxCount);
+
+        Sequence sequence = DOTween.Sequence();
+        sequence
+        .Append(effectObject.transform.DOScale(1.25f, 0.25f * 1f))
+        .Append(effectObject.transform.DOScale(1f, 0.25f / 5));
+    }
+
+    private void FX_DamageEffect_Off(GameObject effectObject)
+    {
+        effectObject.transform.DOScale(0, 0.125f).OnComplete(() =>
+        {
+            effectObject.SetActive(false);
+        });
     }
     // private void ShakeObject(float duration, int vibrato, GameObject shakeObject)
     // {
