@@ -176,7 +176,7 @@ public class EffectManager : MonoBehaviour
     }
 
     private int fxCount = 1;
-
+    private float effectTime = 0.125f;
     public IEnumerator MakeDamageInfoEffect(int DamageVal, bool isSuprised, bool isCritical, bool isAdditional, bool isMissed, bool isGuarded, bool isDeception, bool isPlayerEffect)
     {
         fxCount = 1;
@@ -218,13 +218,13 @@ public class EffectManager : MonoBehaviour
         {
             fxCount++;
             FX_DamageEffect_PlayerBG();
-            yield return new WaitForSeconds(0.5f / fxCount);
+            yield return new WaitForSeconds(effectTime / fxCount);
             FX_DamageEffect(PlayerEffectBase);
         }
         else
             FX_DamageEffect(EnemyEffectBase);
 
-        yield return new WaitForSeconds(0.5f / fxCount);
+        yield return new WaitForSeconds(effectTime / fxCount);
 
         for (int i = 0; i < 6; i++)
         {
@@ -233,22 +233,22 @@ public class EffectManager : MonoBehaviour
                 if (isPlayerEffect)
                 {
                     FX_DamageEffect(PlayerDamageEffectGroup[i]);
-                    yield return new WaitForSeconds(0.5f / fxCount);
+                    yield return new WaitForSeconds(effectTime / fxCount);
                 }
                 else
                 {
                     FX_DamageEffect(EnemyDamageEffectGroup[i]);
-                    yield return new WaitForSeconds(0.5f / fxCount);
+                    yield return new WaitForSeconds(effectTime / fxCount);
                 }
             }
         }
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
         if (isPlayerEffect)
             FX_DamageEffect_Off(PlayerEffectBase);
         else
             FX_DamageEffect_Off(EnemyEffectBase);
         FX_AllDamageEffectOff(effectActiveList, isPlayerEffect);
-        yield return new WaitForSeconds(0.5f / fxCount);
+        yield return new WaitForSeconds(effectTime / fxCount);
         FX_DamageEffect_PlayerBG_Off();
     }
 
@@ -276,7 +276,7 @@ public class EffectManager : MonoBehaviour
         PlaeyrEffectBG.color = new Color(PlaeyrEffectBG.color.r, PlaeyrEffectBG.color.g, PlaeyrEffectBG.color.b, 0);
         PlaeyrEffectBG.gameObject.SetActive(true);
 
-        PlaeyrEffectBG.DOFade(0.75f, 0.5f / fxCount);
+        PlaeyrEffectBG.DOFade(0.75f, 0.125f);
     }
 
     private void FX_DamageEffect_PlayerBG_Off()
@@ -341,13 +341,13 @@ public class EffectManager : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
         sequence
-        .Append(effectObject.transform.DOScale(1.25f, 0.25f * 1f))
-        .Append(effectObject.transform.DOScale(1f, 0.25f / 10));
+        .Append(effectObject.transform.DOScale(1.25f, effectTime))
+        .Append(effectObject.transform.DOScale(1f, effectTime / 2));
     }
 
     private void FX_DamageEffect_Off(GameObject effectObject)
     {
-        effectObject.transform.DOScale(0, 0.125f).OnComplete(() =>
+        effectObject.transform.DOScale(0, effectTime).OnComplete(() =>
         {
             effectObject.SetActive(false);
         });

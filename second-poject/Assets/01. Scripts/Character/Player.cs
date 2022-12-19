@@ -173,7 +173,7 @@ public class Player : Character
 
     public float GetNewMaxEXP(float temp)
     {
-        temp = (-1 * ((10) / (temp + 4)) + 2) * 5;
+        temp = (-1 * ((20) / (temp + 9)) + 2) * 5;
 
         return temp;
     }
