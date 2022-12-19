@@ -5,8 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
-    //public AudioSource bgSource;
-    //public AudioClip[] bgList;
+    public AudioSource bgSource;
+    public AudioClip[] bgList;
     public AudioSource backSource;
     public AudioClip[] backList;
 
@@ -21,16 +21,16 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    //private void Onsceneloded(SO_Skill useSkil)
-    //{
-    //    for (int i=0;i<bgList.Length;i++)
-    //    {
-    //        if (useSkil.name == bgList[i].name)
-    //        {
-    //            SonudPlay(bgList[i]);
-    //        }
-    //    }
-    //}
+    private void Onsceneloded(SO_Skill useSkil)
+    {
+        for (int i = 0; i < bgList.Length; i++)
+        {
+            if (useSkil.name == bgList[i].name)
+            {
+                SonudPlay(bgList[i]);
+            }
+        }
+    }
     public void SonudPlay(AudioClip clip)
     {
         backSource.clip = clip;
