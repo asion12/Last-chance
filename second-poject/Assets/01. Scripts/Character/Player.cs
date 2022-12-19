@@ -432,6 +432,7 @@ public class Player : Character
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
+                SoundManager._instance.mora();
                 GameManager.instance.ExitDungeon();
             }
         }
