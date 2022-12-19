@@ -34,6 +34,7 @@ public class BattleManager : MonoBehaviour
     public NavMeshAgent monster;
     private int BonusExpScale = 0;
     private int disBonusExpScale = 0;
+    private bool startBt = true;
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -93,9 +94,10 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
+        SoundManager._instance.backgroundSoundpl(true);
+        //SoundManager._instance.cheng();
         SetAllEnemysStop();
-
-        // if now Battlemode
+       
         if (nowTurnID != 0)
         {
             Debug.LogWarning("Now is Battle Mode But Trying Battle Start!");
@@ -125,9 +127,10 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
-
+ 
     public void BattleEnd(bool isPlayerWin)
     {
+        SoundManager._instance.backgroundSoundpl(false);
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerWin)
@@ -178,6 +181,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator BattleRun(bool isPlayerRun)
     {
+        SoundManager._instance.backgroundSoundpl(false);
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerRun)
