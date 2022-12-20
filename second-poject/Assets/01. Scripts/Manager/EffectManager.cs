@@ -154,22 +154,24 @@ public class EffectManager : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.15f * HitValue);
                 Debug.LogWarning("HitStopEnd!");
                 Time.timeScale = 1f;
-
-                HitObject.transform.DOKill();
-
-                //HitObject.transform.localPosition = orginPos;
-                HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
+                if (HitObject != null)
                 {
-                    //HitObject.transform.position = orginPos;
-                    // if (isHitObjHasNav)
-                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-                }).OnKill(() =>
-                {
+                    HitObject.transform.DOKill();
 
-                    //HitObject.transform.position = orginPos;
-                    // if (isHitObjHasNav)
-                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-                });
+                    //HitObject.transform.localPosition = orginPos;
+                    HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
+                    {
+                        //HitObject.transform.position = orginPos;
+                        // if (isHitObjHasNav)
+                        //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                    }).OnKill(() =>
+                    {
+
+                        //HitObject.transform.position = orginPos;
+                        // if (isHitObjHasNav)
+                        //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                    });
+                }
             }
             // /Sequence seq = DOTween.Sequence();
         }

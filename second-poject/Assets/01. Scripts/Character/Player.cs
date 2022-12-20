@@ -31,7 +31,7 @@ public class Player : Character
     float cpIncreaseTimer_MAX = 1f;
 
     float cpDecreaseTimer = 0;
-    float cpDecreaseTimer_MAX = 1f;
+    float cpDecreaseTimer_MAX = 2f;
 
     //public ItemDBObj itemDBObj;
     //public InventoryObj inventoryObj;
@@ -103,7 +103,7 @@ public class Player : Character
     private void CheckIncreaseCP()
     {
         cpIncreaseTimer += Time.deltaTime;
-        if (cpIncreaseTimer >= cpIncreaseTimer_MAX / ((100 + totalStats.CHA) / 100))
+        if (cpIncreaseTimer >= cpIncreaseTimer_MAX / Mathf.Log(totalStats.FOC + 1, 2) / 2)
         {
             cpIncreaseTimer = 0;
             nowCP++;
@@ -117,7 +117,7 @@ public class Player : Character
     private void CheckDecreaseCP()
     {
         cpDecreaseTimer += Time.deltaTime;
-        if (cpDecreaseTimer >= cpDecreaseTimer_MAX * ((100 + totalStats.FOC) / 100))
+        if (cpDecreaseTimer >= cpDecreaseTimer_MAX * Mathf.Log(totalStats.FOC + 1, 2) / 2)
         {
             cpDecreaseTimer = 0;
             nowCP--;
@@ -430,7 +430,7 @@ public class Player : Character
     {
         if (isCanExit)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && isBattleMode == false)
             {
                 SoundManager._instance.mora();
                 GameManager.instance.ExitDungeon();

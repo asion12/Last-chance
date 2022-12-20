@@ -354,7 +354,7 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_PlayerElementsInfo()
     {
-        SetElementAddInfo(player.totalResistElements, player.totalWeakElements, "Resist", "Weak");
+        SetElementAddInfo(player.totalResistElements, player.totalWeakElements, "내성", "취약");
     }
 
     // private void UIUpdate_CheckSkillUse()
@@ -492,8 +492,8 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
             skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
 
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().color = Color.white;
-            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
+            //skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().color = Color.white;
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, new Color(0, 13, 104)) + "";
 
             string tempString = "";
             if (tempSkill.categoryChemistry)
@@ -609,7 +609,7 @@ public class UIManager : MonoBehaviour
         string changeToString = "";
 
         string colorString = "<color=";
-        colorString += "#" + ColorUtility.ToHtmlStringRGB(textColor) + "BB";
+        colorString += "#" + ColorUtility.ToHtmlStringRGB(textColor) + "DD";
         colorString += ">";
 
         for (int i = 0; i < 3 - numString.Length; i++)

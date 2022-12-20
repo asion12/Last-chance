@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 018. MercuryDiffusion
   m_EditorClassIdentifier: 
   skillName: "\uC218\uC740\uBC29\uC0AC"
-  buyCost: 200
-  playerHavingCount: 1
+  buyCost: 1000
+  playerHavingCount: 2
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
@@ -44,8 +45,8 @@ MonoBehaviour:
     METAL: 0
     SOIL: 0
   skillDamage: 300
-  needCP: 70
-  needMp: 150
+  needCP: 50
+  needMp: 200
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

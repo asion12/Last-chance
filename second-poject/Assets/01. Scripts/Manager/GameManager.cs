@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveDungeon()
     {
-        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
     public void CheckPotionCount()
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         player.nowCP = player.maxCP;
         player.GetComponent<Player>().isCanExit = false;
         SceneManager.UnloadSceneAsync("JJB-Dungeon");
-        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
     public void EnterDungeon()
@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dead!");
         Debug.Log("LosshavingSkill");
         LossSkills();
+        LossPotions();
         player.skillList = new List<SO_Skill>();
         //player.SetTotalElements();
         ReSetPlayerTotalElements();
@@ -200,6 +201,17 @@ public class GameManager : MonoBehaviour
     private void CheckPlayerSkillSet()
     {
 
+    }
+
+    private void LossPotions()
+    {
+        HP_0 = 0;
+        HP_1 = 0;
+        HP_2 = 0;
+
+        MP_0 = 0;
+        MP_1 = 0;
+        MP_2 = 0;
     }
 
     private void LossSkills()

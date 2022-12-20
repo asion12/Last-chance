@@ -298,7 +298,7 @@ public class EventManager : MonoBehaviour
         }
         else if (statID == "WIS")
         {
-            if (player.characterStats.STR <= 2)
+            if (player.characterStats.WIS <= 2)
             {
                 Debug.Log("WIS ENDLESS");
             }

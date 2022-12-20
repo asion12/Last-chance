@@ -149,12 +149,12 @@ public class OutDungeonUIManager : MonoBehaviour
 
     public void UIUpdate_SetPlayerGoldText()
     {
-        PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G";
+        PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G<size=30>old</size>";
     }
 
     public void UIUpdate_SetPlayerStatPointText()
     {
-        PlayerStatPointText.text = player.statPoint.ToString() + " SP";
+        PlayerStatPointText.text = player.statPoint.ToString() + " S<size=30>kill</size>P<size=30>oint</size>";
     }
 
     public void CheckActiveDungeonEnterButton()
@@ -297,7 +297,7 @@ public class OutDungeonUIManager : MonoBehaviour
 
             // 스킬 추가 정보 표기
             skillButton.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = SetElementInfoString(tempSkill);
-            skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = "Count : " + tempSkill.playerHavingCount.ToString();
+            skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = tempSkill.playerHavingCount.ToString() + "개 소지함";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
@@ -315,84 +315,84 @@ public class OutDungeonUIManager : MonoBehaviour
                 case 0:
                     if (tempSkill.setResistElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "SOLAR";
                     }
                     else if (tempSkill.setWeakElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "SOLAR";
                     }
                     break;
                 case 1:
                     if (tempSkill.setResistElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "LUMINOUS";
                     }
                     else if (tempSkill.setWeakElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "LUMINOUS";
                     }
                     break;
                 case 2:
                     if (tempSkill.setResistElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "IGNITION";
                     }
                     else if (tempSkill.setWeakElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "IGNITION";
                     }
                     break;
                 case 3:
                     if (tempSkill.setResistElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "HYDRO";
                     }
                     else if (tempSkill.setWeakElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "HYDRO";
                     }
                     break;
                 case 4:
                     if (tempSkill.setResistElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "BIOLOGY";
                     }
                     else if (tempSkill.setWeakElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "BIOLOGY";
                     }
                     break;
                 case 5:
                     if (tempSkill.setResistElements.METAL)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "METAL";
                     }
                     else if (tempSkill.setWeakElements.METAL)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "METAL";
                     }
                     break;
                 case 6:
                     if (tempSkill.setResistElements.SOIL)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "SOIL";
                     }
                     else if (tempSkill.setWeakElements.SOIL)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "SOIL";
                     }
                     break;
@@ -406,7 +406,7 @@ public class OutDungeonUIManager : MonoBehaviour
             elementInfoString = "NULL";
         }
 
-        tempString = elementResOrWckInfoString + " : " + elementInfoString;
+        tempString = elementInfoString + " " + elementResOrWckInfoString;
         return tempString;
     }
 

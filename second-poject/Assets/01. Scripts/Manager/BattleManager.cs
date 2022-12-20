@@ -219,6 +219,8 @@ public class BattleManager : MonoBehaviour
 
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        bool isSuriseEffect = false;
+
         if (skillCaster.GetComponent<Player>() != null)
         {
             StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
@@ -360,6 +362,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                isSuriseEffect = true;
                 isCarelessTurnUsed = true;
                 isCritical = true;
                 isAdvantage = true;
@@ -422,7 +425,7 @@ public class BattleManager : MonoBehaviour
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
-            SkillDamageEffect((int)finalSkillDamage, isCarelessTurnUsed, isCritical, isAdvantage, isMiss, isGuard, isDeception,
+            SkillDamageEffect((int)finalSkillDamage, isSuriseEffect, isCritical, isAdvantage, isMiss, isGuard, isDeception,
             skillVictim.GetComponent<Player>() != null ? true : false);
         }
     }

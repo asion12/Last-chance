@@ -25,6 +25,11 @@ public class StoreManager_New : MonoBehaviour
 
     public void ResetSkillStore()
     {
+        for (int i = 0; i < StoreSkillPool.Count; i++)
+        {
+            StoreSkillPool[i].playerSkillOrdered = false;
+        }
+
         nowStoreSkillTable = new List<SO_Skill>();
         for (int i = 0; i < 3; i++)
         {
@@ -59,6 +64,7 @@ public class StoreManager_New : MonoBehaviour
         for (int i = 0; i < nowOrderSkillTable.Count; i++)
         {
             nowOrderSkillTable[i].playerHavingCount++;
+            nowOrderSkillTable[i].playerSkillOrdered = false;
         }
     }
 

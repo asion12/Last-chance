@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 007. FIreDiffusion
   m_EditorClassIdentifier: 
   skillName: "\uD654\uC5FC\uBC29\uC0AC"
-  buyCost: 200
-  playerHavingCount: 0
+  buyCost: 1000
+  playerHavingCount: 2
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
@@ -43,9 +44,9 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 200
-  needCP: 60
-  needMp: 100
+  skillDamage: 300
+  needCP: 50
+  needMp: 200
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

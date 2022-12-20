@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 015. PlasmaCutter
   m_EditorClassIdentifier: 
   skillName: "\uC815\uBC00-\uD50C\uB77C\uC988\uB9C8\uCEE4\uD130"
-  buyCost: 250
-  playerHavingCount: 0
+  buyCost: 1250
+  playerHavingCount: 2
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
@@ -45,7 +46,7 @@ MonoBehaviour:
     SOIL: 0
   skillDamage: 750
   needCP: 75
-  needMp: 100
+  needMp: 450
   needHp: 0
   skillDivision: 0
   sideEffect: {fileID: 0}

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD0C0\uACA9"
   buyCost: 0
-  playerHavingCount: 9997
+  playerHavingCount: 9999
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 1
   categoryChemistry: 0
   skillElements:
@@ -43,7 +44,7 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 75
+  skillDamage: 100
   needCP: 25
   needMp: 0
   needHp: 0
