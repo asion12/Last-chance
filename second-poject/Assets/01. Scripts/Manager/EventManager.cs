@@ -115,6 +115,8 @@ public class EventManager : MonoBehaviour
             Debug.Log("Set Order Skill Start !");
             outDungeonUIManager.SetSkillInventoryButton(tempObj);
             storeManager_New.nowOrderSkillTable.Add(setSkill);
+            GameManager.instance.Gold -= setSkill.buyCost;
+            setSkill.playerSkillOrdered = true;
             //outDungeonUIManager.DungeonEnterCheck();
         }
     }

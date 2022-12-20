@@ -219,10 +219,14 @@ public class EffectManager : MonoBehaviour
             fxCount++;
             FX_DamageEffect_PlayerBG();
             yield return new WaitForSeconds(effectTime / fxCount);
+            PlayerEffectBase.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = DamageVal.ToString();
             FX_DamageEffect(PlayerEffectBase);
         }
         else
+        {
+            EnemyEffectBase.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = DamageVal.ToString();
             FX_DamageEffect(EnemyEffectBase);
+        }
 
         yield return new WaitForSeconds(effectTime / fxCount);
 

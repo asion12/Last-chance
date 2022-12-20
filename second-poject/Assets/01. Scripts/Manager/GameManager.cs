@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private OutDungeonUIManager outDungeonUIManager;
     private UIManager uIManager;
+    private StoreManager_New storeManager_New;
 
     public int Gold = 0;
     public int HP_0 = 0;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        storeManager_New = FindObjectOfType<StoreManager_New>();
         uIManager = FindObjectOfType<UIManager>();
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
         ActiveDungeon();
@@ -136,9 +138,11 @@ public class GameManager : MonoBehaviour
     {
         outDungeonUIManager.InactiveOutDungeonUI();
         uIManager.ResetButtonPlayerSkillList();
+        storeManager_New.ResetSkillStore();
         //ResetDungeon();
         player.transform.position = playerStartPoint.transform.position;
         isGameStarted = true;
+        storeManager_New.BuyAllOrderedSkills();
     }
 
     public void ExitDungeon()

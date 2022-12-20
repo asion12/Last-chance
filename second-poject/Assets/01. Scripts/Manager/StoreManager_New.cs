@@ -9,10 +9,12 @@ public class StoreManager_New : MonoBehaviour
     public List<SO_Skill> nowOrderSkillTable;
     OutDungeonUIManager outDungeonUIManager;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
-        ResetSkillStore();
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -21,24 +23,53 @@ public class StoreManager_New : MonoBehaviour
 
     }
 
-    private void ResetSkillStore()
+    public void ResetSkillStore()
     {
         nowStoreSkillTable = new List<SO_Skill>();
         for (int i = 0; i < 3; i++)
         {
             int randomIndex = Random.Range(0, StoreSkillPool.Count);
-            nowStoreSkillTable.Add(StoreSkillPool[randomIndex]);
+            if (!CheckStoreSkillOverLap(StoreSkillPool[randomIndex]))
+            {
+                nowStoreSkillTable.Add(StoreSkillPool[randomIndex]);
+            }
+            else
+            {
+                i--;
+            }
+        }
+        outDungeonUIManager.ResetSkillTable();
+    }
+
+    private bool CheckStoreSkillOverLap(SO_Skill checkSkill)
+    {
+        for (int i = 0; i < nowStoreSkillTable.Count; i++)
+        {
+            if (checkSkill == nowStoreSkillTable[i])
+            {
+                return true;
+                break;
+            }
+        }
+        return false;
+    }
+
+    public void BuyAllOrderedSkills()
+    {
+        for (int i = 0; i < nowOrderSkillTable.Count; i++)
+        {
+            nowOrderSkillTable[i].playerHavingCount++;
         }
     }
 
-    public void BuySkill(SO_Skill tempSkill)
-    {
-        if (CheckPrice(tempSkill.buyCost))
-        {
-            DecreaseGold(tempSkill.buyCost);
-            tempSkill.playerHavingCount++;
-        }
-    }
+    // public void BuySkill(SO_Skill tempSkill)
+    // {
+    //     if (CheckPrice(tempSkill.buyCost))
+    //     {
+    //         DecreaseGold(tempSkill.buyCost);
+    //         tempSkill.playerHavingCount++;
+    //     }
+    // }
 
     public void SellSkillSet(SO_Skill tempSkill)
     {
