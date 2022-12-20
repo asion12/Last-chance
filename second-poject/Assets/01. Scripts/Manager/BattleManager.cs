@@ -97,7 +97,7 @@ public class BattleManager : MonoBehaviour
         SoundManager._instance.backgroundSoundpl(true);
         //SoundManager._instance.cheng();
         SetAllEnemysStop();
-       
+
         if (nowTurnID != 0)
         {
             Debug.LogWarning("Now is Battle Mode But Trying Battle Start!");
@@ -127,7 +127,7 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
- 
+
     public void BattleEnd(bool isPlayerWin)
     {
         SoundManager._instance.backgroundSoundpl(false);
@@ -422,7 +422,7 @@ public class BattleManager : MonoBehaviour
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
-            SkillDamageEffect((int)finalSkillDamage, skillVictim.isCareless, isCritical, isAdvantage, isMiss, isGuard, isDeception,
+            SkillDamageEffect((int)finalSkillDamage, isCarelessTurnUsed, isCritical, isAdvantage, isMiss, isGuard, isDeception,
             skillVictim.GetComponent<Player>() != null ? true : false);
         }
     }

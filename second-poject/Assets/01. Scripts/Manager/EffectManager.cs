@@ -334,7 +334,7 @@ public class EffectManager : MonoBehaviour
     //     // effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().DOFade(1, 1 / fxCount);
     // }
 
-    private void FX_DamageEffect(GameObject effectObject)
+    private void FX_DamageEffect(GameObject effectObject /*float BounceValue*/)
     {
         effectObject.transform.localScale = new Vector3(0, 0, 0);
         effectObject.SetActive(true);
