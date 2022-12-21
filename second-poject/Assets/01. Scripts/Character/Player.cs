@@ -64,7 +64,7 @@ public class Player : Character
                 CheckIncreaseCP();
                 CameraRotateToMousePointer();
                 CharacterMove();
-                CanBattleStartByRayCast();
+                ObejctCheckByRayCast();
                 //ItemBoxCheck();
                 //itemcheck();
             }
@@ -242,7 +242,7 @@ public class Player : Character
     }
 
     public GameObject nowHitObject;
-    private void CanBattleStartByRayCast()
+    private void ObejctCheckByRayCast()
     {
         //Debug.Log("Now Raying");
 

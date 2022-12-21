@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int potionCount = 0;
 
     [SerializeField] private GameObject GameClearUI;
+    [SerializeField] private TextMeshProUGUI ClearInfoText;
     public int DungeonTryCount = 0;
     public int KilledEnemyCount = 0;
     public int SkillCastCount = 0;
@@ -53,11 +55,6 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
         player = FindObjectOfType<Player>();
-    }
-
-    private void GameClear()
-    {
-        GameClearUI.SetActive(true);
     }
 
     private void Update()
@@ -82,6 +79,7 @@ public class GameManager : MonoBehaviour
         }
         // CursorLook();
         TimeLimitCheck();
+        CheckPotionUse();
         //CheckPotionCount();
     }
 
@@ -91,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (HP_0 > 0)
+                if (HP_0 > 0 && player.nowHP < player.characterStats.MAX_HP)
                 {
                     HP_0--;
                     player.nowHP += 500;
@@ -99,10 +97,42 @@ public class GameManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                if (HP_1 > 0)
+                if (HP_1 > 0 && player.nowHP < player.characterStats.MAX_HP)
                 {
                     HP_1--;
                     player.nowHP += 1500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (HP_2 > 0 && player.nowHP < player.characterStats.MAX_HP)
+                {
+                    HP_2--;
+                    player.nowHP += 3000;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (MP_0 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    HP_1--;
+                    player.nowMP += 150;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (MP_1 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    MP_1--;
+                    player.nowMP += 500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                if (MP_2 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    MP_2--;
+                    player.nowMP += 1000;
                 }
             }
         }
@@ -171,7 +201,7 @@ public class GameManager : MonoBehaviour
     {
         outDungeonUIManager.InactiveOutDungeonUI();
         uIManager.ResetButtonPlayerSkillList();
-        storeManager_New.ResetSkillStore();
+        DungeonTryCount++;
         //ResetDungeon();
         player.transform.position = playerStartPoint.transform.position;
         isGameStarted = true;
@@ -188,6 +218,7 @@ public class GameManager : MonoBehaviour
         outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
+        storeManager_New.ResetSkillStore();
         outDungeonUIManager.ActiveOutDungeonUI();
     }
 
@@ -203,7 +234,21 @@ public class GameManager : MonoBehaviour
         outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
+        storeManager_New.ResetSkillStore();
         outDungeonUIManager.ActiveOutDungeonUI();
+    }
+
+    public void ClearDungeon()
+    {
+        ExitDungeon();
+
+        ClearInfoText.text = "";
+        ClearInfoText.text += "\n던전에 총 " + DungeonTryCount.ToString() + "번 도전";
+        ClearInfoText.text += $"\n총 {KilledEnemyCount.ToString()}마리의 몬스터 처치";
+        ClearInfoText.text += $"\n총 {UsedPotionCount.ToString()}의 포션을 사용";
+        ClearInfoText.text += $"\n총 {SkillCastCount.ToString()}번 스킬을 시전";
+
+        GameClearUI.SetActive(true);
     }
 
     private void ReSetPlayerTotalElements()
