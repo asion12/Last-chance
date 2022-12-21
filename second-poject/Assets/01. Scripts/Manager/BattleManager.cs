@@ -399,12 +399,14 @@ public class BattleManager : MonoBehaviour
 
             if (isDeception && skillCaster.GetComponent<Player>() != null)
             {
+                SonudPlay(backList[3]);
                 BonusExpScale++;
                 Debug.Log("기만 성공! 경험치 배율 상승됨!");
             }
             else if (isDeception && skillCaster.GetComponent<Enemy>() != null)
             {
                 disBonusExpScale++;
+                SonudPlay(backList[3]);
                 Debug.Log("적 기만 성공! 경혐치 배율 하락됨...");
             }
 
