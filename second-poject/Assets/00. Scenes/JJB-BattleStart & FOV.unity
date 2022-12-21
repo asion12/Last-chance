@@ -23208,7 +23208,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2047056543}
   battleStartRange: 5
   battleStartRangePoint: {fileID: 1237334324}
-  moveSpeed: 2
+  moveSpeed: 3
   rotateSpeed: 250
   isSkillOverClockList: 00
   poistion: {fileID: 0}
