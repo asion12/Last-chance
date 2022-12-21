@@ -114,7 +114,7 @@ public class EffectManager : MonoBehaviour
             BattleManager.instance.player.transform.localPosition.z);
 
             tempEffect = Instantiate(setEffect, SetVector, Quaternion.identity) as GameObject;
-            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * 0.5f);
+            tempEffect.transform.Translate(-(SetVector - MoveVector).normalized * 0.75f);
         }
         else
         {

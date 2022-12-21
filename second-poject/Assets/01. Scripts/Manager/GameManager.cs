@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         }
         // CursorLook();
         TimeLimitCheck();
+        CheckPotionUse();
         //CheckPotionCount();
     }
 
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (HP_0 > 0)
+                if (HP_0 > 0 && player.nowHP < player.characterStats.MAX_HP)
                 {
                     HP_0--;
                     player.nowHP += 500;
@@ -99,10 +100,42 @@ public class GameManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                if (HP_1 > 0)
+                if (HP_1 > 0 && player.nowHP < player.characterStats.MAX_HP)
                 {
                     HP_1--;
                     player.nowHP += 1500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (HP_2 > 0 && player.nowHP < player.characterStats.MAX_HP)
+                {
+                    HP_2--;
+                    player.nowHP += 3000;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (MP_0 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    HP_1--;
+                    player.nowMP += 150;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (MP_1 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    MP_1--;
+                    player.nowMP += 500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                if (MP_2 > 0 && player.nowMP < player.characterStats.MAX_MP)
+                {
+                    MP_2--;
+                    player.nowMP += 1000;
                 }
             }
         }

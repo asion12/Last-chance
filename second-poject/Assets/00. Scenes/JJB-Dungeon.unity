@@ -6400,7 +6400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -7145,7 +7145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -8025,7 +8025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -11900,7 +11900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -13141,7 +13141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 2
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -15565,7 +15565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -16146,7 +16146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -16834,7 +16834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -20042,7 +20042,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1072947678
 PrefabInstance:
@@ -23415,7 +23415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -23764,7 +23764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -27251,7 +27251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -31096,7 +31096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -31444,7 +31444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -32737,7 +32737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -34313,7 +34313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -34732,7 +34732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -35487,7 +35487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1958921751
 PrefabInstance:
@@ -36774,7 +36774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -38628,7 +38628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 4
+  eyeRadius: 1.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
