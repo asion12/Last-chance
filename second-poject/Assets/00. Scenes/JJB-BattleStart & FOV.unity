@@ -22146,7 +22146,7 @@ Transform:
   m_GameObject: {fileID: 1272380693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.51, y: 2.2, z: -2.7699997}
-  m_LocalScale: {x: 0.75, y: 1.5, z: 0.75}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2047056541}
@@ -34132,6 +34132,7 @@ MonoBehaviour:
   - {fileID: 1567450498}
   - {fileID: 696444246}
   - {fileID: 927505253}
+  BattleResultEffectGroup: []
 --- !u!1 &1938425686
 GameObject:
   m_ObjectHideFlags: 0

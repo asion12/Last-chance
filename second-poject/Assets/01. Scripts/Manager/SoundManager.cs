@@ -5,8 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
-    public AudioSource bgSource;
-    public AudioClip[] bgList;
+    // public AudioSource bgSource;
+    // public AudioClip[] bgList;
     public AudioSource backSource;
     public AudioClip[] backList;
 
@@ -19,44 +19,45 @@ public class SoundManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-           
-        }else if (_instance != true)
+
+        }
+        else if (_instance != true)
         {
             Destroy(gameObject);
         }
     }
-    public void Onsceneloded(GameObject useSkil)
-    {
-        for (int i = 0; i < bgList.Length; i++)
-        {
-            if (useSkil.name == bgList[i].name)
-            {
-                SonudPlay(bgList[i]);
-            }
-        }
-    }
+    // public void Onsceneloded(GameObject useSkil)
+    // {
+    //     for (int i = 0; i < bgList.Length; i++)
+    //     {
+    //         if (useSkil.name == bgList[i].name)
+    //         {
+    //             SonudPlay(bgList[i]);
+    //         }
+    //     }
+    // }
     public void SonudPlay(AudioClip clip)
     {
         backSource.clip = clip;
         backSource.Play();
     }
-    public void SonudPlayef(AudioClip clip)
+    // public void SonudPlayef(AudioClip clip)
+    // {
+    //     bgSource.clip = clip;
+    //     bgSource.Play();
+    // }
+
+    public void changebg()//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        bgSource.clip = clip;
-        bgSource.Play();
+        SonudPlay(backList[Random.Range(0, 2)]);
     }
- 
-    public void changebg()//·£´ý ½ÇÇà
-    {
-        SonudPlay(backList[Random.Range(0,2)]);
-    }
-    public void mora()//¿ø»óº¹±Í
+    public void mora()//ï¿½ï¿½ï¿½óº¹±ï¿½
     {
         SonudPlay(backList[2]);
     }
     public void changeat()
     {
-        SonudPlay(attackList[Random.Range(0, attackList.Length+1)]);
+        SonudPlay(attackList[Random.Range(0, attackList.Length)]);
     }
 
 }
