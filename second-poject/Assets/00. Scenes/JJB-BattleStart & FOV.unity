@@ -9292,7 +9292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AddSkillPollList:
-  - {fileID: 11400000, guid: 47dd8747c24a9b34880aed477e54e38c, type: 2}
+  - {fileID: 11400000, guid: 6cc46f71c58f40a46b39c92a9f5d5ace, type: 2}
 --- !u!54 &502737303
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20715,7 +20715,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9acb5145009e96b4b9796bb795a273a9, type: 2}
   - {fileID: 11400000, guid: 2e5b7b1cac901bc40aaa2aa50e3b1dfb, type: 2}
   - {fileID: 11400000, guid: fbf8d3cf53dd6c44286327a2b226de21, type: 2}
-  - {fileID: 11400000, guid: fb9124934f984b94fb4c0ec9d9564158, type: 2}
   PlayerInventorySkillButtonPrefab: {fileID: 4642891057880143183, guid: 3e835997c8376864ebf1ff9ea8312e03, type: 3}
   PlayerInventorySkillListContent: {fileID: 868736461}
   EnterInfo_0: {fileID: 2145894343}
@@ -36901,10 +36900,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974074747}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 1.5}
+  m_Size: {x: 2, y: 3, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1976562284
 GameObject:
@@ -39411,7 +39410,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC19\uC740 \uC18D\uC131\uC758 Resist \uBC0F Weak \uC911\uCCA9 X"
+  m_text: "\uAC19\uC740 \uC18D\uC131\uC758 \uB0B4\uC131 \uBC0F \uC57D\uC810 \uC911\uCCA9
+    X"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: af87690a51013b64fafc2227d89ac3d3, type: 2}
   m_sharedMaterial: {fileID: 6258201277726234473, guid: af87690a51013b64fafc2227d89ac3d3, type: 2}

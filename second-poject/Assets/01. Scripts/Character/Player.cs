@@ -28,7 +28,7 @@ public class Player : Character
     public bool[] isSkillOverClockList = { false, };
 
     float cpIncreaseTimer = 0;
-    float cpIncreaseTimer_MAX = 0.75f;
+    float cpIncreaseTimer_MAX = 2f;
 
     float cpDecreaseTimer = 0;
     float cpDecreaseTimer_MAX = 1f;

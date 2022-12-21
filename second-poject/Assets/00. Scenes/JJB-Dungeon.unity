@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -1323,18 +1323,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
-    DEX: 2
-    CHA: 2
+    MAX_HP: 10500
+    MAX_MP: 6100
+    STR: 2
+    FIR: 24
+    INT: 2
+    WIS: 24
+    FOC: 10
+    DEX: 10
+    CHA: 10
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -1411,10 +1411,11 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: 5554a5ef7fa172a47b048e24cb8c5554, type: 2}
+  - {fileID: 11400000, guid: fbf8d3cf53dd6c44286327a2b226de21, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 8
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -6780,7 +6781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -6825,15 +6826,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    MAX_HP: 9500
+    MAX_MP: 6100
+    STR: 25
+    FIR: 7
+    INT: 25
+    WIS: 7
     FOC: 2
     DEX: 2
     CHA: 2
@@ -6913,10 +6914,10 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 47dd8747c24a9b34880aed477e54e38c, type: 2}
+  - {fileID: 11400000, guid: 548d7210b0b4db94f9700faea9a91862, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 8
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -7525,7 +7526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -7570,15 +7571,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    MAX_HP: 9500
+    MAX_MP: 5400
+    STR: 18
+    FIR: 14
+    INT: 18
+    WIS: 14
     FOC: 2
     DEX: 2
     CHA: 2
@@ -7658,10 +7659,11 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 9acb5145009e96b4b9796bb795a273a9, type: 2}
+  - {fileID: 11400000, guid: 5554a5ef7fa172a47b048e24cb8c5554, type: 2}
+  - {fileID: 11400000, guid: 0e553000a860c1d4fb1aaed8ff0b915e, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 7
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -8405,7 +8407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -12281,7 +12283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -12326,15 +12328,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    MAX_HP: 9500
+    MAX_MP: 5400
+    STR: 18
+    FIR: 14
+    INT: 18
+    WIS: 14
     FOC: 2
     DEX: 2
     CHA: 2
@@ -12414,10 +12416,11 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 0e553000a860c1d4fb1aaed8ff0b915e, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: 9acb5145009e96b4b9796bb795a273a9, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 7
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -13522,7 +13525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -16011,7 +16014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -16056,15 +16059,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    MAX_HP: 9500
+    MAX_MP: 6100
+    STR: 25
+    FIR: 7
+    INT: 25
+    WIS: 7
     FOC: 2
     DEX: 2
     CHA: 2
@@ -16144,10 +16147,10 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 548d7210b0b4db94f9700faea9a91862, type: 2}
+  - {fileID: 11400000, guid: 6cc46f71c58f40a46b39c92a9f5d5ace, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 8
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -16592,7 +16595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -17280,7 +17283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -17325,16 +17328,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
+    MAX_HP: 8500
+    MAX_MP: 4700
+    STR: 10
+    FIR: 10
+    INT: 10
+    WIS: 10
+    FOC: 10
     DEX: 2
     CHA: 2
   buff_debuffStats:
@@ -17414,9 +17417,10 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 05a331cff6d16d244b6737e844e64081, type: 2}
+  - {fileID: 11400000, guid: e2df7639ce32f5e4dad9de6279b383a5, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 6
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -23842,7 +23846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -24191,7 +24195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -27741,7 +27745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -27786,18 +27790,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
-    DEX: 2
-    CHA: 2
+    MAX_HP: 8500
+    MAX_MP: 5400
+    STR: 10
+    FIR: 14
+    INT: 10
+    WIS: 14
+    FOC: 10
+    DEX: 10
+    CHA: 10
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -27874,10 +27878,10 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 47dd8747c24a9b34880aed477e54e38c, type: 2}
+  - {fileID: 11400000, guid: 548d7210b0b4db94f9700faea9a91862, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 7
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -31586,7 +31590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -31631,18 +31635,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
-    DEX: 2
-    CHA: 2
+    MAX_HP: 10500
+    MAX_MP: 6100
+    STR: 2
+    FIR: 24
+    INT: 2
+    WIS: 24
+    FOC: 10
+    DEX: 10
+    CHA: 10
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -31719,10 +31723,11 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: eb29acdf9715cc840ac943d7192ff4bf, type: 2}
+  - {fileID: 11400000, guid: 5554a5ef7fa172a47b048e24cb8c5554, type: 2}
+  - {fileID: 11400000, guid: 2e5b7b1cac901bc40aaa2aa50e3b1dfb, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 8
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -31934,7 +31939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -31979,16 +31984,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 45
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
+    MAX_HP: 8500
+    MAX_MP: 4700
+    STR: 10
+    FIR: 10
+    INT: 10
+    WIS: 10
+    FOC: 10
     DEX: 2
     CHA: 2
   buff_debuffStats:
@@ -32068,9 +32073,10 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 05a331cff6d16d244b6737e844e64081, type: 2}
+  - {fileID: 11400000, guid: e2df7639ce32f5e4dad9de6279b383a5, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 6
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -32349,14 +32355,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782039786}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.2, y: 2.3, z: 58.5}
+  m_LocalRotation: {x: -0, y: -0.99927956, z: 0, w: -0.037951667}
+  m_LocalPosition: {x: 10.45, y: 2.3, z: 59.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 530059454}
   m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -184.35, z: 0}
 --- !u!95 &1782039788
 Animator:
   serializedVersion: 4
@@ -32408,9 +32414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkRange: 2
-  posRoamingLists:
-  - {fileID: 2111668381}
-  - {fileID: 336116824}
+  posRoamingLists: []
   posRoaming: {fileID: 0}
   player: {fileID: 0}
   SetPositon: {fileID: 1782039787}
@@ -32439,7 +32443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -32458,7 +32462,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.75
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -32484,15 +32488,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 75
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    MAX_HP: 12500
+    MAX_MP: 7500
+    STR: 14
+    FIR: 26
+    INT: 14
+    WIS: 26
     FOC: 2
     DEX: 2
     CHA: 2
@@ -32576,6 +32580,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cc46f71c58f40a46b39c92a9f5d5ace, type: 2}
   - {fileID: 11400000, guid: 5554a5ef7fa172a47b048e24cb8c5554, type: 2}
   - {fileID: 11400000, guid: 2d6e755c373264c45bf22e68c00f0452, type: 2}
+  - {fileID: 11400000, guid: 05a331cff6d16d244b6737e844e64081, type: 2}
   isStunned: 0
   Level: 2
   dbobj: {fileID: 0}
@@ -33481,7 +33486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -33526,18 +33531,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
-    FOC: 2
-    DEX: 2
-    CHA: 2
+    MAX_HP: 8500
+    MAX_MP: 5400
+    STR: 10
+    FIR: 14
+    INT: 10
+    WIS: 14
+    FOC: 10
+    DEX: 10
+    CHA: 10
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -33614,10 +33619,10 @@ MonoBehaviour:
   isCareless: 0
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
-  - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: 6cc46f71c58f40a46b39c92a9f5d5ace, type: 2}
+  - {fileID: 11400000, guid: 548d7210b0b4db94f9700faea9a91862, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 7
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -35057,7 +35062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -35102,18 +35107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 65
   maxCP: 100
   characterStats:
-    MAX_HP: 3500
-    MAX_MP: 3000
-    STR: 6
-    FIR: 4
-    INT: 4
+    MAX_HP: 7500
+    MAX_MP: 4000
+    STR: 10
+    FIR: 2
+    INT: 2
     WIS: 2
-    FOC: 2
-    DEX: 2
-    CHA: 2
+    FOC: 10
+    DEX: 10
+    CHA: 10
   buff_debuffStats:
     MAX_HP: 0
     MAX_MP: 0
@@ -35191,9 +35196,9 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 5df2a5f7fab1db84b834959a0d2a2fa0, type: 2}
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
-  - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
+  - {fileID: 11400000, guid: ca6c100898336eb47bcace57e2c1cd78, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 5
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
@@ -35476,7 +35481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -35521,15 +35526,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
     MAX_HP: 5500
     MAX_MP: 3300
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    STR: 10
+    FIR: 10
+    INT: 2
+    WIS: 10
     FOC: 2
     DEX: 2
     CHA: 2
@@ -37435,7 +37440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -39289,7 +39294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde4535d542a90448a8ad13aada02f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeRadius: 3
+  eyeRadius: 3.5
   eyeAngle: 90
   targetLayerMask:
     serializedVersion: 2
@@ -39334,15 +39339,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nowHP: 100
   nowMP: 0
-  nowCP: 50
+  nowCP: 35
   maxCP: 100
   characterStats:
     MAX_HP: 5500
     MAX_MP: 3300
-    STR: 6
-    FIR: 4
-    INT: 4
-    WIS: 2
+    STR: 10
+    FIR: 10
+    INT: 2
+    WIS: 10
     FOC: 2
     DEX: 2
     CHA: 2
@@ -39425,7 +39430,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afb71f761aa910045a83a6948f7d6844, type: 2}
   - {fileID: 11400000, guid: a6bbe309682e9844181117b25cfd2e4b, type: 2}
   isStunned: 0
-  Level: 2
+  Level: 4
   dbobj: {fileID: 0}
   itemObj: {fileID: 0}
   characterStack: 0
