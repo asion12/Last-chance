@@ -10,6 +10,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource backSource;
     public AudioClip[] backList;
 
+    public AudioSource attack;
+    public AudioClip[] attackList;
+
+
     private void Awake()
     {
         if (_instance == null)
@@ -21,7 +25,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Onsceneloded(SO_Skill useSkil)
+    public void Onsceneloded(GameObject useSkil)
     {
         for (int i = 0; i < bgList.Length; i++)
         {
@@ -36,38 +40,23 @@ public class SoundManager : MonoBehaviour
         backSource.clip = clip;
         backSource.Play();
     }
-    public void backgroundSoundpl(bool startbattle)
-    { 
-        if (startbattle)
-        {
-            Debug.Log(backSource);
-            Debug.Log(backSource.clip);
-            Debug.Log(backList[0]);
-            SonudPlay(backList[0]);
-            Debug.Log("XsS");
-        }
-        else
-        {
-            Debug.Log(backSource);
-            Debug.Log(backSource.clip);
-            Debug.Log(backList[1]);
-            SonudPlay(backList[1]);
-            Debug.Log("XsS");
-        }
-    }
-    public void stopback(AudioClip clip)
+    public void SonudPlayef(AudioClip clip)
     {
-        backSource.clip = clip;
-        backSource.Stop();    
+        bgSource.clip = clip;
+        bgSource.Play();
     }
-    public void changebg()
+ 
+    public void changebg()//·£´ý ½ÇÇà
     {
         SonudPlay(backList[Random.Range(0,2)]);
     }
-    public void mora()
+    public void mora()//¿ø»óº¹±Í
     {
         SonudPlay(backList[2]);
     }
-
+    public void changeat()
+    {
+        SonudPlay(attackList[Random.Range(0, attackList.Length+1)]);
+    }
 
 }

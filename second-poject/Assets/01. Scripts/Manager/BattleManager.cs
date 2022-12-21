@@ -94,8 +94,7 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart(bool isPlayerStart, bool isVictimCareless, GameObject detactedEnemy)
     {
-        SoundManager._instance.backgroundSoundpl(true);
-        //SoundManager._instance.cheng();
+        SoundManager._instance.changeat();
         SetAllEnemysStop();
        
         if (nowTurnID != 0)
@@ -130,7 +129,7 @@ public class BattleManager : MonoBehaviour
  
     public void BattleEnd(bool isPlayerWin)
     {
-        SoundManager._instance.backgroundSoundpl(false);
+        SoundManager._instance.changebg();
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerWin)
@@ -181,7 +180,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator BattleRun(bool isPlayerRun)
     {
-        SoundManager._instance.backgroundSoundpl(false);
+        SoundManager._instance.mora();
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerRun)
