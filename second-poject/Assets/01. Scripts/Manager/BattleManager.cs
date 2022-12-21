@@ -137,7 +137,7 @@ public class BattleManager : MonoBehaviour
         if (isPlayerWin)
         {
             float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 2)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
             randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
             GameManager.instance.Gold += (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
             BonusExpScale = 0;
