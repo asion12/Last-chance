@@ -21,6 +21,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private GameObject BIOLOGY_PhysicsEffect;
     [SerializeField] private GameObject METAL_PhysicsEffect;
     [SerializeField] private GameObject SOIL_PhysicsEffect;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -42,53 +43,90 @@ public class EffectManager : MonoBehaviour
         if (useSkill.categoryPhysics)
         {
             if (useSkill.skillElements.SOLAR)
+            {
                 setEffect = SOLAR_PhysicsEffect;
-
+                SoundManager._instance.Onsceneloded(setEffect);
+           
+            }
             else if (useSkill.skillElements.LUMINOUS)
+            {
                 setEffect = LUMINOUS_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
 
             else if (useSkill.skillElements.IGNITION)
+            {
                 setEffect = IGNITION_PhysicsEffect;
-
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.HYDRO)
+            {
                 setEffect = HYDRO_PhysicsEffect;
-
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.BIOLOGY)
+            {
                 setEffect = BIOLOGY_PhysicsEffect;
-
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.METAL)
+            {
                 setEffect = METAL_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
 
+            }
             else if (useSkill.skillElements.SOIL)
+            {
                 setEffect = SOIL_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
+
         }
         else if (useSkill.categoryChemistry)
         {
             if (useSkill.skillElements.SOLAR)
-                setEffect = SOLAR_ChemicalEffect;
+            {
+                setEffect = SOLAR_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
 
+            }
             else if (useSkill.skillElements.LUMINOUS)
-                setEffect = LUMINOUS_ChemicalEffect;
-
+            {
+                setEffect = LUMINOUS_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.IGNITION)
-                setEffect = IGNITION_ChemicalEffect;
-
+            {
+                setEffect = IGNITION_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.HYDRO)
-                setEffect = HYDRO_ChemicalEffect;
-
+            {
+                setEffect = HYDRO_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.BIOLOGY)
-                setEffect = BIOLOGY_ChemicalEffect;
-
+            {
+                setEffect = BIOLOGY_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
             else if (useSkill.skillElements.METAL)
-                setEffect = METAL_ChemicalEffect;
+            {
+                setEffect = METAL_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
 
+            }
             else if (useSkill.skillElements.SOIL)
-                setEffect = SOIL_ChemicalEffect;
+            {
+                setEffect = SOIL_PhysicsEffect;
+                SoundManager._instance.Onsceneloded(setEffect);
+            }
         }
         else
         {
             Debug.LogWarning("No Element");
             setEffect = METAL_PhysicsEffect;
+            SoundManager._instance.Onsceneloded(setEffect);
         }
 
         Vector3 SetVector;

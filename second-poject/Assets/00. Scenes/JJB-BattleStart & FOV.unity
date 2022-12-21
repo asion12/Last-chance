@@ -4016,11 +4016,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd08728742b4394285ad3953bc16bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgSource: {fileID: 0}
+  bgList: []
   backSource: {fileID: 289071533}
   backList:
   - {fileID: 8300000, guid: 9a15f15cf248027489c504f6e4882f4e, type: 3}
   - {fileID: 8300000, guid: 64d5539ddcfccd349bbfaced23f58fa1, type: 3}
   - {fileID: 8300000, guid: 93d9666cd097f7d4c93ffe12a26f262e, type: 3}
+  attack: {fileID: 289071533}
+  attackList: []
 --- !u!82 &289071533
 AudioSource:
   m_ObjectHideFlags: 0
