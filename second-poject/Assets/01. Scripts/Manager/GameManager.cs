@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
 
     public int potionCount = 0;
 
+    [SerializeField] private GameObject GameClearUI;
+    public int DungeonTryCount = 0;
+    public int KilledEnemyCount = 0;
+    public int SkillCastCount = 0;
+    public int UsedPotionCount = 0;
     private void Awake()
     {
         storeManager_New = FindObjectOfType<StoreManager_New>();
@@ -48,6 +53,11 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
         player = FindObjectOfType<Player>();
+    }
+
+    private void GameClear()
+    {
+        GameClearUI.SetActive(true);
     }
 
     private void Update()
@@ -73,6 +83,29 @@ public class GameManager : MonoBehaviour
         // CursorLook();
         TimeLimitCheck();
         //CheckPotionCount();
+    }
+
+    private void CheckPotionUse()
+    {
+        if (BattleManager.instance.nowTurnID == 0 && isGameStarted)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                if (HP_0 > 0)
+                {
+                    HP_0--;
+                    player.nowHP += 500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (HP_1 > 0)
+                {
+                    HP_1--;
+                    player.nowHP += 1500;
+                }
+            }
+        }
     }
 
     private void TimeLimitCheck()

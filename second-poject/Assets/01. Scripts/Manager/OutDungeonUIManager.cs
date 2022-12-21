@@ -498,4 +498,9 @@ public class OutDungeonUIManager : MonoBehaviour
     {
         effectText.DOFade(0, 0.125f);
     }
+
+    public void FX_GameStart(GameObject titleBackGroud)
+    {
+        titleBackGroud.transform.DOMoveY(1080 * 2, 1f).OnComplete(() => { Destroy(titleBackGroud); });
+    }
 }

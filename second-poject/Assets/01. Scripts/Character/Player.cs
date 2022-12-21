@@ -28,7 +28,7 @@ public class Player : Character
     public bool[] isSkillOverClockList = { false, };
 
     float cpIncreaseTimer = 0;
-    float cpIncreaseTimer_MAX = 1f;
+    float cpIncreaseTimer_MAX = 0.75f;
 
     float cpDecreaseTimer = 0;
     float cpDecreaseTimer_MAX = 2f;
@@ -86,12 +86,12 @@ public class Player : Character
         {
             EXP = EXP - maxEXP;
             characterStats.MAX_HP += 1000;
-            characterStats.MAX_MP += 500;
+            characterStats.MAX_MP += 700;
             nowHP = characterStats.MAX_HP;
             nowMP = characterStats.MAX_MP;
             nowCP = maxCP;
             Level++;
-            statPoint += 16;
+            statPoint += 8;
         }
     }
 

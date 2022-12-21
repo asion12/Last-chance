@@ -30,6 +30,8 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private GameObject EnemyEffectBase;
     [SerializeField] private List<GameObject> PlayerDamageEffectGroup;
     [SerializeField] private List<GameObject> EnemyDamageEffectGroup;
+
+    [SerializeField] private List<GameObject> BattleResultEffectGroup;
     void Start()
     {
         //StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, true));

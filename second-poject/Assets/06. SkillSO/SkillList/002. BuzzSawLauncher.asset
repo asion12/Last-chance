@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uC6D0\uD615\uD1B1 \uC0AC\uCD9C"
   buyCost: 550
-  playerHavingCount: 2
+  playerHavingCount: 5
   isSell: 0
   playerSkillSetted: 0
   playerSkillOrdered: 0
