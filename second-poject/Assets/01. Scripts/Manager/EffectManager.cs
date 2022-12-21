@@ -31,7 +31,10 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private List<GameObject> PlayerDamageEffectGroup;
     [SerializeField] private List<GameObject> EnemyDamageEffectGroup;
 
+    [SerializeField] private GameObject BattleResultEffectParent;
     [SerializeField] private List<GameObject> BattleResultEffectGroup;
+
+    [SerializeField] private GameObject AddSkillPool;
     void Start()
     {
         //StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, true));
@@ -364,4 +367,54 @@ public class EffectManager : MonoBehaviour
     // {
 
     // }
+
+    public void FX_BattleResultEffect(int GotExpValue, bool isLevelUp, int GotGoldValue)
+    {
+        BattleResultEffectGroup[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Exp +" + GotExpValue.ToString();
+        BattleResultEffectGroup[0].SetActive(true);
+        if (isLevelUp)
+        {
+            for (int i = 1; i < 6; i++)
+            {
+                BattleResultEffectGroup[i].SetActive(true);
+            }
+        }
+        BattleResultEffectGroup[6].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Gold +" + GotGoldValue.ToString();
+        BattleResultEffectGroup[6].SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+        sequence
+        .Append(BattleResultEffectParent.transform.DOLocalMoveX(961, 0.125f))
+        .AppendInterval(2f)
+        .Append(BattleResultEffectParent.transform.DOLocalMoveX(1242, 0.125f))
+        .OnComplete(() =>
+        {
+            for (int i = 0; i < BattleResultEffectGroup.Count; i++)
+            {
+                BattleResultEffectGroup[i].SetActive(false);
+            }
+        })
+        .OnKill(() =>
+        {
+            for (int i = 0; i < BattleResultEffectGroup.Count; i++)
+            {
+                BattleResultEffectGroup[i].SetActive(false);
+            }
+        });
+    }
+
+    public void FX_AddSKillStorePool(List<SO_Skill> addskillList)
+    {
+        AddSkillPool.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "지금부터 아래의 스킬들이 상점에 등장";
+        for (int i = 0; i < addskillList.Count; i++)
+        {
+            AddSkillPool.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += "\n·";
+            AddSkillPool.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text += addskillList[i].skillName;
+        }
+
+        Sequence sequence = DOTween.Sequence();
+        sequence
+        .Append(AddSkillPool.transform.DOLocalMoveX(964, 0.125f))
+        .AppendInterval(2f)
+        .Append(AddSkillPool.transform.DOLocalMoveX(1600, 0.125f));
+    }
 }

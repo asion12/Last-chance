@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     {
         outDungeonUIManager.InactiveOutDungeonUI();
         uIManager.ResetButtonPlayerSkillList();
-        storeManager_New.ResetSkillStore();
+        DungeonTryCount++;
         //ResetDungeon();
         player.transform.position = playerStartPoint.transform.position;
         isGameStarted = true;
@@ -221,6 +221,7 @@ public class GameManager : MonoBehaviour
         outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
+        storeManager_New.ResetSkillStore();
         outDungeonUIManager.ActiveOutDungeonUI();
     }
 
@@ -236,6 +237,7 @@ public class GameManager : MonoBehaviour
         outDungeonUIManager.ResetSkillSettedValue();
         ResetDungeon();
         isGameStarted = false;
+        storeManager_New.ResetSkillStore();
         outDungeonUIManager.ActiveOutDungeonUI();
     }
 

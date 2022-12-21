@@ -136,15 +136,26 @@ public class BattleManager : MonoBehaviour
         if (isPlayerWin)
         {
             float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+
+            bool isPlayerLevelUp = false;
+            int playerGotExp = (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            if (player.EXP + playerGotExp >= player.maxEXP)
+            {
+                isPlayerLevelUp = true;
+            }
+            player.EXP += playerGotExp;
+
             randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            GameManager.instance.Gold += (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
+            int playerGotGold = (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
+            GameManager.instance.Gold += playerGotGold;
+
             BonusExpScale = 0;
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
             uIManager.SetBattleUIInactive();
             Destroy(targetEnemy.gameObject);
             targetEnemy = null;
+            effectManager.FX_BattleResultEffect(playerGotExp, isPlayerLevelUp, playerGotGold);
             //monster.speed = 3.5f;
         }
         else
@@ -221,7 +232,7 @@ public class BattleManager : MonoBehaviour
 
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
-        bool isSuriseEffect = false;
+        bool isSupriseEffect = false;
 
         if (skillCaster.GetComponent<Player>() != null)
         {
@@ -367,7 +378,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                isSuriseEffect = true;
+                isSupriseEffect = true;
                 isCarelessTurnUsed = true;
                 isCritical = true;
                 isAdvantage = true;
@@ -430,7 +441,7 @@ public class BattleManager : MonoBehaviour
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
-            SkillDamageEffect((int)finalSkillDamage, isSuriseEffect, isCritical, isAdvantage, isMiss, isGuard, isDeception,
+            SkillDamageEffect((int)finalSkillDamage, isSupriseEffect, isCritical, isAdvantage, isMiss, isGuard, isDeception,
             skillVictim.GetComponent<Player>() != null ? true : false);
         }
     }
