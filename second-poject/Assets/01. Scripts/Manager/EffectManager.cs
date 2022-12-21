@@ -30,8 +30,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private GameObject EnemyEffectBase;
     [SerializeField] private List<GameObject> PlayerDamageEffectGroup;
     [SerializeField] private List<GameObject> EnemyDamageEffectGroup;
-
-    [SerializeField] private List<GameObject> BattleResultEffectGroup;
+  
     void Start()
     {
         //StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, true));
@@ -46,6 +45,7 @@ public class EffectManager : MonoBehaviour
 
     }
 
+
     public void MakeSkillEffect(SO_Skill useSkill, bool isCasterPlayer)
     {
         Debug.LogWarning("Effect!");
@@ -56,12 +56,11 @@ public class EffectManager : MonoBehaviour
         {
             if (useSkill.skillElements.SOLAR)
                 setEffect = SOLAR_PhysicsEffect;
-
             else if (useSkill.skillElements.LUMINOUS)
                 setEffect = LUMINOUS_PhysicsEffect;
 
             else if (useSkill.skillElements.IGNITION)
-                setEffect = IGNITION_PhysicsEffect;
+                  setEffect = IGNITION_PhysicsEffect;
 
             else if (useSkill.skillElements.HYDRO)
                 setEffect = HYDRO_PhysicsEffect;
@@ -129,6 +128,7 @@ public class EffectManager : MonoBehaviour
 
         ParticleSystem particleSystem = tempEffect.GetComponent<ParticleSystem>();
         particleSystem.Play();
+
         //float particleDuration = particleSystem.duration + particleSystem.startLifetime;
         Destroy(tempEffect, 1.25f);
     }
@@ -156,24 +156,22 @@ public class EffectManager : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.15f * HitValue);
                 Debug.LogWarning("HitStopEnd!");
                 Time.timeScale = 1f;
-                if (HitObject != null)
+
+                HitObject.transform.DOKill();
+
+                //HitObject.transform.localPosition = orginPos;
+                HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
                 {
-                    HitObject.transform.DOKill();
+                    //HitObject.transform.position = orginPos;
+                    // if (isHitObjHasNav)
+                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                }).OnKill(() =>
+                {
 
-                    //HitObject.transform.localPosition = orginPos;
-                    HitObject.transform.DOShakePosition(0.25f, 1f * HitValue, 25 * (int)HitValue, 45).OnComplete(() =>
-                    {
-                        //HitObject.transform.position = orginPos;
-                        // if (isHitObjHasNav)
-                        //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-                    }).OnKill(() =>
-                    {
-
-                        //HitObject.transform.position = orginPos;
-                        // if (isHitObjHasNav)
-                        //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
-                    });
-                }
+                    //HitObject.transform.position = orginPos;
+                    // if (isHitObjHasNav)
+                    //     HitObject.GetComponent<NavMeshAgent>().enabled = false;
+                });
             }
             // /Sequence seq = DOTween.Sequence();
         }
@@ -223,14 +221,10 @@ public class EffectManager : MonoBehaviour
             fxCount++;
             FX_DamageEffect_PlayerBG();
             yield return new WaitForSeconds(effectTime / fxCount);
-            PlayerEffectBase.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = DamageVal.ToString();
             FX_DamageEffect(PlayerEffectBase);
         }
         else
-        {
-            EnemyEffectBase.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = DamageVal.ToString();
             FX_DamageEffect(EnemyEffectBase);
-        }
 
         yield return new WaitForSeconds(effectTime / fxCount);
 
@@ -342,7 +336,7 @@ public class EffectManager : MonoBehaviour
     //     // effectBaseObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().DOFade(1, 1 / fxCount);
     // }
 
-    private void FX_DamageEffect(GameObject effectObject /*float BounceValue*/)
+    private void FX_DamageEffect(GameObject effectObject)
     {
         effectObject.transform.localScale = new Vector3(0, 0, 0);
         effectObject.SetActive(true);

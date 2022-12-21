@@ -7,6 +7,10 @@ using UnityEngine.AI;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
+    public AudioSource backSource;
+    public AudioSource attacR;
+    public AudioClip[] atta;
+    public AudioClip[] backList;
 
     private void Awake()
     {
@@ -50,6 +54,7 @@ public class BattleManager : MonoBehaviour
             //Debug.Log(targetEnemy.nowMP);
         }
         //CheckCharactersHp();
+      
     }
 
     private bool CheckBattleEnd()
@@ -183,7 +188,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator BattleRun(bool isPlayerRun)
     {
-        SoundManager._instance.mora();
+        SoundManager._instance.changebg();
         SetAllEnemysRestart();
         ResetBattleSetting();
         if (isPlayerRun)
@@ -218,17 +223,29 @@ public class BattleManager : MonoBehaviour
     {
         targetCharacter = setEnemy;
     }
-
+    public void SonudPlay(AudioClip clip)
+    {
+        attacR.clip = clip;
+        attacR.Play();
+    }
+    public void SonudPlaya(AudioClip clip)
+    {
+        backSource.clip = clip;
+        backSource.Play();
+    }
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
         bool isSuriseEffect = false;
 
         if (skillCaster.GetComponent<Player>() != null)
         {
+            SonudPlay(backList[0]);
+            SonudPlaya(atta[0]);
             StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
         }
         else
         {
+            SonudPlay(backList[0]);
             StartCoroutine(uIManager.SendGameLog("상대은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
         }
 
@@ -353,6 +370,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
+                    SonudPlay(backList[1]);
                     Debug.Log("Miss!");
                     isMiss = true;
                     isReject = true;

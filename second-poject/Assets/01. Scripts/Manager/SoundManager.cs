@@ -5,8 +5,6 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
-    // public AudioSource bgSource;
-    // public AudioClip[] bgList;
     public AudioSource backSource;
     public AudioClip[] backList;
 
@@ -19,45 +17,56 @@ public class SoundManager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-
-        }
-        else if (_instance != true)
+           
+        }else if (_instance != true)
         {
             Destroy(gameObject);
         }
     }
-    // public void Onsceneloded(GameObject useSkil)
-    // {
-    //     for (int i = 0; i < bgList.Length; i++)
-    //     {
-    //         if (useSkil.name == bgList[i].name)
-    //         {
-    //             SonudPlay(bgList[i]);
-    //         }
-    //     }
-    // }
+
     public void SonudPlay(AudioClip clip)
     {
         backSource.clip = clip;
         backSource.Play();
     }
-    // public void SonudPlayef(AudioClip clip)
-    // {
-    //     bgSource.clip = clip;
-    //     bgSource.Play();
-    // }
-
-    public void changebg()//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   
+ 
+    public void changebg()//·£´ý ½ÇÇà ³»ºÎ
     {
-        SonudPlay(backList[Random.Range(0, 2)]);
+ 
+        SonudPlay(backList[Random.Range(0,2)]);
+        StartCoroutine(FadeIn(backSource, 1f));
+
     }
-    public void mora()//ï¿½ï¿½ï¿½óº¹±ï¿½
+    public void mora()//¿ø»óº¹±Í »óÁ¡À¸·Î
     {
         SonudPlay(backList[2]);
     }
-    public void changeat()
+    public void changeat()//ÀüÅõ½Å
     {
+       
         SonudPlay(attackList[Random.Range(0, attackList.Length)]);
+        StartCoroutine(FadeIn(attack, 1f));
+    }
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
     }
 
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        audioSource.Play();
+        audioSource.volume = 0f;
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime / FadeTime;
+            yield return null;
+        }
+    }
 }
