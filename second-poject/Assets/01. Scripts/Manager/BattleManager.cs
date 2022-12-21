@@ -353,6 +353,7 @@ public class BattleManager : MonoBehaviour
                     {
                         if (PercentageCheck(castSkill.casterCriticalPer))
                         {
+                            SonudPlay(backList[2]);
                             Debug.Log("Critical!");
                             isCritical = true;
                             skillVictim.carelessCounter++;
