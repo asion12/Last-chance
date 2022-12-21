@@ -30,6 +30,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] private GameObject EnemyEffectBase;
     [SerializeField] private List<GameObject> PlayerDamageEffectGroup;
     [SerializeField] private List<GameObject> EnemyDamageEffectGroup;
+  
     void Start()
     {
         //StartCoroutine(MakeDamageInfoEffect(1000, true, true, true, false, false, false, true));
@@ -44,6 +45,7 @@ public class EffectManager : MonoBehaviour
 
     }
 
+
     public void MakeSkillEffect(SO_Skill useSkill, bool isCasterPlayer)
     {
         Debug.LogWarning("Effect!");
@@ -54,12 +56,11 @@ public class EffectManager : MonoBehaviour
         {
             if (useSkill.skillElements.SOLAR)
                 setEffect = SOLAR_PhysicsEffect;
-
             else if (useSkill.skillElements.LUMINOUS)
                 setEffect = LUMINOUS_PhysicsEffect;
 
             else if (useSkill.skillElements.IGNITION)
-                setEffect = IGNITION_PhysicsEffect;
+                  setEffect = IGNITION_PhysicsEffect;
 
             else if (useSkill.skillElements.HYDRO)
                 setEffect = HYDRO_PhysicsEffect;
@@ -127,6 +128,7 @@ public class EffectManager : MonoBehaviour
 
         ParticleSystem particleSystem = tempEffect.GetComponent<ParticleSystem>();
         particleSystem.Play();
+
         //float particleDuration = particleSystem.duration + particleSystem.startLifetime;
         Destroy(tempEffect, 1.25f);
     }

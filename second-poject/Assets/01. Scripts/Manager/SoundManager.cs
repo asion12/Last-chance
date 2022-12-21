@@ -5,8 +5,6 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
-    public AudioSource bgSource;
-    public AudioClip[] bgList;
     public AudioSource backSource;
     public AudioClip[] backList;
 
@@ -25,38 +23,50 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void Onsceneloded(GameObject useSkil)
-    {
-        for (int i = 0; i < bgList.Length; i++)
-        {
-            if (useSkil.name == bgList[i].name)
-            {
-                SonudPlay(bgList[i]);
-            }
-        }
-    }
+
     public void SonudPlay(AudioClip clip)
     {
         backSource.clip = clip;
         backSource.Play();
     }
-    public void SonudPlayef(AudioClip clip)
-    {
-        bgSource.clip = clip;
-        bgSource.Play();
-    }
+   
  
-    public void changebg()//랜덤 실행
+    public void changebg()//랜덤 실행 내부
     {
+ 
         SonudPlay(backList[Random.Range(0,2)]);
+        StartCoroutine(FadeIn(backSource, 1f));
+
     }
-    public void mora()//원상복귀
+    public void mora()//원상복귀 상점으로
     {
         SonudPlay(backList[2]);
     }
-    public void changeat()
+    public void changeat()//전투신
     {
-        SonudPlay(attackList[Random.Range(0, attackList.Length+1)]);
+       
+        SonudPlay(attackList[Random.Range(0, attackList.Length)]);
+        StartCoroutine(FadeIn(attack, 1f));
+    }
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
     }
 
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        audioSource.Play();
+        audioSource.volume = 0f;
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime / FadeTime;
+            yield return null;
+        }
+    }
 }
