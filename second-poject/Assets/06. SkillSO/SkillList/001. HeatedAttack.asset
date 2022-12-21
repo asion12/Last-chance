@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 001. HeatedAttack
   m_EditorClassIdentifier: 
   skillName: "\uBC1C\uD654\uD0C0\uACA9"
-  buyCost: 150
-  playerHavingCount: 0
+  buyCost: 550
+  playerHavingCount: 10
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 1
   categoryChemistry: 0
   skillElements:
@@ -43,8 +44,8 @@ MonoBehaviour:
     BIOLOGY: 0
     METAL: 0
     SOIL: 0
-  skillDamage: 200
-  needCP: 50
+  skillDamage: 150
+  needCP: 25
   needMp: 50
   needHp: 0
   skillDivision: 0

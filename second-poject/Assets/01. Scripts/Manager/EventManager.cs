@@ -11,6 +11,10 @@ public class EventManager : MonoBehaviour
     private StoreManager_New storeManager_New = null;
     private EffectManager effectManager = null;
     private bool isSellMode = false;
+
+    [SerializeField] private GameObject ManualButtonGroup;
+    [SerializeField] private GameObject GameStartButton;
+    [SerializeField] private GameObject TitleUIGroup;
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -115,12 +119,15 @@ public class EventManager : MonoBehaviour
             Debug.Log("Set Order Skill Start !");
             outDungeonUIManager.SetSkillInventoryButton(tempObj);
             storeManager_New.nowOrderSkillTable.Add(setSkill);
+            GameManager.instance.Gold -= setSkill.buyCost;
+            setSkill.playerSkillOrdered = true;
             //outDungeonUIManager.DungeonEnterCheck();
         }
     }
 
     public void PlayerCastSkillSet(SO_Skill castSkill)
     {
+        GameManager.instance.SkillCastCount++;
         BattleManager.instance.CastSkill(BattleManager.instance.player, BattleManager.instance.targetEnemy, castSkill);
     }
 
@@ -296,7 +303,7 @@ public class EventManager : MonoBehaviour
         }
         else if (statID == "WIS")
         {
-            if (player.characterStats.STR <= 2)
+            if (player.characterStats.WIS <= 2)
             {
                 Debug.Log("WIS ENDLESS");
             }
@@ -352,5 +359,17 @@ public class EventManager : MonoBehaviour
     public void OnSellPotion(string potionID)
     {
         storeManager_New.SellPotion(potionID);
+    }
+
+    public void OnOpenGameManual()
+    {
+        Application.OpenURL("https://season-joggers-5d1.notion.site/Last-Chance-68385d9ed93c4290986d045156206fd9");
+        ManualButtonGroup.SetActive(false);
+        GameStartButton.SetActive(true);
+    }
+
+    public void OnGameStart()
+    {
+        outDungeonUIManager.FX_GameStart(TitleUIGroup);
     }
 }

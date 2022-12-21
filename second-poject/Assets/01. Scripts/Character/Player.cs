@@ -28,10 +28,10 @@ public class Player : Character
     public bool[] isSkillOverClockList = { false, };
 
     float cpIncreaseTimer = 0;
-    float cpIncreaseTimer_MAX = 1f;
+    float cpIncreaseTimer_MAX = 0.75f;
 
     float cpDecreaseTimer = 0;
-    float cpDecreaseTimer_MAX = 1f;
+    float cpDecreaseTimer_MAX = 2f;
 
     //public ItemDBObj itemDBObj;
     //public InventoryObj inventoryObj;
@@ -86,12 +86,12 @@ public class Player : Character
         {
             EXP = EXP - maxEXP;
             characterStats.MAX_HP += 1000;
-            characterStats.MAX_MP += 500;
+            characterStats.MAX_MP += 700;
             nowHP = characterStats.MAX_HP;
             nowMP = characterStats.MAX_MP;
             nowCP = maxCP;
             Level++;
-            statPoint += 16;
+            statPoint += 8;
         }
     }
 
@@ -103,7 +103,7 @@ public class Player : Character
     private void CheckIncreaseCP()
     {
         cpIncreaseTimer += Time.deltaTime;
-        if (cpIncreaseTimer >= cpIncreaseTimer_MAX / ((100 + totalStats.CHA) / 100))
+        if (cpIncreaseTimer >= cpIncreaseTimer_MAX / Mathf.Log(totalStats.FOC + 1, 2) / 2)
         {
             cpIncreaseTimer = 0;
             nowCP++;
@@ -117,7 +117,7 @@ public class Player : Character
     private void CheckDecreaseCP()
     {
         cpDecreaseTimer += Time.deltaTime;
-        if (cpDecreaseTimer >= cpDecreaseTimer_MAX * ((100 + totalStats.FOC) / 100))
+        if (cpDecreaseTimer >= cpDecreaseTimer_MAX * Mathf.Log(totalStats.FOC + 1, 2) / 2)
         {
             cpDecreaseTimer = 0;
             nowCP--;
@@ -173,7 +173,7 @@ public class Player : Character
 
     public float GetNewMaxEXP(float temp)
     {
-        temp = (-1 * ((20) / (temp + 9)) + 2) * 5;
+        temp = (-1 * ((20) / (temp + 9)) + 2.3f) * 4;
 
         return temp;
     }
@@ -430,7 +430,7 @@ public class Player : Character
     {
         if (isCanExit)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && isBattleMode == false)
             {
                 SoundManager._instance.mora();
                 GameManager.instance.ExitDungeon();

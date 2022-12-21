@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 008. ParasiteInjection
   m_EditorClassIdentifier: 
   skillName: "\uAE30\uC0DD\uBB3C\uC8FC\uC785"
-  buyCost: 200
-  playerHavingCount: 1
+  buyCost: 1000
+  playerHavingCount: 3
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
@@ -36,15 +37,15 @@ MonoBehaviour:
     METAL: 0
     SOIL: 0
   setResistElements:
-    SOLAR: 1
+    SOLAR: 0
     LUMINOUS: 0
     IGNITION: 0
     HYDRO: 0
     BIOLOGY: 0
     METAL: 0
-    SOIL: 0
+    SOIL: 1
   skillDamage: 200
-  needCP: 75
+  needCP: 50
   needMp: 100
   needHp: 0
   skillDivision: 0

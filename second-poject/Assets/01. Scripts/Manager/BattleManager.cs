@@ -61,6 +61,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (targetEnemy.nowHP <= 0)
         {
+            GameManager.instance.KilledEnemyCount++;
             BattleEnd(true);
             return true;
         }
@@ -96,7 +97,7 @@ public class BattleManager : MonoBehaviour
     {
         SoundManager._instance.changeat();
         SetAllEnemysStop();
-       
+
         if (nowTurnID != 0)
         {
             Debug.LogWarning("Now is Battle Mode But Trying Battle Start!");
@@ -126,7 +127,7 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
- 
+
     public void BattleEnd(bool isPlayerWin)
     {
         SoundManager._instance.changebg();
@@ -135,7 +136,9 @@ public class BattleManager : MonoBehaviour
         if (isPlayerWin)
         {
             float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 2)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
+            GameManager.instance.Gold += (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
             BonusExpScale = 0;
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
@@ -218,6 +221,8 @@ public class BattleManager : MonoBehaviour
 
     public void CastSkill(Character skillCaster, Character skillVictim, SO_Skill castSkill)
     {
+        bool isSuriseEffect = false;
+
         if (skillCaster.GetComponent<Player>() != null)
         {
             StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
@@ -262,7 +267,7 @@ public class BattleManager : MonoBehaviour
                 if (skillCaster.nowCP > castSkill.needCP)
                 {
                     Debug.Log("Cp Over!!");
-                    castSkill.accuarityPer += (skillCaster.nowCP - castSkill.needCP) * Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
+                    castSkill.casterCriticalPer += (skillCaster.nowCP - castSkill.needCP) * Mathf.Log(1 + skillCaster.totalStats.FOC, 2);
                 }
                 else if (skillCaster.nowCP < castSkill.needCP)
                 {
@@ -277,10 +282,13 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Skill ACC is " + castSkill.accuarityPer.ToString());
 
                 // SkillVicTim DEX Check
-                castSkill.accuarityPer = castSkill.accuarityPer
-                - ((castSkill.accuarityPer * (Mathf.Log(1 + skillVictim.totalStats.DEX, 2) - 1) / Mathf.Log(1 + skillVictim.totalStats.DEX, 2))
-                * (Mathf.Log(1 + skillVictim.totalStats.CHA, 2) - 1 + (skillVictim.nowCP / skillVictim.maxCP))
-                / Mathf.Log(1 + skillVictim.totalStats.CHA, 2));
+                // castSkill.accuarityPer = castSkill.accuarityPer
+                // - ((castSkill.accuarityPer * (Mathf.Log(1 + skillVictim.totalStats.DEX, 2) - 1) / Mathf.Log(1 + skillVictim.totalStats.DEX, 2))
+                // * (Mathf.Log(1 + skillVictim.totalStats.CHA, 2) - 1 + (skillVictim.nowCP / skillVictim.maxCP))
+                // / Mathf.Log(1 + skillVictim.totalStats.CHA, 2));
+
+                castSkill.accuarityPer -=
+                castSkill.accuarityPer * Mathf.Log(1 + skillVictim.totalStats.DEX, 2) / 10;
 
                 Debug.Log("DexVal = " + Mathf.Log(1 + skillVictim.totalStats.DEX, 2).ToString());
                 Debug.Log("VicNowCP = " + skillVictim.nowCP + "VicMaxCP = " + skillVictim.maxCP + " CPVal = " + ((float)((float)skillVictim.nowCP / (float)skillVictim.maxCP)).ToString());
@@ -359,6 +367,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                isSuriseEffect = true;
                 isCarelessTurnUsed = true;
                 isCritical = true;
                 isAdvantage = true;
@@ -421,7 +430,7 @@ public class BattleManager : MonoBehaviour
 
             ResetSkillNurmical(castSkill);
             CheckTurnChange(skillVictim);
-            SkillDamageEffect((int)finalSkillDamage, skillVictim.isCareless, isCritical, isAdvantage, isMiss, isGuard, isDeception,
+            SkillDamageEffect((int)finalSkillDamage, isSuriseEffect, isCritical, isAdvantage, isMiss, isGuard, isDeception,
             skillVictim.GetComponent<Player>() != null ? true : false);
         }
     }

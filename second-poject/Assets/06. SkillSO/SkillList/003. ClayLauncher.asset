@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 003. ClayLauncher
   m_EditorClassIdentifier: 
   skillName: "\uC810\uD1A0\uC0AC\uCD9C"
-  buyCost: 150
-  playerHavingCount: 1
+  buyCost: 550
+  playerHavingCount: 5
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 1
   categoryChemistry: 0
   skillElements:
@@ -38,12 +39,12 @@ MonoBehaviour:
   setResistElements:
     SOLAR: 0
     LUMINOUS: 0
-    IGNITION: 0
+    IGNITION: 1
     HYDRO: 0
     BIOLOGY: 0
-    METAL: 1
+    METAL: 0
     SOIL: 0
-  skillDamage: 125
+  skillDamage: 150
   needCP: 75
   needMp: 0
   needHp: 0

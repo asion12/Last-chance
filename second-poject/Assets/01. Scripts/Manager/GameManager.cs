@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private OutDungeonUIManager outDungeonUIManager;
     private UIManager uIManager;
+    private StoreManager_New storeManager_New;
 
     public int Gold = 0;
     public int HP_0 = 0;
@@ -30,8 +31,14 @@ public class GameManager : MonoBehaviour
 
     public int potionCount = 0;
 
+    [SerializeField] private GameObject GameClearUI;
+    public int DungeonTryCount = 0;
+    public int KilledEnemyCount = 0;
+    public int SkillCastCount = 0;
+    public int UsedPotionCount = 0;
     private void Awake()
     {
+        storeManager_New = FindObjectOfType<StoreManager_New>();
         uIManager = FindObjectOfType<UIManager>();
         outDungeonUIManager = FindObjectOfType<OutDungeonUIManager>();
         ActiveDungeon();
@@ -46,6 +53,11 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
         player = FindObjectOfType<Player>();
+    }
+
+    private void GameClear()
+    {
+        GameClearUI.SetActive(true);
     }
 
     private void Update()
@@ -71,6 +83,29 @@ public class GameManager : MonoBehaviour
         // CursorLook();
         TimeLimitCheck();
         //CheckPotionCount();
+    }
+
+    private void CheckPotionUse()
+    {
+        if (BattleManager.instance.nowTurnID == 0 && isGameStarted)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                if (HP_0 > 0)
+                {
+                    HP_0--;
+                    player.nowHP += 500;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (HP_1 > 0)
+                {
+                    HP_1--;
+                    player.nowHP += 1500;
+                }
+            }
+        }
     }
 
     private void TimeLimitCheck()
@@ -109,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     public void ActiveDungeon()
     {
-        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
     public void CheckPotionCount()
@@ -129,16 +164,18 @@ public class GameManager : MonoBehaviour
         player.nowCP = player.maxCP;
         player.GetComponent<Player>().isCanExit = false;
         SceneManager.UnloadSceneAsync("JJB-Dungeon");
-        SceneManager.LoadScene("JJB-Dungeon", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("JJB-Dungeon", LoadSceneMode.Additive);
     }
 
     public void EnterDungeon()
     {
         outDungeonUIManager.InactiveOutDungeonUI();
         uIManager.ResetButtonPlayerSkillList();
+        storeManager_New.ResetSkillStore();
         //ResetDungeon();
         player.transform.position = playerStartPoint.transform.position;
         isGameStarted = true;
+        storeManager_New.BuyAllOrderedSkills();
     }
 
     public void ExitDungeon()
@@ -159,6 +196,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dead!");
         Debug.Log("LosshavingSkill");
         LossSkills();
+        LossPotions();
         player.skillList = new List<SO_Skill>();
         //player.SetTotalElements();
         ReSetPlayerTotalElements();
@@ -196,6 +234,17 @@ public class GameManager : MonoBehaviour
     private void CheckPlayerSkillSet()
     {
 
+    }
+
+    private void LossPotions()
+    {
+        HP_0 = 0;
+        HP_1 = 0;
+        HP_2 = 0;
+
+        MP_0 = 0;
+        MP_1 = 0;
+        MP_2 = 0;
     }
 
     private void LossSkills()

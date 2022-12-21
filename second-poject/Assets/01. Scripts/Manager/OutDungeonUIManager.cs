@@ -25,8 +25,8 @@ public class OutDungeonUIManager : MonoBehaviour
 
     [Header("상점 관련")]
     [SerializeField] private TextMeshProUGUI PlayerGoldText;
-    [SerializeField] private GameObject SkillTableParent;
-    [SerializeField] private GameObject SkillTableButtonPrefab;
+    [SerializeField] private GameObject PlayerSkillTableButtonPrefab;
+    [SerializeField] private GameObject PlayerStoreSkillListContent;
 
     [Header("스탯 업그레이드 관련")]
     public TextMeshProUGUI addStatInfo_STR;
@@ -43,10 +43,12 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private EventManager eventManager;
     private Player player;
+    private StoreManager_New storeManager_New;
     private void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
         player = FindObjectOfType<Player>();
+        storeManager_New = FindObjectOfType<StoreManager_New>();
     }
 
     private void Start()
@@ -54,30 +56,83 @@ public class OutDungeonUIManager : MonoBehaviour
         ResetSkillSettedValue();
         ResetPlayerSkillInventory();
         DungeonEnterCheck();
+        storeManager_New.ResetSkillStore();
     }
 
     private void Update()
     {
-        UIUpdate_SetPlayerGoldText();
-        UIUpdate_SetPlayerStatPointText();
-        UIUpdate_SetPlayerStatAddInfo();
+        if (!GameManager.instance.isGameStarted)
+        {
+            UIUpdate_SetPlayerGoldText();
+            UIUpdate_SetPlayerStatPointText();
+            UIUpdate_SetPlayerStatAddInfo();
+            UIUpdate_EnterCheck_2();
+        }
+    }
+
+    private void UIUpdate_EnterCheck_2()
+    {
+        EnterInfo_2.text = "세팅 스킬-아이템 총합 10개 이하 [ 현재 " + (player.skillList.Count + GameManager.instance.potionCount).ToString() + " / 10개 ]";
+    }
+
+    public void ResetSkillTable()
+    {
+        EnableSkillTable();
+        SetSkillTable();
     }
 
     private void EnableSkillTable()
     {
-        for (int i = 0; i < SkillTableParent.transform.childCount; i++)
+        for (int i = 0; i < PlayerStoreSkillListContent.transform.childCount; i++)
         {
-            Destroy(SkillTableParent.transform.GetChild(0));
+            Destroy(PlayerStoreSkillListContent.transform.GetChild(i).gameObject);
         }
     }
 
-    public void SetSkillTable(List<SO_Skill> setSkills)
+    public void SetSkillTable()
     {
-        for (int i = 0; i < setSkills.Count; i++)
+        for (int i = 0; i < storeManager_New.nowStoreSkillTable.Count; i++)
         {
-            GameObject tempObj;
-            tempObj = Instantiate(SkillTableButtonPrefab);
-            tempObj.transform.SetParent(SkillTableParent.transform);
+            SO_Skill tempSkill = storeManager_New.nowStoreSkillTable[i];
+            tempSkill.playerSkillOrdered = false;
+            GameObject skillButton;
+            skillButton = Instantiate(PlayerSkillTableButtonPrefab);
+            skillButton.transform.SetParent(PlayerStoreSkillListContent.transform);
+            skillButton.GetComponent<Button>().onClick.AddListener(() => eventManager.OnSkillBuyOrder(tempSkill));
+
+            Color textColor = GetTextColorToElement(tempSkill.skillElements);
+
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().color = textColor;
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = tempSkill.skillName;
+
+            //skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+
+            skillButton.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = "차감 MP " + SetIntHundred((int)tempSkill.needMp, Color.white) + "";
+
+            string tempStr = "";
+            if (tempSkill.categoryPhysics)
+            {
+                tempStr = "물리";
+            }
+            else
+            {
+                tempStr = "화학";
+            }
+
+            skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = tempStr + " 대미지 " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + "";
+            //skillButton.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().color = textColor;
+
+            Color color;
+            ColorUtility.TryParseHtmlString("#FFB300", out color);
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().color = color;
+            skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
+
+            // 스킬 추가 정보 표기
+            skillButton.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = SetElementInfoString(tempSkill);
+            //skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = "Count : " + tempSkill.playerHavingCount.ToString();
+            skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = tempSkill.buyCost.ToString() + " G";
+            //skillButtons.Add(skillButton);
+            //Debug.Log(i);
         }
     }
 
@@ -94,12 +149,12 @@ public class OutDungeonUIManager : MonoBehaviour
 
     public void UIUpdate_SetPlayerGoldText()
     {
-        PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G";
+        PlayerGoldText.text = GameManager.instance.Gold.ToString() + " G<size=30>old</size>";
     }
 
     public void UIUpdate_SetPlayerStatPointText()
     {
-        PlayerStatPointText.text = player.statPoint.ToString() + " SP";
+        PlayerStatPointText.text = player.statPoint.ToString() + " S<size=30>kill</size>P<size=30>oint</size>";
     }
 
     public void CheckActiveDungeonEnterButton()
@@ -242,7 +297,7 @@ public class OutDungeonUIManager : MonoBehaviour
 
             // 스킬 추가 정보 표기
             skillButton.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = SetElementInfoString(tempSkill);
-            skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = "Count : " + tempSkill.playerHavingCount.ToString();
+            skillButton.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = tempSkill.playerHavingCount.ToString() + "개 소지함";
             //skillButtons.Add(skillButton);
             //Debug.Log(i);
         }
@@ -260,84 +315,84 @@ public class OutDungeonUIManager : MonoBehaviour
                 case 0:
                     if (tempSkill.setResistElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "SOLAR";
                     }
                     else if (tempSkill.setWeakElements.SOLAR)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "SOLAR";
                     }
                     break;
                 case 1:
                     if (tempSkill.setResistElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "LUMINOUS";
                     }
                     else if (tempSkill.setWeakElements.LUMINOUS)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "LUMINOUS";
                     }
                     break;
                 case 2:
                     if (tempSkill.setResistElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "IGNITION";
                     }
                     else if (tempSkill.setWeakElements.IGNITION)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "IGNITION";
                     }
                     break;
                 case 3:
                     if (tempSkill.setResistElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "HYDRO";
                     }
                     else if (tempSkill.setWeakElements.HYDRO)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "HYDRO";
                     }
                     break;
                 case 4:
                     if (tempSkill.setResistElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "BIOLOGY";
                     }
                     else if (tempSkill.setWeakElements.BIOLOGY)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "BIOLOGY";
                     }
                     break;
                 case 5:
                     if (tempSkill.setResistElements.METAL)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "METAL";
                     }
                     else if (tempSkill.setWeakElements.METAL)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "METAL";
                     }
                     break;
                 case 6:
                     if (tempSkill.setResistElements.SOIL)
                     {
-                        elementResOrWckInfoString += "RESIST";
+                        elementResOrWckInfoString += "내성";
                         elementInfoString += "SOIL";
                     }
                     else if (tempSkill.setWeakElements.SOIL)
                     {
-                        elementResOrWckInfoString += "WEAK";
+                        elementResOrWckInfoString += "취약";
                         elementInfoString += "SOIL";
                     }
                     break;
@@ -351,7 +406,7 @@ public class OutDungeonUIManager : MonoBehaviour
             elementInfoString = "NULL";
         }
 
-        tempString = elementResOrWckInfoString + " : " + elementInfoString;
+        tempString = elementInfoString + " " + elementResOrWckInfoString;
         return tempString;
     }
 
@@ -442,5 +497,10 @@ public class OutDungeonUIManager : MonoBehaviour
     private void FX_SkillInventorySetTextInactive(TextMeshProUGUI effectText)
     {
         effectText.DOFade(0, 0.125f);
+    }
+
+    public void FX_GameStart(GameObject titleBackGroud)
+    {
+        titleBackGroud.transform.DOMoveY(1080 * 2, 1f).OnComplete(() => { Destroy(titleBackGroud); });
     }
 }

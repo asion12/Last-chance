@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: 017. NuclearExplosion
   m_EditorClassIdentifier: 
   skillName: "\uD575\uD3ED\uBC1C"
-  buyCost: 999
-  playerHavingCount: 1
+  buyCost: 2500
+  playerHavingCount: 2
   isSell: 0
   playerSkillSetted: 0
+  playerSkillOrdered: 0
   categoryPhysics: 0
   categoryChemistry: 1
   skillElements:
