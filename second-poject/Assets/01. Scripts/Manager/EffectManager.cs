@@ -51,7 +51,7 @@ public class EffectManager : MonoBehaviour
 
     public void MakeSkillEffect(SO_Skill useSkill, bool isCasterPlayer)
     {
-        Debug.LogWarning("Effect!");
+        //Debug.LogWarning("Effect!");
         GameObject setEffect = null;
         GameObject tempEffect = null;
 
@@ -103,7 +103,7 @@ public class EffectManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No Element");
+            //Debug.LogWarning("No Element");
             setEffect = METAL_PhysicsEffect;
         }
 
@@ -154,10 +154,10 @@ public class EffectManager : MonoBehaviour
             Vector3 orginPos = HitObject.transform.localPosition;
             if (HitObject != null)
             {
-                Debug.LogWarning("Hit Stopped!");
+                //Debug.LogWarning("Hit Stopped!");
                 Time.timeScale = 0f;
                 yield return new WaitForSecondsRealtime(0.15f * HitValue);
-                Debug.LogWarning("HitStopEnd!");
+                //Debug.LogWarning("HitStopEnd!");
                 Time.timeScale = 1f;
                 if (HitObject != null)
                 {
@@ -384,7 +384,7 @@ public class EffectManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence
         .Append(BattleResultEffectParent.transform.DOLocalMoveX(961, 0.125f))
-        .AppendInterval(2f)
+        .AppendInterval(3f)
         .Append(BattleResultEffectParent.transform.DOLocalMoveX(1242, 0.125f))
         .OnComplete(() =>
         {
@@ -414,7 +414,7 @@ public class EffectManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence
         .Append(AddSkillPool.transform.DOLocalMoveX(964, 0.125f))
-        .AppendInterval(2f)
+        .AppendInterval(3f)
         .Append(AddSkillPool.transform.DOLocalMoveX(1600, 0.125f));
     }
 }

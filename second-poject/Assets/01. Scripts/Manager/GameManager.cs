@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int potionCount = 0;
 
     [SerializeField] private GameObject GameClearUI;
+    [SerializeField] private TextMeshProUGUI ClearInfoText;
     public int DungeonTryCount = 0;
     public int KilledEnemyCount = 0;
     public int SkillCastCount = 0;
@@ -53,11 +55,6 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
         player = FindObjectOfType<Player>();
-    }
-
-    private void GameClear()
-    {
-        GameClearUI.SetActive(true);
     }
 
     private void Update()
@@ -239,6 +236,19 @@ public class GameManager : MonoBehaviour
         isGameStarted = false;
         storeManager_New.ResetSkillStore();
         outDungeonUIManager.ActiveOutDungeonUI();
+    }
+
+    public void ClearDungeon()
+    {
+        ExitDungeon();
+
+        ClearInfoText.text = "";
+        ClearInfoText.text += "\n던전에 총 " + DungeonTryCount.ToString() + "번 도전";
+        ClearInfoText.text += $"\n총 {KilledEnemyCount.ToString()}마리의 몬스터 처치";
+        ClearInfoText.text += $"\n총 {UsedPotionCount.ToString()}의 포션을 사용";
+        ClearInfoText.text += $"\n총 {SkillCastCount.ToString()}번 스킬을 시전";
+
+        GameClearUI.SetActive(true);
     }
 
     private void ReSetPlayerTotalElements()

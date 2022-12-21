@@ -18,6 +18,7 @@ public class ItemBox_new : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.LogWarning("스킬 획득함");
             AddStoreSkillPool();
             effectManager.FX_AddSKillStorePool(AddSkillPollList);
             Destroy(gameObject);

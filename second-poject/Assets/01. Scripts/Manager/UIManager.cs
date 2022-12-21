@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
         eventManager = FindObjectOfType<EventManager>();
         if (player.skillList == null)
         {
-            Debug.Log("Player Skill List is Null!");
+            //Debug.Log("Player Skill List is Null!");
         }
         else
         {
@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
 
         // if (BattleManager.instance.nowTurnID == 0)
         // {
-        //     //Debug.Log("Battle UI OFF");
+        //     ////Debug.Log("Battle UI OFF");
         //     playerBattleUI.transform.gameObject.SetActive(false);
         // }
         // else if (BattleManager.instance.nowTurnID == 1)
@@ -176,7 +176,7 @@ public class UIManager : MonoBehaviour
 
     public void ActiveCanBatteUI()
     {
-        //Debug.LogError("CanBattleActivated!");
+        ////Debug.LogError("CanBattleActivated!");
         CanBattleUI.SetActive(true);
         FX_ActiveCanBattleUI();
     }
@@ -300,7 +300,7 @@ public class UIManager : MonoBehaviour
             // TargetEnemyCpText.gameObject.SetActive(true);
             // TargetEnemyCarelessCount.gameObject.SetActive(true);
             // TargetEnemyLevelText.gameObject.SetActive(true);
-            // Debug.Log("TargetIn!");
+            // //Debug.Log("TargetIn!");
 
             BattleManager.instance.SetCharacter(targetEnemy.GetComponent<Character>());
 
@@ -319,7 +319,7 @@ public class UIManager : MonoBehaviour
 
     public void UIUpdate_OffTargetEnemyBase()
     {
-        //Debug.Log("OffTarget!");
+        ////Debug.Log("OffTarget!");
 
         tempTargetHp = 0;
         tempTargetMp = 0;
@@ -471,7 +471,7 @@ public class UIManager : MonoBehaviour
     {
         SetButtonPlayerSkillListEnable();
         SetButtonPlayerSkillList();
-        Debug.Log("Skill Set Complete_Remove");
+        ////Debug.Log("Skill Set Complete_Remove");
     }
 
     private void SetButtonPlayerSkillList()
@@ -480,7 +480,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < skills.Count; i++)
         {
             SO_Skill tempSkill = skills[i];
-            //Debug.Log("Count is " + player.skillList.Count);
+            ////Debug.Log("Count is " + player.skillList.Count);
             GameObject skillButton;
             skillButton = Instantiate(PlayerSkillButtonPrefab);
             skillButton.transform.SetParent(PlayerSkillListContent.transform);
@@ -508,7 +508,7 @@ public class UIManager : MonoBehaviour
             skillButton.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = tempString + " " + SetIntHundred((int)tempSkill.skillDamage, Color.white) + " 대미지";
             skillButton.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = "필요 CP " + SetIntHundred((int)tempSkill.needCP, Color.white) + "";
             //skillButtons.Add(skillButton);
-            //Debug.Log(i);
+            ////Debug.Log(i);
         }
     }
 
@@ -516,7 +516,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < PlayerSkillListContent.transform.childCount; i++)
         {
-            Debug.LogWarning("Destroyed");
+            //Debug.LogWarning("Destroyed");
             Destroy(PlayerSkillListContent.transform.GetChild(i).gameObject);
         }
 
@@ -674,7 +674,7 @@ public class UIManager : MonoBehaviour
     {
         if (!isRunButtonOn)
         {
-            Debug.Log("Actived!");
+            //Debug.Log("Actived!");
             isRunButtonOn = true;
             Sequence sequence = DOTween.Sequence();
 
@@ -699,7 +699,7 @@ public class UIManager : MonoBehaviour
         if (isRunButtonOn)
         {
             isRunButtonOn = false;
-            Debug.Log("InActived!");
+            //Debug.Log("InActived!");
             Sequence sequence = DOTween.Sequence();
             PlayerRunButtonBG.gameObject.SetActive(true);
 
