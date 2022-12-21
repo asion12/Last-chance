@@ -190,7 +190,7 @@ public class Character : MonoBehaviour
 
     private void SetToatalElelments(bool[] toResEl, bool[] toWckEl)
     {
-        Debug.Log("Element Check Comlete!");
+        //Debug.Log("Element Check Comlete!");
         totalResistElements.SOLAR = toResEl[0];
         totalResistElements.LUMINOUS = toResEl[1];
         totalResistElements.IGNITION = toResEl[2];
@@ -211,7 +211,7 @@ public class Character : MonoBehaviour
     }
     public virtual void SetTotalElements()
     {
-        Debug.LogWarning("Total Element Checked!");
+        //Debug.LogWarning("Total Element Checked!");
         int[] chResEl = Elements_IntArrReturn(characterResistElements);
         int[] chWckEl = Elements_IntArrReturn(characterWeakElements);
         int[] adResEl = Elements_IntArrReturn(additionResistElements);
@@ -248,9 +248,9 @@ public class Character : MonoBehaviour
             }
         }
         // if (isOverResist)
-        //     Debug.Log("OverResist!");
+        //     //Debug.Log("OverResist!");
         // if (isOverWeak)
-        //     Debug.Log("OverWeak!");
+        //     //Debug.Log("OverWeak!");
         SetToatalElelments(toResEl, toWckEl);
     }
 

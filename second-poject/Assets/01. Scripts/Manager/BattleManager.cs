@@ -54,7 +54,7 @@ public class BattleManager : MonoBehaviour
             //Debug.Log(targetEnemy.nowMP);
         }
         //CheckCharactersHp();
-      
+
     }
 
     private bool CheckBattleEnd()
@@ -279,8 +279,8 @@ public class BattleManager : MonoBehaviour
                 }
 
                 // SkillCaster FOC Check
-                castSkill.accuarityPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
-                castSkill.casterCriticalPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 5;
+                castSkill.accuarityPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 2;
+                castSkill.casterCriticalPer += Mathf.Log(1 + skillCaster.totalStats.FOC, 2) * 2;
                 if (skillCaster.nowCP > castSkill.needCP)
                 {
                     Debug.Log("Cp Over!!");

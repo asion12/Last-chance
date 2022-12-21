@@ -31,7 +31,7 @@ public class Player : Character
     float cpIncreaseTimer_MAX = 0.75f;
 
     float cpDecreaseTimer = 0;
-    float cpDecreaseTimer_MAX = 2f;
+    float cpDecreaseTimer_MAX = 1f;
 
     //public ItemDBObj itemDBObj;
     //public InventoryObj inventoryObj;
