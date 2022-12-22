@@ -113,7 +113,7 @@ public class BattleManager : MonoBehaviour
             SetEnemy(detactedEnemy.GetComponent<Character>());
             targetEnemy.isBattleMode = true;
             player.isBattleMode = true;
-            Debug.Log("BattleStartFX!");
+            //Debug.Log("BattleStartFX!");
             uIManager.FX_BattleStart();
             Debug.Log("SkillUIOnFX!");
             uIManager.SetBattleUIActive();
@@ -140,10 +140,23 @@ public class BattleManager : MonoBehaviour
         ResetBattleSetting();
         if (isPlayerWin)
         {
+            bool isPlayerLevelUp = false;
+
             float randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            player.EXP += (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            int gotEXP = (int)(20 * (1 + (-player.GetLevelScale_forBattle(player.Level - targetEnemy.Level) * 1.5f)) * randomValue * (1 + Mathf.Log(BonusExpScale + 1, 2)) / (1 + Mathf.Log(disBonusExpScale + 1, 2)));
+            if (player.EXP + gotEXP >= player.maxEXP)
+            {
+                isPlayerLevelUp = true;
+            }
+            player.EXP += gotEXP;
+
+
             randomValue = UnityEngine.Random.Range(0.8f, 1.2f);
-            GameManager.instance.Gold += (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
+            int GotGold = (int)(200 * Mathf.Log(targetEnemy.Level, 2) * randomValue);
+            GameManager.instance.Gold += GotGold;
+
+            effectManager.FX_BattleResultEffect(gotEXP, isPlayerLevelUp, GotGold);
+
             BonusExpScale = 0;
             Debug.Log("Player Win");
             Debug.Log("Print UI What Player Get");
@@ -237,24 +250,23 @@ public class BattleManager : MonoBehaviour
     {
         bool isSuriseEffect = false;
 
-        if (skillCaster.GetComponent<Player>() != null)
-        {
-            SonudPlay(backList[0]);
-            SonudPlaya(atta[0]);
-            StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
-        }
-        else
-        {
-            SonudPlay(backList[0]);
-            StartCoroutine(uIManager.SendGameLog("상대은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
-        }
-
-
         if (skillCaster.nowMP < castSkill.needMp)
         {
         }
         else
         {
+            if (skillCaster.GetComponent<Player>() != null)
+            {
+                SonudPlay(backList[0]);
+                SonudPlaya(atta[0]);
+                StartCoroutine(uIManager.SendGameLog("당신은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
+            }
+            else
+            {
+                SonudPlay(backList[0]);
+                StartCoroutine(uIManager.SendGameLog("상대은(는) " + castSkill.skillName + " 을(를) 사용했다!"));
+            }
+
             skillCaster.nowMP -= castSkill.needMp;
 
             bool isCritical = false;
