@@ -37,10 +37,11 @@ public class EventManager : MonoBehaviour
         }
         else
         {
-            if (BattleManager.instance.nowTurnID == 1)
+            if (BattleManager.instance.nowTurnID == 1 && player.canUseSkill)
             {
                 if (setSkill.needMp <= player.nowMP)
                     effectManager.MakeSkillEffect(setSkill, true);
+                player.canUseSkill = false;
                 PlayerCastSkillSet(setSkill);
             }
         }
@@ -371,5 +372,20 @@ public class EventManager : MonoBehaviour
     public void OnGameStart()
     {
         outDungeonUIManager.FX_GameStart(TitleUIGroup);
+    }
+
+    public void OnOutDungeonUIActive_PlayerSetting()
+    {
+        outDungeonUIManager.ActiveOutDungeonUI_ChildCategory(outDungeonUIManager.OutDungeon_PlayerSettingUI);
+    }
+
+    public void OnOutDungeonUIActive_Store()
+    {
+        outDungeonUIManager.ActiveOutDungeonUI_ChildCategory(outDungeonUIManager.OutDungeon_StoreUI);
+    }
+
+    public void OnOutDungeonUIActive_EnterDungeon()
+    {
+        outDungeonUIManager.ActiveOutDungeonUI_ChildCategory(outDungeonUIManager.OutDungeon_EnterDungeonUI);
     }
 }

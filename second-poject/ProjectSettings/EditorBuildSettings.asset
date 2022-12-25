@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00. Scenes/JJB-BattleStart & FOV.unity
+    path: Assets/00. Scenes/Game Play Scenes/JJB-BattleStart & FOV.unity
     guid: 5a13b6b15fbba494bbe63c8270e1ffda
   - enabled: 1
-    path: Assets/00. Scenes/JJB-Dungeon.unity
+    path: Assets/00. Scenes/Game Play Scenes/JJB-Dungeon.unity
     guid: 158ce6ae3a69f5a41b3316613048fa9a
   m_configObjects: {}

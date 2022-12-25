@@ -42,6 +42,7 @@ public class Player : Character
 
     public bool isCanExit = false;
 
+    [System.NonSerialized] public bool canUseSkill = false;
     //private OutDungeonUIManager outDungeonUIManager;
     private void Awake()
     {

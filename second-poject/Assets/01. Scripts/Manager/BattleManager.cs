@@ -77,6 +77,7 @@ public class BattleManager : MonoBehaviour
     {
         if (nowTurnID == 1)
         {
+            player.canUseSkill = false;
             uIManager.SetBattleUIInactive();
             yield return new WaitForSeconds(1.5f);
             Debug.Log("Turn Change To Enemy");
@@ -85,6 +86,7 @@ public class BattleManager : MonoBehaviour
         else if (nowTurnID == 2)
         {
             yield return new WaitForSeconds(1.5f);
+            player.canUseSkill = true;
             uIManager.SetBattleUIActive();
             uIManager.SetGameLog_PlayerTurnCommand();
             nowTurnID = 1;
@@ -122,6 +124,7 @@ public class BattleManager : MonoBehaviour
             {
                 //monster.speed = 0;
                 uIManager.SetGameLog_PlayerTurnCommand();
+                player.canUseSkill = true;
                 nowTurnID = 1;
                 if (isVictimCareless)
                     targetEnemy.carelessCounter = targetEnemy.max_carelessCounter;
@@ -515,6 +518,7 @@ public class BattleManager : MonoBehaviour
         else if (checkCharacter.carelessCounter >= checkCharacter.max_carelessCounter)
         {
             Debug.Log("OneMore");
+            player.canUseSkill = true;
             if (checkCharacter.GetComponent<Player>() != null)
             {
                 //Debug.Log("One More Enemy Casted");
@@ -527,6 +531,7 @@ public class BattleManager : MonoBehaviour
             if (!isTurnUsed)
             {
                 Debug.Log("One More");
+                player.canUseSkill = true;
                 if (checkCharacter.GetComponent<Player>() != null)
                 {
                     //Debug.Log("One More Enemy Casted");

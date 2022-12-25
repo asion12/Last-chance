@@ -44,6 +44,13 @@ public class OutDungeonUIManager : MonoBehaviour
     private EventManager eventManager;
     private Player player;
     private StoreManager_New storeManager_New;
+
+    [Header("UI 카테고리")]
+    public Canvas OutDungeon_PlayerSettingUI;
+    public Canvas OutDungeon_EnterDungeonUI;
+    public Canvas OutDungeon_StoreUI;
+    private Canvas nowOnUI;
+
     private void Awake()
     {
         eventManager = FindObjectOfType<EventManager>();
@@ -57,6 +64,7 @@ public class OutDungeonUIManager : MonoBehaviour
         ResetPlayerSkillInventory();
         DungeonEnterCheck();
         storeManager_New.ResetSkillStore();
+        ActiveOutDungeonUI();
     }
 
     private void Update()
@@ -72,7 +80,7 @@ public class OutDungeonUIManager : MonoBehaviour
 
     private void UIUpdate_EnterCheck_2()
     {
-        EnterInfo_2.text = "세팅 스킬-아이템 총합 10개 이하 [ 현재 " + (player.skillList.Count + GameManager.instance.potionCount).ToString() + " / 10개 ]";
+        EnterInfo_2.text = "세팅 스킬-아이템 총합 " + (player.skillList.Count + GameManager.instance.potionCount).ToString() + " / 10개";
     }
 
     public void ResetSkillTable()
@@ -451,12 +459,33 @@ public class OutDungeonUIManager : MonoBehaviour
 
     public void ActiveOutDungeonUI()
     {
+        nowOnUI = OutDungeon_PlayerSettingUI;
         OutDungeonUI.transform.gameObject.SetActive(true);
+        OutDungeon_PlayerSettingUI.gameObject.SetActive(true);
+        OutDungeon_StoreUI.gameObject.SetActive(true);
+        OutDungeon_EnterDungeonUI.gameObject.SetActive(true);
+
+        OutDungeon_PlayerSettingUI.sortingOrder = -2;
+        OutDungeon_StoreUI.sortingOrder = -2;
+        OutDungeon_EnterDungeonUI.sortingOrder = -2;
+
+        nowOnUI.sortingOrder = -1;
     }
 
     public void InactiveOutDungeonUI()
     {
         OutDungeonUI.transform.gameObject.SetActive(false);
+        OutDungeon_PlayerSettingUI.gameObject.SetActive(false);
+        OutDungeon_StoreUI.gameObject.SetActive(false);
+        OutDungeon_EnterDungeonUI.gameObject.SetActive(false);
+        //nowOnUI.gameObject.SetActive(false);
+    }
+
+    public void ActiveOutDungeonUI_ChildCategory(Canvas OnUI)
+    {
+        nowOnUI.sortingOrder = -2;
+        nowOnUI = OnUI;
+        nowOnUI.sortingOrder = -1;
     }
 
     public void Non_SetSkillInventoryButton(GameObject SkillInventoryButton)

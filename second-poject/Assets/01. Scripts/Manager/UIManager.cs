@@ -91,6 +91,7 @@ public class UIManager : MonoBehaviour
     private float tempTargetMp = -1;
     private float tempTargetCp = -1;
 
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -213,12 +214,12 @@ public class UIManager : MonoBehaviour
 
     private void UIUpdate_SetPlayerItemCount()
     {
-        PlayerItemCount_HPLOW.text = GameManager.instance.HP_0.ToString("D2");
-        PlayerItemCount_HPMID.text = GameManager.instance.HP_1.ToString("D2");
-        PlayerItemCount_HPHIGH.text = GameManager.instance.HP_2.ToString("D2");
-        PlayerItemCount_MPLOW.text = GameManager.instance.MP_0.ToString("D2");
-        PlayerItemCount_MPMID.text = GameManager.instance.MP_1.ToString("D2");
-        PlayerItemCount_MPHIGH.text = GameManager.instance.MP_2.ToString("D2");
+        PlayerItemCount_HPLOW.text = GameManager.instance.HP_0.ToString("D2") + "<size=25>개</size>";
+        PlayerItemCount_HPMID.text = GameManager.instance.HP_1.ToString("D2") + "<size=25>개</size>";
+        PlayerItemCount_HPHIGH.text = GameManager.instance.HP_2.ToString("D2") + "<size=25>개</size>";
+        PlayerItemCount_MPLOW.text = GameManager.instance.MP_0.ToString("D2") + "<size=25>개</size>";
+        PlayerItemCount_MPMID.text = GameManager.instance.MP_1.ToString("D2") + "<size=25>개</size>";
+        PlayerItemCount_MPHIGH.text = GameManager.instance.MP_2.ToString("D2") + "<size=25>개</size>";
     }
 
     private void UIUpdate_SetPlayerCanExit()
@@ -439,7 +440,7 @@ public class UIManager : MonoBehaviour
         .Append(PlayerSkillListBG.DOFade(1f, 0.125f))
         .Join(PlayerSkillList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
         {
-            PlayerSkillListUI.sortingOrder = -1;
+            PlayerSkillListUI.sortingOrder = -4;
             PlayerItemListUI.sortingOrder = 1;
         }))
         .Append(PlayerItemListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerItemListBG.gameObject.SetActive(false); }))
@@ -457,7 +458,7 @@ public class UIManager : MonoBehaviour
         .Append(PlayerItemListBG.DOFade(1f, 0.125f))
         .Join(PlayerItemList.gameObject.transform.DOScale(0.975f, 0.125f).OnComplete(() =>
         {
-            PlayerItemListUI.sortingOrder = -1;
+            PlayerItemListUI.sortingOrder = -4;
             PlayerSkillListUI.sortingOrder = 1;
         }))
         .Append(PlayerSkillListBG.DOFade(0, 0.125f).OnComplete(() => { PlayerSkillListBG.gameObject.SetActive(false); }))

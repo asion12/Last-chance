@@ -383,9 +383,9 @@ public class EffectManager : MonoBehaviour
         BattleResultEffectGroup[6].SetActive(true);
         Sequence sequence = DOTween.Sequence();
         sequence
-        .Append(BattleResultEffectParent.transform.DOLocalMoveX(961, 0.125f))
+        .Append(BattleResultEffectParent.transform.DOLocalMoveX(946, 0.125f))
         .AppendInterval(3f)
-        .Append(BattleResultEffectParent.transform.DOLocalMoveX(1242, 0.125f))
+        .Append(BattleResultEffectParent.transform.DOLocalMoveX(1521, 0.125f))
         .OnComplete(() =>
         {
             for (int i = 0; i < BattleResultEffectGroup.Count; i++)
