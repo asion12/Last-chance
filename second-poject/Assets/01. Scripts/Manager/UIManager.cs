@@ -290,6 +290,18 @@ public class UIManager : MonoBehaviour
         PlayerLevelText.text = "Level " + player.Level;
     }
 
+    public IEnumerator FX_TwinkleCPBar()
+    {
+        Debug.Log("Twinkle!");
+        PlayerNowCpBar.DOKill();
+        Color tempColor = new Color(255, 179, 0);
+        //float tempTimer = player.GetComponent<Player>().cpIncreaseTimer_MAX / Mathf.Log(player.totalStats.FOC + 1, 2) / 2;
+        PlayerNowCpBar.color = new Color(255, 255, 255);
+        yield return new WaitForSeconds(0.125f);
+        PlayerNowCpBar.color = new Color(255, 179, 0);
+        //PlayerNowCpBar.DOColor(tempColor, 0.065f);
+    }
+
     public void UIUpdate_TargetEnemyBase(GameObject targetEnemy, bool isIn)
     {
         if (isIn && targetEnemy != null)

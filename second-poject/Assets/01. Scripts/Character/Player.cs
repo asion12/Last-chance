@@ -28,7 +28,7 @@ public class Player : Character
     public bool[] isSkillOverClockList = { false, };
 
     float cpIncreaseTimer = 0;
-    float cpIncreaseTimer_MAX = 2f;
+    public float cpIncreaseTimer_MAX = 2f;
 
     float cpDecreaseTimer = 0;
     float cpDecreaseTimer_MAX = 1f;
@@ -120,6 +120,7 @@ public class Player : Character
         cpDecreaseTimer += Time.deltaTime;
         if (cpDecreaseTimer >= cpDecreaseTimer_MAX * Mathf.Log(totalStats.FOC + 1, 2) / 2)
         {
+            //StartCoroutine(uIManager.FX_TwinkleCPBar());
             cpDecreaseTimer = 0;
             nowCP--;
             if (nowCP < 0)
